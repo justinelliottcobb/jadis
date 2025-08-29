@@ -1,4 +1,5 @@
 import './stories/button.css'
 import './stories/header.css'
 import './stories/page.css'
+import './components/Headers/Headers.scss'
 import './index.css'
