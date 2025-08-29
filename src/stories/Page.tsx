@@ -7,7 +7,9 @@ type User = {
   name: string;
 };
 
-export const Page: React.FC = () => {
+export interface PageProps {}
+
+export const Page: React.FC<PageProps> = () => {
   const [user, setUser] = React.useState<User>();
 
   return (
