@@ -1,7 +1,7 @@
 # Jadis - Project Context
 
 ## Project Overview
-Jadis is a modern React + TypeScript component library built with Vite. It provides reusable UI components with Storybook integration for component development, documentation, and testing.
+Jadis is a modern React + TypeScript component library built with Vite. It provides reusable UI components styled with 90's BBS ASCII art and TUI aesthetics. The library includes Storybook integration for component development, documentation, and testing.
 
 ## Tech Stack
 - **Frontend Framework**: React 19.1.1
@@ -19,11 +19,17 @@ jadis/
 ├── public/                 # Static assets
 │   └── vite.svg           # Vite logo
 ├── src/
-│   ├── App.tsx            # Main application component
-│   ├── main.tsx           # Application entry point
+│   ├── index.ts           # Library entry point
+│   ├── styles.ts          # Style imports
 │   ├── assets/            # Application assets
 │   │   └── react.svg
-│   ├── stories/           # Storybook components and stories
+│   ├── components/        # Library components
+│   │   └── Headers/       # ASCII art header components
+│   │       ├── Headers.tsx        # H1-H6 components
+│   │       ├── Headers.scss       # ASCII/TUI styling
+│   │       ├── Headers.stories.tsx # Storybook stories
+│   │       └── index.ts           # Component exports
+│   ├── stories/           # Example Storybook components
 │   │   ├── Button.tsx     # Example button component
 │   │   ├── Header.tsx     # Example header component
 │   │   ├── Page.tsx       # Example page component
@@ -34,6 +40,7 @@ jadis/
 ├── .storybook/            # Storybook configuration
 │   ├── main.ts            # Main Storybook config
 │   └── preview.ts         # Global preview settings
+├── storybook-static/      # Static Storybook build
 └── [config files]        # Various configuration files
 ```
 
@@ -80,10 +87,19 @@ Comprehensive Storybook setup includes:
 - **React-Vite framework** for optimal performance
 
 ## Component Architecture
+- **ASCII Art Styling**: 90's BBS and TUI-inspired visual design
+- **Terminal Aesthetics**: Monospace fonts, retro colors, text shadows
 - **Radix UI** as the foundational UI primitive library
-- **CSS Modules** approach with component-specific stylesheets
-- **TypeScript interfaces** for component props
-- **Storybook stories** for each component with comprehensive examples
+- **SCSS styling** with component-specific stylesheets
+- **TypeScript interfaces** for component props with strict typing
+- **Comprehensive Storybook stories** with dark terminal backgrounds
+
+### Available Components
+- **Headers (H1-H6)**: ASCII art styled headers with multiple variants
+  - Variants: `box`, `double-line`, `dashed`, `solid`, `simple`
+  - Colors: Terminal green, cyan, yellow, orange, purple, gray
+  - Alignments: `left`, `center`, `right`
+  - Features: Monospace typography, ASCII borders, retro glow effects
 
 ## Library Build & Distribution
 - **Library build**: TypeScript declaration generation + Vite library bundling
@@ -106,8 +122,22 @@ Comprehensive Storybook setup includes:
 
 ## Development Notes
 - Project is in early development phase (version 0.1.0)
-- Focus on component library and design system establishment
+- **Design Focus**: 90's BBS ASCII art and terminal user interface aesthetics
+- **Component Philosophy**: Nostalgic computing experience with modern React patterns
 - Radix UI provides accessible, unstyled components as foundation
 - Storybook serves as both development environment and documentation platform
-- Library can be consumed by importing components: `import { Button } from 'jadis'`
-- Styles can be imported separately: `import 'jadis/styles'`
+- **Static Storybook**: Use `npm run build-storybook` for deployable documentation
+
+## Usage Examples
+```typescript
+// Import ASCII header components
+import { H1, H2, H3, H4, H5, H6 } from 'jadis'
+
+// Import styles
+import 'jadis/styles'
+
+// Use with different variants
+<H1 variant="box" align="center">MAIN SYSTEM</H1>
+<H2 variant="double-line" align="left">Configuration Menu</H2>
+<H3 variant="dashed">File Operations</H3>
+```

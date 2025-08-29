@@ -1,0 +1,238 @@
+// Base header styles
+.jadis-h1, .jadis-h2, .jadis-h3, .jadis-h4, .jadis-h5, .jadis-h6 {
+  font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+  font-weight: normal;
+  margin: 1rem 0;
+  line-height: 1.2;
+  text-shadow: 0 0 3px currentColor;
+}
+
+// H1 Styles
+.jadis-h1 {
+  font-size: 2rem;
+  color: #00ff00;
+  
+  &--left { text-align: left; }
+  &--center { text-align: center; }
+  &--right { text-align: right; }
+  
+  &--box {
+    border: 2px solid #00ff00;
+    padding: 0.5rem;
+  }
+  
+  &--double-line {
+    border-top: 3px double #00ff00;
+    border-bottom: 3px double #00ff00;
+    padding: 0.5rem 0;
+  }
+  
+  &--dashed {
+    border-top: 2px dashed #00ff00;
+    border-bottom: 2px dashed #00ff00;
+    padding: 0.3rem 0;
+  }
+  
+  &--solid {
+    border-top: 2px solid #00ff00;
+    border-bottom: 2px solid #00ff00;
+    padding: 0.3rem 0;
+  }
+  
+  &--simple {
+    border-bottom: 1px solid #00ff00;
+    padding-bottom: 0.2rem;
+  }
+}
+
+// H2 Styles
+.jadis-h2 {
+  font-size: 1.6rem;
+  color: #00cccc;
+  
+  &--left { text-align: left; }
+  &--center { text-align: center; }
+  &--right { text-align: right; }
+  
+  &--box {
+    border: 2px solid #00cccc;
+    padding: 0.4rem;
+  }
+  
+  &--double-line {
+    border-top: 2px double #00cccc;
+    border-bottom: 2px double #00cccc;
+    padding: 0.4rem 0;
+  }
+  
+  &--dashed {
+    border-top: 2px dashed #00cccc;
+    border-bottom: 2px dashed #00cccc;
+    padding: 0.3rem 0;
+  }
+  
+  &--solid {
+    border-top: 2px solid #00cccc;
+    border-bottom: 1px solid #00cccc;
+    padding: 0.3rem 0;
+  }
+  
+  &--simple {
+    border-bottom: 1px solid #00cccc;
+    padding-bottom: 0.2rem;
+  }
+}
+
+// H3 Styles
+.jadis-h3 {
+  font-size: 1.3rem;
+  color: #ffff00;
+  
+  &--left { text-align: left; }
+  &--center { text-align: center; }
+  &--right { text-align: right; }
+  
+  &--box {
+    border: 1px solid #ffff00;
+    padding: 0.3rem;
+  }
+  
+  &--double-line {
+    border-top: 1px solid #ffff00;
+    border-bottom: 1px solid #ffff00;
+    padding: 0.3rem 0;
+  }
+  
+  &--dashed {
+    border-top: 1px dashed #ffff00;
+    border-bottom: 1px dashed #ffff00;
+    padding: 0.2rem 0;
+  }
+  
+  &--solid {
+    border-bottom: 2px solid #ffff00;
+    padding-bottom: 0.2rem;
+  }
+  
+  &--simple {
+    border-bottom: 1px solid #ffff00;
+    padding-bottom: 0.1rem;
+    
+    &::after {
+      content: ' >';
+      opacity: 0.8;
+    }
+  }
+}
+
+// H4 Styles
+.jadis-h4 {
+  font-size: 1.1rem;
+  color: #ff6600;
+  
+  &--left { text-align: left; }
+  &--center { text-align: center; }
+  &--right { text-align: right; }
+  
+  &--box {
+    border: 1px solid #ff6600;
+    padding: 0.2rem;
+  }
+  
+  &--double-line {
+    border-bottom: 1px double #ff6600;
+    padding-bottom: 0.2rem;
+  }
+  
+  &--dashed {
+    border-bottom: 1px dashed #ff6600;
+    padding-bottom: 0.1rem;
+  }
+  
+  &--solid {
+    border-bottom: 1px solid #ff6600;
+    padding-bottom: 0.1rem;
+    
+    &::before {
+      content: '■ ';
+      opacity: 0.8;
+    }
+  }
+  
+  &--simple {
+    &::before {
+      content: '▶ ';
+      opacity: 0.8;
+    }
+  }
+}
+
+// H5 Styles
+.jadis-h5 {
+  font-size: 1rem;
+  color: #cc66ff;
+  
+  &--left { text-align: left; }
+  &--center { text-align: center; }
+  &--right { text-align: right; }
+  
+  &--box {
+    border: 1px dotted #cc66ff;
+    padding: 0.1rem;
+  }
+  
+  &--double-line {
+    text-decoration: underline double;
+  }
+  
+  &--dashed {
+    text-decoration: underline dashed;
+  }
+  
+  &--solid {
+    border-bottom: 1px solid #cc66ff;
+    padding-bottom: 0.1rem;
+  }
+  
+  &--simple {
+    &::before {
+      content: '• ';
+      opacity: 0.8;
+    }
+  }
+}
+
+// H6 Styles
+.jadis-h6 {
+  font-size: 0.9rem;
+  color: #888888;
+  
+  &--left { text-align: left; }
+  &--center { text-align: center; }
+  &--right { text-align: right; }
+  
+  &--box {
+    border: 1px solid #888888;
+    padding: 0.1rem;
+  }
+  
+  &--double-line {
+    text-decoration: underline double;
+  }
+  
+  &--dashed {
+    text-decoration: underline dashed;
+  }
+  
+  &--solid {
+    border-bottom: 1px solid #888888;
+    padding-bottom: 0.05rem;
+  }
+  
+  &--simple {
+    &::before {
+      content: '∙ ';
+      opacity: 0.8;
+    }
+  }
+}
