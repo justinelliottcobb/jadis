@@ -1,5 +1,8 @@
 import './stories/button.css'
 import './stories/header.css'
 import './stories/page.css'
+import './styles/fonts.scss'
+import './styles/themes.scss'
 import './components/Headers/Headers.scss'
+import './components/Typography/Typography.scss'
 import './index.css'

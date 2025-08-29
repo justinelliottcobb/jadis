@@ -1,0 +1,65 @@
+// Hasklug Nerd Font integration
+// Primary font for the entire design system
+@import url('https://fonts.googleapis.com/css2?family=Hasklug+Nerd+Font:wght@300;400;500;600;700&display=swap');
+
+// Font family variables
+:root {
+  --jadis-font-primary: 'Hasklug Nerd Font', 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Courier New', 'Monaco', 'Menlo', monospace;
+  --jadis-font-fallback: 'Courier New', 'Monaco', 'Menlo', monospace;
+  
+  // Font weights
+  --jadis-font-light: 300;
+  --jadis-font-normal: 400;
+  --jadis-font-medium: 500;
+  --jadis-font-semibold: 600;
+  --jadis-font-bold: 700;
+  
+  // Terminal colors
+  --jadis-color-green: #00ff00;
+  --jadis-color-cyan: #00cccc;
+  --jadis-color-yellow: #ffff00;
+  --jadis-color-orange: #ff6600;
+  --jadis-color-purple: #cc66ff;
+  --jadis-color-gray: #888888;
+  --jadis-color-red: #ff3333;
+  --jadis-color-blue: #3366ff;
+  --jadis-color-white: #ffffff;
+  
+  // Background colors
+  --jadis-bg-dark: #000000;
+  --jadis-bg-terminal: #001100;
+  --jadis-bg-panel: #001a1a;
+  
+  // Text effects
+  --jadis-glow-sm: 0 0 3px currentColor;
+  --jadis-glow-md: 0 0 5px currentColor;
+  --jadis-glow-lg: 0 0 8px currentColor;
+  
+  // Spacing for terminal aesthetics
+  --jadis-space-xs: 0.25rem;
+  --jadis-space-sm: 0.5rem;
+  --jadis-space-md: 1rem;
+  --jadis-space-lg: 1.5rem;
+  --jadis-space-xl: 2rem;
+}
+
+// Base font application
+.jadis-font-primary {
+  font-family: var(--jadis-font-primary);
+}
+
+.jadis-font-fallback {
+  font-family: var(--jadis-font-fallback);
+}
+
+// Font weight utilities
+.jadis-font-light { font-weight: var(--jadis-font-light); }
+.jadis-font-normal { font-weight: var(--jadis-font-normal); }
+.jadis-font-medium { font-weight: var(--jadis-font-medium); }
+.jadis-font-semibold { font-weight: var(--jadis-font-semibold); }
+.jadis-font-bold { font-weight: var(--jadis-font-bold); }
+
+// Text glow effects
+.jadis-glow-sm { text-shadow: var(--jadis-glow-sm); }
+.jadis-glow-md { text-shadow: var(--jadis-glow-md); }
+.jadis-glow-lg { text-shadow: var(--jadis-glow-lg); }

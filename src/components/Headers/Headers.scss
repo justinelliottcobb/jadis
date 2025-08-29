@@ -1,54 +1,57 @@
-// Base header styles
+// Import font variables
+@import '../../styles/fonts.scss';
+
+// Base header styles with Hasklug Nerd Font
 .jadis-h1, .jadis-h2, .jadis-h3, .jadis-h4, .jadis-h5, .jadis-h6 {
-  font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
-  font-weight: normal;
-  margin: 1rem 0;
+  font-family: var(--jadis-font-primary);
+  font-weight: var(--jadis-font-normal);
+  margin: var(--jadis-space-md) 0;
   line-height: 1.2;
-  text-shadow: 0 0 3px currentColor;
+  text-shadow: var(--jadis-glow-sm);
 }
 
 // H1 Styles
 .jadis-h1 {
   font-size: 2rem;
-  color: #00ff00;
+  color: var(--jadis-color-green);
   
   &--left { text-align: left; }
   &--center { text-align: center; }
   &--right { text-align: right; }
   
   &--box {
-    border: 2px solid #00ff00;
-    padding: 0.5rem;
+    border: 2px solid var(--jadis-color-green);
+    padding: var(--jadis-space-sm);
   }
   
   &--double-line {
-    border-top: 3px double #00ff00;
-    border-bottom: 3px double #00ff00;
-    padding: 0.5rem 0;
+    border-top: 3px double var(--jadis-color-green);
+    border-bottom: 3px double var(--jadis-color-green);
+    padding: var(--jadis-space-sm) 0;
   }
   
   &--dashed {
-    border-top: 2px dashed #00ff00;
-    border-bottom: 2px dashed #00ff00;
-    padding: 0.3rem 0;
+    border-top: 2px dashed var(--jadis-color-green);
+    border-bottom: 2px dashed var(--jadis-color-green);
+    padding: var(--jadis-space-xs) 0;
   }
   
   &--solid {
-    border-top: 2px solid #00ff00;
-    border-bottom: 2px solid #00ff00;
-    padding: 0.3rem 0;
+    border-top: 2px solid var(--jadis-color-green);
+    border-bottom: 2px solid var(--jadis-color-green);
+    padding: var(--jadis-space-xs) 0;
   }
   
   &--simple {
-    border-bottom: 1px solid #00ff00;
-    padding-bottom: 0.2rem;
+    border-bottom: 1px solid var(--jadis-color-green);
+    padding-bottom: var(--jadis-space-xs);
   }
 }
 
 // H2 Styles
 .jadis-h2 {
   font-size: 1.6rem;
-  color: #00cccc;
+  color: var(--jadis-color-cyan);
   
   &--left { text-align: left; }
   &--center { text-align: center; }
@@ -86,7 +89,7 @@
 // H3 Styles
 .jadis-h3 {
   font-size: 1.3rem;
-  color: #ffff00;
+  color: var(--jadis-color-yellow);
   
   &--left { text-align: left; }
   &--center { text-align: center; }
@@ -128,7 +131,7 @@
 // H4 Styles
 .jadis-h4 {
   font-size: 1.1rem;
-  color: #ff6600;
+  color: var(--jadis-color-orange);
   
   &--left { text-align: left; }
   &--center { text-align: center; }
@@ -170,7 +173,7 @@
 // H5 Styles
 .jadis-h5 {
   font-size: 1rem;
-  color: #cc66ff;
+  color: var(--jadis-color-purple);
   
   &--left { text-align: left; }
   &--center { text-align: center; }
@@ -205,7 +208,7 @@
 // H6 Styles
 .jadis-h6 {
   font-size: 0.9rem;
-  color: #888888;
+  color: var(--jadis-color-gray);
   
   &--left { text-align: left; }
   &--center { text-align: center; }
