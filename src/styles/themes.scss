@@ -1,0 +1,126 @@
+// Jadis Theme System
+// Multiple ASCII-art aesthetic themes for consistent styling
+
+// Base theme structure
+:root {
+  // Core backgrounds
+  --jadis-bg-primary: #000000;
+  --jadis-bg-secondary: #111111;
+  --jadis-bg-tertiary: #222222;
+  --jadis-bg-accent: #001100;
+  
+  // Text colors
+  --jadis-text-primary: #00ff00;
+  --jadis-text-secondary: #888888;
+  --jadis-text-accent: #00cccc;
+  --jadis-text-muted: #555555;
+  
+  // Border colors
+  --jadis-border-primary: #00ff00;
+  --jadis-border-secondary: #444444;
+  --jadis-border-accent: #00cccc;
+}
+
+// Classic Terminal Theme (default)
+[data-theme="terminal"], :root {
+  --jadis-bg-primary: #000000;
+  --jadis-bg-secondary: #001100;
+  --jadis-bg-tertiary: #002200;
+  --jadis-bg-accent: #001a1a;
+  
+  --jadis-text-primary: #00ff00;
+  --jadis-text-secondary: #888888;
+  --jadis-text-accent: #00cccc;
+  --jadis-text-muted: #555555;
+  
+  --jadis-border-primary: #00ff00;
+  --jadis-border-secondary: #004400;
+  --jadis-border-accent: #00cccc;
+}
+
+// Matrix Theme
+[data-theme="matrix"] {
+  --jadis-bg-primary: #000011;
+  --jadis-bg-secondary: #001122;
+  --jadis-bg-tertiary: #002233;
+  --jadis-bg-accent: #001a2a;
+  
+  --jadis-text-primary: #00cccc;
+  --jadis-text-secondary: #0088aa;
+  --jadis-text-accent: #00ffff;
+  --jadis-text-muted: #004455;
+  
+  --jadis-border-primary: #00cccc;
+  --jadis-border-secondary: #0055aa;
+  --jadis-border-accent: #00ffff;
+}
+
+// Amber Retro Theme
+[data-theme="amber"] {
+  --jadis-bg-primary: #1a0f00;
+  --jadis-bg-secondary: #2a1900;
+  --jadis-bg-tertiary: #3a2300;
+  --jadis-bg-accent: #241800;
+  
+  --jadis-text-primary: #ffaa00;
+  --jadis-text-secondary: #cc8800;
+  --jadis-text-accent: #ffcc33;
+  --jadis-text-muted: #885500;
+  
+  --jadis-border-primary: #ffaa00;
+  --jadis-border-secondary: #cc7700;
+  --jadis-border-accent: #ffcc33;
+}
+
+// Purple Hacker Theme
+[data-theme="hacker"] {
+  --jadis-bg-primary: #0a0014;
+  --jadis-bg-secondary: #1a0028;
+  --jadis-bg-tertiary: #2a003c;
+  --jadis-bg-accent: #1a0032;
+  
+  --jadis-text-primary: #cc66ff;
+  --jadis-text-secondary: #9944cc;
+  --jadis-text-accent: #ff88ff;
+  --jadis-text-muted: #663399;
+  
+  --jadis-border-primary: #cc66ff;
+  --jadis-border-secondary: #8833cc;
+  --jadis-border-accent: #ff88ff;
+}
+
+// Monochrome Theme
+[data-theme="mono"] {
+  --jadis-bg-primary: #000000;
+  --jadis-bg-secondary: #111111;
+  --jadis-bg-tertiary: #222222;
+  --jadis-bg-accent: #181818;
+  
+  --jadis-text-primary: #ffffff;
+  --jadis-text-secondary: #cccccc;
+  --jadis-text-accent: #eeeeee;
+  --jadis-text-muted: #888888;
+  
+  --jadis-border-primary: #ffffff;
+  --jadis-border-secondary: #666666;
+  --jadis-border-accent: #cccccc;
+}
+
+// Component-specific theme applications
+.jadis-themed {
+  background-color: var(--jadis-bg-primary);
+  color: var(--jadis-text-primary);
+  border-color: var(--jadis-border-primary);
+}
+
+.jadis-themed-secondary {
+  background-color: var(--jadis-bg-secondary);
+  color: var(--jadis-text-secondary);
+  border-color: var(--jadis-border-secondary);
+}
+
+.jadis-themed-accent {
+  background-color: var(--jadis-bg-accent);
+  color: var(--jadis-text-accent);
+  border-color: var(--jadis-border-accent);
+}
