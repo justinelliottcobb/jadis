@@ -1,0 +1,469 @@
+// Jadis Special Effects System
+// Classic CRT, glitch-art, and retro visual effects for authentic 90s aesthetics
+
+// Import base variables
+@import './fonts.scss';
+
+// ===================================
+// SCANLINES EFFECTS
+// ===================================
+
+// Base scanlines pattern
+@keyframes jadis-scanlines-roll {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+// Subtle scanlines overlay
+.jadis-fx-scanlines {
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.03) 2px,
+      rgba(255, 255, 255, 0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+// Heavy scanlines for CRT effect
+.jadis-fx-scanlines-heavy {
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 1px,
+      rgba(0, 0, 0, 0.5) 1px,
+      rgba(0, 0, 0, 0.5) 3px
+    );
+    pointer-events: none;
+    z-index: 2;
+  }
+}
+
+// Animated rolling scanlines
+.jadis-fx-scanlines-roll {
+  position: relative;
+  overflow: hidden;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 100%
+    );
+    animation: jadis-scanlines-roll 3s linear infinite;
+    pointer-events: none;
+    z-index: 3;
+  }
+}
+
+// ===================================
+// GLITCH EFFECTS
+// ===================================
+
+// Glitch animation keyframes
+@keyframes jadis-glitch-1 {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-2px); }
+  40% { transform: translateX(2px); }
+  60% { transform: translateX(-1px); }
+  80% { transform: translateX(1px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes jadis-glitch-2 {
+  0% { transform: translateY(0); }
+  20% { transform: translateY(-1px); }
+  40% { transform: translateY(1px); }
+  60% { transform: translateY(-2px); }
+  80% { transform: translateY(1px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes jadis-glitch-skew {
+  0% { transform: skew(0deg); }
+  10% { transform: skew(2deg); }
+  20% { transform: skew(0deg); }
+  30% { transform: skew(-1deg); }
+  40% { transform: skew(1deg); }
+  50% { transform: skew(0deg); }
+  60% { transform: skew(-2deg); }
+  70% { transform: skew(0deg); }
+  80% { transform: skew(1deg); }
+  90% { transform: skew(0deg); }
+  100% { transform: skew(0deg); }
+}
+
+@keyframes jadis-rgb-shift {
+  0% { 
+    text-shadow: 0.03em 0 0 rgba(255, 0, 0, 0.75),
+                -0.03em 0 0 rgba(0, 255, 255, 0.75),
+                 0 0 0 rgba(255, 255, 255, 0.75);
+  }
+  15% { 
+    text-shadow: 0.03em 0 0 rgba(255, 0, 0, 0.75),
+                -0.03em 0 0 rgba(0, 255, 255, 0.75),
+                 0 0 0 rgba(255, 255, 255, 0.75);
+  }
+  16% { 
+    text-shadow: -0.03em 0 0 rgba(255, 0, 0, 0.75),
+                 0.03em 0 0 rgba(0, 255, 255, 0.75),
+                 0 0 0 rgba(255, 255, 255, 0.75);
+  }
+  49% { 
+    text-shadow: -0.03em 0 0 rgba(255, 0, 0, 0.75),
+                 0.03em 0 0 rgba(0, 255, 255, 0.75),
+                 0 0 0 rgba(255, 255, 255, 0.75);
+  }
+  50% { 
+    text-shadow: 0.025em 0.01em 0 rgba(255, 0, 0, 0.75),
+                -0.025em -0.01em 0 rgba(0, 255, 255, 0.75),
+                 0.01em 0.01em 0 rgba(255, 255, 255, 0.75);
+  }
+  99% { 
+    text-shadow: 0.025em 0.01em 0 rgba(255, 0, 0, 0.75),
+                -0.025em -0.01em 0 rgba(0, 255, 255, 0.75),
+                 0.01em 0.01em 0 rgba(255, 255, 255, 0.75);
+  }
+  100% { 
+    text-shadow: 0 0 0 rgba(255, 0, 0, 0.75),
+                 0 0 0 rgba(0, 255, 255, 0.75),
+                 0 0 0 rgba(255, 255, 255, 0.75);
+  }
+}
+
+@keyframes jadis-static-noise {
+  0% { transform: translateX(0px) translateY(0px); }
+  10% { transform: translateX(-1px) translateY(-1px); }
+  20% { transform: translateX(1px) translateY(0px); }
+  30% { transform: translateX(0px) translateY(2px); }
+  40% { transform: translateX(-1px) translateY(-2px); }
+  50% { transform: translateX(2px) translateY(1px); }
+  60% { transform: translateX(-2px) translateY(0px); }
+  70% { transform: translateX(0px) translateY(-1px); }
+  80% { transform: translateX(1px) translateY(1px); }
+  90% { transform: translateX(-1px) translateY(0px); }
+  100% { transform: translateX(0px) translateY(0px); }
+}
+
+// Base glitch effect
+.jadis-fx-glitch {
+  position: relative;
+  animation: jadis-glitch-1 0.3s linear infinite alternate-reverse;
+  
+  &::before,
+  &::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+  }
+  
+  &::before {
+    animation: jadis-glitch-2 0.3s linear infinite alternate-reverse;
+    color: #ff0000;
+    z-index: -2;
+    clip: rect(24px, 550px, 90px, 0);
+  }
+  
+  &::after {
+    animation: jadis-glitch-skew 1s linear infinite alternate-reverse;
+    color: #00ffff;
+    z-index: -1;
+    clip: rect(85px, 550px, 140px, 0);
+  }
+}
+
+// RGB shift glitch
+.jadis-fx-glitch-rgb {
+  position: relative;
+  animation: jadis-rgb-shift 2s linear infinite;
+}
+
+// Static noise glitch
+.jadis-fx-glitch-static {
+  position: relative;
+  animation: jadis-static-noise 0.1s linear infinite;
+}
+
+// Heavy corruption glitch
+.jadis-fx-glitch-corrupt {
+  position: relative;
+  
+  &::before,
+  &::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  &::before {
+    animation: jadis-glitch-1 0.4s linear infinite;
+    color: #ff00ff;
+    z-index: -1;
+    clip: rect(0px, 900px, 0px, 0);
+    transform: translateX(2px);
+  }
+  
+  &::after {
+    animation: jadis-glitch-2 0.4s linear infinite;
+    color: #ffff00;
+    z-index: -2;
+    clip: rect(0px, 900px, 0px, 0);
+    transform: translateX(-2px);
+  }
+}
+
+// ===================================
+// ENHANCED GLOW EFFECTS
+// ===================================
+
+// Pulsing glow
+@keyframes jadis-glow-pulse {
+  0%, 100% { 
+    text-shadow: 0 0 5px currentColor,
+                 0 0 10px currentColor,
+                 0 0 15px currentColor;
+  }
+  50% { 
+    text-shadow: 0 0 10px currentColor,
+                 0 0 20px currentColor,
+                 0 0 30px currentColor;
+  }
+}
+
+// Rainbow glow
+@keyframes jadis-glow-rainbow {
+  0% { text-shadow: 0 0 10px #ff0000; }
+  16.66% { text-shadow: 0 0 10px #ff8800; }
+  33.33% { text-shadow: 0 0 10px #ffff00; }
+  50% { text-shadow: 0 0 10px #00ff00; }
+  66.66% { text-shadow: 0 0 10px #0088ff; }
+  83.33% { text-shadow: 0 0 10px #8800ff; }
+  100% { text-shadow: 0 0 10px #ff0000; }
+}
+
+// Enhanced glow effects
+.jadis-fx-glow-intense {
+  text-shadow: 
+    0 0 5px currentColor,
+    0 0 10px currentColor,
+    0 0 15px currentColor,
+    0 0 20px currentColor;
+}
+
+.jadis-fx-glow-pulse {
+  animation: jadis-glow-pulse 2s ease-in-out infinite alternate;
+}
+
+.jadis-fx-glow-rainbow {
+  animation: jadis-glow-rainbow 3s linear infinite;
+}
+
+.jadis-fx-glow-neon {
+  color: #fff;
+  text-shadow: 
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px #0fa,
+    0 0 82px #0fa,
+    0 0 92px #0fa,
+    0 0 102px #0fa,
+    0 0 151px #0fa;
+}
+
+// ===================================
+// CRT MONITOR EFFECTS
+// ===================================
+
+// CRT screen curvature simulation
+.jadis-fx-crt {
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 0%,
+      transparent 70%,
+      rgba(0, 0, 0, 0.1) 90%,
+      rgba(0, 0, 0, 0.3) 100%
+    );
+    pointer-events: none;
+    z-index: 10;
+  }
+}
+
+// Screen flicker effect
+@keyframes jadis-screen-flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.96; }
+}
+
+.jadis-fx-flicker {
+  animation: jadis-screen-flicker 0.15s linear infinite alternate;
+}
+
+// Phosphor trail effect
+.jadis-fx-phosphor {
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+    opacity: 0.3;
+    transform: translateX(1px);
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+
+// ===================================
+// COMBINATION EFFECTS
+// ===================================
+
+// Terminal boot sequence effect
+@keyframes jadis-boot-sequence {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+.jadis-fx-boot {
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 255, 0, 0.1) 100%);
+    animation: jadis-boot-sequence 2s ease-out forwards;
+    width: 0%;
+  }
+}
+
+// Matrix digital rain effect
+@keyframes jadis-matrix-rain {
+  0% { transform: translateY(-100%); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+.jadis-fx-matrix-rain {
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '01010101010101010101010101010101';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    font-size: 0.8rem;
+    color: rgba(0, 255, 0, 0.5);
+    line-height: 1.2;
+    animation: jadis-matrix-rain 4s linear infinite;
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+
+// ===================================
+// UTILITY CLASSES
+// ===================================
+
+// Combination presets
+.jadis-fx-retro-terminal {
+  @extend .jadis-fx-scanlines;
+  @extend .jadis-fx-glow-pulse;
+  filter: sepia(10%) saturate(120%) hue-rotate(90deg);
+}
+
+.jadis-fx-glitch-terminal {
+  @extend .jadis-fx-scanlines-heavy;
+  @extend .jadis-fx-glitch-rgb;
+}
+
+.jadis-fx-matrix-mode {
+  @extend .jadis-fx-scanlines;
+  @extend .jadis-fx-matrix-rain;
+  @extend .jadis-fx-glow-neon;
+}
+
+.jadis-fx-crt-monitor {
+  @extend .jadis-fx-crt;
+  @extend .jadis-fx-scanlines;
+  @extend .jadis-fx-flicker;
+  @extend .jadis-fx-phosphor;
+}
+
+// Performance optimization for reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .jadis-fx-glitch,
+  .jadis-fx-glitch-rgb,
+  .jadis-fx-glitch-static,
+  .jadis-fx-glitch-corrupt,
+  .jadis-fx-glow-pulse,
+  .jadis-fx-glow-rainbow,
+  .jadis-fx-flicker,
+  .jadis-fx-boot,
+  .jadis-fx-matrix-rain,
+  .jadis-fx-scanlines-roll {
+    animation: none !important;
+  }
+  
+  .jadis-fx-glitch::before,
+  .jadis-fx-glitch::after,
+  .jadis-fx-glitch-corrupt::before,
+  .jadis-fx-glitch-corrupt::after {
+    animation: none !important;
+  }
+}
