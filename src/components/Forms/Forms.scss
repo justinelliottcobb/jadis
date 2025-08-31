@@ -1,0 +1,829 @@
+// Jadis Form Components Styling
+// ASCII-art inspired form elements with terminal aesthetics
+
+@import '../../styles/fonts.scss';
+
+// Base form element styling
+.jadis-form-element {
+  font-family: var(--jadis-font-primary);
+  background: var(--jadis-bg-primary);
+  color: var(--jadis-text-primary);
+  margin: var(--jadis-space-sm) 0;
+  position: relative;
+}
+
+// Form base styling to inherit theme
+.jadis-form {
+  font-family: var(--jadis-font-primary);
+}
+
+// ===================================
+// INPUT / TEXTBOX STYLES
+// ===================================
+
+// Input wrapper for terminal prompt styling
+.jadis-input-wrapper {
+  position: relative;
+  width: 100%;
+  
+  &--terminal::before {
+    content: '>';
+    position: absolute;
+    left: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--jadis-color-green);
+    opacity: 0.7;
+    font-family: var(--jadis-font-primary);
+    font-size: 1rem;
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  &--terminal .jadis-input {
+    padding-left: 2rem;
+  }
+  
+  &--matrix::before {
+    content: '[';
+    position: absolute;
+    left: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--jadis-color-cyan);
+    opacity: 0.7;
+    font-family: var(--jadis-font-primary);
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  &--matrix::after {
+    content: ']';
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--jadis-color-cyan);
+    opacity: 0.7;
+    font-family: var(--jadis-font-primary);
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  &--matrix .jadis-input {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  
+  &--retro::before {
+    content: '//';
+    position: absolute;
+    left: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--jadis-color-yellow);
+    opacity: 0.6;
+    font-family: var(--jadis-font-primary);
+    font-weight: var(--jadis-font-bold);
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  &--retro .jadis-input {
+    padding-left: 2.5rem;
+  }
+}
+
+.jadis-input {
+  font-family: var(--jadis-font-primary);
+  font-size: 1rem;
+  padding: var(--jadis-space-sm) var(--jadis-space-md);
+  background: rgba(0, 0, 0, 0.8);
+  color: var(--jadis-color-green);
+  border: 1px solid var(--jadis-color-green);
+  outline: none;
+  width: 100%;
+  transition: all 0.2s ease;
+  text-shadow: 0 0 2px currentColor;
+  position: relative;
+  
+  // Variants
+  &--terminal {
+    border: 2px solid var(--jadis-color-green);
+    color: var(--jadis-color-green);
+    background: rgba(0, 17, 0, 0.5);
+    box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.1);
+    font-weight: var(--jadis-font-normal);
+    letter-spacing: 0.02em;
+    
+    &:focus {
+      border-color: var(--jadis-color-green);
+      box-shadow: 
+        0 0 10px rgba(0, 255, 0, 0.5),
+        inset 0 0 10px rgba(0, 255, 0, 0.1);
+      background: rgba(0, 255, 0, 0.05);
+      text-shadow: var(--jadis-glow-sm);
+    }
+    
+    &::placeholder {
+      color: var(--jadis-color-green);
+      opacity: 0.3;
+      text-transform: lowercase;
+    }
+  }
+  
+  &--matrix {
+    border: 1px dashed var(--jadis-color-cyan);
+    color: var(--jadis-color-cyan);
+    background: rgba(0, 20, 20, 0.5);
+    box-shadow: inset 0 0 15px rgba(0, 204, 204, 0.05);
+    letter-spacing: 0.03em;
+    
+    &:focus {
+      border-color: var(--jadis-color-cyan);
+      box-shadow: 
+        0 0 15px rgba(0, 204, 204, 0.5),
+        inset 0 0 15px rgba(0, 204, 204, 0.1);
+      background: rgba(0, 204, 204, 0.03);
+      text-shadow: var(--jadis-glow-md);
+    }
+    
+    &::placeholder {
+      color: var(--jadis-color-cyan);
+      opacity: 0.3;
+    }
+  }
+  
+  &--retro {
+    border: 3px double var(--jadis-color-yellow);
+    color: var(--jadis-color-yellow);
+    background: rgba(20, 20, 0, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: var(--jadis-font-semibold);
+    box-shadow: inset 0 0 10px rgba(255, 255, 0, 0.05);
+    
+    &:focus {
+      border-color: var(--jadis-color-orange);
+      background: rgba(255, 255, 0, 0.08);
+      box-shadow: 
+        0 0 20px rgba(255, 102, 0, 0.4),
+        inset 0 0 10px rgba(255, 255, 0, 0.1);
+      text-shadow: var(--jadis-glow-sm);
+    }
+    
+    &::placeholder {
+      color: var(--jadis-color-yellow);
+      opacity: 0.4;
+      text-transform: uppercase;
+    }
+  }
+  
+  &--minimal {
+    border: none;
+    border-bottom: 1px solid var(--jadis-color-gray);
+    background: transparent;
+    color: var(--jadis-color-gray);
+    padding-left: 0;
+    padding-right: 0;
+    text-shadow: none;
+    
+    &:focus {
+      border-bottom-color: var(--jadis-color-white);
+      color: var(--jadis-color-white);
+      background: rgba(136, 136, 136, 0.02);
+    }
+    
+    &::placeholder {
+      color: var(--jadis-color-gray);
+      opacity: 0.5;
+    }
+  }
+  
+  &--glow {
+    border: 1px solid var(--jadis-color-white);
+    color: var(--jadis-color-white);
+    background: rgba(255, 255, 255, 0.02);
+    text-shadow: var(--jadis-glow-sm);
+    box-shadow: 
+      0 0 10px rgba(255, 255, 255, 0.1),
+      inset 0 0 10px rgba(255, 255, 255, 0.05);
+    
+    &:focus {
+      text-shadow: var(--jadis-glow-md);
+      box-shadow: 
+        0 0 20px rgba(255, 255, 255, 0.4),
+        inset 0 0 15px rgba(255, 255, 255, 0.1);
+      border-color: var(--jadis-color-white);
+      background: rgba(255, 255, 255, 0.05);
+    }
+    
+    &::placeholder {
+      color: var(--jadis-color-white);
+      opacity: 0.3;
+      text-shadow: none;
+    }
+  }
+  
+  // Animation for cursor blink effect
+  @keyframes jadis-blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: rgba(136, 136, 136, 0.1);
+  }
+}
+
+// ===================================
+// TEXTAREA STYLES
+// ===================================
+
+.jadis-textarea {
+  @extend .jadis-input;
+  min-height: 100px;
+  resize: vertical;
+  line-height: 1.4;
+  
+  &--terminal {
+    font-family: var(--jadis-font-primary);
+    background: rgba(0, 17, 0, 0.8);
+    
+    &::before {
+      content: '# ';
+      position: absolute;
+      top: var(--jadis-space-sm);
+      left: var(--jadis-space-sm);
+      color: var(--jadis-color-green);
+      opacity: 0.7;
+    }
+  }
+  
+  &--matrix {
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 20px,
+      rgba(0, 204, 204, 0.03) 20px,
+      rgba(0, 204, 204, 0.03) 21px
+    );
+  }
+}
+
+// ===================================
+// RADIO BUTTON STYLES
+// ===================================
+
+.jadis-radio {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin: var(--jadis-space-xs) var(--jadis-space-md) var(--jadis-space-xs) 0;
+  cursor: pointer;
+  font-family: var(--jadis-font-primary);
+  color: var(--jadis-text-primary);
+  
+  &__input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    
+    &:checked ~ .jadis-radio__indicator {
+      &::after {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
+    &:focus ~ .jadis-radio__indicator {
+      box-shadow: 0 0 5px currentColor;
+    }
+    
+    &:disabled {
+      & ~ .jadis-radio__indicator,
+      & ~ .jadis-radio__label {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+  
+  &__indicator {
+    width: 1.2rem;
+    height: 1.2rem;
+    border: 2px solid currentColor;
+    margin-right: var(--jadis-space-sm);
+    position: relative;
+    display: inline-block;
+    background: rgba(0, 0, 0, 0.5);
+    
+    // Center dot for checked state
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      width: 0.5rem;
+      height: 0.5rem;
+      background: currentColor;
+      opacity: 0;
+      transition: all 0.2s ease;
+      font-family: var(--jadis-font-primary);
+      font-weight: var(--jadis-font-bold);
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  
+  &__label {
+    user-select: none;
+  }
+  
+  // Variants
+  &--terminal {
+    color: var(--jadis-color-green);
+    
+    .jadis-radio__indicator {
+      border-radius: 50%;
+      border-color: var(--jadis-color-green);
+      background: rgba(0, 17, 0, 0.3);
+      
+      &::after {
+        content: '●';
+        background: none;
+        width: 100%;
+        height: 100%;
+        font-size: 0.6rem;
+        text-align: center;
+        color: var(--jadis-color-green);
+      }
+    }
+    
+    .jadis-radio__input:checked ~ .jadis-radio__indicator {
+      background: rgba(0, 255, 0, 0.1);
+      box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.3);
+    }
+  }
+  
+  &--matrix {
+    color: var(--jadis-color-cyan);
+    
+    .jadis-radio__indicator {
+      border-radius: 50%;
+      border-style: dashed;
+      border-color: var(--jadis-color-cyan);
+      background: rgba(0, 20, 20, 0.3);
+      
+      &::after {
+        background: var(--jadis-color-cyan);
+      }
+    }
+    
+    .jadis-radio__input:checked ~ .jadis-radio__indicator {
+      background: rgba(0, 204, 204, 0.1);
+      box-shadow: inset 0 0 5px rgba(0, 204, 204, 0.3);
+    }
+  }
+  
+  &--retro {
+    color: var(--jadis-color-yellow);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    
+    .jadis-radio__indicator {
+      border-radius: 50%;
+      border: 3px double var(--jadis-color-yellow);
+      background: rgba(20, 20, 0, 0.3);
+      
+      &::after {
+        background: var(--jadis-color-yellow);
+        width: 0.4rem;
+        height: 0.4rem;
+      }
+    }
+    
+    .jadis-radio__input:checked ~ .jadis-radio__indicator {
+      background: rgba(255, 255, 0, 0.1);
+      box-shadow: inset 0 0 5px rgba(255, 255, 0, 0.3);
+    }
+  }
+  
+  &--minimal {
+    color: var(--jadis-color-gray);
+    
+    .jadis-radio__indicator {
+      border-radius: 50%;
+      border-width: 1px;
+      border-color: var(--jadis-color-gray);
+      background: transparent;
+      
+      &::after {
+        background: var(--jadis-color-white);
+      }
+    }
+    
+    .jadis-radio__input:checked ~ .jadis-radio__indicator {
+      border-color: var(--jadis-color-white);
+      background: rgba(255, 255, 255, 0.05);
+    }
+  }
+  
+  &--glow {
+    color: var(--jadis-color-white);
+    text-shadow: var(--jadis-glow-sm);
+    
+    .jadis-radio__indicator {
+      border-radius: 50%;
+      border-color: var(--jadis-color-white);
+      background: rgba(255, 255, 255, 0.02);
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+      
+      &::after {
+        background: var(--jadis-color-white);
+        box-shadow: 0 0 5px var(--jadis-color-white);
+      }
+    }
+    
+    .jadis-radio__input:checked ~ .jadis-radio__indicator {
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.5),
+        inset 0 0 5px rgba(255, 255, 255, 0.3);
+    }
+  }
+}
+
+// ===================================
+// CHECKBOX STYLES
+// ===================================
+
+.jadis-checkbox {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin: var(--jadis-space-xs) var(--jadis-space-md) var(--jadis-space-xs) 0;
+  cursor: pointer;
+  font-family: var(--jadis-font-primary);
+  color: var(--jadis-text-primary);
+  
+  &__input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    
+    &:checked ~ .jadis-checkbox__indicator {
+      &::after {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+    
+    &:focus ~ .jadis-checkbox__indicator {
+      box-shadow: 0 0 5px currentColor;
+    }
+    
+    &:disabled {
+      & ~ .jadis-checkbox__indicator,
+      & ~ .jadis-checkbox__label {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+  
+  &__indicator {
+    width: 1.2rem;
+    height: 1.2rem;
+    border: 2px solid currentColor;
+    margin-right: var(--jadis-space-sm);
+    position: relative;
+    display: inline-block;
+    background: rgba(0, 0, 0, 0.5);
+    
+    // Checkmark for checked state
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+      transition: all 0.2s ease;
+      font-family: var(--jadis-font-primary);
+      font-weight: var(--jadis-font-bold);
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  
+  &__label {
+    user-select: none;
+  }
+  
+  // Variants
+  &--terminal {
+    color: var(--jadis-color-green);
+    
+    .jadis-checkbox__indicator {
+      border-color: var(--jadis-color-green);
+      background: rgba(0, 17, 0, 0.3);
+      
+      &::after {
+        content: 'X';
+        color: var(--jadis-color-green);
+        font-size: 0.9rem;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+      }
+    }
+    
+    .jadis-checkbox__input:checked ~ .jadis-checkbox__indicator {
+      background: rgba(0, 255, 0, 0.1);
+      box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.3);
+    }
+  }
+  
+  &--matrix {
+    color: var(--jadis-color-cyan);
+    
+    .jadis-checkbox__indicator {
+      border-style: dashed;
+      border-color: var(--jadis-color-cyan);
+      background: rgba(0, 20, 20, 0.3);
+      
+      &::after {
+        content: '◆';
+        color: var(--jadis-color-cyan);
+        font-size: 0.8rem;
+      }
+    }
+    
+    .jadis-checkbox__input:checked ~ .jadis-checkbox__indicator {
+      background: rgba(0, 204, 204, 0.1);
+      box-shadow: inset 0 0 5px rgba(0, 204, 204, 0.3);
+    }
+  }
+  
+  &--retro {
+    color: var(--jadis-color-yellow);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    
+    .jadis-checkbox__indicator {
+      border: 3px double var(--jadis-color-yellow);
+      background: rgba(20, 20, 0, 0.3);
+      
+      &::after {
+        content: '■';
+        color: var(--jadis-color-yellow);
+        font-size: 0.7rem;
+      }
+    }
+    
+    .jadis-checkbox__input:checked ~ .jadis-checkbox__indicator {
+      background: rgba(255, 255, 0, 0.1);
+      box-shadow: inset 0 0 5px rgba(255, 255, 0, 0.3);
+    }
+  }
+  
+  &--minimal {
+    color: var(--jadis-color-gray);
+    
+    .jadis-checkbox__indicator {
+      border-width: 1px;
+      border-color: var(--jadis-color-gray);
+      background: transparent;
+      
+      &::after {
+        content: '✓';
+        color: var(--jadis-color-white);
+        font-size: 0.8rem;
+      }
+    }
+    
+    .jadis-checkbox__input:checked ~ .jadis-checkbox__indicator {
+      border-color: var(--jadis-color-white);
+      background: rgba(255, 255, 255, 0.05);
+    }
+  }
+  
+  &--glow {
+    color: var(--jadis-color-white);
+    text-shadow: var(--jadis-glow-sm);
+    
+    .jadis-checkbox__indicator {
+      border-color: var(--jadis-color-white);
+      background: rgba(255, 255, 255, 0.02);
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+      
+      &::after {
+        content: '✓';
+        color: var(--jadis-color-white);
+        font-size: 0.9rem;
+        text-shadow: var(--jadis-glow-md);
+      }
+    }
+    
+    .jadis-checkbox__input:checked ~ .jadis-checkbox__indicator {
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.5),
+        inset 0 0 5px rgba(255, 255, 255, 0.3);
+    }
+  }
+}
+
+// ===================================
+// SELECT / DROPDOWN STYLES
+// ===================================
+
+.jadis-select {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  
+  &__control {
+    @extend .jadis-input;
+    appearance: none;
+    padding-right: 2.5rem;
+    cursor: pointer;
+    
+    &::-ms-expand {
+      display: none;
+    }
+  }
+  
+  &__arrow {
+    position: absolute;
+    top: 50%;
+    right: var(--jadis-space-md);
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: currentColor;
+    
+    &::before {
+      content: '▼';
+      font-size: 0.8rem;
+    }
+  }
+  
+  // Variants
+  &--terminal {
+    .jadis-select__control {
+      border-color: var(--jadis-color-green);
+      color: var(--jadis-color-green);
+    }
+    
+    .jadis-select__arrow::before {
+      content: '[v]';
+      color: var(--jadis-color-green);
+    }
+  }
+  
+  &--matrix {
+    .jadis-select__control {
+      border-style: dashed;
+      border-color: var(--jadis-color-cyan);
+      color: var(--jadis-color-cyan);
+    }
+    
+    .jadis-select__arrow::before {
+      content: '◊';
+      color: var(--jadis-color-cyan);
+    }
+  }
+  
+  &--retro {
+    .jadis-select__control {
+      border-width: 2px;
+      border-color: var(--jadis-color-yellow);
+      color: var(--jadis-color-yellow);
+      text-transform: uppercase;
+    }
+    
+    .jadis-select__arrow::before {
+      content: '▼▼';
+      color: var(--jadis-color-yellow);
+    }
+  }
+  
+  &--minimal {
+    .jadis-select__control {
+      border: none;
+      border-bottom: 1px solid var(--jadis-color-gray);
+      padding-left: 0;
+    }
+  }
+  
+  &--glow {
+    .jadis-select__control {
+      text-shadow: var(--jadis-glow-sm);
+      
+      &:focus {
+        text-shadow: var(--jadis-glow-md);
+      }
+    }
+  }
+}
+
+// ===================================
+// LABEL STYLES
+// ===================================
+
+.jadis-label {
+  display: block;
+  font-family: var(--jadis-font-primary);
+  color: var(--jadis-text-primary);
+  margin-bottom: var(--jadis-space-xs);
+  font-size: 0.9rem;
+  
+  &--required::after {
+    content: ' *';
+    color: var(--jadis-color-red);
+  }
+  
+  // Variants
+  &--terminal {
+    color: var(--jadis-color-green);
+    
+    &::before {
+      content: '> ';
+      opacity: 0.7;
+    }
+  }
+  
+  &--matrix {
+    color: var(--jadis-color-cyan);
+    letter-spacing: 0.05em;
+  }
+  
+  &--retro {
+    color: var(--jadis-color-yellow);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: var(--jadis-font-semibold);
+  }
+  
+  &--minimal {
+    color: var(--jadis-color-gray);
+    font-size: 0.85rem;
+  }
+  
+  &--glow {
+    color: var(--jadis-color-white);
+    text-shadow: var(--jadis-glow-sm);
+  }
+}
+
+// ===================================
+// FORM GROUP CONTAINER
+// ===================================
+
+.jadis-form-group {
+  margin-bottom: var(--jadis-space-lg);
+  
+  &--inline {
+    display: flex;
+    align-items: center;
+    gap: var(--jadis-space-md);
+    
+    .jadis-label {
+      margin-bottom: 0;
+      margin-right: var(--jadis-space-sm);
+    }
+  }
+}
+
+// ===================================
+// ERROR STATES
+// ===================================
+
+.jadis-form-error {
+  color: var(--jadis-color-red);
+  font-size: 0.85rem;
+  margin-top: var(--jadis-space-xs);
+  font-family: var(--jadis-font-primary);
+  
+  &::before {
+    content: '⚠ ';
+  }
+}
+
+.jadis-input--error,
+.jadis-textarea--error,
+.jadis-select__control--error {
+  border-color: var(--jadis-color-red) !important;
+  
+  &:focus {
+    box-shadow: 0 0 5px rgba(255, 51, 51, 0.5);
+  }
+}
