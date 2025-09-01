@@ -73,11 +73,16 @@ jadis/
 │   │   │   ├── Navbar.scss        # Navigation styling with responsive behavior
 │   │   │   ├── Navbar.stories.tsx # Navigation component demos
 │   │   │   └── index.ts           # Navbar exports
-│   │   └── Icons/         # ASCII icon system
-│   │       ├── Icons.tsx          # ASCIIIcon component and icon definitions
-│   │       ├── Icons.scss         # Icon styling with variant effects
-│   │       ├── Icons.stories.tsx  # Icon showcase and examples
-│   │       └── index.ts           # Icon exports
+│   │   ├── Icons/         # ASCII icon system
+│   │   │   ├── Icons.tsx          # ASCIIIcon component and icon definitions
+│   │   │   ├── Icons.scss         # Icon styling with variant effects
+│   │   │   ├── Icons.stories.tsx  # Icon showcase and examples
+│   │   │   └── index.ts           # Icon exports
+│   │   └── ApplicationCards/ # Application monitoring cards
+│   │       ├── ApplicationCards.tsx    # ApplicationCard, ServiceMonitorCard, SystemStatusCard
+│   │       ├── ApplicationCards.scss   # Specialized card styling with metrics
+│   │       ├── ApplicationCards.stories.tsx # Application monitoring demos
+│   │       └── index.ts                # Application card exports
 │   ├── styles/            # Global styling system
 │   │   ├── fonts.scss     # Hasklug Nerd Font + CSS variables
 │   │   ├── themes.scss    # Multi-theme system (5 themes)
@@ -318,6 +323,38 @@ Comprehensive Storybook setup includes:
   - Categories: Organized groupings for easy discovery
   - Display Names: Human-readable names for documentation
 
+#### **Application Cards System**
+- **ApplicationCard**: Specialized cards for application monitoring and management
+  - Status Tracking: `running`, `stopped`, `error`, `loading`, `maintenance` with visual indicators
+  - Priority System: Visual priority indicators from low (●○○○) to critical (●●●●)
+  - Metrics Display: Memory and CPU usage with color-coded progress bars
+  - Action Controls: Start, stop, restart, configure, and view logs functionality
+  - Metadata: Version numbers, uptime tracking, and last update timestamps
+  - Built on Card Foundation: Uses existing Card, CardHeader, CardBody, CardActions components
+- **ServiceMonitorCard**: Multi-service monitoring with individual control
+  - Service Lists: Display multiple services with individual status indicators
+  - Port Information: Service endpoint and port number display
+  - Individual Actions: Start, stop, restart controls for each service
+  - Overall Status: Aggregated health summary across all services
+  - Interactive Controls: Service-specific action buttons with ASCII icons
+- **SystemStatusCard**: Comprehensive system resource monitoring
+  - Resource Metrics: CPU, memory, disk, and network usage with thresholds
+  - Color-Coded Indicators: Green (0-69%), yellow (70-89%), red (90%+) thresholds
+  - Alert System: Categorized alerts (info, warning, error) with timestamps
+  - System Actions: Restart, maintenance mode, and shutdown controls
+  - Progress Visualization: Animated progress bars with variant-specific effects
+- **Integration Features**: Built using existing Jadis components
+  - Card System: Extends base Card components with specialized layouts
+  - Button Integration: All actions use Button component with proper variants
+  - Icon System: Consistent ASCII icons throughout all interactions
+  - Typography: Uses P, Code, Strong components for consistent text styling
+  - Grid Layout: Responsive dashboard layouts using Grid/GridItem components
+- **Responsive Design**: Mobile-optimized layouts with adaptive behavior
+  - Stacked Layouts: Actions stack vertically on mobile screens
+  - Flexible Metrics: Progress bars adapt to container width
+  - Touch-Friendly: Appropriately sized buttons for mobile interaction
+  - Grid Integration: Works seamlessly with Grid component responsiveness
+
 ## Library Build & Distribution
 - **Library build**: TypeScript declaration generation + Vite library bundling
 - **External dependencies**: React and ReactDOM marked as external (peer dependencies)
@@ -360,7 +397,8 @@ import {
   DataTable, AsciiTable,
   Grid, GridItem, ResponsiveGrid,
   Navbar, NavbarBrand, NavbarItem, NavbarNav, NavbarDropdown,
-  ASCIIIcon, ASCIIIcons, getIcon
+  ASCIIIcon, ASCIIIcons, getIcon,
+  ApplicationCard, ServiceMonitorCard, SystemStatusCard
 } from 'jadis'
 
 // Import styles (includes all themes and effects)
@@ -606,4 +644,67 @@ const data = [
 // Custom Icons
 <ASCIIIcon icon="╬" variant="matrix" size="large" />
 <ASCIIIcon icon="▲▼" variant="terminal" />
+
+// Application Cards System
+// Application Monitoring
+<ApplicationCard
+  variant="terminal"
+  name="Web Server"
+  version="2.4.1"
+  description="Primary HTTP server handling web traffic"
+  status="running"
+  priority="high"
+  icon="server"
+  uptime="15d 8h 32m"
+  memoryUsage={45}
+  cpuUsage={23}
+  onStop={() => console.log('Stopping server')}
+  onRestart={() => console.log('Restarting server')}
+  onViewLogs={() => console.log('Viewing logs')}
+/>
+
+// Service Group Monitoring
+<ServiceMonitorCard
+  variant="matrix"
+  serviceName="Web Stack Services"
+  services={[
+    { name: 'nginx', status: 'running', port: 80 },
+    { name: 'nodejs', status: 'running', port: 3000 },
+    { name: 'redis', status: 'error', port: 6379 }
+  ]}
+  onServiceAction={(service, action) => 
+    console.log(`${action} service: ${service}`)
+  }
+/>
+
+// System Resource Monitoring
+<SystemStatusCard
+  variant="glow"
+  systemName="Production Server"
+  status="running"
+  metrics={{
+    cpu: 76,
+    memory: 89,
+    disk: 45,
+    network: 23
+  }}
+  alerts={[
+    { level: 'warning', message: 'Memory usage high', timestamp: '14:32' },
+    { level: 'error', message: 'Disk cleanup needed', timestamp: '10:15' }
+  ]}
+  onSystemAction={(action) => console.log(`System ${action}`)}
+/>
+
+// Dashboard Layout with Mixed Cards
+<Grid variant="terminal" columns={3} gap="medium">
+  <GridItem>
+    <ApplicationCard variant="terminal" name="API Server" status="running" />
+  </GridItem>
+  <GridItem>
+    <ServiceMonitorCard variant="matrix" serviceName="Background Services" />
+  </GridItem>
+  <GridItem>
+    <SystemStatusCard variant="glow" systemName="Main Node" />
+  </GridItem>
+</Grid>
 ```
