@@ -5,6 +5,10 @@ import { resolve } from 'path'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  server: {
+    allowedHosts: ['norma-wall.arblenems.com', 'localhost', '127.0.0.1'],
+    host: true
+  },
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
