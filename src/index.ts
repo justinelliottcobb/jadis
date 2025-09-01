@@ -101,5 +101,19 @@ export {
   type TableSize,
   type TableAlign
 } from './components/Tables'
+export {
+  Grid,
+  GridItem,
+  ResponsiveGrid,
+  type GridProps,
+  type GridItemProps,
+  type ResponsiveGridProps,
+  type GridVariant,
+  type GridGap,
+  type GridColumns,
+  type GridRows,
+  type GridAlign,
+  type GridJustify
+} from './components/Grid'
 
 import './styles'

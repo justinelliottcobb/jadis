@@ -58,11 +58,16 @@ jadis/
 │   │   │   ├── Buttons.scss       # ASCII button styling with effects
 │   │   │   ├── Buttons.stories.tsx # Button component demos
 │   │   │   └── index.ts           # Button exports
-│   │   └── Tables/        # Comprehensive table system
-│   │       ├── Tables.tsx         # Table, DataTable, AsciiTable, etc.
-│   │       ├── Tables.scss        # ASCII table styling with variants
-│   │       ├── Tables.stories.tsx # Table component demos
-│   │       └── index.ts           # Table exports
+│   │   ├── Tables/        # Comprehensive table system
+│   │   │   ├── Tables.tsx         # Table, DataTable, AsciiTable, etc.
+│   │   │   ├── Tables.scss        # ASCII table styling with variants
+│   │   │   ├── Tables.stories.tsx # Table component demos
+│   │   │   └── index.ts           # Table exports
+│   │   └── Grid/          # CSS Grid layout system
+│   │       ├── Grid.tsx           # Grid, GridItem, ResponsiveGrid
+│   │       ├── Grid.scss          # CSS Grid styling with variants
+│   │       ├── Grid.stories.tsx   # Grid layout demos
+│   │       └── index.ts           # Grid exports
 │   ├── styles/            # Global styling system
 │   │   ├── fonts.scss     # Hasklug Nerd Font + CSS variables
 │   │   ├── themes.scss    # Multi-theme system (5 themes)
@@ -229,6 +234,29 @@ Comprehensive Storybook setup includes:
   - Perfect for terminal/console display
 - **Features**: Sticky headers, column alignment, numeric formatting, responsive design
 
+#### **Grid Layout System**
+- **Grid**: CSS Grid foundation component with comprehensive layout control
+  - Variants: `terminal`, `matrix`, `retro`, `minimal`, `glow`
+  - Column/Row Configuration: 1-12 columns, auto-fit, auto-fill options
+  - Gap Control: `none`, `small`, `medium`, `large`, `xl` with separate column/row gaps
+  - Alignment Options: Full control over item and content alignment/justification
+  - Features: Bordered grids, debug mode, dense packing, interactive states
+- **GridItem**: Flexible grid item positioning component
+  - Column/Row Spanning: Numeric spans or 'full' width/height
+  - Positioning: Start/end positioning with grid-area support
+  - Self-Alignment: Individual item alignment overrides
+  - Features: Bordered items, interactive hover effects, responsive behavior
+- **ResponsiveGrid**: Breakpoint-aware grid component
+  - Breakpoints: xs, sm, md, lg, xl, xxl with automatic column adjustment
+  - Responsive Features: 6→3→1 column reduction for tablet/mobile optimization
+  - iPad Optimization: Automatic layout simplification for smaller screens
+  - Gap Adjustments: Responsive gap sizing for optimal spacing
+- **Advanced Features**: 
+  - Matrix scanline effects with proper z-index stacking
+  - Debug visualization with grid overlay patterns
+  - Container max-width constraints and centering
+  - CSS Custom Properties integration for dynamic styling
+
 ## Library Build & Distribution
 - **Library build**: TypeScript declaration generation + Vite library bundling
 - **External dependencies**: React and ReactDOM marked as external (peer dependencies)
@@ -268,7 +296,8 @@ import {
   Card, CardHeader, CardBody,
   Input, TextArea, Checkbox, Select,
   Table, TableHead, TableBody, TableRow, TableHeaderCell, TableCell,
-  DataTable, AsciiTable
+  DataTable, AsciiTable,
+  Grid, GridItem, ResponsiveGrid
 } from 'jadis'
 
 // Import styles (includes all themes and effects)
@@ -402,4 +431,54 @@ const data = [
   variant="terminal"
   columnAlignments={['left', 'center', 'right']}
 />
+
+// Grid Layout System
+// Basic Grid Layout
+<Grid variant="terminal" columns={3} gap="medium" bordered>
+  <GridItem variant="terminal" bordered>
+    <Card variant="terminal">
+      <CardHeader title="Panel 1" />
+    </Card>
+  </GridItem>
+  <GridItem variant="terminal" bordered columnSpan={2}>
+    <Card variant="terminal">
+      <CardHeader title="Panel 2 (2 columns wide)" />
+    </Card>
+  </GridItem>
+</Grid>
+
+// Responsive Grid
+<ResponsiveGrid
+  variant="matrix"
+  xs={1} sm={2} md={3} lg={4} xl={5} xxl={6}
+  gap="large"
+  bordered
+>
+  {items.map((item, i) => (
+    <GridItem key={i} variant="matrix" bordered interactive>
+      <Card variant="matrix">
+        <CardBody>{item.content}</CardBody>
+      </Card>
+    </GridItem>
+  ))}
+</ResponsiveGrid>
+
+// Complex Dashboard Layout
+<Grid variant="glow" columns={6} rows={4} gap="medium" bordered>
+  <GridItem variant="glow" bordered columnSpan={2} rowSpan={2}>
+    <Card variant="glow">
+      <CardHeader title="Main Dashboard" />
+    </Card>
+  </GridItem>
+  <GridItem variant="glow" bordered columnSpan={4}>
+    <Card variant="glow">
+      <CardHeader title="Header Panel" />
+    </Card>
+  </GridItem>
+  <GridItem variant="glow" bordered columnSpan="full">
+    <Card variant="glow">
+      <CardHeader title="Full Width Footer" />
+    </Card>
+  </GridItem>
+</Grid>
 ```
