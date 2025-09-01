@@ -39,10 +39,25 @@ jadis/
 │   │   │   ├── ThemeProvider.tsx  # React context provider
 │   │   │   ├── ThemeProvider.stories.tsx # Theme demos
 │   │   │   └── index.ts           # Theme exports
-│   │   └── SpecialEffects/ # Retro visual effects system
-│   │       ├── SpecialEffects.tsx # Glitch, CRT, scanline effects
-│   │       ├── SpecialEffects.stories.tsx # Effects showcase
-│   │       └── index.ts           # Effects exports
+│   │   ├── SpecialEffects/ # Retro visual effects system
+│   │   │   ├── SpecialEffects.tsx # Glitch, CRT, scanline effects
+│   │   │   ├── SpecialEffects.stories.tsx # Effects showcase
+│   │   │   └── index.ts           # Effects exports
+│   │   ├── Forms/         # Form components with ASCII styling
+│   │   │   ├── Forms.tsx          # Input, TextArea, Radio, Checkbox, Select
+│   │   │   ├── Forms.scss         # Terminal-style form styling
+│   │   │   ├── Forms.stories.tsx  # Form component demos
+│   │   │   └── index.ts           # Form exports
+│   │   ├── Cards/         # Card layout components
+│   │   │   ├── Cards.tsx          # Card, CardHeader, CardBody, etc.
+│   │   │   ├── Cards.scss         # ASCII border card styling
+│   │   │   ├── Cards.stories.tsx  # Card component demos
+│   │   │   └── index.ts           # Card exports
+│   │   └── Buttons/       # Comprehensive button system
+│   │       ├── Buttons.tsx        # Button, IconButton, ButtonGroup, etc.
+│   │       ├── Buttons.scss       # ASCII button styling with effects
+│   │       ├── Buttons.stories.tsx # Button component demos
+│   │       └── index.ts           # Button exports
 │   ├── styles/            # Global styling system
 │   │   ├── fonts.scss     # Hasklug Nerd Font + CSS variables
 │   │   ├── themes.scss    # Multi-theme system (5 themes)
@@ -145,6 +160,52 @@ Comprehensive Storybook setup includes:
 - **Convenience Components**: `GlitchText`, `ScanlineContainer`, `CRTScreen`, etc.
 - **Accessibility**: Respects `prefers-reduced-motion` for users with motion sensitivity
 
+#### **Form Components**
+- **Input**: Terminal-styled text input with prompt indicators
+  - Variants: `terminal`, `matrix`, `retro`, `minimal`, `glow`
+  - Features: Error states, disabled states, size variations
+  - Terminal prompts with '>' indicator
+- **TextArea**: Multi-line text input with ASCII styling
+  - Resizable with terminal aesthetics
+  - Monospace font, configurable rows
+- **Radio & RadioGroup**: ASCII-style radio buttons
+  - Custom indicators: `[◉]` selected, `[ ]` unselected
+  - Group management with orientation options
+- **Checkbox**: Terminal checkbox with ASCII indicators
+  - States: `[✓]` checked, `[ ]` unchecked
+  - Indeterminate state support with `[■]`
+- **Select**: Dropdown with terminal styling
+  - Custom ASCII arrow indicators
+  - Full keyboard navigation support
+- **Form**: Container component with variant styling
+  - Layout options: vertical, horizontal, inline
+
+#### **Card Components**
+- **Base Cards**: Card, CardHeader, CardBody, CardFooter, CardActions
+  - Variants: `terminal`, `matrix`, `retro`, `minimal`, `glow`
+  - Sizes: `small`, `medium`, `large`, `full`
+  - ASCII border decorations with box-drawing characters
+  - Interactive hover effects
+- **Specialized Cards**:
+  - **TerminalCard**: Terminal window with title bar
+  - **StatusCard**: Status indicator cards with icons
+  - **DataCard**: Metric display cards with trends
+- **Features**: Status indicators, terminal window mode, interactive states
+
+#### **Button Components**
+- **Button**: Comprehensive button with multiple options
+  - Variants: `terminal`, `matrix`, `retro`, `minimal`, `glow`
+  - Colors: `primary`, `secondary`, `success`, `warning`, `error`, `info`
+  - Sizes: `small`, `medium`, `large`, `full-width`
+  - Features: Ripple effects, loading states, glow animations, outline styles
+- **Specialized Buttons**:
+  - **IconButton**: Icon-only buttons with accessibility
+  - **ButtonGroup**: Grouped buttons (horizontal/vertical)
+  - **LinkButton**: Button-styled links
+  - **ToggleButton**: Stateful toggle buttons
+  - **FAB**: Floating Action Buttons with positioning
+- **Effects**: Terminal brackets, matrix sweep, retro shadows, pulse animations
+
 ## Library Build & Distribution
 - **Library build**: TypeScript declaration generation + Vite library bundling
 - **External dependencies**: React and ReactDOM marked as external (peer dependencies)
@@ -179,7 +240,10 @@ import {
   H1, H2, P, Code, Strong,
   ThemeProvider, 
   GlitchText, RetroTerminal,
-  SpecialEffects 
+  SpecialEffects,
+  Button, IconButton, ButtonGroup,
+  Card, CardHeader, CardBody,
+  Input, TextArea, Checkbox, Select
 } from 'jadis'
 
 // Import styles (includes all themes and effects)
@@ -221,4 +285,49 @@ import 'jadis/styles'
 >
   <P>Custom retro effects stack</P>
 </SpecialEffects>
+
+// Button components
+<Button variant="terminal" color="success">
+  EXECUTE
+</Button>
+
+<ButtonGroup variant="matrix">
+  <Button>OPTION 1</Button>
+  <Button>OPTION 2</Button>
+  <Button>OPTION 3</Button>
+</ButtonGroup>
+
+<IconButton variant="retro" icon="★" label="Favorite" />
+
+// Card components
+<Card variant="terminal" interactive>
+  <CardHeader title="System Status" subtitle="All systems operational" />
+  <CardBody>
+    <P variant="terminal">Connection established.</P>
+  </CardBody>
+</Card>
+
+// Form components
+<Input 
+  variant="terminal" 
+  label="Username" 
+  placeholder="Enter username..." 
+/>
+
+<TextArea 
+  variant="matrix" 
+  label="Message" 
+  rows={4}
+/>
+
+<Checkbox 
+  variant="terminal" 
+  label="Enable notifications" 
+  defaultChecked 
+/>
+
+<Select variant="retro" label="Choose option">
+  <option value="1">Option 1</option>
+  <option value="2">Option 2</option>
+</Select>
 ```

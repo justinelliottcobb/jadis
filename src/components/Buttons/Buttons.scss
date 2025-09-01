@@ -1,0 +1,546 @@
+@import '../../styles/fonts.scss';
+
+// ===================================
+// BASE BUTTON STYLES
+// ===================================
+
+.jadis-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  background: transparent;
+  font-family: var(--jadis-font-primary);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  overflow: hidden;
+  white-space: nowrap;
+  user-select: none;
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+
+  // Size variants
+  &--small {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  &--medium {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  &--large {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  &--full-width {
+    width: 100%;
+  }
+
+  // States
+  &--disabled,
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  &--loading {
+    cursor: wait;
+    .jadis-button__content {
+      opacity: 0.5;
+    }
+  }
+
+  &--active {
+    transform: translateY(1px);
+  }
+}
+
+// ===================================
+// TERMINAL VARIANT
+// ===================================
+
+.jadis-button--terminal {
+  border: 1px solid var(--jadis-color-green);
+  color: var(--jadis-color-green);
+  background: rgba(0, 255, 0, 0.05);
+  position: relative;
+
+  &::before {
+    content: '[';
+    position: absolute;
+    left: 0.25rem;
+    opacity: 0.7;
+  }
+
+  &::after {
+    content: ']';
+    position: absolute;
+    right: 0.25rem;
+    opacity: 0.7;
+  }
+
+  &:hover:not(:disabled) {
+    background: rgba(0, 255, 0, 0.1);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+    border-color: var(--jadis-color-bright-green);
+    color: var(--jadis-color-bright-green);
+  }
+
+  &:active:not(:disabled) {
+    background: rgba(0, 255, 0, 0.15);
+  }
+
+  &.jadis-button--outline {
+    background: transparent;
+    border: 2px solid var(--jadis-color-green);
+  }
+
+  // Color variants for terminal
+  &.jadis-button--primary {
+    border-color: var(--jadis-color-green);
+    color: var(--jadis-color-green);
+  }
+
+  &.jadis-button--secondary {
+    border-color: var(--jadis-color-cyan);
+    color: var(--jadis-color-cyan);
+    background: rgba(0, 255, 255, 0.05);
+  }
+
+  &.jadis-button--success {
+    border-color: var(--jadis-color-bright-green);
+    color: var(--jadis-color-bright-green);
+  }
+
+  &.jadis-button--warning {
+    border-color: var(--jadis-color-yellow);
+    color: var(--jadis-color-yellow);
+    background: rgba(255, 255, 0, 0.05);
+  }
+
+  &.jadis-button--error {
+    border-color: var(--jadis-color-red);
+    color: var(--jadis-color-red);
+    background: rgba(255, 0, 0, 0.05);
+  }
+
+  &.jadis-button--info {
+    border-color: var(--jadis-color-blue);
+    color: var(--jadis-color-blue);
+    background: rgba(0, 100, 255, 0.05);
+  }
+}
+
+// ===================================
+// MATRIX VARIANT
+// ===================================
+
+.jadis-button--matrix {
+  border: 1px solid #00ff41;
+  color: #00ff41;
+  background: linear-gradient(180deg, rgba(0, 255, 65, 0.1) 0%, rgba(0, 255, 65, 0.05) 100%);
+  text-shadow: 0 0 5px currentColor;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.3), transparent);
+    transition: left 0.5s;
+  }
+
+  &:hover:not(:disabled) {
+    box-shadow: 
+      0 0 20px rgba(0, 255, 65, 0.5),
+      inset 0 0 20px rgba(0, 255, 65, 0.1);
+    text-shadow: 0 0 10px currentColor;
+    
+    &::before {
+      left: 100%;
+    }
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+
+  // Color variants for matrix
+  &.jadis-button--secondary {
+    border-color: #00ffff;
+    color: #00ffff;
+    background: linear-gradient(180deg, rgba(0, 255, 255, 0.1) 0%, rgba(0, 255, 255, 0.05) 100%);
+  }
+
+  &.jadis-button--error {
+    border-color: #ff0041;
+    color: #ff0041;
+    background: linear-gradient(180deg, rgba(255, 0, 65, 0.1) 0%, rgba(255, 0, 65, 0.05) 100%);
+  }
+}
+
+// ===================================
+// RETRO VARIANT
+// ===================================
+
+.jadis-button--retro {
+  border: 2px solid var(--jadis-color-amber);
+  color: var(--jadis-color-amber);
+  background: var(--jadis-color-black);
+  box-shadow: 
+    4px 4px 0 var(--jadis-color-amber),
+    inset 0 0 0 1px var(--jadis-color-amber);
+  text-transform: uppercase;
+  font-weight: bold;
+  position: relative;
+
+  &:hover:not(:disabled) {
+    transform: translate(-2px, -2px);
+    box-shadow: 
+      6px 6px 0 var(--jadis-color-amber),
+      inset 0 0 0 1px var(--jadis-color-amber);
+    background: rgba(255, 176, 0, 0.1);
+  }
+
+  &:active:not(:disabled) {
+    transform: translate(2px, 2px);
+    box-shadow: 
+      2px 2px 0 var(--jadis-color-amber),
+      inset 0 0 0 1px var(--jadis-color-amber);
+  }
+
+  // Color variants for retro
+  &.jadis-button--secondary {
+    border-color: var(--jadis-color-white);
+    color: var(--jadis-color-white);
+    box-shadow: 
+      4px 4px 0 var(--jadis-color-white),
+      inset 0 0 0 1px var(--jadis-color-white);
+  }
+
+  &.jadis-button--success {
+    border-color: #00ff00;
+    color: #00ff00;
+    box-shadow: 
+      4px 4px 0 #00ff00,
+      inset 0 0 0 1px #00ff00;
+  }
+}
+
+// ===================================
+// MINIMAL VARIANT
+// ===================================
+
+.jadis-button--minimal {
+  border: 1px solid currentColor;
+  color: var(--jadis-color-white);
+  background: transparent;
+  opacity: 0.8;
+
+  &:hover:not(:disabled) {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  &:active:not(:disabled) {
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  &.jadis-button--outline {
+    border-width: 2px;
+  }
+
+  // Color variants for minimal
+  &.jadis-button--primary {
+    color: var(--jadis-color-white);
+  }
+
+  &.jadis-button--secondary {
+    color: var(--jadis-color-gray);
+  }
+
+  &.jadis-button--success {
+    color: var(--jadis-color-green);
+  }
+
+  &.jadis-button--warning {
+    color: var(--jadis-color-yellow);
+  }
+
+  &.jadis-button--error {
+    color: var(--jadis-color-red);
+  }
+}
+
+// ===================================
+// GLOW VARIANT
+// ===================================
+
+.jadis-button--glow {
+  border: 1px solid var(--jadis-color-cyan);
+  color: var(--jadis-color-cyan);
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(0, 255, 255, 0.05) 100%);
+  box-shadow: 
+    0 0 20px rgba(0, 255, 255, 0.3),
+    inset 0 0 20px rgba(0, 255, 255, 0.1);
+  text-shadow: 0 0 10px currentColor;
+
+  &:hover:not(:disabled) {
+    box-shadow: 
+      0 0 30px rgba(0, 255, 255, 0.5),
+      inset 0 0 30px rgba(0, 255, 255, 0.2);
+    text-shadow: 0 0 15px currentColor;
+    border-color: var(--jadis-color-bright-cyan);
+    color: var(--jadis-color-bright-cyan);
+  }
+
+  &:active:not(:disabled) {
+    box-shadow: 
+      0 0 40px rgba(0, 255, 255, 0.6),
+      inset 0 0 40px rgba(0, 255, 255, 0.3);
+  }
+
+  &.jadis-button--glow {
+    animation: pulse-glow 2s infinite;
+  }
+
+  // Color variants for glow
+  &.jadis-button--primary {
+    border-color: var(--jadis-color-cyan);
+    color: var(--jadis-color-cyan);
+    box-shadow: 
+      0 0 20px rgba(0, 255, 255, 0.3),
+      inset 0 0 20px rgba(0, 255, 255, 0.1);
+  }
+
+  &.jadis-button--secondary {
+    border-color: var(--jadis-color-purple);
+    color: var(--jadis-color-purple);
+    box-shadow: 
+      0 0 20px rgba(147, 51, 234, 0.3),
+      inset 0 0 20px rgba(147, 51, 234, 0.1);
+  }
+
+  &.jadis-button--success {
+    border-color: var(--jadis-color-green);
+    color: var(--jadis-color-green);
+    box-shadow: 
+      0 0 20px rgba(0, 255, 0, 0.3),
+      inset 0 0 20px rgba(0, 255, 0, 0.1);
+  }
+}
+
+// ===================================
+// BUTTON COMPONENTS
+// ===================================
+
+// Icon positioning
+.jadis-button__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+
+  &--left {
+    margin-right: 0.25rem;
+  }
+
+  &--right {
+    margin-left: 0.25rem;
+  }
+}
+
+// Loading indicator
+.jadis-button__loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  animation: loader-spin 1s linear infinite;
+}
+
+// Ripple effect
+.jadis-button__ripple {
+  position: absolute;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  transform: translate(-50%, -50%);
+  background: currentColor;
+  opacity: 0.3;
+  animation: ripple-effect 0.6s ease-out;
+  pointer-events: none;
+}
+
+// Icon-only button
+.jadis-button--icon-only {
+  padding: 0.5rem;
+  min-width: unset;
+
+  &.jadis-button--small {
+    padding: 0.25rem;
+  }
+
+  &.jadis-button--large {
+    padding: 0.75rem;
+  }
+
+  .jadis-button__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// ===================================
+// BUTTON GROUP
+// ===================================
+
+.jadis-button-group {
+  display: inline-flex;
+  gap: 0;
+
+  .jadis-button {
+    border-radius: 0;
+    
+    &:not(:first-child) {
+      margin-left: -1px;
+    }
+
+    &:first-child {
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+    }
+
+    &:last-child {
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+
+    &:focus-visible {
+      z-index: 1;
+    }
+
+    &:hover {
+      z-index: 1;
+    }
+  }
+
+  &--vertical {
+    flex-direction: column;
+
+    .jadis-button {
+      &:not(:first-child) {
+        margin-left: 0;
+        margin-top: -1px;
+      }
+
+      &:first-child {
+        border-radius: 4px 4px 0 0;
+      }
+
+      &:last-child {
+        border-radius: 0 0 4px 4px;
+      }
+    }
+  }
+
+  &--full-width {
+    width: 100%;
+
+    .jadis-button {
+      flex: 1;
+    }
+  }
+}
+
+// ===================================
+// FLOATING ACTION BUTTON
+// ===================================
+
+.jadis-fab {
+  position: fixed;
+  z-index: 1000;
+  border-radius: 50%;
+  min-width: 56px;
+  height: 56px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+
+  &--extended {
+    border-radius: 28px;
+    padding: 0 20px;
+    min-width: auto;
+  }
+
+  &--bottom-right {
+    bottom: 16px;
+    right: 16px;
+  }
+
+  &--bottom-left {
+    bottom: 16px;
+    left: 16px;
+  }
+
+  &--top-right {
+    top: 16px;
+    right: 16px;
+  }
+
+  &--top-left {
+    top: 16px;
+    left: 16px;
+  }
+}
+
+// ===================================
+// ANIMATIONS
+// ===================================
+
+@keyframes loader-spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes ripple-effect {
+  to {
+    width: 400px;
+    height: 400px;
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 
+      0 0 20px rgba(0, 255, 255, 0.3),
+      inset 0 0 20px rgba(0, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 0 30px rgba(0, 255, 255, 0.5),
+      inset 0 0 30px rgba(0, 255, 255, 0.2);
+  }
+}
