@@ -53,11 +53,16 @@ jadis/
 │   │   │   ├── Cards.scss         # ASCII border card styling
 │   │   │   ├── Cards.stories.tsx  # Card component demos
 │   │   │   └── index.ts           # Card exports
-│   │   └── Buttons/       # Comprehensive button system
-│   │       ├── Buttons.tsx        # Button, IconButton, ButtonGroup, etc.
-│   │       ├── Buttons.scss       # ASCII button styling with effects
-│   │       ├── Buttons.stories.tsx # Button component demos
-│   │       └── index.ts           # Button exports
+│   │   ├── Buttons/       # Comprehensive button system
+│   │   │   ├── Buttons.tsx        # Button, IconButton, ButtonGroup, etc.
+│   │   │   ├── Buttons.scss       # ASCII button styling with effects
+│   │   │   ├── Buttons.stories.tsx # Button component demos
+│   │   │   └── index.ts           # Button exports
+│   │   └── Tables/        # Comprehensive table system
+│   │       ├── Tables.tsx         # Table, DataTable, AsciiTable, etc.
+│   │       ├── Tables.scss        # ASCII table styling with variants
+│   │       ├── Tables.stories.tsx # Table component demos
+│   │       └── index.ts           # Table exports
 │   ├── styles/            # Global styling system
 │   │   ├── fonts.scss     # Hasklug Nerd Font + CSS variables
 │   │   ├── themes.scss    # Multi-theme system (5 themes)
@@ -206,6 +211,24 @@ Comprehensive Storybook setup includes:
   - **FAB**: Floating Action Buttons with positioning
 - **Effects**: Terminal brackets, matrix sweep, retro shadows, pulse animations
 
+#### **Table Components**
+- **Base Table Components**: Table, TableHead, TableBody, TableFooter, TableRow, TableHeaderCell, TableCell
+  - Variants: `terminal`, `matrix`, `retro`, `minimal`, `glow`
+  - Sizes: `compact`, `normal`, `spacious`
+  - Features: Bordered tables, striped rows, hoverable effects, responsive scrolling
+  - ASCII border styling with box-drawing characters for terminal aesthetics
+- **DataTable**: Advanced data table with full functionality
+  - Column sorting with ASCII indicators (▲ ▼ ◆)
+  - Row selection using custom Checkbox components
+  - Custom column rendering and formatting
+  - Empty state handling and click handlers
+- **AsciiTable**: Pure text-based table with box-drawing characters
+  - Generates ASCII art tables with proper alignment
+  - Configurable column alignments (left, center, right)
+  - Border toggle and padding options
+  - Perfect for terminal/console display
+- **Features**: Sticky headers, column alignment, numeric formatting, responsive design
+
 ## Library Build & Distribution
 - **Library build**: TypeScript declaration generation + Vite library bundling
 - **External dependencies**: React and ReactDOM marked as external (peer dependencies)
@@ -243,7 +266,9 @@ import {
   SpecialEffects,
   Button, IconButton, ButtonGroup,
   Card, CardHeader, CardBody,
-  Input, TextArea, Checkbox, Select
+  Input, TextArea, Checkbox, Select,
+  Table, TableHead, TableBody, TableRow, TableHeaderCell, TableCell,
+  DataTable, AsciiTable
 } from 'jadis'
 
 // Import styles (includes all themes and effects)
@@ -330,4 +355,51 @@ import 'jadis/styles'
   <option value="1">Option 1</option>
   <option value="2">Option 2</option>
 </Select>
+
+// Table components
+<Table variant="terminal" bordered hoverable>
+  <TableHead>
+    <TableRow>
+      <TableHeaderCell sortable>PROCESS</TableHeaderCell>
+      <TableHeaderCell align="right" numeric>CPU %</TableHeaderCell>
+      <TableHeaderCell>STATUS</TableHeaderCell>
+    </TableRow>
+  </TableHead>
+  <TableBody>
+    <TableRow>
+      <TableCell>System Process</TableCell>
+      <TableCell align="right" numeric>45.2</TableCell>
+      <TableCell>Running</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+// DataTable with sorting and selection
+const columns = [
+  { key: 'name', header: 'Process', sortable: true },
+  { key: 'cpu', header: 'CPU %', align: 'right', numeric: true, sortable: true },
+  { key: 'status', header: 'Status' }
+]
+
+<DataTable
+  variant="matrix"
+  data={processData}
+  columns={columns}
+  selectable
+  bordered
+  striped
+/>
+
+// ASCII Table for terminal display
+const data = [
+  ['NAME', 'TYPE', 'SIZE'],
+  ['config.sys', 'CONFIG', '4KB'],
+  ['boot.exe', 'SYSTEM', '128KB']
+]
+
+<AsciiTable
+  data={data}
+  variant="terminal"
+  columnAlignments={['left', 'center', 'right']}
+/>
 ```
