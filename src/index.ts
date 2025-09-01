@@ -115,5 +115,28 @@ export {
   type GridAlign,
   type GridJustify
 } from './components/Grid'
+export {
+  Navbar,
+  NavbarBrand,
+  NavbarItem,
+  NavbarNav,
+  NavbarDropdown,
+  type NavbarProps,
+  type NavbarBrandProps,
+  type NavbarItemProps,
+  type NavbarNavProps,
+  type NavbarDropdownProps,
+  type NavbarVariant,
+  type NavbarPosition,
+  type NavbarAlign
+} from './components/Navbar'
+export {
+  ASCIIIcon,
+  ASCIIIcons,
+  IconCategories,
+  IconDisplayNames,
+  getIcon,
+  type ASCIIIconProps
+} from './components/Icons'
 
 import './styles'
