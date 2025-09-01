@@ -1,0 +1,61 @@
+/* Global Storybook styles for dark terminal theme */
+
+/* Canvas area (where stories render) */
+.sb-show-main,
+.sb-main-padded {
+  background-color: #000000 !important;
+  color: #00ff00 !important;
+}
+
+/* Story canvas */
+#storybook-root,
+#storybook-preview-wrapper,
+.docs-story {
+  background-color: #000000 !important;
+  color: #00ff00 !important;
+}
+
+/* Docs page */
+.sbdocs,
+.sbdocs-wrapper,
+.sbdocs-content {
+  background-color: #000000 !important;
+  color: #00ff00 !important;
+}
+
+/* Make sure body has dark background */
+body {
+  background-color: #000000 !important;
+  color: #00ff00 !important;
+}
+
+/* Canvas background */
+.sb-show-main > div:first-child {
+  background-color: #000000 !important;
+}
+
+/* Ensure docs stories have dark background */
+.docs-story > div {
+  background-color: #000000 !important;
+}
+
+/* Controls panel */
+.docblock-argstable {
+  background-color: #111111 !important;
+  color: #00ff00 !important;
+}
+
+/* Source code blocks */
+.docblock-source {
+  background-color: #001100 !important;
+}
+
+/* Reset any white backgrounds */
+[style*="background: white"],
+[style*="background-color: white"],
+[style*="background:white"],
+[style*="background-color:white"],
+[style*="background: rgb(255, 255, 255)"],
+[style*="background-color: rgb(255, 255, 255)"] {
+  background-color: #000000 !important;
+}
