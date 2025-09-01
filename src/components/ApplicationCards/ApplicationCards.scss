@@ -1,0 +1,419 @@
+// Import global fonts
+@import '../../styles/fonts.scss';
+
+// ===================================
+// APPLICATION CARD STYLES
+// ===================================
+
+.jadis-app-card {
+  font-family: var(--jadis-font-primary);
+  
+  &__title {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    
+    &-text {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+  
+  &__name {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+  }
+  
+  &__version {
+    font-size: 0.7rem;
+    opacity: 0.8;
+    padding: 0.1rem 0.3rem;
+    border: 1px solid currentColor;
+    border-radius: 2px;
+  }
+  
+  &__status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  &__priority {
+    font-size: 0.7rem;
+    opacity: 0.7;
+    letter-spacing: 0.1em;
+  }
+  
+  &__description {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+  
+  &__metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  &__metric {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    
+    &-label {
+      font-size: 0.7rem;
+      font-weight: bold;
+      opacity: 0.8;
+      min-width: 60px;
+      text-transform: uppercase;
+    }
+  }
+  
+  &__progress-bar {
+    flex: 1;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-left: 0.5rem;
+  }
+  
+  &__progress-fill {
+    height: 100%;
+    background-color: var(--jadis-color-green);
+    transition: width 0.3s ease;
+    border-radius: 2px;
+    
+    &--success {
+      background-color: var(--jadis-color-green);
+    }
+    
+    &--warning {
+      background-color: var(--jadis-color-yellow);
+    }
+    
+    &--error {
+      background-color: var(--jadis-color-red);
+    }
+  }
+  
+  &__actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  
+  // Status-specific styling
+  &--running {
+    border-left: 3px solid var(--jadis-color-green);
+  }
+  
+  &--error {
+    border-left: 3px solid var(--jadis-color-red);
+  }
+  
+  &--loading {
+    border-left: 3px solid var(--jadis-color-yellow);
+  }
+  
+  &--maintenance {
+    border-left: 3px solid var(--jadis-color-blue);
+  }
+}
+
+// ===================================
+// SERVICE MONITOR CARD STYLES
+// ===================================
+
+.jadis-service-monitor-card {
+  font-family: var(--jadis-font-primary);
+}
+
+.jadis-service-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.jadis-service-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  background-color: rgba(255, 255, 255, 0.02);
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+.jadis-service-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.jadis-service-port {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  color: var(--jadis-color-cyan);
+}
+
+.jadis-service-actions {
+  display: flex;
+  gap: 0.25rem;
+}
+
+// ===================================
+// SYSTEM STATUS CARD STYLES
+// ===================================
+
+.jadis-system-status-card {
+  font-family: var(--jadis-font-primary);
+}
+
+.jadis-system-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.jadis-metric-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+}
+
+.jadis-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  
+  .jadis-metric-label {
+    font-size: 0.7rem;
+    font-weight: bold;
+    opacity: 0.8;
+    text-transform: uppercase;
+  }
+}
+
+.jadis-system-alerts {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+.jadis-alerts-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.8rem;
+}
+
+.jadis-alerts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.jadis-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 2px;
+  font-size: 0.8rem;
+  
+  &--info {
+    background-color: rgba(0, 150, 255, 0.1);
+    border-left: 3px solid var(--jadis-color-blue);
+  }
+  
+  &--warning {
+    background-color: rgba(255, 200, 0, 0.1);
+    border-left: 3px solid var(--jadis-color-yellow);
+  }
+  
+  &--error {
+    background-color: rgba(255, 50, 50, 0.1);
+    border-left: 3px solid var(--jadis-color-red);
+  }
+}
+
+// ===================================
+// RESPONSIVE DESIGN
+// ===================================
+
+@media (max-width: 768px) {
+  .jadis-app-card {
+    &__title {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    
+    &__metrics {
+      gap: 0.5rem;
+    }
+    
+    &__metric {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+      
+      &-label {
+        min-width: auto;
+      }
+    }
+    
+    &__progress-bar {
+      width: 100%;
+      margin-left: 0;
+    }
+    
+    &__actions {
+      flex-direction: column;
+      
+      .jadis-button {
+        width: 100%;
+      }
+    }
+  }
+  
+  .jadis-service-item {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+  
+  .jadis-service-actions {
+    justify-content: center;
+  }
+  
+  .jadis-metric-row {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}
+
+// ===================================
+// VARIANT-SPECIFIC STYLES
+// ===================================
+
+// Terminal variant
+.jadis-app-card.jadis-card--terminal {
+  .jadis-app-card__progress-fill {
+    box-shadow: 0 0 4px rgba(0, 255, 0, 0.5);
+  }
+  
+  .jadis-service-item {
+    border-color: rgba(0, 255, 0, 0.2);
+    
+    &:hover {
+      border-color: rgba(0, 255, 0, 0.4);
+      box-shadow: 0 0 8px rgba(0, 255, 0, 0.2);
+    }
+  }
+}
+
+// Matrix variant  
+.jadis-app-card.jadis-card--matrix {
+  .jadis-app-card__progress-fill {
+    background-color: #00ff41;
+    box-shadow: 0 0 4px rgba(0, 255, 65, 0.6);
+  }
+  
+  .jadis-service-item {
+    border-color: rgba(0, 255, 65, 0.2);
+    
+    &:hover {
+      border-color: rgba(0, 255, 65, 0.4);
+      box-shadow: 0 0 8px rgba(0, 255, 65, 0.3);
+    }
+  }
+}
+
+// Retro variant
+.jadis-app-card.jadis-card--retro {
+  .jadis-app-card__progress-fill {
+    background-color: #ffb000;
+    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
+  }
+  
+  .jadis-service-item {
+    border-color: rgba(255, 176, 0, 0.3);
+    background-color: rgba(255, 176, 0, 0.05);
+    
+    &:hover {
+      border-color: rgba(255, 176, 0, 0.5);
+      background-color: rgba(255, 176, 0, 0.1);
+    }
+  }
+}
+
+// Minimal variant
+.jadis-app-card.jadis-card--minimal {
+  .jadis-app-card__progress-fill {
+    background-color: #ffffff;
+  }
+  
+  .jadis-service-item {
+    border-color: rgba(255, 255, 255, 0.2);
+    
+    &:hover {
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+  }
+}
+
+// Glow variant
+.jadis-app-card.jadis-card--glow {
+  .jadis-app-card__progress-fill {
+    background-color: #00ffff;
+    box-shadow: 
+      0 0 4px rgba(0, 255, 255, 0.8),
+      0 0 8px rgba(0, 255, 255, 0.4);
+    animation: glow-pulse 2s ease-in-out infinite alternate;
+  }
+  
+  .jadis-service-item {
+    border-color: rgba(0, 255, 255, 0.3);
+    
+    &:hover {
+      border-color: rgba(255, 0, 255, 0.5);
+      box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
+    }
+  }
+}
+
+// ===================================
+// ANIMATIONS
+// ===================================
+
+@keyframes glow-pulse {
+  0% { 
+    box-shadow: 
+      0 0 4px rgba(0, 255, 255, 0.8),
+      0 0 8px rgba(0, 255, 255, 0.4);
+  }
+  100% { 
+    box-shadow: 
+      0 0 8px rgba(0, 255, 255, 1),
+      0 0 16px rgba(0, 255, 255, 0.6);
+  }
+}
