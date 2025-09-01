@@ -63,11 +63,21 @@ jadis/
 │   │   │   ├── Tables.scss        # ASCII table styling with variants
 │   │   │   ├── Tables.stories.tsx # Table component demos
 │   │   │   └── index.ts           # Table exports
-│   │   └── Grid/          # CSS Grid layout system
-│   │       ├── Grid.tsx           # Grid, GridItem, ResponsiveGrid
-│   │       ├── Grid.scss          # CSS Grid styling with variants
-│   │       ├── Grid.stories.tsx   # Grid layout demos
-│   │       └── index.ts           # Grid exports
+│   │   ├── Grid/          # CSS Grid layout system
+│   │   │   ├── Grid.tsx           # Grid, GridItem, ResponsiveGrid
+│   │   │   ├── Grid.scss          # CSS Grid styling with variants
+│   │   │   ├── Grid.stories.tsx   # Grid layout demos
+│   │   │   └── index.ts           # Grid exports
+│   │   ├── Navbar/        # Navigation system
+│   │   │   ├── Navbar.tsx         # Navbar, NavbarBrand, NavbarItem, NavbarNav, NavbarDropdown
+│   │   │   ├── Navbar.scss        # Navigation styling with responsive behavior
+│   │   │   ├── Navbar.stories.tsx # Navigation component demos
+│   │   │   └── index.ts           # Navbar exports
+│   │   └── Icons/         # ASCII icon system
+│   │       ├── Icons.tsx          # ASCIIIcon component and icon definitions
+│   │       ├── Icons.scss         # Icon styling with variant effects
+│   │       ├── Icons.stories.tsx  # Icon showcase and examples
+│   │       └── index.ts           # Icon exports
 │   ├── styles/            # Global styling system
 │   │   ├── fonts.scss     # Hasklug Nerd Font + CSS variables
 │   │   ├── themes.scss    # Multi-theme system (5 themes)
@@ -257,6 +267,57 @@ Comprehensive Storybook setup includes:
   - Container max-width constraints and centering
   - CSS Custom Properties integration for dynamic styling
 
+#### **Navigation System**
+- **Navbar**: Comprehensive navigation container with responsive behavior
+  - Variants: `terminal`, `matrix`, `retro`, `minimal`, `glow`
+  - Positioning: `static`, `sticky`, `fixed` with proper z-index management
+  - Alignment: `left`, `center`, `right`, `space-between`, `space-around`
+  - Features: Responsive collapse, mobile toggle, transparent mode, bordered styling
+- **NavbarBrand**: Logo/brand area with interactive states and link support
+  - Logo Integration: Supports text, icons, or custom React components
+  - Interactive States: Hover effects and click handling
+  - Accessibility: Proper link semantics and ARIA attributes
+- **NavbarItem**: Individual navigation items with comprehensive features
+  - Interactive States: Active, disabled, hover effects with variant-specific styling
+  - Icon Support: Integrated ASCII icon system with consistent aesthetics
+  - Badge System: Notification badges with customizable content
+  - Dropdown Support: Built-in dropdown trigger with accessibility
+- **NavbarNav**: Navigation group container with alignment options
+  - Direction: `horizontal`, `vertical` layouts with responsive behavior
+  - Alignment: `left`, `center`, `right` positioning within container
+  - Mobile Optimization: Automatic vertical stacking on small screens
+- **NavbarDropdown**: Advanced dropdown menus with positioning control
+  - Positioning: `left`, `right`, `center` alignment relative to trigger
+  - Click Outside: Automatic close behavior with proper event handling
+  - Mobile Adaptation: Full-width dropdowns on small screens
+  - Animation: Smooth show/hide transitions with CSS transforms
+
+#### **ASCII Icon System**
+- **ASCIIIcon**: Terminal-authentic icon component with variant support
+  - 60+ Curated Icons: Organized by category (navigation, files, technology, etc.)
+  - Variants: Each icon supports all 5 visual variants with appropriate styling
+  - Size Options: `small`, `medium`, `large` with consistent proportions
+  - Custom Icons: Support for custom ASCII characters and symbols
+- **Icon Categories**: Organized icon sets for different use cases
+  - Navigation: `home`, `menu`, `back`, `forward`, `up`, `down`, `left`, `right`
+  - Files: `file`, `folder`, `document`, `page`, `archive`
+  - Technology: `database`, `server`, `network`, `data`, `code`, `terminal`
+  - User: `user`, `profile`, `account`, `group`
+  - Actions: `settings`, `config`, `tools`, `edit`, `search`, `filter`, `sort`
+  - Status: `success`, `error`, `warning`, `info`, `loading`, `active`, `inactive`
+  - Communication: `message`, `mail`, `notification`, `alert`
+- **Variant-Specific Styling**: Each variant has custom icon effects
+  - Terminal: Green glow with shadow effects
+  - Matrix: Animated flicker with enhanced glow
+  - Retro: Bold styling with drop shadows
+  - Minimal: Clean styling without effects
+  - Glow: Pulsing animations with intense glow effects
+- **Developer Experience**: Type-safe icon names with utility functions
+  - Auto-complete: Full TypeScript support with IntelliSense
+  - Icon Lookup: Utility functions for programmatic icon access
+  - Categories: Organized groupings for easy discovery
+  - Display Names: Human-readable names for documentation
+
 ## Library Build & Distribution
 - **Library build**: TypeScript declaration generation + Vite library bundling
 - **External dependencies**: React and ReactDOM marked as external (peer dependencies)
@@ -297,7 +358,9 @@ import {
   Input, TextArea, Checkbox, Select,
   Table, TableHead, TableBody, TableRow, TableHeaderCell, TableCell,
   DataTable, AsciiTable,
-  Grid, GridItem, ResponsiveGrid
+  Grid, GridItem, ResponsiveGrid,
+  Navbar, NavbarBrand, NavbarItem, NavbarNav, NavbarDropdown,
+  ASCIIIcon, ASCIIIcons, getIcon
 } from 'jadis'
 
 // Import styles (includes all themes and effects)
@@ -481,4 +544,66 @@ const data = [
     </Card>
   </GridItem>
 </Grid>
+
+// Navigation System
+// Basic Navbar
+<Navbar variant="terminal" bordered>
+  <NavbarBrand 
+    variant="terminal" 
+    text="SYSTEM CONTROL" 
+    logo={<ASCIIIcon icon="terminal" variant="terminal" />}
+  />
+  <NavbarNav variant="terminal">
+    <NavbarItem variant="terminal" active icon={<ASCIIIcon icon="home" variant="terminal" />}>
+      HOME
+    </NavbarItem>
+    <NavbarItem variant="terminal" icon={<ASCIIIcon icon="settings" variant="terminal" />}>
+      CONFIG
+    </NavbarItem>
+    <NavbarItem variant="terminal" badge={5}>
+      ALERTS
+    </NavbarItem>
+  </NavbarNav>
+</Navbar>
+
+// Responsive Navbar with Dropdown
+<Navbar variant="matrix" collapse bordered>
+  <NavbarBrand variant="matrix" text="MATRIX NET" />
+  <NavbarNav variant="matrix">
+    <NavbarDropdown
+      variant="matrix"
+      trigger={<NavbarItem variant="matrix" dropdown>PROTOCOLS</NavbarItem>}
+    >
+      <NavbarItem variant="matrix">HTTP Scanner</NavbarItem>
+      <NavbarItem variant="matrix">Port Monitor</NavbarItem>
+      <NavbarItem variant="matrix">Packet Analyzer</NavbarItem>
+    </NavbarDropdown>
+  </NavbarNav>
+</Navbar>
+
+// ASCII Icon System
+// Basic Icon Usage
+<ASCIIIcon icon="database" variant="terminal" size="large" />
+<ASCIIIcon icon="network" variant="matrix" size="medium" />
+<ASCIIIcon icon="settings" variant="retro" size="small" />
+
+// Icons in Buttons and UI
+<Button variant="terminal">
+  <ASCIIIcon icon="search" variant="terminal" />
+  SCAN SYSTEM
+</Button>
+
+<Card variant="glow">
+  <CardHeader 
+    title={
+      <>
+        <ASCIIIcon icon="warning" variant="glow" /> ALERT STATUS
+      </>
+    } 
+  />
+</Card>
+
+// Custom Icons
+<ASCIIIcon icon="╬" variant="matrix" size="large" />
+<ASCIIIcon icon="▲▼" variant="terminal" />
 ```
