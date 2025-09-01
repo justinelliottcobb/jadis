@@ -77,5 +77,29 @@ export {
   type CardSize,
   type CardStatus
 } from './components/Cards'
+export {
+  Table,
+  TableHead,
+  TableBody,
+  TableFooter,
+  TableRow,
+  TableHeaderCell,
+  TableCell,
+  DataTable,
+  AsciiTable,
+  type TableProps,
+  type TableHeadProps,
+  type TableBodyProps,
+  type TableFooterProps,
+  type TableRowProps,
+  type TableHeaderCellProps,
+  type TableCellProps,
+  type DataTableProps,
+  type AsciiTableProps,
+  type Column,
+  type TableVariant,
+  type TableSize,
+  type TableAlign
+} from './components/Tables'
 
 import './styles'
