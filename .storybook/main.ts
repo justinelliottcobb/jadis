@@ -15,6 +15,12 @@ const config: StorybookConfig = {
   "framework": {
     "name": "@storybook/react-vite",
     "options": {}
+  },
+  viteFinal: async (config) => {
+    config.server = config.server || {};
+    config.server.allowedHosts = ['norma-wall.arblenems.com', 'localhost', '127.0.0.1'];
+    config.server.host = true;
+    return config;
   }
 };
 export default config;

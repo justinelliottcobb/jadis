@@ -1,0 +1,465 @@
+// Jadis Card Components Styling
+// ASCII-art inspired card layouts with terminal aesthetics
+
+@import '../../styles/fonts.scss';
+
+// ===================================
+// BASE CARD STYLES
+// ===================================
+
+.jadis-card {
+  font-family: var(--jadis-font-primary);
+  background: rgba(0, 0, 0, 0.8);
+  color: var(--jadis-text-primary);
+  position: relative;
+  margin: var(--jadis-space-md);
+  padding: 0;
+  overflow: hidden;
+  
+  // Variants
+  &--terminal {
+    border: 2px solid var(--jadis-color-green);
+    background: rgba(0, 17, 0, 0.3);
+    color: var(--jadis-color-green);
+    box-shadow: 
+      0 0 10px rgba(0, 255, 0, 0.1),
+      inset 0 0 20px rgba(0, 255, 0, 0.05);
+    
+    // ASCII corner decorations
+    &::before {
+      content: '┌';
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      font-size: 1rem;
+      color: var(--jadis-color-green);
+      line-height: 1;
+      z-index: 2;
+    }
+    
+    &::after {
+      content: '┐';
+      position: absolute;
+      top: -1px;
+      right: -1px;
+      font-size: 1rem;
+      color: var(--jadis-color-green);
+      line-height: 1;
+      z-index: 2;
+    }
+    
+    // Bottom corners via pseudo elements
+    .jadis-card__content::before {
+      content: '└';
+      position: absolute;
+      bottom: -1px;
+      left: -1px;
+      font-size: 1rem;
+      color: var(--jadis-color-green);
+      line-height: 1;
+      z-index: 2;
+    }
+    
+    .jadis-card__content::after {
+      content: '┘';
+      position: absolute;
+      bottom: -1px;
+      right: -1px;
+      font-size: 1rem;
+      color: var(--jadis-color-green);
+      line-height: 1;
+      z-index: 2;
+    }
+  }
+  
+  &--matrix {
+    border: 1px dashed var(--jadis-color-cyan);
+    background: rgba(0, 20, 20, 0.3);
+    color: var(--jadis-color-cyan);
+    box-shadow: 
+      0 0 15px rgba(0, 204, 204, 0.1),
+      inset 0 0 20px rgba(0, 204, 204, 0.05);
+    
+    // Digital grid overlay
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 10px,
+          rgba(0, 204, 204, 0.03) 10px,
+          rgba(0, 204, 204, 0.03) 11px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 10px,
+          rgba(0, 204, 204, 0.03) 10px,
+          rgba(0, 204, 204, 0.03) 11px
+        );
+      pointer-events: none;
+      z-index: 1;
+    }
+  }
+  
+  &--retro {
+    border: 3px double var(--jadis-color-yellow);
+    background: rgba(20, 20, 0, 0.3);
+    color: var(--jadis-color-yellow);
+    box-shadow: 
+      0 0 20px rgba(255, 102, 0, 0.2),
+      inset 0 0 15px rgba(255, 255, 0, 0.05);
+    
+    // Retro scan lines
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 4px,
+        rgba(255, 255, 0, 0.05) 4px,
+        rgba(255, 255, 0, 0.05) 5px
+      );
+      pointer-events: none;
+      z-index: 1;
+    }
+  }
+  
+  &--minimal {
+    border: 1px solid var(--jadis-color-gray);
+    background: rgba(17, 17, 17, 0.3);
+    color: var(--jadis-color-gray);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  &--glow {
+    border: 1px solid var(--jadis-color-white);
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--jadis-color-white);
+    box-shadow: 
+      0 0 20px rgba(255, 255, 255, 0.2),
+      inset 0 0 20px rgba(255, 255, 255, 0.05);
+    
+    // Subtle glow animation
+    &::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      right: -1px;
+      bottom: -1px;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      border-radius: inherit;
+      opacity: 0.5;
+      animation: jadis-glow-pulse 3s ease-in-out infinite alternate;
+      pointer-events: none;
+      z-index: -1;
+    }
+  }
+}
+
+@keyframes jadis-glow-pulse {
+  0% { opacity: 0.3; }
+  100% { opacity: 0.7; }
+}
+
+// ===================================
+// CARD CONTENT AREAS
+// ===================================
+
+.jadis-card__content {
+  position: relative;
+  z-index: 2;
+}
+
+.jadis-card__header {
+  padding: var(--jadis-space-md);
+  border-bottom: 1px solid currentColor;
+  opacity: 0.3;
+  position: relative;
+  
+  .jadis-card--terminal & {
+    border-bottom-color: var(--jadis-color-green);
+  }
+  
+  .jadis-card--matrix & {
+    border-bottom-style: dashed;
+    border-bottom-color: var(--jadis-color-cyan);
+  }
+  
+  .jadis-card--retro & {
+    border-bottom-style: double;
+    border-bottom-width: 2px;
+    border-bottom-color: var(--jadis-color-yellow);
+  }
+  
+  .jadis-card--minimal & {
+    border-bottom-color: var(--jadis-color-gray);
+  }
+  
+  .jadis-card--glow & {
+    border-bottom-color: var(--jadis-color-white);
+    text-shadow: var(--jadis-glow-sm);
+  }
+}
+
+.jadis-card__title {
+  margin: 0 0 var(--jadis-space-xs) 0;
+  font-size: 1.25rem;
+  font-weight: var(--jadis-font-semibold);
+  
+  .jadis-card--terminal & {
+    color: var(--jadis-color-green);
+    text-shadow: var(--jadis-glow-sm);
+  }
+  
+  .jadis-card--matrix & {
+    color: var(--jadis-color-cyan);
+    letter-spacing: 0.03em;
+  }
+  
+  .jadis-card--retro & {
+    color: var(--jadis-color-yellow);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: var(--jadis-font-bold);
+  }
+  
+  .jadis-card--minimal & {
+    color: var(--jadis-color-white);
+  }
+  
+  .jadis-card--glow & {
+    color: var(--jadis-color-white);
+    text-shadow: var(--jadis-glow-md);
+  }
+}
+
+.jadis-card__subtitle {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.7;
+  
+  .jadis-card--retro & {
+    text-transform: lowercase;
+    letter-spacing: 0.02em;
+  }
+}
+
+.jadis-card__body {
+  padding: var(--jadis-space-md);
+  line-height: 1.5;
+  position: relative;
+  z-index: 2;
+  
+  .jadis-card--terminal & {
+    color: var(--jadis-color-green);
+  }
+  
+  .jadis-card--matrix & {
+    color: var(--jadis-color-cyan);
+  }
+  
+  .jadis-card--retro & {
+    color: var(--jadis-color-yellow);
+  }
+  
+  .jadis-card--minimal & {
+    color: var(--jadis-color-gray);
+  }
+  
+  .jadis-card--glow & {
+    color: var(--jadis-color-white);
+  }
+}
+
+.jadis-card__footer {
+  padding: var(--jadis-space-md);
+  border-top: 1px solid currentColor;
+  opacity: 0.3;
+  position: relative;
+  z-index: 2;
+  
+  .jadis-card--terminal & {
+    border-top-color: var(--jadis-color-green);
+  }
+  
+  .jadis-card--matrix & {
+    border-top-style: dashed;
+    border-top-color: var(--jadis-color-cyan);
+  }
+  
+  .jadis-card--retro & {
+    border-top-style: double;
+    border-top-width: 2px;
+    border-top-color: var(--jadis-color-yellow);
+  }
+  
+  .jadis-card--minimal & {
+    border-top-color: var(--jadis-color-gray);
+  }
+  
+  .jadis-card--glow & {
+    border-top-color: var(--jadis-color-white);
+  }
+}
+
+.jadis-card__actions {
+  display: flex;
+  gap: var(--jadis-space-sm);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+// ===================================
+// CARD SIZES
+// ===================================
+
+.jadis-card--small {
+  max-width: 300px;
+  
+  .jadis-card__header,
+  .jadis-card__body,
+  .jadis-card__footer {
+    padding: var(--jadis-space-sm);
+  }
+  
+  .jadis-card__title {
+    font-size: 1.1rem;
+  }
+}
+
+.jadis-card--medium {
+  max-width: 400px;
+}
+
+.jadis-card--large {
+  max-width: 600px;
+  
+  .jadis-card__header,
+  .jadis-card__body,
+  .jadis-card__footer {
+    padding: var(--jadis-space-lg);
+  }
+  
+  .jadis-card__title {
+    font-size: 1.5rem;
+  }
+}
+
+.jadis-card--full {
+  max-width: 100%;
+}
+
+// ===================================
+// CARD STATES
+// ===================================
+
+.jadis-card--interactive {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    
+    &.jadis-card--terminal {
+      box-shadow: 
+        0 4px 15px rgba(0, 255, 0, 0.2),
+        inset 0 0 20px rgba(0, 255, 0, 0.1);
+    }
+    
+    &.jadis-card--matrix {
+      box-shadow: 
+        0 4px 20px rgba(0, 204, 204, 0.2),
+        inset 0 0 20px rgba(0, 204, 204, 0.1);
+    }
+    
+    &.jadis-card--retro {
+      box-shadow: 
+        0 4px 25px rgba(255, 102, 0, 0.3),
+        inset 0 0 15px rgba(255, 255, 0, 0.1);
+    }
+    
+    &.jadis-card--minimal {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      border-color: var(--jadis-color-white);
+    }
+    
+    &.jadis-card--glow {
+      box-shadow: 
+        0 4px 30px rgba(255, 255, 255, 0.3),
+        inset 0 0 20px rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+.jadis-card--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+// ===================================
+// SPECIALIZED CARD TYPES
+// ===================================
+
+.jadis-card--status {
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: currentColor;
+  }
+  
+  &.jadis-card--success::before {
+    background: var(--jadis-color-green);
+  }
+  
+  &.jadis-card--warning::before {
+    background: var(--jadis-color-yellow);
+  }
+  
+  &.jadis-card--error::before {
+    background: var(--jadis-color-red);
+  }
+  
+  &.jadis-card--info::before {
+    background: var(--jadis-color-cyan);
+  }
+}
+
+.jadis-card--terminal-window {
+  &.jadis-card--terminal {
+    .jadis-card__header {
+      background: rgba(0, 255, 0, 0.1);
+      border-bottom-width: 2px;
+      position: relative;
+      
+      &::before {
+        content: '● ● ●';
+        position: absolute;
+        right: var(--jadis-space-md);
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--jadis-color-red);
+        font-size: 0.7rem;
+        letter-spacing: 0.2em;
+      }
+    }
+  }
+}
