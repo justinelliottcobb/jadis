@@ -330,8 +330,13 @@ export const AsciiTableStory: StoryObj = {
         </div>
         
         <div>
-          <H2 variant="simple">Matrix ASCII Table</H2>
-          <AsciiTable data={data} variant="matrix" padding={2} />
+          <H2 variant="simple">Matrix ASCII Table (Right-aligned sizes)</H2>
+          <AsciiTable 
+            data={data} 
+            variant="matrix" 
+            padding={1}
+            columnAlignments={['left', 'left', 'right', 'center']}
+          />
         </div>
         
         <div>

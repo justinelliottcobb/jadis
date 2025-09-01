@@ -470,61 +470,78 @@ export interface AsciiTableProps {
   variant?: TableVariant
   showBorder?: boolean
   padding?: number
+  columnAlignments?: ('left' | 'center' | 'right')[]
 }
 
 export const AsciiTable: React.FC<AsciiTableProps> = ({
   data,
   variant = 'terminal',
   showBorder = true,
-  padding = 1
+  padding = 1,
+  columnAlignments = []
 }) => {
   const generateAsciiTable = () => {
     if (data.length === 0) return ''
 
-    // Calculate column widths
+    // Calculate column widths based on all data
     const columnWidths = data[0].map((_, colIndex) => {
       return Math.max(...data.map(row => String(row[colIndex] || '').length))
     })
 
-    const padCell = (content: string, width: number) => {
-      const str = String(content)
-      const padTotal = width - str.length + (padding * 2)
-      const padLeft = Math.floor(padTotal / 2) + padding
-      const padRight = Math.ceil(padTotal / 2) + padding
-      return ' '.repeat(padLeft) + str + ' '.repeat(padRight)
+    const padCell = (content: string, width: number, align: 'left' | 'center' | 'right' = 'left') => {
+      const str = String(content || '')
+      const cellWidth = width + (padding * 2)
+      
+      if (align === 'center') {
+        const spacesNeeded = cellWidth - str.length
+        const leftPad = Math.floor(spacesNeeded / 2)
+        const rightPad = spacesNeeded - leftPad
+        return ' '.repeat(leftPad) + str + ' '.repeat(rightPad)
+      } else if (align === 'right') {
+        const spacesNeeded = cellWidth - str.length
+        return ' '.repeat(spacesNeeded - padding) + str + ' '.repeat(padding)
+      } else {
+        // left align
+        const spacesNeeded = cellWidth - str.length
+        return ' '.repeat(padding) + str + ' '.repeat(spacesNeeded - padding)
+      }
     }
 
     const lines: string[] = []
     
     if (showBorder) {
       // Top border
-      lines.push('┌' + columnWidths.map(w => '─'.repeat(w + padding * 2)).join('┬') + '┐')
+      const topBorder = '┌' + columnWidths.map(w => '─'.repeat(w + padding * 2)).join('┬') + '┐'
+      lines.push(topBorder)
     }
 
-    // Header row
+    // Header row (always center-aligned for headers)
     if (data.length > 0) {
-      const headerRow = '│' + data[0].map((cell, i) => 
-        padCell(cell, columnWidths[i])
-      ).join('│') + '│'
+      const headerCells = data[0].map((cell, i) => padCell(cell, columnWidths[i], 'center'))
+      const headerRow = showBorder ? '│' + headerCells.join('│') + '│' : headerCells.join(' ')
       lines.push(headerRow)
       
       if (showBorder && data.length > 1) {
         // Header separator
-        lines.push('├' + columnWidths.map(w => '─'.repeat(w + padding * 2)).join('┼') + '┤')
+        const separator = '├' + columnWidths.map(w => '─'.repeat(w + padding * 2)).join('┼') + '┤'
+        lines.push(separator)
       }
     }
 
     // Data rows
     for (let i = 1; i < data.length; i++) {
-      const row = '│' + data[i].map((cell, j) => 
-        padCell(cell, columnWidths[j])
-      ).join('│') + '│'
+      const cells = data[i].map((cell, j) => {
+        const align = columnAlignments[j] || 'left'
+        return padCell(cell, columnWidths[j], align)
+      })
+      const row = showBorder ? '│' + cells.join('│') + '│' : cells.join(' ')
       lines.push(row)
     }
 
     if (showBorder) {
       // Bottom border
-      lines.push('└' + columnWidths.map(w => '─'.repeat(w + padding * 2)).join('┴') + '┘')
+      const bottomBorder = '└' + columnWidths.map(w => '─'.repeat(w + padding * 2)).join('┴') + '┘'
+      lines.push(bottomBorder)
     }
 
     return lines.join('\n')
