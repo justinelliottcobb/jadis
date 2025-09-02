@@ -149,5 +149,10 @@ export {
   type AppStatus,
   type AppPriority
 } from './components/ApplicationCards'
+export {
+  RichTextEditor,
+  type RichTextEditorProps,
+  type RichTextEditorVariant
+} from './components/RichTextEditor'
 
 import './styles'
