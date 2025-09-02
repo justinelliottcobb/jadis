@@ -161,6 +161,9 @@ export {
   Sidebar,
   Breadcrumbs,
   StatusBar,
+  HeroBanner,
+  PageBanner,
+  FeatureSection,
   type LayoutVariant,
   type PageLayoutProps,
   type AppHeaderProps,
@@ -168,7 +171,14 @@ export {
   type SidebarProps,
   type BreadcrumbsProps,
   type BreadcrumbItem,
-  type StatusBarProps
+  type StatusBarProps,
+  type HeroBannerProps,
+  type PageBannerProps,
+  type FeatureSectionProps,
+  type FeatureItem,
+  type BannerAction,
+  type BannerType,
+  type BackgroundPattern
 } from './components/Layout'
 
 import './styles'

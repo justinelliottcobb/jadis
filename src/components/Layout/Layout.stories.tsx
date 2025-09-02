@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
-import { PageLayout, AppHeader, AppFooter, Sidebar, Breadcrumbs, StatusBar } from './Layout'
+import { PageLayout, AppHeader, AppFooter, Sidebar, Breadcrumbs, StatusBar, HeroBanner, PageBanner, FeatureSection } from './Layout'
 import { Navbar, NavbarBrand, NavbarItem, NavbarNav, NavbarDropdown } from '../Navbar/Navbar'
 import { H1, H2, H3 } from '../Headers/Headers'
 import { P, Code } from '../Typography/Typography'
@@ -579,6 +579,312 @@ export const RetroApplicationLayout: Story = {
       </div>
     )
   },
+}
+
+// ===================================
+// HERO BANNER STORIES
+// ===================================
+
+const HeroBannerStory: Meta<typeof HeroBanner> = {
+  title: 'Layout/HeroBanner',
+  component: HeroBanner,
+}
+
+export const BasicHeroBanner: StoryObj<typeof HeroBanner> = {
+  ...HeroBannerStory,
+  args: {
+    variant: 'terminal',
+    title: 'WELCOME TO THE TERMINAL',
+    subtitle: 'Advanced Command Interface System',
+    description: 'Experience the power of terminal-based computing with modern capabilities and classic aesthetics.',
+    actions: (
+      <div style={{ display: 'flex', gap: '1rem' }}>
+        <Button variant="terminal" size="large">Get Started</Button>
+        <Button variant="terminal" size="large" outline>Learn More</Button>
+      </div>
+    ),
+    size: 'large',
+    backgroundPattern: 'grid'
+  },
+}
+
+export const HeroBannerWithImage: StoryObj<typeof HeroBanner> = {
+  ...HeroBannerStory,
+  args: {
+    variant: 'matrix',
+    title: 'ENTER THE MATRIX',
+    subtitle: 'Reality is a simulation',
+    description: 'Free your mind and see the code that underlies everything.',
+    actions: (
+      <Button variant="matrix" size="large">Take the Red Pill</Button>
+    ),
+    image: (
+      <div style={{ fontSize: '4rem', opacity: 0.5 }}>
+        <ASCIIIcon icon="◉" variant="matrix" />
+      </div>
+    ),
+    size: 'medium',
+    backgroundPattern: 'matrix'
+  },
+}
+
+export const FullScreenHero: StoryObj<typeof HeroBanner> = {
+  ...HeroBannerStory,
+  args: {
+    variant: 'glow',
+    title: 'CYBERPUNK 2084',
+    subtitle: 'The future is now',
+    description: 'Immerse yourself in a neon-soaked digital landscape.',
+    actions: (
+      <Button variant="glow" size="large">Enter Cyberspace</Button>
+    ),
+    size: 'full',
+    align: 'center',
+    backgroundPattern: 'dots',
+    overlay: true
+  },
+}
+
+// ===================================
+// PAGE BANNER STORIES
+// ===================================
+
+const PageBannerStory: Meta<typeof PageBanner> = {
+  title: 'Layout/PageBanner',
+  component: PageBanner,
+}
+
+export const InfoBanner: StoryObj<typeof PageBanner> = {
+  ...PageBannerStory,
+  args: {
+    variant: 'terminal',
+    type: 'info',
+    title: 'System Update',
+    message: 'A new version of the terminal is available. Please update to get the latest features and security improvements.',
+    dismissible: true,
+    actions: (
+      <Button variant="terminal" size="small">Update Now</Button>
+    )
+  },
+}
+
+export const SuccessBanner: StoryObj<typeof PageBanner> = {
+  ...PageBannerStory,
+  args: {
+    variant: 'terminal',
+    type: 'success',
+    message: 'Operation completed successfully. All systems are functioning normally.',
+    dismissible: true
+  },
+}
+
+export const WarningBanner: StoryObj<typeof PageBanner> = {
+  ...PageBannerStory,
+  args: {
+    variant: 'retro',
+    type: 'warning',
+    title: 'Low Memory Warning',
+    message: 'System memory is running low. Consider closing unnecessary applications.',
+    actions: (
+      <Button variant="retro" size="small">Free Memory</Button>
+    )
+  },
+}
+
+export const ErrorBanner: StoryObj<typeof PageBanner> = {
+  ...PageBannerStory,
+  args: {
+    variant: 'matrix',
+    type: 'error',
+    title: 'Connection Failed',
+    message: 'Unable to establish connection to the matrix. Please check your neural interface.',
+    dismissible: true
+  },
+}
+
+export const AnnouncementBanner: StoryObj<typeof PageBanner> = {
+  ...PageBannerStory,
+  args: {
+    variant: 'glow',
+    type: 'announcement',
+    title: 'New Feature Released!',
+    message: 'Introducing the new cyberpunk mode with enhanced neon effects and synthwave aesthetics.',
+    position: 'top',
+    actions: (
+      <Button variant="glow" size="small">Try It Now</Button>
+    )
+  },
+}
+
+// ===================================
+// FEATURE SECTION STORIES
+// ===================================
+
+const FeatureSectionStory: Meta<typeof FeatureSection> = {
+  title: 'Layout/FeatureSection',
+  component: FeatureSection,
+}
+
+export const BasicFeatureSection: StoryObj<typeof FeatureSection> = {
+  ...FeatureSectionStory,
+  args: {
+    variant: 'terminal',
+    title: 'Core Features',
+    subtitle: 'Everything you need for terminal excellence',
+    features: [
+      {
+        icon: <ASCIIIcon icon="▣" variant="terminal" size="large" />,
+        title: 'Fast Processing',
+        description: 'Lightning-fast command execution with minimal latency.',
+        action: <Button variant="terminal" size="small">Learn More</Button>
+      },
+      {
+        icon: <ASCIIIcon icon="◊" variant="terminal" size="large" />,
+        title: 'Secure Environment',
+        description: 'Military-grade encryption for all your operations.',
+        action: <Button variant="terminal" size="small">Learn More</Button>
+      },
+      {
+        icon: <ASCIIIcon icon="◈" variant="terminal" size="large" />,
+        title: 'Extensible System',
+        description: 'Customize and extend with powerful plugins.',
+        action: <Button variant="terminal" size="small">Learn More</Button>
+      }
+    ],
+    columns: 3,
+    align: 'center'
+  },
+}
+
+export const MatrixFeatures: StoryObj<typeof FeatureSection> = {
+  ...FeatureSectionStory,
+  args: {
+    variant: 'matrix',
+    title: 'Matrix Capabilities',
+    subtitle: 'See beyond the code',
+    features: [
+      {
+        icon: <ASCIIIcon icon="◉" variant="matrix" size="large" />,
+        title: 'Reality Manipulation',
+        description: 'Bend the rules of the simulation to your will.'
+      },
+      {
+        icon: <ASCIIIcon icon="◎" variant="matrix" size="large" />,
+        title: 'Time Dilation',
+        description: 'Experience bullet-time in cyberspace.'
+      },
+      {
+        icon: <ASCIIIcon icon="◈" variant="matrix" size="large" />,
+        title: 'Neural Interface',
+        description: 'Direct connection to the digital realm.'
+      },
+      {
+        icon: <ASCIIIcon icon="◊" variant="matrix" size="large" />,
+        title: 'Data Streaming',
+        description: 'Process infinite data streams in real-time.'
+      }
+    ],
+    columns: 4
+  },
+}
+
+// ===================================
+// COMPLETE PAGE WITH HERO AND BANNERS
+// ===================================
+
+export const LandingPageWithHero: Story = {
+  render: () => (
+    <PageLayout
+      variant="terminal"
+      header={
+        <AppHeader
+          variant="terminal"
+          title="JADIS Terminal"
+          logo={<ASCIIIcon icon="▣" variant="terminal" size="large" />}
+          actions={
+            <div style={{ display: 'flex', gap: '1rem' }}>
+              <Button variant="terminal" size="small">Login</Button>
+              <Button variant="terminal" size="small" outline>Sign Up</Button>
+            </div>
+          }
+        />
+      }
+      footer={
+        <AppFooter
+          variant="terminal"
+          copyright="© 2024 Terminal Systems Inc."
+          links={[
+            { label: 'Documentation', href: '/docs' },
+            { label: 'Support', href: '/support' },
+            { label: 'API', href: '/api' }
+          ]}
+        />
+      }
+    >
+      <HeroBanner
+        variant="terminal"
+        title="WELCOME TO THE FUTURE OF COMPUTING"
+        subtitle="Terminal-Based Excellence"
+        description="Experience the perfect blend of nostalgic terminal aesthetics with cutting-edge modern capabilities."
+        actions={
+          <div style={{ display: 'flex', gap: '1rem' }}>
+            <Button variant="terminal" size="large">Start Free Trial</Button>
+            <Button variant="terminal" size="large" outline>View Demo</Button>
+          </div>
+        }
+        size="large"
+        align="center"
+        backgroundPattern="grid"
+      />
+
+      <PageBanner
+        variant="terminal"
+        type="announcement"
+        title="Limited Time Offer"
+        message="Get 50% off your first month when you sign up today!"
+        dismissible
+        actions={
+          <Button variant="terminal" size="small">Claim Offer</Button>
+        }
+      />
+
+      <FeatureSection
+        variant="terminal"
+        title="Why Choose Our Terminal?"
+        subtitle="Built for developers, by developers"
+        features={[
+          {
+            icon: <ASCIIIcon icon="►" variant="terminal" size="large" />,
+            title: 'Lightning Fast',
+            description: 'Optimized for speed with near-instant command execution.',
+            action: <Button variant="terminal" size="small">Benchmark</Button>
+          },
+          {
+            icon: <ASCIIIcon icon="◊" variant="terminal" size="large" />,
+            title: 'Highly Secure',
+            description: 'Enterprise-grade security with end-to-end encryption.',
+            action: <Button variant="terminal" size="small">Security</Button>
+          },
+          {
+            icon: <ASCIIIcon icon="⚙" variant="terminal" size="large" />,
+            title: 'Fully Customizable',
+            description: 'Tailor every aspect to match your workflow.',
+            action: <Button variant="terminal" size="small">Customize</Button>
+          }
+        ]}
+        columns={3}
+        align="center"
+      />
+
+      <div style={{ padding: '2rem', textAlign: 'center' }}>
+        <H2 variant="double-line">Ready to Get Started?</H2>
+        <P variant="terminal" style={{ marginBottom: '2rem' }}>
+          Join thousands of developers who have already made the switch.
+        </P>
+        <Button variant="terminal" size="large">Create Free Account</Button>
+      </div>
+    </PageLayout>
+  )
 }
 
 // ===================================

@@ -4,7 +4,10 @@ export {
   AppFooter,
   Sidebar,
   Breadcrumbs,
-  StatusBar
+  StatusBar,
+  HeroBanner,
+  PageBanner,
+  FeatureSection
 } from './Layout'
 export type {
   LayoutVariant,
@@ -14,5 +17,12 @@ export type {
   SidebarProps,
   BreadcrumbsProps,
   BreadcrumbItem,
-  StatusBarProps
+  StatusBarProps,
+  HeroBannerProps,
+  PageBannerProps,
+  FeatureSectionProps,
+  FeatureItem,
+  BannerAction,
+  BannerType,
+  BackgroundPattern
 } from './Layout'

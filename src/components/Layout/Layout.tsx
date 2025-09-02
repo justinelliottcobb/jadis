@@ -470,3 +470,269 @@ export const StatusBar: React.FC<StatusBarProps> = ({
     </div>
   )
 }
+
+// ===================================
+// HERO BANNER COMPONENT
+// ===================================
+
+export interface HeroBannerProps extends React.HTMLAttributes<HTMLElement> {
+  variant?: LayoutVariant
+  title: string
+  subtitle?: string
+  description?: string
+  actions?: React.ReactNode
+  image?: React.ReactNode
+  backgroundPattern?: 'dots' | 'lines' | 'grid' | 'matrix' | 'none'
+  size?: 'small' | 'medium' | 'large' | 'full'
+  align?: 'left' | 'center' | 'right'
+  overlay?: boolean
+}
+
+export const HeroBanner: React.FC<HeroBannerProps> = ({
+  variant = 'terminal',
+  title,
+  subtitle,
+  description,
+  actions,
+  image,
+  backgroundPattern = 'none',
+  size = 'medium',
+  align = 'center',
+  overlay = false,
+  className = '',
+  children,
+  ...props
+}) => {
+  const classes = [
+    'jadis-hero-banner',
+    `jadis-hero-banner--${variant}`,
+    `jadis-hero-banner--${size}`,
+    `jadis-hero-banner--${align}`,
+    `jadis-hero-banner--pattern-${backgroundPattern}`,
+    overlay && 'jadis-hero-banner--overlay',
+    className
+  ].filter(Boolean).join(' ')
+
+  return (
+    <section className={classes} {...props}>
+      <div className="jadis-hero-banner__container">
+        <div className="jadis-hero-banner__content">
+          <h1 className="jadis-hero-banner__title">
+            {title}
+          </h1>
+          
+          {subtitle && (
+            <div className="jadis-hero-banner__subtitle">
+              {subtitle}
+            </div>
+          )}
+          
+          {description && (
+            <p className="jadis-hero-banner__description">
+              {description}
+            </p>
+          )}
+          
+          {actions && (
+            <div className="jadis-hero-banner__actions">
+              {actions}
+            </div>
+          )}
+          
+          {children}
+        </div>
+        
+        {image && (
+          <div className="jadis-hero-banner__image">
+            {image}
+          </div>
+        )}
+      </div>
+    </section>
+  )
+}
+
+// ===================================
+// PAGE BANNER COMPONENT
+// ===================================
+
+export interface PageBannerProps extends React.HTMLAttributes<HTMLElement> {
+  variant?: LayoutVariant
+  type?: 'info' | 'success' | 'warning' | 'error' | 'announcement'
+  title?: string
+  message: string
+  icon?: React.ReactNode
+  actions?: React.ReactNode
+  dismissible?: boolean
+  onDismiss?: () => void
+  position?: 'top' | 'inline'
+  compact?: boolean
+}
+
+export const PageBanner: React.FC<PageBannerProps> = ({
+  variant = 'terminal',
+  type = 'info',
+  title,
+  message,
+  icon,
+  actions,
+  dismissible = false,
+  onDismiss,
+  position = 'inline',
+  compact = false,
+  className = '',
+  children,
+  ...props
+}) => {
+  const [isDismissed, setIsDismissed] = React.useState(false)
+
+  if (isDismissed) {
+    return null
+  }
+
+  const handleDismiss = () => {
+    setIsDismissed(true)
+    onDismiss?.()
+  }
+
+  const classes = [
+    'jadis-page-banner',
+    `jadis-page-banner--${variant}`,
+    `jadis-page-banner--${type}`,
+    `jadis-page-banner--${position}`,
+    compact && 'jadis-page-banner--compact',
+    className
+  ].filter(Boolean).join(' ')
+
+  const defaultIcons = {
+    info: '○',
+    success: '●',
+    warning: '◈',
+    error: '◎',
+    announcement: '◆'
+  }
+
+  return (
+    <div className={classes} role="alert" {...props}>
+      <div className="jadis-page-banner__container">
+        <div className="jadis-page-banner__content">
+          {(icon || defaultIcons[type]) && (
+            <div className="jadis-page-banner__icon">
+              {icon || <ASCIIIcon icon={defaultIcons[type]} variant={variant} />}
+            </div>
+          )}
+          
+          <div className="jadis-page-banner__text">
+            {title && (
+              <div className="jadis-page-banner__title">
+                {title}
+              </div>
+            )}
+            <div className="jadis-page-banner__message">
+              {message}
+            </div>
+            {children}
+          </div>
+          
+          {actions && (
+            <div className="jadis-page-banner__actions">
+              {actions}
+            </div>
+          )}
+        </div>
+        
+        {dismissible && (
+          <button
+            className="jadis-page-banner__dismiss"
+            onClick={handleDismiss}
+            aria-label="Dismiss banner"
+          >
+            <ASCIIIcon icon="✕" variant={variant} />
+          </button>
+        )}
+      </div>
+    </div>
+  )
+}
+
+// ===================================
+// FEATURE SECTION COMPONENT
+// ===================================
+
+export interface FeatureSectionProps extends React.HTMLAttributes<HTMLElement> {
+  variant?: LayoutVariant
+  title?: string
+  subtitle?: string
+  features: Array<{
+    icon?: React.ReactNode
+    title: string
+    description: string
+    action?: React.ReactNode
+  }>
+  columns?: 1 | 2 | 3 | 4
+  align?: 'left' | 'center' | 'right'
+}
+
+export const FeatureSection: React.FC<FeatureSectionProps> = ({
+  variant = 'terminal',
+  title,
+  subtitle,
+  features,
+  columns = 3,
+  align = 'center',
+  className = '',
+  children,
+  ...props
+}) => {
+  const classes = [
+    'jadis-feature-section',
+    `jadis-feature-section--${variant}`,
+    `jadis-feature-section--${align}`,
+    `jadis-feature-section--cols-${columns}`,
+    className
+  ].filter(Boolean).join(' ')
+
+  return (
+    <section className={classes} {...props}>
+      {(title || subtitle) && (
+        <div className="jadis-feature-section__header">
+          {title && (
+            <h2 className="jadis-feature-section__title">
+              {title}
+            </h2>
+          )}
+          {subtitle && (
+            <p className="jadis-feature-section__subtitle">
+              {subtitle}
+            </p>
+          )}
+        </div>
+      )}
+      
+      <div className="jadis-feature-section__grid">
+        {features.map((feature, index) => (
+          <div key={index} className="jadis-feature-section__item">
+            {feature.icon && (
+              <div className="jadis-feature-section__icon">
+                {feature.icon}
+              </div>
+            )}
+            <h3 className="jadis-feature-section__item-title">
+              {feature.title}
+            </h3>
+            <p className="jadis-feature-section__item-description">
+              {feature.description}
+            </p>
+            {feature.action && (
+              <div className="jadis-feature-section__item-action">
+                {feature.action}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+      
+      {children}
+    </section>
+  )
+}
