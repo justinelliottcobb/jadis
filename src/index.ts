@@ -180,5 +180,19 @@ export {
   type BannerType,
   type BackgroundPattern
 } from './components/Layout'
+export {
+  LoginForm,
+  RegisterForm,
+  SessionStatus,
+  AuthGuard,
+  LogoutConfirm,
+  type AuthVariant,
+  type LoginFormProps,
+  type RegisterFormProps,
+  type SessionUser,
+  type SessionStatusProps,
+  type AuthGuardProps,
+  type LogoutConfirmProps
+} from './components/Auth'
 
 import './styles'
