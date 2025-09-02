@@ -154,5 +154,21 @@ export {
   type RichTextEditorProps,
   type RichTextEditorVariant
 } from './components/RichTextEditor'
+export {
+  PageLayout,
+  AppHeader,
+  AppFooter,
+  Sidebar,
+  Breadcrumbs,
+  StatusBar,
+  type LayoutVariant,
+  type PageLayoutProps,
+  type AppHeaderProps,
+  type AppFooterProps,
+  type SidebarProps,
+  type BreadcrumbsProps,
+  type BreadcrumbItem,
+  type StatusBarProps
+} from './components/Layout'
 
 import './styles'
