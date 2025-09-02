@@ -91,6 +91,11 @@ jadis/
 │   │       ├── PageBanner.stories.tsx  # Alert/notification banner demos
 │   │       ├── FeatureSection.stories.tsx # Feature showcase grid demos
 │   │       └── index.ts                # Layout component exports
+│   │   ├── Auth/           # Authentication and user management system
+│   │       ├── Auth.tsx                # LoginForm, RegisterForm, SessionStatus, AuthGuard, LogoutConfirm
+│   │       ├── Auth.scss               # Authentication component styling with variant support
+│   │       ├── Auth.stories.tsx        # Comprehensive auth flow demos and examples
+│   │       └── index.ts                # Auth component exports
 │   │   └── RichTextEditor/ # Tiptap-powered rich text editor
 │   │       ├── RichTextEditor.tsx      # WYSIWYG editor with terminal aesthetics
 │   │       ├── RichTextEditor.scss     # Rich text editor styling with variants
@@ -422,6 +427,42 @@ Comprehensive Storybook setup includes:
   - Call-to-Action: Section-level action buttons for engagement
   - Visual Variants: All 5 Jadis variants with appropriate feature highlighting
 
+#### **Authentication System**
+- **LoginForm**: Terminal-styled authentication form with comprehensive user login functionality
+  - Variants: All 5 Jadis variants (terminal, matrix, retro, minimal, glow) with consistent ASCII theming
+  - Authentication Fields: Username/password inputs with terminal-style prompts and ASCII icons
+  - Remember Me: Optional persistent session checkbox with variant-specific styling
+  - Error Handling: Contextual error messages with variant-appropriate colors and ASCII warning icons
+  - Loading States: Animated authentication feedback with spinning ASCII icons and disabled form states
+  - Navigation Links: Optional forgot password and registration redirect functionality
+- **RegisterForm**: User registration component with validation and terms acceptance
+  - Registration Fields: Username, email, password, and password confirmation with real-time validation
+  - Email Validation: Built-in email format checking with error state feedback
+  - Password Matching: Live password confirmation validation with error highlighting
+  - Terms of Service: Optional terms acceptance checkbox with link integration
+  - Form Validation: Comprehensive client-side validation with contextual error messaging
+  - Success Handling: Registration completion flow with redirect to login functionality
+- **SessionStatus**: Current user session display and management component
+  - User Information: Username, email, role, and last login timestamp display
+  - Avatar Support: Custom avatar display or default ASCII icon representation
+  - Session Metadata: Role-based badges, session duration, and authentication status indicators
+  - Quick Actions: Profile access and logout buttons with keyboard navigation support
+  - Compact Mode: Space-efficient header/toolbar integration with responsive behavior
+  - Guest States: Unauthenticated user display with appropriate messaging and styling
+- **AuthGuard**: Route and content protection component with role-based access control
+  - Authentication Gating: Protects content based on user authentication status with fallback handling
+  - Role-Based Access Control (RBAC): Granular permission system with role requirement validation
+  - Loading States: Authentication verification display with animated feedback during auth checks
+  - Unauthorized Handling: Clear messaging for unauthenticated users with redirect functionality
+  - Insufficient Privileges: Role-based denial screens with current vs required role display
+  - Fallback Content: Customizable unauthorized content or automatic redirect capabilities
+- **LogoutConfirm**: Secure logout confirmation dialog to prevent accidental session termination
+  - Confirmation Dialog: Clear logout confirmation with user context display
+  - User Identification: Shows current user information to prevent logout confusion
+  - Loading States: Logout progress indication with animated feedback
+  - Action Buttons: Clear confirm/cancel buttons with keyboard accessibility
+  - Security Messaging: Informative text about session termination and re-authentication requirements
+
 #### **Rich Text Editor System**
 - **RichTextEditor**: WYSIWYG editor powered by Tiptap with terminal aesthetics
   - Rich Text Features: Bold, italic, code, headings (H1-H3), bullet lists, ordered lists, code blocks, horizontal rules
@@ -492,6 +533,7 @@ import {
   ApplicationCard, ServiceMonitorCard, SystemStatusCard,
   PageLayout, AppHeader, AppFooter, Sidebar, Breadcrumbs, StatusBar,
   HeroBanner, PageBanner, FeatureSection,
+  LoginForm, RegisterForm, SessionStatus, AuthGuard, LogoutConfirm,
   RichTextEditor
 } from 'jadis'
 
@@ -1139,4 +1181,298 @@ const data = [
     compact
   />
 </PageLayout>
+
+// Authentication System
+// Login Form with Terminal Aesthetics
+<LoginForm
+  variant="terminal"
+  title="SYSTEM ACCESS"
+  subtitle="Enter your credentials"
+  onSubmit={(data) => {
+    console.log('Authentication:', data)
+    // Handle login: data.username, data.password, data.rememberMe
+    authenticateUser(data.username, data.password, data.rememberMe)
+  }}
+  onForgotPassword={() => redirectToPasswordReset()}
+  onRegister={() => showRegistrationForm()}
+  error={authError}
+  loading={isAuthenticating}
+  showRememberMe={true}
+  showForgotPassword={true}
+  showRegisterLink={true}
+/>
+
+// Registration Form with Validation
+<RegisterForm
+  variant="matrix"
+  title="MATRIX REGISTRATION"
+  subtitle="Join the neural network"
+  onSubmit={(data) => {
+    console.log('Registration:', data)
+    // Handle registration: data.username, data.email, data.password, data.acceptTerms
+    if (data.password !== data.confirmPassword) {
+      setRegistrationError("Passwords don't match")
+      return
+    }
+    registerUser(data)
+  }}
+  onLogin={() => showLoginForm()}
+  error={registrationError}
+  loading={isRegistering}
+  requireTerms={true}
+  showLoginLink={true}
+/>
+
+// Session Status Display
+<SessionStatus
+  variant="terminal"
+  user={{
+    username: 'admin',
+    email: 'admin@system.local',
+    role: 'Administrator',
+    lastLogin: '2024-03-15 14:30:00'
+  }}
+  showDetails={true}
+  compact={false}
+  onLogout={() => {
+    setShowLogoutConfirm(true)
+  }}
+  onProfile={() => {
+    navigateToProfile()
+  }}
+/>
+
+// Compact Session Status for Headers
+<SessionStatus
+  variant="matrix"
+  user={currentUser}
+  compact={true}
+  showDetails={false}
+  onLogout={handleLogout}
+/>
+
+// Authentication Guard for Protected Content
+<AuthGuard
+  variant="terminal"
+  user={currentUser}
+  loading={isCheckingAuth}
+  requireRole="Administrator"
+  onUnauthorized={() => {
+    redirectToLogin()
+  }}
+  fallback={
+    <Card variant="terminal">
+      <CardHeader title="Access Required" />
+      <CardBody>
+        <P variant="terminal">Please log in to access this content.</P>
+        <Button variant="terminal" onClick={showLogin}>
+          Login
+        </Button>
+      </CardBody>
+    </Card>
+  }
+>
+  <Card variant="terminal">
+    <CardHeader title="Admin Panel" />
+    <CardBody>
+      <P variant="terminal">
+        This content is only visible to authenticated administrators.
+      </P>
+      <Button variant="terminal">Manage System</Button>
+    </CardBody>
+  </Card>
+</AuthGuard>
+
+// Role-Based Content Protection
+<AuthGuard
+  variant="matrix"
+  user={currentUser}
+  requireRole="Operator"
+  fallback={<div>Insufficient privileges - Operator role required</div>}
+>
+  <div>This content requires Operator role or higher</div>
+</AuthGuard>
+
+// Logout Confirmation Dialog
+<LogoutConfirm
+  variant="terminal"
+  user={currentUser}
+  onConfirm={() => {
+    performLogout()
+    setShowLogoutConfirm(false)
+  }}
+  onCancel={() => {
+    setShowLogoutConfirm(false)
+  }}
+  loading={isLoggingOut}
+/>
+
+// Complete Authentication Flow Example
+const AuthenticatedApp = () => {
+  const [currentUser, setCurrentUser] = useState(null)
+  const [authView, setAuthView] = useState('login') // 'login' | 'register' | 'dashboard'
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
+
+  const handleLogin = async (data) => {
+    setIsLoading(true)
+    setError('')
+    
+    try {
+      const user = await authenticateUser(data.username, data.password)
+      setCurrentUser(user)
+      setAuthView('dashboard')
+    } catch (err) {
+      setError('Invalid credentials')
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const handleRegister = async (data) => {
+    setIsLoading(true)
+    setError('')
+    
+    try {
+      const user = await registerUser(data)
+      setCurrentUser(user)
+      setAuthView('dashboard')
+    } catch (err) {
+      setError('Registration failed')
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const handleLogout = () => {
+    setCurrentUser(null)
+    setAuthView('login')
+    clearAuthToken()
+  }
+
+  if (authView === 'dashboard' && currentUser) {
+    return (
+      <PageLayout
+        variant="terminal"
+        header={
+          <AppHeader
+            variant="terminal"
+            title="SECURE DASHBOARD"
+            actions={
+              <SessionStatus
+                variant="terminal"
+                user={currentUser}
+                compact
+                onLogout={handleLogout}
+              />
+            }
+          />
+        }
+      >
+        <AuthGuard
+          variant="terminal"
+          user={currentUser}
+          loading={false}
+        >
+          <H1 variant="box">Welcome, {currentUser.username}!</H1>
+          <P variant="terminal">You have successfully authenticated.</P>
+          
+          <Grid variant="terminal" columns={2} gap="large">
+            <GridItem>
+              <Card variant="terminal">
+                <CardHeader title="Profile Information" />
+                <CardBody>
+                  <P variant="terminal">Email: {currentUser.email}</P>
+                  <P variant="terminal">Role: {currentUser.role}</P>
+                </CardBody>
+              </Card>
+            </GridItem>
+            
+            <GridItem>
+              <AuthGuard
+                variant="terminal"
+                user={currentUser}
+                requireRole="Administrator"
+                fallback={
+                  <Card variant="terminal">
+                    <CardHeader title="Admin Panel" />
+                    <CardBody>
+                      <P variant="terminal">Administrator access required.</P>
+                    </CardBody>
+                  </Card>
+                }
+              >
+                <Card variant="terminal">
+                  <CardHeader title="Admin Controls" />
+                  <CardBody>
+                    <Button variant="terminal">Manage Users</Button>
+                  </CardBody>
+                </Card>
+              </AuthGuard>
+            </GridItem>
+          </Grid>
+        </AuthGuard>
+      </PageLayout>
+    )
+  }
+
+  return (
+    <div style={{ maxWidth: '500px', margin: '2rem auto' }}>
+      {authView === 'login' ? (
+        <LoginForm
+          variant="terminal"
+          title="SYSTEM LOGIN"
+          subtitle="Enter your credentials"
+          loading={isLoading}
+          error={error}
+          onSubmit={handleLogin}
+          onRegister={() => setAuthView('register')}
+          onForgotPassword={() => alert('Password reset functionality')}
+        />
+      ) : (
+        <RegisterForm
+          variant="terminal"
+          title="CREATE ACCOUNT"
+          subtitle="Join the system"
+          loading={isLoading}
+          error={error}
+          onSubmit={handleRegister}
+          onLogin={() => setAuthView('login')}
+        />
+      )}
+    </div>
+  )
+}
+
+// Multi-Variant Auth Showcase
+<div>
+  {(['terminal', 'matrix', 'retro', 'minimal', 'glow'] as const).map((variant) => (
+    <div key={variant}>
+      <H2 variant="double-line">{variant.toUpperCase()} AUTH</H2>
+      
+      <Grid variant={variant} columns={2} gap="large">
+        <GridItem>
+          <LoginForm
+            variant={variant}
+            title={`${variant.toUpperCase()} ACCESS`}
+            onSubmit={(data) => console.log(`${variant} login:`, data)}
+          />
+        </GridItem>
+        
+        <GridItem>
+          <SessionStatus
+            variant={variant}
+            user={{
+              username: `${variant}_user`,
+              email: `user@${variant}.sys`,
+              role: 'User'
+            }}
+            compact
+            onLogout={() => console.log(`${variant} logout`)}
+          />
+        </GridItem>
+      </Grid>
+    </div>
+  ))}
+</div>
 ```
