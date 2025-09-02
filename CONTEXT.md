@@ -78,11 +78,16 @@ jadis/
 │   │   │   ├── Icons.scss         # Icon styling with variant effects
 │   │   │   ├── Icons.stories.tsx  # Icon showcase and examples
 │   │   │   └── index.ts           # Icon exports
-│   │   └── ApplicationCards/ # Application monitoring cards
+│   │   ├── ApplicationCards/ # Application monitoring cards
 │   │       ├── ApplicationCards.tsx    # ApplicationCard, ServiceMonitorCard, SystemStatusCard
 │   │       ├── ApplicationCards.scss   # Specialized card styling with metrics
 │   │       ├── ApplicationCards.stories.tsx # Application monitoring demos
 │   │       └── index.ts                # Application card exports
+│   │   └── RichTextEditor/ # Tiptap-powered rich text editor
+│   │       ├── RichTextEditor.tsx      # WYSIWYG editor with terminal aesthetics
+│   │       ├── RichTextEditor.scss     # Rich text editor styling with variants
+│   │       ├── RichTextEditor.stories.tsx # Rich text editing demos
+│   │       └── index.ts                # Rich text editor exports
 │   ├── styles/            # Global styling system
 │   │   ├── fonts.scss     # Hasklug Nerd Font + CSS variables
 │   │   ├── themes.scss    # Multi-theme system (5 themes)
@@ -355,6 +360,30 @@ Comprehensive Storybook setup includes:
   - Touch-Friendly: Appropriately sized buttons for mobile interaction
   - Grid Integration: Works seamlessly with Grid component responsiveness
 
+#### **Rich Text Editor System**
+- **RichTextEditor**: WYSIWYG editor powered by Tiptap with terminal aesthetics
+  - Rich Text Features: Bold, italic, code, headings (H1-H3), bullet lists, ordered lists, code blocks, horizontal rules
+  - Toolbar Controls: Comprehensive formatting toolbar with undo/redo, text formatting, structure tools
+  - Editor States: Error states, disabled states, loading states, and focus management
+  - Content Management: Real-time content updates with HTML output, placeholder support
+  - Size Configuration: Configurable minimum and maximum heights with scrollable content
+  - Built on Tiptap Foundation: Uses Tiptap React editor with StarterKit extensions for robust functionality
+- **Terminal Aesthetics Integration**: Styled to match existing Jadis form components
+  - Variant Support: All 5 variants (terminal, matrix, retro, minimal, glow) with unique visual effects
+  - ASCII Toolbar: Terminal-inspired toolbar buttons using ASCII icons and symbols
+  - Form Consistency: Follows same patterns as Input, TextArea, and other form components
+  - Typography Styling: Rich text content styled with variant-specific colors and effects
+- **Advanced Editor Features**: Professional-grade editing capabilities
+  - Keyboard Navigation: Full keyboard shortcuts and accessibility support
+  - Content Validation: Error states and validation message support
+  - Toolbar Customization: Show/hide toolbar option for different use cases
+  - Mobile Optimization: Responsive toolbar and touch-friendly editing experience
+- **Integration Capabilities**: Seamless integration with Jadis ecosystem
+  - Form Integration: Compatible with Form component and validation patterns  
+  - Icon System: Uses ASCIIIcon components for consistent terminal aesthetics
+  - Theme Support: Automatically inherits theme colors and effects
+  - Grid Layout: Works perfectly within Grid/GridItem responsive layouts
+
 ## Library Build & Distribution
 - **Library build**: TypeScript declaration generation + Vite library bundling
 - **External dependencies**: React and ReactDOM marked as external (peer dependencies)
@@ -398,7 +427,8 @@ import {
   Grid, GridItem, ResponsiveGrid,
   Navbar, NavbarBrand, NavbarItem, NavbarNav, NavbarDropdown,
   ASCIIIcon, ASCIIIcons, getIcon,
-  ApplicationCard, ServiceMonitorCard, SystemStatusCard
+  ApplicationCard, ServiceMonitorCard, SystemStatusCard,
+  RichTextEditor
 } from 'jadis'
 
 // Import styles (includes all themes and effects)
@@ -707,4 +737,72 @@ const data = [
     <SystemStatusCard variant="glow" systemName="Main Node" />
   </GridItem>
 </Grid>
+
+// Rich Text Editor System
+// Basic Rich Text Editor
+<RichTextEditor
+  variant="terminal"
+  label="Document Content"
+  placeholder="Start typing your content..."
+  content="<h2>Welcome</h2><p>This is a <strong>rich text editor</strong> with terminal aesthetics!</p>"
+  onChange={(content) => console.log('Content:', content)}
+/>
+
+// Advanced Rich Text Editor with Size Control
+<RichTextEditor
+  variant="matrix"
+  label="Technical Documentation"
+  required
+  minHeight="300px"
+  maxHeight="600px"
+  content={`
+    <h1>API Documentation</h1>
+    <h2>Authentication</h2>
+    <p>All API requests require authentication using a <strong>Bearer token</strong>.</p>
+    <h3>Example Request</h3>
+    <pre><code>curl -H "Authorization: Bearer TOKEN" \\
+  https://api.example.com/v1/users</code></pre>
+    <ul>
+      <li><code>success</code>: Boolean indicating request status</li>
+      <li><code>data</code>: The requested data or null</li>
+      <li><code>error</code>: Error message if applicable</li>
+    </ul>
+    <blockquote>
+      <strong>Note:</strong> Rate limiting is enforced at 1000 requests per hour.
+    </blockquote>
+  `}
+  onChange={(content) => setDocumentation(content)}
+/>
+
+// Simple Editor without Toolbar
+<RichTextEditor
+  variant="minimal"
+  label="Quick Note"
+  showToolbar={false}
+  placeholder="Simple text editing without formatting toolbar..."
+  minHeight="150px"
+/>
+
+// Error State and Validation
+<RichTextEditor
+  variant="retro"
+  label="Content (Required)"
+  required
+  error
+  errorMessage="Content is required and must be at least 10 characters long."
+  placeholder="Enter your content here..."
+/>
+
+// Rich Text Editor in Form Layout
+<Form variant="glow">
+  <Input variant="glow" label="Title" placeholder="Document title..." />
+  <RichTextEditor
+    variant="glow"
+    label="Content"
+    placeholder="Write your content..."
+    minHeight="400px"
+    onChange={(content) => setFormData(prev => ({ ...prev, content }))}
+  />
+  <Button variant="glow" type="submit">Save Document</Button>
+</Form>
 ```

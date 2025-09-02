@@ -1,0 +1,531 @@
+// Jadis Rich Text Editor Styling
+// ASCII-art inspired rich text editor with terminal aesthetics
+
+@import '../../styles/fonts.scss';
+
+// ===================================
+// RICH TEXT EDITOR BASE STYLES
+// ===================================
+
+.jadis-rte {
+  font-family: var(--jadis-font-primary);
+  background: var(--jadis-bg-primary);
+  color: var(--jadis-text-primary);
+  border: 1px solid var(--jadis-border-primary);
+  border-radius: 2px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  position: relative;
+
+  &:focus-within {
+    border-color: var(--jadis-color-green);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+  }
+
+  // ===================================
+  // VARIANT STYLES
+  // ===================================
+
+  &--terminal {
+    background: rgba(0, 0, 0, 0.9);
+    border-color: var(--jadis-color-green);
+    color: var(--jadis-color-green);
+
+    &:focus-within {
+      box-shadow: 
+        0 0 10px rgba(0, 255, 0, 0.3),
+        inset 0 0 20px rgba(0, 255, 0, 0.1);
+    }
+  }
+
+  &--matrix {
+    background: rgba(0, 17, 0, 0.95);
+    border-color: var(--jadis-color-cyan);
+    color: var(--jadis-color-cyan);
+
+    &:focus-within {
+      box-shadow: 
+        0 0 15px rgba(0, 255, 255, 0.4),
+        inset 0 0 25px rgba(0, 255, 255, 0.1);
+    }
+  }
+
+  &--retro {
+    background: rgba(42, 24, 16, 0.9);
+    border-color: var(--jadis-color-yellow);
+    color: var(--jadis-color-yellow);
+    text-shadow: 1px 1px 2px rgba(255, 255, 0, 0.3);
+
+    &:focus-within {
+      box-shadow: 
+        0 0 12px rgba(255, 255, 0, 0.4),
+        inset 0 0 20px rgba(255, 255, 0, 0.1);
+    }
+  }
+
+  &--minimal {
+    background: var(--jadis-bg-secondary);
+    border-color: var(--jadis-border-secondary);
+    color: var(--jadis-text-primary);
+
+    &:focus-within {
+      border-color: var(--jadis-text-primary);
+      box-shadow: 0 0 5px rgba(128, 128, 128, 0.2);
+    }
+  }
+
+  &--glow {
+    background: rgba(10, 0, 21, 0.95);
+    border-color: var(--jadis-color-purple);
+    color: var(--jadis-color-purple);
+
+    &:focus-within {
+      box-shadow: 
+        0 0 20px rgba(255, 0, 255, 0.5),
+        inset 0 0 30px rgba(255, 0, 255, 0.1);
+    }
+  }
+
+  &--error {
+    border-color: var(--jadis-color-red) !important;
+    
+    &:focus-within {
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.3) !important;
+    }
+  }
+
+  &--disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    
+    .jadis-rte-toolbar__button {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+  }
+}
+
+// ===================================
+// TOOLBAR STYLES
+// ===================================
+
+.jadis-rte-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--jadis-space-xs);
+  padding: var(--jadis-space-sm);
+  border-bottom: 1px solid var(--jadis-border-primary);
+  background: rgba(0, 0, 0, 0.3);
+  flex-wrap: wrap;
+  min-height: 40px;
+
+  &--terminal {
+    background: rgba(0, 0, 0, 0.5);
+    border-bottom-color: var(--jadis-color-green);
+  }
+
+  &--matrix {
+    background: rgba(0, 17, 0, 0.5);
+    border-bottom-color: var(--jadis-color-cyan);
+  }
+
+  &--retro {
+    background: rgba(42, 24, 16, 0.5);
+    border-bottom-color: var(--jadis-color-yellow);
+  }
+
+  &--minimal {
+    background: var(--jadis-bg-tertiary);
+    border-bottom-color: var(--jadis-border-secondary);
+  }
+
+  &--glow {
+    background: rgba(10, 0, 21, 0.5);
+    border-bottom-color: var(--jadis-color-purple);
+  }
+
+  &__section {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  &__divider {
+    width: 1px;
+    height: 24px;
+    background: var(--jadis-border-primary);
+    margin: 0 var(--jadis-space-xs);
+    opacity: 0.5;
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    color: inherit;
+    font-family: var(--jadis-font-primary);
+    font-size: 0.875rem;
+    font-weight: var(--jadis-font-semibold);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+
+    &:hover:not(:disabled) {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: currentColor;
+    }
+
+    &:active {
+      transform: translateY(1px);
+    }
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    &--active {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: currentColor;
+    }
+
+    // Variant-specific button styles
+    &--terminal {
+      &:hover:not(:disabled) {
+        background: rgba(0, 255, 0, 0.1);
+        box-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
+      }
+
+      &--active {
+        background: rgba(0, 255, 0, 0.2);
+        box-shadow: 0 0 8px rgba(0, 255, 0, 0.4);
+      }
+    }
+
+    &--matrix {
+      &:hover:not(:disabled) {
+        background: rgba(0, 255, 255, 0.1);
+        box-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+      }
+
+      &--active {
+        background: rgba(0, 255, 255, 0.2);
+        box-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
+      }
+    }
+
+    &--retro {
+      &:hover:not(:disabled) {
+        background: rgba(255, 255, 0, 0.1);
+        box-shadow: 0 0 5px rgba(255, 255, 0, 0.3);
+      }
+
+      &--active {
+        background: rgba(255, 255, 0, 0.2);
+        box-shadow: 0 0 8px rgba(255, 255, 0, 0.4);
+      }
+    }
+
+    &--glow {
+      &:hover:not(:disabled) {
+        background: rgba(255, 0, 255, 0.1);
+        box-shadow: 0 0 5px rgba(255, 0, 255, 0.3);
+      }
+
+      &--active {
+        background: rgba(255, 0, 255, 0.2);
+        box-shadow: 0 0 8px rgba(255, 0, 255, 0.4);
+      }
+    }
+  }
+}
+
+// ===================================
+// EDITOR CONTENT STYLES
+// ===================================
+
+.jadis-rte-editor {
+  position: relative;
+  min-height: 200px;
+
+  .ProseMirror {
+    padding: var(--jadis-space-md);
+    outline: none;
+    font-family: var(--jadis-font-primary);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: inherit;
+    background: transparent;
+    min-height: inherit;
+    overflow-wrap: break-word;
+
+    // Typography styles within editor
+    h1, h2, h3, h4, h5, h6 {
+      margin: var(--jadis-space-md) 0 var(--jadis-space-sm) 0;
+      font-weight: var(--jadis-font-bold);
+      line-height: 1.3;
+      
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.5rem; }
+    h4 { font-size: 1.25rem; }
+    h5 { font-size: 1.125rem; }
+    h6 { font-size: 1rem; }
+
+    p {
+      margin: var(--jadis-space-sm) 0;
+      
+      &:first-child {
+        margin-top: 0;
+      }
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    strong {
+      font-weight: var(--jadis-font-bold);
+      text-shadow: 0 0 3px currentColor;
+    }
+
+    em {
+      font-style: italic;
+      opacity: 0.9;
+    }
+
+    code {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2px 6px;
+      border-radius: 2px;
+      font-family: var(--jadis-font-mono);
+      font-size: 0.875rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    pre {
+      background: rgba(0, 0, 0, 0.5);
+      padding: var(--jadis-space-md);
+      border-radius: 4px;
+      margin: var(--jadis-space-md) 0;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      overflow-x: auto;
+
+      code {
+        background: none;
+        padding: 0;
+        border: none;
+        color: inherit;
+      }
+    }
+
+    ul, ol {
+      padding-left: var(--jadis-space-xl);
+      margin: var(--jadis-space-sm) 0;
+    }
+
+    li {
+      margin: var(--jadis-space-xs) 0;
+      
+      p {
+        margin: 0;
+      }
+    }
+
+    ul li::marker {
+      content: '▪';
+      color: currentColor;
+    }
+
+    ol li::marker {
+      color: currentColor;
+    }
+
+    hr {
+      border: none;
+      border-top: 2px solid currentColor;
+      margin: var(--jadis-space-lg) 0;
+      opacity: 0.5;
+    }
+
+    blockquote {
+      border-left: 4px solid currentColor;
+      padding-left: var(--jadis-space-md);
+      margin: var(--jadis-space-md) 0;
+      opacity: 0.8;
+      font-style: italic;
+    }
+  }
+}
+
+// Content variant-specific styles
+.jadis-rte-content {
+  &--terminal {
+    .ProseMirror {
+      code {
+        background: rgba(0, 255, 0, 0.1);
+        border-color: rgba(0, 255, 0, 0.3);
+      }
+
+      pre {
+        background: rgba(0, 0, 0, 0.7);
+        border-color: rgba(0, 255, 0, 0.3);
+        box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+      }
+    }
+  }
+
+  &--matrix {
+    .ProseMirror {
+      code {
+        background: rgba(0, 255, 255, 0.1);
+        border-color: rgba(0, 255, 255, 0.3);
+      }
+
+      pre {
+        background: rgba(0, 17, 0, 0.7);
+        border-color: rgba(0, 255, 255, 0.3);
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+      }
+    }
+  }
+
+  &--retro {
+    .ProseMirror {
+      code {
+        background: rgba(255, 255, 0, 0.1);
+        border-color: rgba(255, 255, 0, 0.3);
+      }
+
+      pre {
+        background: rgba(42, 24, 16, 0.7);
+        border-color: rgba(255, 255, 0, 0.3);
+        box-shadow: 0 0 12px rgba(255, 255, 0, 0.2);
+      }
+    }
+  }
+
+  &--glow {
+    .ProseMirror {
+      code {
+        background: rgba(255, 0, 255, 0.1);
+        border-color: rgba(255, 0, 255, 0.3);
+      }
+
+      pre {
+        background: rgba(10, 0, 21, 0.7);
+        border-color: rgba(255, 0, 255, 0.3);
+        box-shadow: 0 0 20px rgba(255, 0, 255, 0.2);
+      }
+    }
+  }
+}
+
+// ===================================
+// PLACEHOLDER STYLES
+// ===================================
+
+.jadis-rte-placeholder {
+  position: absolute;
+  top: var(--jadis-space-md);
+  left: var(--jadis-space-md);
+  color: inherit;
+  opacity: 0.5;
+  pointer-events: none;
+  font-style: italic;
+}
+
+// ===================================
+// LOADING STATE
+// ===================================
+
+.jadis-rte-loading {
+  display: flex;
+  align-items: center;
+  gap: var(--jadis-space-sm);
+  padding: var(--jadis-space-lg);
+  color: inherit;
+  opacity: 0.7;
+  font-style: italic;
+
+  &--terminal {
+    color: var(--jadis-color-green);
+  }
+
+  &--matrix {
+    color: var(--jadis-color-cyan);
+  }
+
+  &--retro {
+    color: var(--jadis-color-yellow);
+  }
+
+  &--glow {
+    color: var(--jadis-color-purple);
+  }
+}
+
+// ===================================
+// RESPONSIVE DESIGN
+// ===================================
+
+@media (max-width: 768px) {
+  .jadis-rte-toolbar {
+    padding: var(--jadis-space-xs);
+    gap: 1px;
+
+    &__section {
+      gap: 1px;
+    }
+
+    &__divider {
+      margin: 0 var(--jadis-space-xs);
+    }
+
+    &__button {
+      width: 28px;
+      height: 28px;
+      font-size: 0.75rem;
+    }
+  }
+
+  .jadis-rte-editor .ProseMirror {
+    padding: var(--jadis-space-sm);
+  }
+}
+
+// ===================================
+// ACCESSIBILITY
+// ===================================
+
+@media (prefers-reduced-motion: reduce) {
+  .jadis-rte,
+  .jadis-rte-toolbar__button {
+    transition: none;
+  }
+
+  .jadis-rte-toolbar__button:active {
+    transform: none;
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .jadis-rte {
+    border-width: 2px;
+  }
+
+  .jadis-rte-toolbar__button {
+    border-width: 2px;
+  }
+}
