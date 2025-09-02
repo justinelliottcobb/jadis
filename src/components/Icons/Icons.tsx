@@ -36,7 +36,6 @@ export const ASCIIIcons = {
   network: '◈',
   data: '▓',
   code: '◊',
-  terminal: '►',
   
   // USER & PROFILE
   user: '◐',

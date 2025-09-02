@@ -83,6 +83,14 @@ jadis/
 │   │       ├── ApplicationCards.scss   # Specialized card styling with metrics
 │   │       ├── ApplicationCards.stories.tsx # Application monitoring demos
 │   │       └── index.ts                # Application card exports
+│   │   ├── Layout/         # Complete page layout system
+│   │       ├── Layout.tsx              # PageLayout, AppHeader, AppFooter, Sidebar, Breadcrumbs, StatusBar, HeroBanner, PageBanner, FeatureSection
+│   │       ├── Layout.scss             # Layout system styling with ASCII aesthetics
+│   │       ├── Layout.stories.tsx      # Complete page layout examples
+│   │       ├── HeroBanner.stories.tsx  # Hero banner component demos
+│   │       ├── PageBanner.stories.tsx  # Alert/notification banner demos
+│   │       ├── FeatureSection.stories.tsx # Feature showcase grid demos
+│   │       └── index.ts                # Layout component exports
 │   │   └── RichTextEditor/ # Tiptap-powered rich text editor
 │   │       ├── RichTextEditor.tsx      # WYSIWYG editor with terminal aesthetics
 │   │       ├── RichTextEditor.scss     # Rich text editor styling with variants
@@ -360,6 +368,60 @@ Comprehensive Storybook setup includes:
   - Touch-Friendly: Appropriately sized buttons for mobile interaction
   - Grid Integration: Works seamlessly with Grid component responsiveness
 
+#### **Layout System**
+- **PageLayout**: Master page layout container with responsive header, footer, sidebar, and main content areas
+  - Variants: `terminal`, `matrix`, `retro`, `minimal`, `glow` with consistent ASCII-themed styling
+  - Layout Control: Flexible header/footer configuration, collapsible sidebar with toggle functionality
+  - Full Height Mode: Viewport-aware layouts for single-page applications
+  - Component Integration: Works seamlessly with all other Jadis components
+- **AppHeader**: Application-specific header with branding, navigation, and metadata
+  - Logo Integration: Support for text logos, ASCII icons, or custom React components  
+  - Navigation Features: Integrated breadcrumb support with customizable separators
+  - Metadata Display: Version numbers, user information, system status indicators
+  - Action Areas: Header-based buttons, dropdowns, and interactive elements
+- **AppFooter**: Application footer with links, social media, and copyright information
+  - Link Groups: Organized footer sections with category-based link organization
+  - Social Integration: Social media links with ASCII icon support
+  - Copyright Management: Automatic year updating and company information display
+  - Multi-Column Layouts: Responsive footer columns that stack on mobile devices
+- **Sidebar**: Collapsible navigation sidebar with comprehensive menu support
+  - Navigation Structure: Multi-level menu support with nested items and icons
+  - Collapse Behavior: Smooth animations with icon-only collapsed state
+  - Active State Management: Automatic highlighting of current page/section
+  - Mobile Optimization: Off-canvas behavior on mobile devices with overlay
+- **Breadcrumbs**: Navigation trail component for showing current page hierarchy
+  - Path Display: Automatic breadcrumb generation with customizable separators
+  - Interactive Navigation: Clickable breadcrumb items for quick navigation
+  - Icon Support: ASCII icons for each breadcrumb level
+  - Overflow Handling: Responsive behavior with ellipsis for long paths
+- **StatusBar**: System status and information display bar
+  - System Metrics: Real-time display of system information and status indicators
+  - Notification Center: Alert counts, message indicators, and status badges
+  - User Context: Current user, session information, and quick settings access
+  - Connection Status: Network connectivity, server status, and sync indicators
+
+#### **Banner & Hero System**
+- **HeroBanner**: Large hero sections perfect for landing pages and feature introductions
+  - Background Patterns: Customizable patterns including dots, lines, grid, and matrix effects
+  - Size Options: Small, medium, large, and xlarge configurations for different contexts
+  - Content Structure: Title, subtitle, description text with call-to-action button areas
+  - Alignment Control: Left, center, or right content alignment with overlay options
+  - Image Integration: Background image support with overlay controls for text readability
+  - Interactive Actions: Support for multiple call-to-action buttons with variant consistency
+- **PageBanner**: Alert and notification banners for system messages and announcements
+  - Banner Types: Info, success, warning, error, and announcement with type-specific styling
+  - Dismissible Functionality: Optional close button with callback support for state management
+  - Position Options: Inline content integration or fixed positioning (top/bottom)
+  - Icon System: Automatic type-based icons or custom ASCII icon support
+  - Action Integration: Support for banner-specific action buttons and links
+  - Compact Mode: Space-efficient styling for subtle notifications
+- **FeatureSection**: Grid-based sections for showcasing features, services, or capabilities
+  - Grid Configuration: 1-4 column layouts with responsive behavior and gap control
+  - Feature Items: Icon, title, and description structure with consistent typography
+  - Content Management: Flexible feature data structure with custom rendering support
+  - Call-to-Action: Section-level action buttons for engagement
+  - Visual Variants: All 5 Jadis variants with appropriate feature highlighting
+
 #### **Rich Text Editor System**
 - **RichTextEditor**: WYSIWYG editor powered by Tiptap with terminal aesthetics
   - Rich Text Features: Bold, italic, code, headings (H1-H3), bullet lists, ordered lists, code blocks, horizontal rules
@@ -428,6 +490,8 @@ import {
   Navbar, NavbarBrand, NavbarItem, NavbarNav, NavbarDropdown,
   ASCIIIcon, ASCIIIcons, getIcon,
   ApplicationCard, ServiceMonitorCard, SystemStatusCard,
+  PageLayout, AppHeader, AppFooter, Sidebar, Breadcrumbs, StatusBar,
+  HeroBanner, PageBanner, FeatureSection,
   RichTextEditor
 } from 'jadis'
 
@@ -805,4 +869,274 @@ const data = [
   />
   <Button variant="glow" type="submit">Save Document</Button>
 </Form>
+
+// Layout System
+// Complete Page Layout
+<PageLayout
+  variant="terminal"
+  fullHeight
+  header={
+    <AppHeader
+      variant="terminal"
+      logo={<ASCIIIcon icon="terminal" variant="terminal" />}
+      title="SYSTEM CONTROL"
+      version="v2.1.0"
+      user="admin@system.local"
+      breadcrumbs={[
+        { label: 'Home', href: '/' },
+        { label: 'System', href: '/system' },
+        { label: 'Monitor', href: '/system/monitor' }
+      ]}
+      actions={
+        <Button variant="terminal" size="small">Settings</Button>
+      }
+    />
+  }
+  footer={
+    <AppFooter
+      variant="terminal"
+      company="Terminal Systems Inc."
+      year={2024}
+      links={{
+        'Company': [
+          { label: 'About', href: '/about' },
+          { label: 'Contact', href: '/contact' }
+        ],
+        'Support': [
+          { label: 'Documentation', href: '/docs' },
+          { label: 'Help', href: '/help' }
+        ]
+      }}
+      socialLinks={[
+        { type: 'github', href: 'https://github.com/company' }
+      ]}
+    />
+  }
+  sidebar={
+    <Sidebar
+      variant="terminal"
+      title="Navigation"
+      items={[
+        { 
+          label: 'Dashboard', 
+          href: '/', 
+          icon: <ASCIIIcon icon="home" variant="terminal" />,
+          active: true 
+        },
+        { 
+          label: 'System Monitor', 
+          href: '/monitor',
+          icon: <ASCIIIcon icon="server" variant="terminal" />
+        },
+        {
+          label: 'Configuration',
+          href: '/config',
+          icon: <ASCIIIcon icon="settings" variant="terminal" />,
+          children: [
+            { label: 'Network', href: '/config/network' },
+            { label: 'Security', href: '/config/security' }
+          ]
+        }
+      ]}
+    />
+  }
+>
+  <main>
+    <H1 variant="box">System Dashboard</H1>
+    <P variant="terminal">Welcome to the terminal control system.</P>
+  </main>
+</PageLayout>
+
+// Hero Banner System
+// Landing Page Hero
+<HeroBanner
+  variant="matrix"
+  size="xlarge"
+  title="ENTER THE MATRIX"
+  subtitle="Digital Reality Management System"
+  description="Experience the power of the matrix with advanced digital reality controls and real-time system monitoring."
+  backgroundPattern="matrix"
+  align="center"
+  overlay
+  actions={
+    <div style={{ display: 'flex', gap: '1rem' }}>
+      <Button variant="matrix" size="large">Enter System</Button>
+      <Button variant="matrix" size="large" outline>View Demo</Button>
+    </div>
+  }
+/>
+
+// Feature Introduction Hero
+<HeroBanner
+  variant="terminal"
+  size="large"
+  title="ADVANCED TERMINAL"
+  subtitle="Command Line Interface Evolution"
+  description="Professional-grade terminal with modern features and classic aesthetics."
+  backgroundPattern="grid"
+  align="left"
+  actions={
+    <Button variant="terminal" size="large">Get Started</Button>
+  }
+/>
+
+// Page Banner System
+// System Alerts
+<PageBanner
+  variant="terminal"
+  type="warning"
+  title="System Maintenance"
+  message="The system will undergo maintenance tonight from 2:00-4:00 AM PST. Please save your work."
+  position="fixed-top"
+  dismissible
+  onDismiss={() => console.log('Banner dismissed')}
+  actions={
+    <Button variant="terminal" size="small" outline>Learn More</Button>
+  }
+/>
+
+// Success Notifications
+<PageBanner
+  variant="matrix"
+  type="success"
+  message="Configuration updated successfully! All changes have been applied."
+  dismissible
+/>
+
+// Error Alerts
+<PageBanner
+  variant="retro"
+  type="error"
+  title="Connection Failed"
+  message="Unable to connect to the remote server. Please check your network connection."
+  actions={
+    <div style={{ display: 'flex', gap: '0.5rem' }}>
+      <Button variant="retro" size="small">Retry</Button>
+      <Button variant="retro" size="small" outline>Troubleshoot</Button>
+    </div>
+  }
+/>
+
+// Feature Section System
+// Product Features Showcase
+<FeatureSection
+  variant="terminal"
+  title="TERMINAL CAPABILITIES"
+  subtitle="Advanced Command Interface Features"
+  description="Discover the powerful features that make our terminal the professional choice for system administration."
+  features={[
+    {
+      icon: '◎',
+      title: 'Advanced Scripting',
+      description: 'Powerful scripting capabilities with syntax highlighting and auto-completion.'
+    },
+    {
+      icon: '◈',
+      title: 'System Monitoring',
+      description: 'Real-time monitoring of system resources and network activity.'
+    },
+    {
+      icon: '◊',
+      title: 'Security Tools',
+      description: 'Built-in security analysis and penetration testing utilities.'
+    },
+    {
+      icon: '○',
+      title: 'Remote Access',
+      description: 'Secure remote terminal access with encrypted connections.'
+    }
+  ]}
+  columns={2}
+  actions={
+    <Button variant="terminal" size="large">Explore Features</Button>
+  }
+/>
+
+// Service Capabilities Grid
+<FeatureSection
+  variant="glow"
+  title="COSMIC CAPABILITIES"
+  subtitle="Transcendent Digital Experience"
+  features={[
+    {
+      icon: '※',
+      title: 'Stellar Performance',
+      description: 'Performance that reaches beyond ordinary computing paradigms.'
+    },
+    {
+      icon: '◈',
+      title: 'Quantum Processing',
+      description: 'Harness quantum-inspired computing for complex operations.'
+    },
+    {
+      icon: '◊',
+      title: 'Astral Navigation',
+      description: 'Navigate digital space with celestial precision and grace.'
+    }
+  ]}
+  columns={3}
+  centered
+  actions={
+    <div style={{ display: 'flex', gap: '1rem' }}>
+      <Button variant="glow" size="large">Transcend</Button>
+      <Button variant="glow" size="large" outline>Learn More</Button>
+    </div>
+  }
+/>
+
+// Complete Dashboard Layout Example
+<PageLayout variant="matrix" fullHeight>
+  {/* Hero Section */}
+  <HeroBanner
+    variant="matrix"
+    size="large" 
+    title="SYSTEM DASHBOARD"
+    subtitle="Real-time Monitoring & Control"
+    backgroundPattern="matrix"
+    align="center"
+    compact
+  />
+  
+  {/* Alert Banner */}
+  <PageBanner
+    variant="matrix"
+    type="info"
+    message="All systems operational. Last sync: 2 minutes ago."
+    compact
+    dismissible
+  />
+  
+  {/* Main Content Grid */}
+  <Grid variant="matrix" columns={3} gap="medium">
+    <GridItem columnSpan={2}>
+      <SystemStatusCard
+        variant="matrix"
+        systemName="Main Server"
+        status="running"
+        metrics={{ cpu: 45, memory: 67, disk: 23, network: 15 }}
+      />
+    </GridItem>
+    <GridItem>
+      <ApplicationCard
+        variant="matrix"
+        name="API Server"
+        status="running"
+        priority="high"
+      />
+    </GridItem>
+  </Grid>
+  
+  {/* Feature Showcase */}
+  <FeatureSection
+    variant="matrix"
+    title="SYSTEM FEATURES"
+    features={[
+      { icon: '▣', title: 'Real-time Monitoring', description: 'Live system metrics' },
+      { icon: '▓', title: 'Automated Alerts', description: 'Smart notification system' },
+      { icon: '◉', title: 'Remote Control', description: 'Secure remote management' }
+    ]}
+    columns={3}
+    compact
+  />
+</PageLayout>
 ```

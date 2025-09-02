@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { ApplicationCard, ServiceMonitorCard, SystemStatusCard } from './ApplicationCards'
 import { Grid, GridItem } from '../Grid/Grid'
-import { H2 } from '../Typography/Typography'
+import { H2 } from '../Headers/Headers'
 
 const meta: Meta<typeof ApplicationCard> = {
   title: 'Application/ApplicationCards',

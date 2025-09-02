@@ -2,7 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { ASCIIIcon, ASCIIIcons, IconCategories, IconDisplayNames, getIcon } from './Icons'
 import { Grid, GridItem } from '../Grid/Grid'
 import { Card, CardHeader, CardBody } from '../Cards/Cards'
-import { H2, P } from '../Typography/Typography'
+import { H2 } from '../Headers/Headers'
+import { P } from '../Typography/Typography'
 
 const meta: Meta<typeof ASCIIIcon> = {
   title: 'Foundation/Icons',
