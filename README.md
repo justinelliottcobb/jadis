@@ -4,6 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 [![Storybook](https://img.shields.io/badge/Storybook-Ready-ff69b4.svg)](https://storybook.js.org/)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/28fe6ada-ebd8-432a-9530-15f6de2f7ede/deploy-status)](https://app.netlify.com/projects/jadis/deploys)
 
 > A modern React component library with 90's BBS ASCII art and terminal user interface aesthetics
 
