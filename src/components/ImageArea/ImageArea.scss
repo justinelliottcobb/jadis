@@ -1,0 +1,749 @@
+@use '../../styles/fonts.scss';
+
+// ===================================
+// BASE IMAGE AREA STYLES
+// ===================================
+
+.jadis-image-area {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  font-family: var(--jadis-font-primary);
+
+  // Size variants
+  &--small {
+    width: 4rem;
+    height: 4rem;
+    min-width: 4rem;
+    min-height: 4rem;
+  }
+
+  &--medium {
+    width: 8rem;
+    height: 8rem;
+    min-width: 8rem;
+    min-height: 8rem;
+  }
+
+  &--large {
+    width: 16rem;
+    height: 16rem;
+    min-width: 16rem;
+    min-height: 16rem;
+  }
+
+  &--fill {
+    width: 100%;
+    height: 100%;
+  }
+
+  // Base image styling
+  &__main,
+  &__layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s ease;
+  }
+
+  &__main {
+    z-index: 1;
+  }
+
+  // State styling
+  &__placeholder,
+  &__fallback {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    opacity: 0.7;
+    z-index: 0;
+  }
+
+  &__placeholder-icon,
+  &__error-icon {
+    font-size: 2em;
+    opacity: 0.5;
+  }
+
+  &__placeholder-text,
+  &__error-text {
+    font-size: 0.75em;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  // Effects overlay
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  // Animated variant
+  &--animated {
+    .jadis-image-area__main {
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    &:hover .jadis-image-area__main {
+      transform: scale(1.05);
+    }
+  }
+
+  // ===================================
+  // RETRO DIGITAL EFFECTS
+  // ===================================
+
+  // Pixelation effect - authentic 8-bit/16-bit look
+  &--pixelated {
+    .jadis-image-area__main,
+    .jadis-image-area__layer {
+      image-rendering: pixelated;
+      image-rendering: -moz-crisp-edges;
+      image-rendering: crisp-edges;
+      image-rendering: -webkit-crisp-edges;
+      
+      // Scale down then up for more pronounced pixel effect
+      transform: scale(0.5);
+      transform-origin: top left;
+      width: 200%;
+      height: 200%;
+    }
+
+    // Alternative pixelation using CSS filters
+    &.jadis-image-area--terminal .jadis-image-area__main,
+    &.jadis-image-area--matrix .jadis-image-area__main {
+      filter: blur(0.5px) contrast(150%) brightness(1.1);
+    }
+  }
+
+  // Posterization effect - reduces color depth for retro look
+  &--posterized {
+    .jadis-image-area__main,
+    .jadis-image-area__layer {
+      // Reduce color depth using contrast and brightness
+      filter: 
+        contrast(200%) 
+        brightness(1.2) 
+        saturate(150%)
+        hue-rotate(0deg);
+      
+      // Apply color quantization through multiple filter steps
+      -webkit-filter: 
+        contrast(200%) 
+        brightness(1.2) 
+        saturate(150%)
+        sepia(10%);
+    }
+
+    // Variant-specific posterization
+    &.jadis-image-area--terminal .jadis-image-area__main {
+      filter: 
+        contrast(250%) 
+        brightness(1.3) 
+        saturate(120%)
+        hue-rotate(90deg)
+        sepia(20%);
+    }
+
+    &.jadis-image-area--matrix .jadis-image-area__main {
+      filter: 
+        contrast(300%) 
+        brightness(1.1) 
+        saturate(200%)
+        hue-rotate(120deg)
+        sepia(30%);
+    }
+
+    &.jadis-image-area--retro .jadis-image-area__main {
+      filter: 
+        contrast(180%) 
+        brightness(1.4) 
+        saturate(130%)
+        hue-rotate(30deg)
+        sepia(40%);
+    }
+
+    &.jadis-image-area--glow .jadis-image-area__main {
+      filter: 
+        contrast(220%) 
+        brightness(1.2) 
+        saturate(180%)
+        hue-rotate(180deg)
+        drop-shadow(0 0 5px rgba(0, 255, 255, 0.5));
+    }
+  }
+
+  // Combined effects
+  &--pixelated.jadis-image-area--posterized {
+    .jadis-image-area__main,
+    .jadis-image-area__layer {
+      image-rendering: pixelated;
+      image-rendering: -moz-crisp-edges; 
+      image-rendering: crisp-edges;
+      filter: 
+        contrast(300%) 
+        brightness(1.3) 
+        saturate(150%)
+        blur(0.3px);
+      transform: scale(0.6);
+      width: 167%;
+      height: 167%;
+    }
+  }
+}
+
+// ===================================
+// TERMINAL VARIANT
+// ===================================
+
+.jadis-image-area--terminal {
+  color: var(--jadis-color-green);
+  background: rgba(0, 255, 0, 0.05);
+
+  &.jadis-image-area--bordered {
+    border: 2px solid var(--jadis-color-green);
+    box-shadow: 
+      0 0 10px rgba(0, 255, 0, 0.3),
+      inset 0 0 10px rgba(0, 255, 0, 0.1);
+  }
+
+  .jadis-image-area__main,
+  .jadis-image-area__layer {
+    filter: sepia(20%) saturate(120%) hue-rotate(90deg);
+  }
+
+  .jadis-image-area__placeholder,
+  .jadis-image-area__fallback {
+    background: linear-gradient(45deg, transparent 25%, rgba(0, 255, 0, 0.1) 25%, rgba(0, 255, 0, 0.1) 50%, transparent 50%, transparent 75%, rgba(0, 255, 0, 0.1) 75%);
+    background-size: 8px 8px;
+    animation: terminal-scan 2s linear infinite;
+  }
+
+  &:hover {
+    box-shadow: 
+      0 0 20px rgba(0, 255, 0, 0.4),
+      inset 0 0 20px rgba(0, 255, 0, 0.2);
+  }
+}
+
+// ===================================
+// MATRIX VARIANT
+// ===================================
+
+.jadis-image-area--matrix {
+  color: #00ff41;
+  background: rgba(0, 255, 65, 0.05);
+
+  &.jadis-image-area--bordered {
+    border: 2px solid #00ff41;
+    box-shadow: 
+      0 0 15px rgba(0, 255, 65, 0.4),
+      inset 0 0 15px rgba(0, 255, 65, 0.1);
+  }
+
+  .jadis-image-area__main,
+  .jadis-image-area__layer {
+    filter: contrast(120%) brightness(1.1) hue-rotate(120deg);
+    text-shadow: 0 0 10px #00ff41;
+  }
+
+  .jadis-image-area__placeholder,
+  .jadis-image-area__fallback {
+    background: radial-gradient(ellipse at center, rgba(0, 255, 65, 0.1) 0%, transparent 70%);
+    animation: matrix-pulse 1.5s ease-in-out infinite;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.3), transparent);
+    animation: matrix-sweep 3s ease-in-out infinite;
+    z-index: 5;
+  }
+}
+
+// ===================================
+// RETRO VARIANT
+// ===================================
+
+.jadis-image-area--retro {
+  color: var(--jadis-color-amber);
+  background: var(--jadis-color-black);
+
+  &.jadis-image-area--bordered {
+    border: 4px double var(--jadis-color-amber);
+    box-shadow: 
+      0 0 20px rgba(255, 176, 0, 0.4),
+      4px 4px 0 var(--jadis-color-amber);
+  }
+
+  .jadis-image-area__main,
+  .jadis-image-area__layer {
+    filter: sepia(80%) saturate(150%) hue-rotate(30deg) contrast(110%);
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+
+  .jadis-image-area__placeholder,
+  .jadis-image-area__fallback {
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255, 176, 0, 0.1) 10px,
+      rgba(255, 176, 0, 0.1) 20px
+    );
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.8);
+  }
+}
+
+// ===================================
+// MINIMAL VARIANT
+// ===================================
+
+.jadis-image-area--minimal {
+  color: var(--jadis-color-white);
+  background: transparent;
+
+  &.jadis-image-area--bordered {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .jadis-image-area__main,
+  .jadis-image-area__layer {
+    opacity: 0.9;
+  }
+
+  .jadis-image-area__placeholder,
+  .jadis-image-area__fallback {
+    background: rgba(255, 255, 255, 0.02);
+    opacity: 0.6;
+  }
+
+  &:hover {
+    .jadis-image-area__main,
+    .jadis-image-area__layer {
+      opacity: 1;
+    }
+  }
+}
+
+// ===================================
+// GLOW VARIANT
+// ===================================
+
+.jadis-image-area--glow {
+  color: var(--jadis-color-cyan);
+  background: rgba(0, 255, 255, 0.05);
+
+  &.jadis-image-area--bordered {
+    border: 2px solid var(--jadis-color-cyan);
+    box-shadow: 
+      0 0 30px rgba(0, 255, 255, 0.5),
+      inset 0 0 30px rgba(0, 255, 255, 0.1);
+    animation: glow-pulse 2s ease-in-out infinite alternate;
+  }
+
+  .jadis-image-area__main,
+  .jadis-image-area__layer {
+    filter: brightness(1.2) saturate(130%) drop-shadow(0 0 10px rgba(0, 255, 255, 0.5));
+  }
+
+  .jadis-image-area__placeholder,
+  .jadis-image-area__fallback {
+    background: radial-gradient(circle at center, rgba(0, 255, 255, 0.2) 0%, transparent 70%);
+    text-shadow: 0 0 10px var(--jadis-color-cyan);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent 30%, rgba(0, 255, 255, 0.1) 50%, transparent 70%);
+    animation: glow-shimmer 4s ease-in-out infinite;
+    z-index: 6;
+  }
+}
+
+// ===================================
+// ASCII ART COMPONENT
+// ===================================
+
+.jadis-ascii-art-figure {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+}
+
+.jadis-ascii-art-caption {
+  font-family: var(--jadis-font-primary);
+  font-size: 0.8rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+
+  &--terminal { color: var(--jadis-color-green); }
+  &--matrix { 
+    color: #00ff41; 
+    text-shadow: 0 0 5px #00ff41;
+  }
+  &--retro { 
+    color: var(--jadis-color-amber);
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+  }
+  &--minimal { color: var(--jadis-color-white); opacity: 0.6; }
+  &--glow { 
+    color: var(--jadis-color-cyan);
+    text-shadow: 0 0 10px var(--jadis-color-cyan);
+  }
+}
+
+.jadis-ascii-art {
+  font-family: var(--jadis-font-primary);
+  line-height: 1.1;
+  margin: 0;
+  padding: 1rem;
+  white-space: pre;
+  overflow-x: auto;
+  display: block;
+
+  // Size variants
+  &--small {
+    font-size: 0.7rem;
+    padding: 0.5rem;
+  }
+
+  &--medium {
+    font-size: 0.85rem;
+    padding: 1rem;
+  }
+
+  &--large {
+    font-size: 1rem;
+    padding: 1.5rem;
+  }
+
+  // Layout
+  &--centered {
+    text-align: center;
+  }
+
+  &--bordered {
+    border: 2px solid currentColor;
+    border-radius: 4px;
+  }
+
+  // Cursor for typewriter effect
+  &__cursor {
+    opacity: 1;
+    animation: cursor-blink 1s infinite;
+  }
+
+  // Typewriter specific
+  &--typewriter {
+    position: relative;
+    overflow: hidden;
+  }
+
+  // Animated variant
+  &--animated {
+    animation: ascii-float 3s ease-in-out infinite;
+  }
+}
+
+// ===================================
+// ASCII ART VARIANTS
+// ===================================
+
+.jadis-ascii-art--terminal {
+  color: var(--jadis-color-green);
+  background: rgba(0, 255, 0, 0.02);
+  text-shadow: 0 0 3px rgba(0, 255, 0, 0.5);
+
+  &.jadis-ascii-art--bordered {
+    border-color: var(--jadis-color-green);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+  }
+}
+
+.jadis-ascii-art--matrix {
+  color: #00ff41;
+  background: rgba(0, 255, 65, 0.02);
+  text-shadow: 0 0 5px #00ff41;
+
+  &.jadis-ascii-art--bordered {
+    border-color: #00ff41;
+    box-shadow: 
+      0 0 15px rgba(0, 255, 65, 0.4),
+      inset 0 0 15px rgba(0, 255, 65, 0.05);
+  }
+}
+
+.jadis-ascii-art--retro {
+  color: var(--jadis-color-amber);
+  background: var(--jadis-color-black);
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.8);
+  font-weight: bold;
+
+  &.jadis-ascii-art--bordered {
+    border: 3px double var(--jadis-color-amber);
+    box-shadow: 4px 4px 0 var(--jadis-color-amber);
+  }
+}
+
+.jadis-ascii-art--minimal {
+  color: var(--jadis-color-white);
+  background: transparent;
+  opacity: 0.9;
+
+  &.jadis-ascii-art--bordered {
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+.jadis-ascii-art--glow {
+  color: var(--jadis-color-cyan);
+  background: rgba(0, 255, 255, 0.02);
+  text-shadow: 0 0 10px var(--jadis-color-cyan);
+
+  &.jadis-ascii-art--bordered {
+    border-color: var(--jadis-color-cyan);
+    box-shadow: 
+      0 0 20px rgba(0, 255, 255, 0.5),
+      inset 0 0 20px rgba(0, 255, 255, 0.1);
+  }
+}
+
+// ===================================
+// GALLERY COMPONENT
+// ===================================
+
+.jadis-gallery {
+  display: grid;
+  width: 100%;
+
+  &__item {
+    position: relative;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+
+  &__caption {
+    padding: 0.5rem;
+    font-family: var(--jadis-font-primary);
+    font-size: 0.75rem;
+    text-align: center;
+    opacity: 0.8;
+    margin-top: 0.25rem;
+
+    &--terminal { color: var(--jadis-color-green); }
+    &--matrix { 
+      color: #00ff41;
+      text-shadow: 0 0 3px #00ff41;
+    }
+    &--retro { 
+      color: var(--jadis-color-amber);
+      text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+    }
+    &--minimal { color: var(--jadis-color-white); opacity: 0.6; }
+    &--glow { 
+      color: var(--jadis-color-cyan);
+      text-shadow: 0 0 5px var(--jadis-color-cyan);
+    }
+  }
+}
+
+// Gallery variants
+.jadis-gallery--terminal {
+  .jadis-gallery__item:hover {
+    filter: brightness(1.1) drop-shadow(0 0 10px rgba(0, 255, 0, 0.5));
+  }
+}
+
+.jadis-gallery--matrix {
+  .jadis-gallery__item:hover {
+    filter: brightness(1.1) drop-shadow(0 0 10px rgba(0, 255, 65, 0.5));
+  }
+}
+
+.jadis-gallery--retro {
+  .jadis-gallery__item:hover {
+    filter: brightness(1.1) drop-shadow(4px 4px 0 var(--jadis-color-amber));
+    transform: translate(-2px, -2px);
+  }
+}
+
+.jadis-gallery--minimal {
+  .jadis-gallery__item:hover {
+    opacity: 1;
+  }
+}
+
+.jadis-gallery--glow {
+  .jadis-gallery__item:hover {
+    filter: brightness(1.1) drop-shadow(0 0 15px rgba(0, 255, 255, 0.6));
+  }
+}
+
+// ===================================
+// RESPONSIVE DESIGN
+// ===================================
+
+@media (max-width: 768px) {
+  .jadis-image-area {
+    &--small { width: 3rem; height: 3rem; }
+    &--medium { width: 6rem; height: 6rem; }
+    &--large { width: 12rem; height: 12rem; }
+  }
+
+  .jadis-ascii-art {
+    font-size: 0.7rem;
+    padding: 0.75rem;
+    
+    &--small { font-size: 0.6rem; padding: 0.5rem; }
+    &--large { font-size: 0.8rem; padding: 1rem; }
+  }
+
+  .jadis-gallery {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .jadis-gallery {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+// ===================================
+// ANIMATIONS
+// ===================================
+
+@keyframes terminal-scan {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}
+
+@keyframes matrix-pulse {
+  0%, 100% { 
+    background: radial-gradient(ellipse at center, rgba(0, 255, 65, 0.1) 0%, transparent 70%);
+  }
+  50% { 
+    background: radial-gradient(ellipse at center, rgba(0, 255, 65, 0.2) 0%, transparent 70%);
+  }
+}
+
+@keyframes matrix-sweep {
+  0% { left: -100%; }
+  50% { left: 100%; }
+  100% { left: -100%; }
+}
+
+@keyframes glow-pulse {
+  from {
+    box-shadow: 
+      0 0 30px rgba(0, 255, 255, 0.5),
+      inset 0 0 30px rgba(0, 255, 255, 0.1);
+  }
+  to {
+    box-shadow: 
+      0 0 40px rgba(0, 255, 255, 0.8),
+      inset 0 0 40px rgba(0, 255, 255, 0.2);
+  }
+}
+
+@keyframes glow-shimmer {
+  0%, 100% { 
+    background: linear-gradient(45deg, transparent 30%, rgba(0, 255, 255, 0.1) 50%, transparent 70%);
+  }
+  50% { 
+    background: linear-gradient(45deg, transparent 20%, rgba(0, 255, 255, 0.2) 50%, transparent 80%);
+  }
+}
+
+@keyframes cursor-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes ascii-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+}
+
+// ===================================
+// ACCESSIBILITY & REDUCED MOTION
+// ===================================
+
+@media (prefers-reduced-motion: reduce) {
+  .jadis-image-area,
+  .jadis-ascii-art,
+  .jadis-gallery__item {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .jadis-image-area--animated:hover .jadis-image-area__main {
+    transform: none !important;
+  }
+
+  .jadis-ascii-art__cursor {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+}
+
+// ===================================
+// HIGH CONTRAST MODE
+// ===================================
+
+@media (prefers-contrast: high) {
+  .jadis-image-area,
+  .jadis-ascii-art {
+    &--terminal,
+    &--matrix,
+    &--retro,
+    &--minimal,
+    &--glow {
+      text-shadow: none !important;
+      box-shadow: none !important;
+      filter: none !important;
+    }
+  }
+
+  .jadis-image-area__main,
+  .jadis-image-area__layer {
+    filter: none !important;
+  }
+}

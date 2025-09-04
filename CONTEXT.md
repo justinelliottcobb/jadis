@@ -102,6 +102,11 @@ jadis/
 │   │       ├── Gauges.scss             # Comprehensive gauge and indicator styling with animations
 │   │       ├── Gauges.stories.tsx      # Complete gauge system demos and monitoring dashboard
 │   │       └── index.ts                # Gauge and indicator exports
+│   │   ├── ImageArea/      # Advanced image display and ASCII art system
+│   │       ├── ImageArea.tsx           # ImageArea, ASCIIArt, Gallery components with CSS compositing
+│   │       ├── ImageArea.scss          # Advanced image effects including pixelation and posterization
+│   │       ├── ImageArea.stories.tsx   # Comprehensive image and ASCII art demos
+│   │       └── index.ts                # Image area and ASCII art exports
 │   │   └── RichTextEditor/ # Tiptap-powered rich text editor
 │   │       ├── RichTextEditor.tsx      # WYSIWYG editor with terminal aesthetics
 │   │       ├── RichTextEditor.scss     # Rich text editor styling with variants
@@ -533,6 +538,36 @@ Comprehensive Storybook setup includes:
   - Color Theming: All Jadis variant color support
   - Animation Effects: Glow animations for active level indicators
 
+#### **Image Area and ASCII Art System**
+- **ImageArea**: Advanced image display component with CSS compositing and retro digital effects
+  - CSS Compositing: Multiple image layers with blend modes (multiply, screen, overlay, darken, lighten, color-dodge, etc.)
+  - Layer System: Image layer transformations including offset, scale, rotate, opacity, and custom filters
+  - Retro Digital Effects: Pixelation and posterization effects for authentic 8-bit/16-bit aesthetics
+  - Visual Effects Integration: Full integration with existing Jadis effects (scanlines, glitch, CRT, phosphor)
+  - Loading States: Placeholder and error fallback handling with ASCII-styled loading indicators
+  - Responsive Design: Flexible aspect ratios, multiple size presets, and mobile optimization
+- **ASCIIArt**: Specialized component for terminal-style text art and decorative elements
+  - Typewriter Effect: Character-by-character animation revealing for authentic terminal feel
+  - ASCII Art Library: Curated collection of terminal, matrix, and retro ASCII artwork
+  - Interactive Animations: Floating, glowing, and pulsing effects for ASCII art display
+  - Bordered Display: Optional ASCII-styled borders using box-drawing characters
+  - Caption System: Titled ASCII art with variant-consistent caption styling
+- **Gallery**: Grid-based image gallery with compositing and effects support
+  - Composite Galleries: Each gallery image supports full layer compositing system
+  - Responsive Grids: Configurable columns with automatic mobile adaptation
+  - Click Handling: Interactive image selection with callback support
+  - Effect Integration: Gallery-wide effects application with consistent styling
+- **Retro Digital Effects**: CSS-based image processing for authentic vintage aesthetics
+  - Pixelation: CSS `image-rendering: pixelated` with scale transformations for 8-bit look
+  - Posterization: CSS filter combinations (contrast, brightness, saturate, sepia) for color depth reduction
+  - Variant-Specific Tuning: Each Jadis variant has optimized posterization settings
+  - Combined Effects: Pixelation and posterization can be layered for maximum retro impact
+- **ASCII Art Library**: Comprehensive collection of terminal-style artwork
+  - Terminal Category: Computer, server, network, database ASCII art
+  - Matrix Category: Digital rain, nodes, data flow patterns
+  - Retro Category: Gaming-inspired artwork, neon signs, explosion effects
+  - Developer Integration: Easy import and usage with TypeScript support
+
 #### **Rich Text Editor System**
 - **RichTextEditor**: WYSIWYG editor powered by Tiptap with terminal aesthetics
   - Rich Text Features: Bold, italic, code, headings (H1-H3), bullet lists, ordered lists, code blocks, horizontal rules
@@ -607,6 +642,7 @@ import {
   ProgressBar, CircularGauge, LinearGauge, ASCIIMeter,
   StatusLight, StatusBadge, LoadingSpinner, TrendIndicator,
   BatteryIndicator, SignalStrength, HealthIndicator, LevelIndicator,
+  ImageArea, ASCIIArt, Gallery, ASCIIArtLibrary,
   RichTextEditor
 } from 'jadis'
 
@@ -1868,6 +1904,296 @@ const SystemDashboard = () => {
     </Grid>
   )
 }
+
+// ImageArea and ASCII Art System
+// Advanced Image Display with CSS Compositing
+<ImageArea
+  variant="terminal"
+  src="https://picsum.photos/400/300"
+  size="large"
+  bordered
+  scanlines
+  pixelated
+  layers={[
+    {
+      src: "https://picsum.photos/400/300?random=1",
+      opacity: 0.4,
+      blendMode: "multiply",
+      offset: { x: 5, y: 5 }
+    },
+    {
+      src: "https://picsum.photos/400/300?random=2", 
+      opacity: 0.3,
+      blendMode: "screen"
+    }
+  ]}
+  aspectRatio="16 / 9"
+  alt="Composite terminal display"
+/>
+
+// Retro Digital Effects Showcase
+<div style={{ display: 'flex', gap: '2rem' }}>
+  <ImageArea
+    variant="retro"
+    src="https://picsum.photos/300/300"
+    size="medium"
+    bordered
+    pixelated
+    posterized
+    aspectRatio="1 / 1"
+    alt="8-bit pixel art"
+  />
+  
+  <ImageArea
+    variant="matrix"
+    src="https://picsum.photos/300/300"
+    size="medium"
+    bordered
+    posterized
+    glitch
+    aspectRatio="1 / 1"
+    alt="Matrix posterized"
+  />
+</div>
+
+// ASCII Art Display
+<ASCIIArt
+  variant="terminal"
+  art={ASCIIArtLibrary.terminal.computer}
+  title="Terminal Computer"
+  bordered
+  glow
+  typewriter
+  typewriterSpeed={30}
+/>
+
+<ASCIIArt
+  variant="matrix"
+  art={ASCIIArtLibrary.matrix.digitalRain}
+  title="Digital Rain"
+  bordered
+  animated
+  scanlines
+/>
+
+<ASCIIArt
+  variant="retro"
+  art={ASCIIArtLibrary.retro.boom}
+  title="Retro Explosion"
+  bordered
+  glitch
+/>
+
+// Custom ASCII Art
+<ASCIIArt
+  variant="glow"
+  art={`
+    ╔═══════════════╗
+    ║ ████████████  ║
+    ║ JADIS  v2.0   ║
+    ║ ████████████  ║
+    ╚═══════════════╝
+  `}
+  title="Custom System Banner"
+  bordered
+  centered
+  glow
+/>
+
+// Image Gallery with Compositing
+<Gallery
+  variant="terminal"
+  images={[
+    {
+      src: "https://picsum.photos/400/300?random=10",
+      caption: "Terminal Display",
+      layers: [{
+        src: "https://picsum.photos/400/300?random=15",
+        opacity: 0.3,
+        blendMode: "multiply"
+      }]
+    },
+    {
+      src: "https://picsum.photos/400/300?random=11", 
+      caption: "Matrix Node",
+      layers: [{
+        src: "https://picsum.photos/400/300?random=16",
+        opacity: 0.4,
+        blendMode: "screen"
+      }]
+    },
+    {
+      src: "https://picsum.photos/400/300?random=12",
+      caption: "Retro Interface",
+      layers: [{
+        src: "https://picsum.photos/400/300?random=17",
+        opacity: 0.5,
+        blendMode: "overlay"
+      }]
+    }
+  ]}
+  columns={3}
+  gap="1.5rem"
+  bordered
+  scanlines
+  aspectRatio="4 / 3"
+  onImageClick={(index) => console.log(`Clicked image ${index}`)}
+/>
+
+// Retro Gaming Interface Example
+<div style={{
+  background: 'var(--jadis-color-black)',
+  padding: '2rem',
+  minHeight: '100vh'
+}}>
+  <ASCIIArt
+    variant="retro"
+    art={ASCIIArtLibrary.retro.neon}
+    title="Retro Gaming Zone" 
+    bordered
+    centered
+    size="large"
+  />
+  
+  <Gallery
+    variant="retro"
+    images={[
+      { src: "https://picsum.photos/300/300?random=20", caption: "Pixel Fighter" },
+      { src: "https://picsum.photos/300/300?random=21", caption: "Mega Quest" },
+      { src: "https://picsum.photos/300/300?random=22", caption: "Cyber Runner" },
+      { src: "https://picsum.photos/300/300?random=23", caption: "Neon Racer" }
+    ]}
+    columns={4}
+    gap="1rem"
+    bordered
+    aspectRatio="1 / 1"
+  />
+  
+  {/* Apply pixelated and posterized effects via CSS */}
+  <style>{`
+    .jadis-gallery .jadis-image-area .jadis-image-area__main {
+      image-rendering: pixelated !important;
+      filter: contrast(200%) brightness(1.3) saturate(130%) hue-rotate(30deg) !important;
+    }
+  `}</style>
+  
+  <ASCIIArt
+    variant="retro"
+    art={ASCIIArtLibrary.retro.gaming}
+    bordered
+    typewriter
+    typewriterSpeed={50}
+    size="large"
+  />
+</div>
+
+// System Dashboard with ASCII Art Headers
+<PageLayout variant="terminal" fullHeight>
+  <main>
+    <ASCIIArt
+      variant="terminal"
+      art={ASCIIArtLibrary.terminal.server}
+      title="System Control Dashboard"
+      bordered
+      glow
+      centered
+    />
+    
+    <Grid variant="terminal" columns={2} gap="large">
+      <GridItem>
+        <ImageArea
+          variant="terminal"
+          src="https://picsum.photos/400/300?random=30"
+          size="large"
+          bordered
+          scanlines
+          crt
+          aspectRatio="4 / 3"
+          alt="System monitor display"
+        />
+      </GridItem>
+      
+      <GridItem>
+        <Card variant="terminal">
+          <CardHeader title="Network Status" />
+          <CardBody>
+            <ASCIIArt
+              variant="terminal"
+              art={ASCIIArtLibrary.terminal.network}
+              bordered={false}
+              animated
+              size="small"
+            />
+            <P variant="terminal">All nodes operational</P>
+          </CardBody>
+        </Card>
+      </GridItem>
+    </Grid>
+  </main>
+</PageLayout>
+
+// Multi-Variant Image Effects Showcase
+{(['terminal', 'matrix', 'retro', 'glow'] as const).map((variant) => (
+  <div key={variant}>
+    <H2 variant="double-line">{variant.toUpperCase()} IMAGES</H2>
+    
+    <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+      <ImageArea
+        variant={variant}
+        src={`https://picsum.photos/200/200?random=${variant}`}
+        size="medium"
+        bordered
+        aspectRatio="1 / 1"
+        alt={`${variant} original`}
+      />
+      
+      <ImageArea
+        variant={variant}
+        src={`https://picsum.photos/200/200?random=${variant}`}
+        size="medium"
+        bordered
+        pixelated
+        aspectRatio="1 / 1"
+        alt={`${variant} pixelated`}
+      />
+      
+      <ImageArea
+        variant={variant}
+        src={`https://picsum.photos/200/200?random=${variant}`}
+        size="medium"
+        bordered
+        posterized
+        aspectRatio="1 / 1"
+        alt={`${variant} posterized`}
+      />
+      
+      <ImageArea
+        variant={variant}
+        src={`https://picsum.photos/200/200?random=${variant}`}
+        size="medium"
+        bordered
+        pixelated
+        posterized
+        aspectRatio="1 / 1"
+        alt={`${variant} pixel + poster`}
+      />
+    </div>
+    
+    <ASCIIArt
+      variant={variant}
+      art={
+        variant === 'terminal' ? ASCIIArtLibrary.terminal.computer :
+        variant === 'matrix' ? ASCIIArtLibrary.matrix.digitalRain :
+        variant === 'retro' ? ASCIIArtLibrary.retro.boom : 
+        ASCIIArtLibrary.terminal.database
+      }
+      bordered
+      glow={variant === 'glow'}
+      animated={variant === 'matrix'}
+      typewriter={variant === 'retro'}
+    />
+  </div>
+))}
 
 // Multi-Variant Gauge Showcase
 {(['terminal', 'matrix', 'retro', 'minimal', 'glow'] as const).map((variant) => (
