@@ -2,7 +2,7 @@
 // AUTH COMPONENTS STYLES
 // ===================================
 
-@import '../../styles/fonts.scss';
+@use '../../styles/fonts.scss';
 
 // Define font family variable if not already defined
 $jadis-font-family: 'Hasklug Nerd Font', 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'SF Mono', Monaco, Inconsolata, 'Roboto Mono', Consolas, 'Courier New', monospace !default;

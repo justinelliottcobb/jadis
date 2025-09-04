@@ -194,5 +194,37 @@ export {
   type AuthGuardProps,
   type LogoutConfirmProps
 } from './components/Auth'
+export {
+  ProgressBar,
+  CircularGauge,
+  LinearGauge,
+  ASCIIMeter,
+  StatusLight,
+  StatusBadge,
+  LoadingSpinner,
+  TrendIndicator,
+  BatteryIndicator,
+  SignalStrength,
+  HealthIndicator,
+  LevelIndicator,
+  type ProgressBarProps,
+  type CircularGaugeProps,
+  type LinearGaugeProps,
+  type ASCIIMeterProps,
+  type StatusLightProps,
+  type StatusBadgeProps,
+  type LoadingSpinnerProps,
+  type TrendIndicatorProps,
+  type BatteryIndicatorProps,
+  type SignalStrengthProps,
+  type HealthIndicatorProps,
+  type LevelIndicatorProps,
+  type GaugeVariant,
+  type GaugeColor,
+  type GaugeSize,
+  type IndicatorVariant,
+  type IndicatorColor,
+  type IndicatorSize
+} from './components/Gauges'
 
 import './styles'

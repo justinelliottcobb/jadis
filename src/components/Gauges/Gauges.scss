@@ -1,0 +1,1360 @@
+// ===================================
+// GAUGES AND INDICATORS STYLES
+// ===================================
+
+@use '../../styles/fonts.scss';
+
+// Font family variable with fallback
+$jadis-font-family: 'Hasklug Nerd Font', 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'SF Mono', Monaco, Inconsolata, 'Roboto Mono', Consolas, 'Courier New', monospace !default;
+
+// Common styling for all gauge components
+%gauge-base {
+  font-family: $jadis-font-family;
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+// Size mixins
+@mixin gauge-size($size) {
+  @if $size == 'small' {
+    font-size: 0.75rem;
+    --gauge-thickness: 4px;
+    --gauge-padding: 0.5rem;
+  } @else if $size == 'large' {
+    font-size: 1.25rem;
+    --gauge-thickness: 12px;
+    --gauge-padding: 1.5rem;
+  } @else {
+    font-size: 1rem;
+    --gauge-thickness: 8px;
+    --gauge-padding: 1rem;
+  }
+}
+
+// Color mixins for different variants
+@mixin gauge-colors($variant, $color: 'primary') {
+  @if $variant == 'terminal' {
+    --gauge-bg: rgba(0, 0, 0, 0.8);
+    --gauge-border: rgba(0, 255, 0, 0.3);
+    --gauge-text: #00ff00;
+    --gauge-track: rgba(0, 255, 0, 0.1);
+    
+    @if $color == 'success' { --gauge-fill: #00ff00; }
+    @else if $color == 'warning' { --gauge-fill: #ffff00; }
+    @else if $color == 'error' { --gauge-fill: #ff3333; }
+    @else if $color == 'info' { --gauge-fill: #00ffff; }
+    @else { --gauge-fill: #00ff00; }
+  } @else if $variant == 'matrix' {
+    --gauge-bg: rgba(0, 0, 0, 0.9);
+    --gauge-border: rgba(0, 255, 255, 0.3);
+    --gauge-text: #00ffff;
+    --gauge-track: rgba(0, 255, 255, 0.1);
+    
+    @if $color == 'success' { --gauge-fill: #00ff99; }
+    @else if $color == 'warning' { --gauge-fill: #ffff00; }
+    @else if $color == 'error' { --gauge-fill: #ff0066; }
+    @else if $color == 'info' { --gauge-fill: #0099ff; }
+    @else { --gauge-fill: #00ffff; }
+  } @else if $variant == 'retro' {
+    --gauge-bg: rgba(42, 24, 16, 0.9);
+    --gauge-border: rgba(255, 170, 0, 0.3);
+    --gauge-text: #ffaa00;
+    --gauge-track: rgba(255, 170, 0, 0.1);
+    
+    @if $color == 'success' { --gauge-fill: #66ff00; }
+    @else if $color == 'warning' { --gauge-fill: #ffaa00; }
+    @else if $color == 'error' { --gauge-fill: #ff3300; }
+    @else if $color == 'info' { --gauge-fill: #0099ff; }
+    @else { --gauge-fill: #ffaa00; }
+  } @else if $variant == 'glow' {
+    --gauge-bg: rgba(10, 0, 21, 0.9);
+    --gauge-border: rgba(170, 102, 255, 0.3);
+    --gauge-text: #aa66ff;
+    --gauge-track: rgba(170, 102, 255, 0.1);
+    
+    @if $color == 'success' { --gauge-fill: #66ff99; }
+    @else if $color == 'warning' { --gauge-fill: #ffcc00; }
+    @else if $color == 'error' { --gauge-fill: #ff3366; }
+    @else if $color == 'info' { --gauge-fill: #66ccff; }
+    @else { --gauge-fill: #aa66ff; }
+  } @else {
+    --gauge-bg: rgba(255, 255, 255, 0.05);
+    --gauge-border: rgba(255, 255, 255, 0.1);
+    --gauge-text: #cccccc;
+    --gauge-track: rgba(255, 255, 255, 0.05);
+    
+    @if $color == 'success' { --gauge-fill: #28a745; }
+    @else if $color == 'warning' { --gauge-fill: #ffc107; }
+    @else if $color == 'error' { --gauge-fill: #dc3545; }
+    @else if $color == 'info' { --gauge-fill: #17a2b8; }
+    @else { --gauge-fill: #6c757d; }
+  }
+}
+
+// ===================================
+// PROGRESS BAR STYLES
+// ===================================
+
+.jadis-progress-bar {
+  @extend %gauge-base;
+  width: 100%;
+  
+  &__label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 0.875em;
+    opacity: 0.9;
+  }
+  
+  &__track {
+    position: relative;
+    height: var(--gauge-thickness);
+    background: var(--gauge-track);
+    border-radius: 2px;
+    overflow: hidden;
+    border: 1px solid var(--gauge-border);
+  }
+  
+  &__fill {
+    height: 100%;
+    background: var(--gauge-fill);
+    transition: width 0.5s ease;
+    border-radius: 2px;
+    
+    &--success { background: var(--jadis-color-green, #00ff00); }
+    &--warning { background: var(--jadis-color-yellow, #ffff00); }
+    &--error { background: var(--jadis-color-red, #ff3333); }
+    &--info { background: var(--jadis-color-cyan, #00ffff); }
+  }
+  
+  &__text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.75em;
+    font-weight: 600;
+    color: var(--gauge-text);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    pointer-events: none;
+  }
+  
+  // Size variants
+  &--small { @include gauge-size('small'); }
+  &--medium { @include gauge-size('medium'); }
+  &--large { @include gauge-size('large'); }
+  
+  // Variant colors
+  &--terminal { @include gauge-colors('terminal'); }
+  &--matrix { @include gauge-colors('matrix'); }
+  &--retro { @include gauge-colors('retro'); }
+  &--minimal { @include gauge-colors('minimal'); }
+  &--glow { @include gauge-colors('glow'); }
+  
+  // Animation states
+  &--animated {
+    .jadis-progress-bar__fill {
+      animation: gauge-fill-pulse 2s infinite;
+    }
+  }
+  
+  &--striped {
+    .jadis-progress-bar__fill {
+      background-image: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.2) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0.2) 75%,
+        transparent 75%,
+        transparent
+      );
+      background-size: 1rem 1rem;
+    }
+  }
+  
+  &--pulse {
+    .jadis-progress-bar__fill {
+      animation: gauge-pulse 1.5s infinite;
+    }
+  }
+}
+
+// ===================================
+// CIRCULAR GAUGE STYLES (ASCII ART)
+// ===================================
+
+.jadis-circular-gauge {
+  @extend %gauge-base;
+  text-align: center;
+  
+  &__label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 0.875em;
+    opacity: 0.9;
+  }
+  
+  &__container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  &__display {
+    font-family: $jadis-font-family;
+    line-height: 1;
+    white-space: pre;
+    color: var(--gauge-text);
+    position: relative;
+  }
+  
+  &__line {
+    text-align: center;
+    line-height: 1.1;
+  }
+  
+  &__progress-indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6rem;
+    height: 6rem;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+  
+  &__segment {
+    position: absolute;
+    font-size: 0.8em;
+    transition: all 0.3s ease;
+    
+    &--filled {
+      color: var(--gauge-fill);
+      text-shadow: 0 0 4px var(--gauge-fill);
+    }
+    
+    &:not(&--filled) {
+      color: var(--gauge-track);
+      opacity: 0.5;
+    }
+  }
+  
+  &__text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    pointer-events: none;
+    z-index: 2;
+  }
+  
+  &__value {
+    font-size: 0.75em;
+    font-weight: 600;
+    color: var(--gauge-text);
+    background: var(--gauge-bg);
+    padding: 0.25rem 0.5rem;
+    border-radius: 2px;
+    border: 1px solid var(--gauge-border);
+  }
+  
+  &__retro {
+    position: relative;
+  }
+  
+  // Size variants
+  &--small { 
+    @include gauge-size('small');
+    .jadis-circular-gauge__display {
+      font-size: 0.7em;
+    }
+    .jadis-circular-gauge__progress-indicator {
+      width: 4rem;
+      height: 4rem;
+    }
+  }
+  
+  &--medium { 
+    @include gauge-size('medium');
+    .jadis-circular-gauge__display {
+      font-size: 0.8em;
+    }
+    .jadis-circular-gauge__progress-indicator {
+      width: 6rem;
+      height: 6rem;
+    }
+  }
+  
+  &--large { 
+    @include gauge-size('large');
+    .jadis-circular-gauge__display {
+      font-size: 1em;
+    }
+    .jadis-circular-gauge__progress-indicator {
+      width: 8rem;
+      height: 8rem;
+    }
+  }
+  
+  // Variant colors
+  &--terminal { @include gauge-colors('terminal'); }
+  &--matrix { @include gauge-colors('matrix'); }
+  &--retro { @include gauge-colors('retro'); }
+  &--minimal { @include gauge-colors('minimal'); }
+  &--glow { @include gauge-colors('glow'); }
+  
+  // Style variants
+  &--classic {
+    .jadis-circular-gauge__display {
+      position: relative;
+    }
+  }
+  
+  &--digital {
+    .jadis-circular-gauge__line {
+      font-weight: bold;
+      letter-spacing: -0.1em;
+    }
+  }
+  
+  &--retro {
+    .jadis-circular-gauge__line {
+      font-weight: normal;
+    }
+  }
+  
+  &--dots {
+    .jadis-circular-gauge__line {
+      letter-spacing: 0.1em;
+    }
+  }
+  
+  // Animation
+  &--animated {
+    .jadis-circular-gauge__segment--filled {
+      animation: circular-gauge-pulse 2s infinite alternate;
+    }
+    
+    &.jadis-circular-gauge--digital {
+      .jadis-circular-gauge__line {
+        animation: digital-flicker 3s infinite;
+      }
+    }
+    
+    &.jadis-circular-gauge--matrix {
+      .jadis-circular-gauge__display {
+        animation: matrix-flicker 2s infinite;
+      }
+    }
+    
+    &.jadis-circular-gauge--glow {
+      .jadis-circular-gauge__display {
+        animation: gauge-glow 2s infinite alternate;
+      }
+    }
+  }
+}
+
+// ===================================
+// LINEAR GAUGE STYLES
+// ===================================
+
+.jadis-linear-gauge {
+  @extend %gauge-base;
+  position: relative;
+  
+  &__label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 0.875em;
+    opacity: 0.9;
+  }
+  
+  &__container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  &__track {
+    position: relative;
+    background: var(--gauge-track);
+    border: 1px solid var(--gauge-border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  
+  &__fill {
+    background: var(--gauge-fill);
+    transition: all 0.5s ease;
+    border-radius: 2px;
+    
+    &--success { background: var(--jadis-color-green, #00ff00); }
+    &--warning { background: var(--jadis-color-yellow, #ffff00); }
+    &--error { background: var(--jadis-color-red, #ff3333); }
+    &--info { background: var(--jadis-color-cyan, #00ffff); }
+  }
+  
+  &__indicator {
+    position: absolute;
+    width: 2px;
+    height: calc(100% + 4px);
+    background: var(--gauge-text);
+    top: -2px;
+    transition: left 0.5s ease, bottom 0.5s ease;
+    box-shadow: 0 0 4px var(--gauge-fill);
+  }
+  
+  &__ticks {
+    position: relative;
+  }
+  
+  &__tick {
+    position: absolute;
+    
+    &::before {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 4px;
+      background: var(--gauge-text);
+    }
+  }
+  
+  &__tick-label {
+    position: absolute;
+    font-size: 0.7em;
+    color: var(--gauge-text);
+    opacity: 0.8;
+  }
+  
+  &__value {
+    font-weight: 600;
+    color: var(--gauge-text);
+    white-space: nowrap;
+  }
+  
+  // Horizontal orientation
+  &--horizontal {
+    .jadis-linear-gauge__track {
+      height: var(--gauge-thickness);
+      min-width: 200px;
+      flex: 1;
+    }
+    
+    .jadis-linear-gauge__ticks {
+      height: 20px;
+      width: 100%;
+      margin-top: 2px;
+    }
+    
+    .jadis-linear-gauge__tick {
+      transform: translateX(-50%);
+      
+      &-label {
+        top: 6px;
+        transform: translateX(-50%);
+      }
+    }
+  }
+  
+  // Vertical orientation
+  &--vertical {
+    .jadis-linear-gauge__container {
+      flex-direction: column;
+      height: 200px;
+    }
+    
+    .jadis-linear-gauge__track {
+      width: var(--gauge-thickness);
+      height: 100%;
+      flex: 1;
+    }
+    
+    .jadis-linear-gauge__indicator {
+      width: calc(100% + 4px);
+      height: 2px;
+      left: -2px;
+    }
+    
+    .jadis-linear-gauge__ticks {
+      width: 20px;
+      height: 100%;
+      margin-left: 2px;
+    }
+    
+    .jadis-linear-gauge__tick {
+      transform: translateY(50%);
+      
+      &::before {
+        width: 4px;
+        height: 1px;
+      }
+      
+      &-label {
+        left: 6px;
+        transform: translateY(-50%);
+      }
+    }
+  }
+  
+  // Size variants
+  &--small { @include gauge-size('small'); }
+  &--medium { @include gauge-size('medium'); }
+  &--large { @include gauge-size('large'); }
+  
+  // Variant colors
+  &--terminal { @include gauge-colors('terminal'); }
+  &--matrix { @include gauge-colors('matrix'); }
+  &--retro { @include gauge-colors('retro'); }
+  &--minimal { @include gauge-colors('minimal'); }
+  &--glow { @include gauge-colors('glow'); }
+  
+  // Animation
+  &--animated {
+    .jadis-linear-gauge__indicator {
+      animation: gauge-indicator-pulse 1.5s infinite;
+    }
+  }
+}
+
+// ===================================
+// ASCII METER STYLES
+// ===================================
+
+.jadis-ascii-meter {
+  @extend %gauge-base;
+  text-align: center;
+  
+  &__label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 0.875em;
+    opacity: 0.9;
+  }
+  
+  &__display {
+    font-family: $jadis-font-family;
+    line-height: 1.1;
+    white-space: pre;
+    color: var(--gauge-text);
+    margin-bottom: 0.5rem;
+  }
+  
+  &__scale-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7em;
+    opacity: 0.8;
+    margin-top: 0.25rem;
+  }
+  
+  &__digital-bar {
+    font-size: 1.1em;
+    letter-spacing: -0.05em;
+  }
+  
+  &__value {
+    margin-top: 0.5rem;
+    font-size: 0.875em;
+    font-weight: 600;
+    color: var(--gauge-text);
+  }
+  
+  // Size variants
+  &--small { @include gauge-size('small'); }
+  &--medium { @include gauge-size('medium'); }
+  &--large { @include gauge-size('large'); }
+  
+  // Variant colors
+  &--terminal { @include gauge-colors('terminal'); }
+  &--matrix { @include gauge-colors('matrix'); }
+  &--retro { @include gauge-colors('retro'); }
+  &--minimal { @include gauge-colors('minimal'); }
+  &--glow { @include gauge-colors('glow'); }
+  
+  // Style variants
+  &--classic {
+    .jadis-ascii-meter__display {
+      font-size: 0.9em;
+    }
+  }
+  
+  &--digital {
+    .jadis-ascii-meter__display {
+      font-size: 1em;
+      font-weight: bold;
+    }
+  }
+  
+  &--retro {
+    .jadis-ascii-meter__display {
+      font-size: 0.85em;
+    }
+  }
+}
+
+// ===================================
+// STATUS LIGHT STYLES
+// ===================================
+
+.jadis-status-light {
+  @extend %gauge-base;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  &__indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gauge-fill);
+    border: 1px solid var(--gauge-border);
+    
+    &::before {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: inherit;
+    }
+  }
+  
+  &__label {
+    color: var(--gauge-text);
+    font-size: 0.875em;
+    font-weight: 500;
+  }
+  
+  // Size variants
+  &--small {
+    @include gauge-size('small');
+    .jadis-status-light__indicator {
+      width: 6px;
+      height: 6px;
+    }
+  }
+  
+  &--medium {
+    @include gauge-size('medium');
+    .jadis-status-light__indicator {
+      width: 8px;
+      height: 8px;
+    }
+  }
+  
+  &--large {
+    @include gauge-size('large');
+    .jadis-status-light__indicator {
+      width: 12px;
+      height: 12px;
+    }
+  }
+  
+  // Color variants
+  &--success {
+    @include gauge-colors('terminal', 'success');
+  }
+  
+  &--warning {
+    @include gauge-colors('terminal', 'warning');
+  }
+  
+  &--error {
+    @include gauge-colors('terminal', 'error');
+  }
+  
+  &--info {
+    @include gauge-colors('terminal', 'info');
+  }
+  
+  &--secondary {
+    @include gauge-colors('minimal', 'secondary');
+  }
+  
+  // Variant colors
+  &--terminal { @include gauge-colors('terminal'); }
+  &--matrix { @include gauge-colors('matrix'); }
+  &--retro { @include gauge-colors('retro'); }
+  &--minimal { @include gauge-colors('minimal'); }
+  &--glow { @include gauge-colors('glow'); }
+  
+  // Animation states
+  &--animated {
+    .jadis-status-light__indicator {
+      animation: status-light-blink 2s infinite;
+    }
+  }
+  
+  &--pulse {
+    .jadis-status-light__indicator {
+      animation: status-light-pulse 1.5s infinite;
+    }
+  }
+}
+
+// ===================================
+// STATUS BADGE STYLES
+// ===================================
+
+.jadis-status-badge {
+  @extend %gauge-base;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 2px;
+  border: 1px solid var(--gauge-border);
+  background: var(--gauge-bg);
+  
+  &__icon {
+    color: var(--gauge-fill);
+    font-weight: bold;
+  }
+  
+  &__text {
+    color: var(--gauge-text);
+    font-size: 0.75em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  // Size variants
+  &--small { @include gauge-size('small'); }
+  &--medium { @include gauge-size('medium'); }
+  &--large { @include gauge-size('large'); }
+  
+  // Color variants - same as status light
+  &--success { @include gauge-colors('terminal', 'success'); }
+  &--warning { @include gauge-colors('terminal', 'warning'); }
+  &--error { @include gauge-colors('terminal', 'error'); }
+  &--info { @include gauge-colors('terminal', 'info'); }
+  &--secondary { @include gauge-colors('minimal', 'secondary'); }
+  
+  // Variant colors
+  &--terminal { @include gauge-colors('terminal'); }
+  &--matrix { @include gauge-colors('matrix'); }
+  &--retro { @include gauge-colors('retro'); }
+  &--minimal { @include gauge-colors('minimal'); }
+  &--glow { @include gauge-colors('glow'); }
+  
+  // Animation
+  &--pulse {
+    animation: badge-pulse 2s infinite;
+  }
+}
+
+// ===================================
+// LOADING SPINNER STYLES
+// ===================================
+
+.jadis-loading-spinner {
+  @extend %gauge-base;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--gauge-text);
+  
+  &__dots,
+  &__bars,
+  &__matrix {
+    font-weight: bold;
+    animation: spinner-animation 1s infinite;
+  }
+  
+  &__text {
+    font-size: 0.875em;
+    opacity: 0.8;
+  }
+  
+  // Size variants
+  &--small { @include gauge-size('small'); }
+  &--medium { @include gauge-size('medium'); }
+  &--large { @include gauge-size('large'); }
+  
+  // Variant colors
+  &--terminal { @include gauge-colors('terminal'); }
+  &--matrix { @include gauge-colors('matrix'); }
+  &--retro { @include gauge-colors('retro'); }
+  &--minimal { @include gauge-colors('minimal'); }
+  &--glow { @include gauge-colors('glow'); }
+  
+  // Speed variants
+  &--slow {
+    .jadis-loading-spinner__dots,
+    .jadis-loading-spinner__bars,
+    .jadis-loading-spinner__matrix {
+      animation-duration: 2s;
+    }
+  }
+  
+  &--fast {
+    .jadis-loading-spinner__dots,
+    .jadis-loading-spinner__bars,
+    .jadis-loading-spinner__matrix {
+      animation-duration: 0.5s;
+    }
+  }
+  
+  // Style-specific animations
+  &--dots {
+    .jadis-loading-spinner__dots {
+      animation: dots-pulse 1.5s infinite;
+    }
+  }
+  
+  &--bars {
+    .jadis-loading-spinner__bars {
+      animation: bars-wave 1s infinite;
+    }
+  }
+  
+  &--matrix {
+    .jadis-loading-spinner__matrix {
+      animation: matrix-flicker 0.8s infinite;
+    }
+  }
+}
+
+// ===================================
+// TREND INDICATOR STYLES
+// ===================================
+
+.jadis-trend-indicator {
+  @extend %gauge-base;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  &__icon {
+    color: var(--gauge-fill);
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+  
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+  
+  &__value {
+    color: var(--gauge-text);
+    font-weight: 600;
+    line-height: 1;
+  }
+  
+  &__change {
+    color: var(--gauge-fill);
+    font-size: 0.8em;
+    font-weight: 500;
+    opacity: 0.9;
+  }
+  
+  // Size variants
+  &--small { @include gauge-size('small'); }
+  &--medium { @include gauge-size('medium'); }
+  &--large { @include gauge-size('large'); }
+  
+  // Trend-specific colors
+  &--up {
+    @include gauge-colors('terminal', 'success');
+  }
+  
+  &--down {
+    @include gauge-colors('terminal', 'error');
+  }
+  
+  &--stable {
+    @include gauge-colors('terminal', 'info');
+  }
+  
+  &--volatile {
+    @include gauge-colors('terminal', 'warning');
+  }
+  
+  // Variant colors
+  &--terminal { @include gauge-colors('terminal'); }
+  &--matrix { @include gauge-colors('matrix'); }
+  &--retro { @include gauge-colors('retro'); }
+  &--minimal { @include gauge-colors('minimal'); }
+  &--glow { @include gauge-colors('glow'); }
+  
+  // Animation
+  &--animated {
+    .jadis-trend-indicator__icon {
+      animation: trend-bounce 1.5s infinite;
+    }
+  }
+}
+
+// ===================================
+// BATTERY INDICATOR STYLES
+// ===================================
+
+.jadis-battery-indicator {
+  @extend %gauge-base;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  &__display {
+    font-family: $jadis-font-family;
+    color: var(--gauge-fill);
+    font-weight: bold;
+    letter-spacing: -0.05em;
+  }
+  
+  &__percentage {
+    color: var(--gauge-text);
+    font-size: 0.875em;
+    font-weight: 600;
+  }
+  
+  // Size variants
+  &--small { @include gauge-size('small'); }
+  &--medium { @include gauge-size('medium'); }
+  &--large { @include gauge-size('large'); }
+  
+  // Battery level colors
+  &--success { @include gauge-colors('terminal', 'success'); }
+  &--warning { @include gauge-colors('terminal', 'warning'); }
+  &--error { @include gauge-colors('terminal', 'error'); }
+  
+  // Variant colors
+  &--terminal { @include gauge-colors('terminal'); }
+  &--matrix { @include gauge-colors('matrix'); }
+  &--retro { @include gauge-colors('retro'); }
+  &--minimal { @include gauge-colors('minimal'); }
+  &--glow { @include gauge-colors('glow'); }
+  
+  // Charging animation
+  &--charging {
+    .jadis-battery-indicator__display {
+      animation: battery-charging 1.5s infinite;
+    }
+  }
+  
+  // Animated state
+  &--animated {
+    .jadis-battery-indicator__percentage {
+      animation: text-flicker 2s infinite alternate;
+    }
+  }
+}
+
+// ===================================
+// SIGNAL STRENGTH STYLES
+// ===================================
+
+.jadis-signal-strength {
+  @extend %gauge-base;
+  display: inline-flex;
+  align-items: end;
+  gap: 0.5rem;
+  
+  &__bars {
+    display: flex;
+    align-items: end;
+    gap: 2px;
+    height: 1.5rem;
+  }
+  
+  &__bar {
+    width: 4px;
+    background: var(--gauge-track);
+    border: 1px solid var(--gauge-border);
+    border-radius: 1px;
+    transition: background-color 0.3s ease;
+    
+    &--filled {
+      background: var(--gauge-fill);
+      box-shadow: 0 0 4px var(--gauge-fill);
+    }
+  }
+  
+  &__value {
+    color: var(--gauge-text);
+    font-size: 0.75em;
+    font-weight: 600;
+  }
+  
+  // Size variants
+  &--small {
+    @include gauge-size('small');
+    .jadis-signal-strength__bars {
+      height: 1rem;
+    }
+    .jadis-signal-strength__bar {
+      width: 3px;
+    }
+  }
+  
+  &--medium {
+    @include gauge-size('medium');
+    .jadis-signal-strength__bars {
+      height: 1.5rem;
+    }
+    .jadis-signal-strength__bar {
+      width: 4px;
+    }
+  }
+  
+  &--large {
+    @include gauge-size('large');
+    .jadis-signal-strength__bars {
+      height: 2rem;
+    }
+    .jadis-signal-strength__bar {
+      width: 6px;
+    }
+  }
+  
+  // Signal strength colors
+  &--success { @include gauge-colors('terminal', 'success'); }
+  &--warning { @include gauge-colors('terminal', 'warning'); }
+  &--error { @include gauge-colors('terminal', 'error'); }
+  
+  // Variant colors
+  &--terminal { @include gauge-colors('terminal'); }
+  &--matrix { @include gauge-colors('matrix'); }
+  &--retro { @include gauge-colors('retro'); }
+  &--minimal { @include gauge-colors('minimal'); }
+  &--glow { @include gauge-colors('glow'); }
+  
+  // Animation
+  &--animated {
+    .jadis-signal-strength__bar--filled {
+      animation: signal-pulse 2s infinite alternate;
+    }
+  }
+}
+
+// ===================================
+// HEALTH INDICATOR STYLES
+// ===================================
+
+.jadis-health-indicator {
+  @extend %gauge-base;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  
+  &__icon {
+    color: var(--gauge-fill);
+    font-weight: bold;
+    letter-spacing: 0.1em;
+  }
+  
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+  
+  &__label {
+    color: var(--gauge-text);
+    font-size: 0.875em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  &__value {
+    color: var(--gauge-fill);
+    font-size: 0.75em;
+    font-weight: 500;
+    opacity: 0.9;
+  }
+  
+  // Size variants
+  &--small { @include gauge-size('small'); }
+  &--medium { @include gauge-size('medium'); }
+  &--large { @include gauge-size('large'); }
+  
+  // Health level colors
+  &--success { @include gauge-colors('terminal', 'success'); }
+  &--warning { @include gauge-colors('terminal', 'warning'); }
+  &--error { @include gauge-colors('terminal', 'error'); }
+  
+  // Variant colors
+  &--terminal { @include gauge-colors('terminal'); }
+  &--matrix { @include gauge-colors('matrix'); }
+  &--retro { @include gauge-colors('retro'); }
+  &--minimal { @include gauge-colors('minimal'); }
+  &--glow { @include gauge-colors('glow'); }
+  
+  // Animation
+  &--animated {
+    .jadis-health-indicator__icon {
+      animation: health-pulse 2.5s infinite;
+    }
+  }
+}
+
+// ===================================
+// LEVEL INDICATOR STYLES
+// ===================================
+
+.jadis-level-indicator {
+  @extend %gauge-base;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  
+  &__steps {
+    display: flex;
+    gap: 2px;
+  }
+  
+  &__step {
+    color: var(--gauge-track);
+    font-weight: bold;
+    transition: color 0.3s ease;
+    
+    &--active {
+      color: var(--gauge-fill);
+      text-shadow: 0 0 4px var(--gauge-fill);
+    }
+  }
+  
+  &__value {
+    color: var(--gauge-text);
+    font-size: 0.875em;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  
+  // Size variants
+  &--small { @include gauge-size('small'); }
+  &--medium { @include gauge-size('medium'); }
+  &--large { @include gauge-size('large'); }
+  
+  // Color variants
+  &--primary { @include gauge-colors('terminal', 'primary'); }
+  &--success { @include gauge-colors('terminal', 'success'); }
+  &--warning { @include gauge-colors('terminal', 'warning'); }
+  &--error { @include gauge-colors('terminal', 'error'); }
+  &--info { @include gauge-colors('terminal', 'info'); }
+  
+  // Variant colors
+  &--terminal { @include gauge-colors('terminal'); }
+  &--matrix { @include gauge-colors('matrix'); }
+  &--retro { @include gauge-colors('retro'); }
+  &--minimal { @include gauge-colors('minimal'); }
+  &--glow { @include gauge-colors('glow'); }
+  
+  // Animation
+  &--animated {
+    .jadis-level-indicator__step--active {
+      animation: level-glow 2s infinite alternate;
+    }
+  }
+}
+
+// ===================================
+// ANIMATIONS
+// ===================================
+
+@keyframes gauge-fill-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes gauge-pulse {
+  0%, 100% { 
+    box-shadow: 0 0 0 0 var(--gauge-fill);
+    opacity: 1;
+  }
+  50% { 
+    box-shadow: 0 0 0 4px transparent;
+    opacity: 0.8;
+  }
+}
+
+@keyframes gauge-glow {
+  from { 
+    filter: drop-shadow(0 0 2px var(--gauge-fill));
+  }
+  to { 
+    filter: drop-shadow(0 0 8px var(--gauge-fill));
+  }
+}
+
+@keyframes gauge-indicator-pulse {
+  0%, 100% { 
+    box-shadow: 0 0 4px var(--gauge-fill);
+  }
+  50% { 
+    box-shadow: 0 0 12px var(--gauge-fill);
+  }
+}
+
+@keyframes status-light-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0.3; }
+}
+
+@keyframes status-light-pulse {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% { 
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+@keyframes badge-pulse {
+  0%, 100% { 
+    transform: scale(1);
+    box-shadow: 0 0 0 0 var(--gauge-fill);
+  }
+  50% { 
+    transform: scale(1.05);
+    box-shadow: 0 0 0 4px transparent;
+  }
+}
+
+@keyframes spinner-animation {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes dots-pulse {
+  0%, 100% { opacity: 1; }
+  33% { opacity: 0.3; }
+  66% { opacity: 0.6; }
+}
+
+@keyframes bars-wave {
+  0%, 100% { transform: scaleY(1); }
+  25% { transform: scaleY(1.5); }
+  50% { transform: scaleY(0.5); }
+  75% { transform: scaleY(1.2); }
+}
+
+@keyframes matrix-flicker {
+  0%, 100% { opacity: 1; }
+  10% { opacity: 0.8; }
+  20% { opacity: 0.2; }
+  30% { opacity: 0.9; }
+  40% { opacity: 0.1; }
+  50% { opacity: 1; }
+  60% { opacity: 0.7; }
+  70% { opacity: 0.3; }
+  80% { opacity: 0.9; }
+  90% { opacity: 0.5; }
+}
+
+@keyframes trend-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+@keyframes battery-charging {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes text-flicker {
+  from { opacity: 1; }
+  to { opacity: 0.8; }
+}
+
+@keyframes signal-pulse {
+  from { 
+    box-shadow: 0 0 2px var(--gauge-fill);
+  }
+  to { 
+    box-shadow: 0 0 6px var(--gauge-fill);
+  }
+}
+
+@keyframes health-pulse {
+  0%, 100% { 
+    filter: drop-shadow(0 0 2px var(--gauge-fill));
+  }
+  50% { 
+    filter: drop-shadow(0 0 6px var(--gauge-fill));
+  }
+}
+
+@keyframes level-glow {
+  from { 
+    text-shadow: 0 0 2px var(--gauge-fill);
+  }
+  to { 
+    text-shadow: 0 0 8px var(--gauge-fill);
+  }
+}
+
+@keyframes circular-gauge-pulse {
+  from {
+    text-shadow: 0 0 2px var(--gauge-fill);
+  }
+  to {
+    text-shadow: 0 0 8px var(--gauge-fill);
+  }
+}
+
+@keyframes digital-flicker {
+  0%, 100% { opacity: 1; }
+  2% { opacity: 0.8; }
+  4% { opacity: 1; }
+  8% { opacity: 0.9; }
+  10% { opacity: 1; }
+}
+
+// ===================================
+// RESPONSIVE DESIGN
+// ===================================
+
+@media (max-width: 768px) {
+  .jadis-linear-gauge--horizontal {
+    .jadis-linear-gauge__container {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .jadis-linear-gauge__track {
+      min-width: 150px;
+    }
+  }
+  
+  .jadis-ascii-meter {
+    &__display {
+      font-size: 0.8em;
+    }
+    
+    &__scale-labels {
+      font-size: 0.6em;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .jadis-progress-bar__text {
+    font-size: 0.65em;
+  }
+  
+  .jadis-circular-gauge {
+    &--large {
+      @include gauge-size('medium');
+    }
+  }
+  
+  .jadis-linear-gauge--horizontal {
+    .jadis-linear-gauge__track {
+      min-width: 120px;
+    }
+  }
+}

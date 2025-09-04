@@ -96,6 +96,12 @@ jadis/
 │   │       ├── Auth.scss               # Authentication component styling with variant support
 │   │       ├── Auth.stories.tsx        # Comprehensive auth flow demos and examples
 │   │       └── index.ts                # Auth component exports
+│   │   ├── Gauges/         # ASCII art gauges and indicators system
+│   │       ├── Gauges.tsx              # ProgressBar, CircularGauge, LinearGauge, ASCIIMeter
+│   │       ├── Indicators.tsx          # StatusLight, StatusBadge, LoadingSpinner, TrendIndicator, BatteryIndicator, SignalStrength, HealthIndicator, LevelIndicator
+│   │       ├── Gauges.scss             # Comprehensive gauge and indicator styling with animations
+│   │       ├── Gauges.stories.tsx      # Complete gauge system demos and monitoring dashboard
+│   │       └── index.ts                # Gauge and indicator exports
 │   │   └── RichTextEditor/ # Tiptap-powered rich text editor
 │   │       ├── RichTextEditor.tsx      # WYSIWYG editor with terminal aesthetics
 │   │       ├── RichTextEditor.scss     # Rich text editor styling with variants
@@ -463,6 +469,70 @@ Comprehensive Storybook setup includes:
   - Action Buttons: Clear confirm/cancel buttons with keyboard accessibility
   - Security Messaging: Informative text about session termination and re-authentication requirements
 
+#### **Gauges and Indicators System**
+- **ProgressBar**: Enhanced horizontal progress bars with ASCII styling and animation support
+  - Multiple Variants: All 5 Jadis variants with authentic terminal aesthetics and color theming
+  - Value Display: Configurable percentage and absolute value display with text overlays
+  - Visual Effects: Striped patterns, pulse animations, and customizable color schemes
+  - Size Options: Small, medium, large scaling with proper thickness adjustment
+  - Interactive Features: Real-time progress updates with smooth transitions
+- **CircularGauge**: ASCII art circular progress indicators with multiple display styles
+  - Style Options: Classic (dot segments), Digital (block characters), Retro (box drawing), Dots (matrix style)
+  - Authentic ASCII: Pure text-based rendering using ●○▓░ characters instead of SVG
+  - Positioning System: Mathematically calculated segment placement around circular perimeter
+  - Animation Support: Pulse effects, segment glow, and variant-specific flicker animations
+  - Terminal Integration: Monospace font optimization with perfect character alignment
+- **LinearGauge**: Horizontal and vertical linear gauges with scale indicators and tick marks
+  - Orientation Support: Both horizontal and vertical layouts with responsive behavior
+  - Scale System: Configurable tick marks with numeric labels and value positioning
+  - Indicator Needle: Moving indicator with glow effects showing exact value position
+  - Measurement Display: Comprehensive value and scale representation
+- **ASCIIMeter**: Authentic terminal-style meters using pure ASCII art characters
+  - Style Variants: Classic (needle simulation), Digital (progress bars), Retro (bordered displays)
+  - ASCII Authenticity: Hand-crafted character art using ┌─╮│╰─╯ and ▓░ characters
+  - Scale Labels: Numeric ranges with proper spacing and alignment
+  - Value Integration: Real-time value display with contextual formatting
+- **StatusLight**: Simple status indicators with animated pulse and blink effects
+  - Status Types: Active, inactive, warning, error, success, info states
+  - Animation Options: Pulse, blink, and static display modes
+  - Color Integration: Automatic color selection based on status with manual override
+  - Label Support: Optional text labels with consistent typography
+- **StatusBadge**: Enhanced status displays with icons and text combinations
+  - Predefined States: Online, offline, busy, away, error, maintenance with appropriate icons
+  - ASCII Icons: ●◐◯✗⚡○ characters for authentic terminal appearance
+  - Text Integration: Status text with uppercase formatting and letter spacing
+  - Badge Styling: Bordered containers with background colors and animations
+- **LoadingSpinner**: ASCII-based loading animations with multiple styles
+  - Animation Types: Spinner, dots, bars, matrix patterns with configurable speed
+  - Text Support: Optional loading text with synchronized animations
+  - Style Variants: Different ASCII patterns for varied visual effects
+  - Performance: CSS-based animations optimized for terminal aesthetics
+- **TrendIndicator**: Directional trend arrows with value and change display
+  - Trend Types: Up (▲), Down (▼), Stable (▬), Volatile (◈) with color coding
+  - Value Display: Current values with change indicators and mathematical symbols
+  - Animation Effects: Bounce animations for active trends
+  - Data Formatting: Flexible value and change representation
+- **BatteryIndicator**: ASCII battery charge level display with charging animation
+  - Charge Visualization: Segmented battery using [▓▓▓░░░░░] characters
+  - Charging State: Animated charging indicator with ⚡ symbol
+  - Level Coloring: Green, yellow, red color schemes based on charge percentage
+  - Percentage Display: Optional numeric percentage alongside visual indicator
+- **SignalStrength**: Signal strength bars with progressive height indicators
+  - Bar Visualization: Multiple bars with increasing heights for signal representation
+  - Strength Levels: Configurable maximum levels with filled/empty state indication
+  - Color Coding: Automatic color changes based on signal strength thresholds
+  - Value Display: Optional numeric strength display
+- **HealthIndicator**: Multi-level health status using dot progression indicators
+  - Health Levels: Excellent (●●●●●), Good (●●●●○), Fair (●●●○○), Poor (●●○○○), Critical (●○○○○)
+  - Status Colors: Automatic color assignment based on health level
+  - Label Integration: Status text with uppercase formatting
+  - Value Support: Optional numeric health values
+- **LevelIndicator**: Step-based level progression with visual feedback
+  - Step Visualization: Progressive steps using ▓░ characters
+  - Level Display: Current level vs maximum level with fraction formatting
+  - Color Theming: All Jadis variant color support
+  - Animation Effects: Glow animations for active level indicators
+
 #### **Rich Text Editor System**
 - **RichTextEditor**: WYSIWYG editor powered by Tiptap with terminal aesthetics
   - Rich Text Features: Bold, italic, code, headings (H1-H3), bullet lists, ordered lists, code blocks, horizontal rules
@@ -534,6 +604,9 @@ import {
   PageLayout, AppHeader, AppFooter, Sidebar, Breadcrumbs, StatusBar,
   HeroBanner, PageBanner, FeatureSection,
   LoginForm, RegisterForm, SessionStatus, AuthGuard, LogoutConfirm,
+  ProgressBar, CircularGauge, LinearGauge, ASCIIMeter,
+  StatusLight, StatusBadge, LoadingSpinner, TrendIndicator,
+  BatteryIndicator, SignalStrength, HealthIndicator, LevelIndicator,
   RichTextEditor
 } from 'jadis'
 
@@ -1475,4 +1548,361 @@ const AuthenticatedApp = () => {
     </div>
   ))}
 </div>
+
+// Gauges and Indicators System
+// Progress Bar Examples
+<ProgressBar
+  variant="terminal"
+  value={75}
+  label="System Load"
+  showPercentage={true}
+  animated={true}
+  striped={true}
+/>
+
+<ProgressBar
+  variant="matrix"
+  value={89}
+  color="warning"
+  size="large"
+  showValue={true}
+  showPercentage={true}
+  pulse={true}
+/>
+
+// ASCII Circular Gauge Examples
+<CircularGauge
+  variant="terminal"
+  value={65}
+  style="classic"
+  label="CPU Usage"
+  showPercentage={true}
+  animated={true}
+/>
+
+<CircularGauge
+  variant="matrix"
+  value={78}
+  style="digital"
+  label="Memory"
+  color="warning"
+  animated={true}
+/>
+
+<CircularGauge
+  variant="retro"
+  value={45}
+  style="retro"
+  label="Disk Usage"
+  showValue={true}
+/>
+
+<CircularGauge
+  variant="glow"
+  value={92}
+  style="dots"
+  label="Network"
+  color="error"
+/>
+
+// Linear Gauge Examples
+<LinearGauge
+  variant="terminal"
+  value={85}
+  orientation="horizontal"
+  label="Signal Strength"
+  showScale={true}
+  showTicks={true}
+  tickCount={10}
+  animated={true}
+/>
+
+<LinearGauge
+  variant="matrix"
+  value={67}
+  orientation="vertical"
+  label="Power Level"
+  color="success"
+  showValue={true}
+/>
+
+// ASCII Meter Examples
+<ASCIIMeter
+  variant="terminal"
+  value={42}
+  max={100}
+  style="classic"
+  label="Temperature"
+  showValue={true}
+/>
+
+<ASCIIMeter
+  variant="matrix"
+  value={78}
+  style="digital"
+  label="Network Load"
+/>
+
+<ASCIIMeter
+  variant="retro"
+  value={56}
+  style="retro"
+  label="Power Output"
+/>
+
+// Status Indicators Examples
+<StatusLight
+  variant="terminal"
+  status="success"
+  label="System Online"
+  pulse={true}
+/>
+
+<StatusBadge
+  variant="matrix"
+  status="online"
+  pulse={true}
+/>
+
+<StatusBadge
+  variant="terminal"
+  status="error"
+  text="OFFLINE"
+/>
+
+// Loading Spinners
+<LoadingSpinner
+  variant="terminal"
+  style="spinner"
+  text="Loading..."
+  speed="normal"
+/>
+
+<LoadingSpinner
+  variant="matrix"
+  style="dots"
+  text="Processing..."
+/>
+
+<LoadingSpinner
+  variant="retro"
+  style="bars"
+  text="Analyzing..."
+/>
+
+// Trend Indicators
+<TrendIndicator
+  variant="terminal"
+  trend="up"
+  value="$1,234"
+  change="15.2%"
+  animated={true}
+/>
+
+<TrendIndicator
+  variant="matrix"
+  trend="down"
+  value="87.3%"
+  change="3.1%"
+  animated={true}
+/>
+
+<TrendIndicator
+  variant="glow"
+  trend="volatile"
+  value="1.23k"
+  change="±8%"
+/>
+
+// Battery and Signal Indicators
+<BatteryIndicator
+  variant="terminal"
+  level={85}
+  showPercentage={true}
+  animated={true}
+/>
+
+<BatteryIndicator
+  variant="matrix"
+  level={25}
+  charging={true}
+  animated={true}
+/>
+
+<SignalStrength
+  variant="terminal"
+  strength={4}
+  max={5}
+  showValue={true}
+/>
+
+<SignalStrength
+  variant="glow"
+  strength={2}
+  max={5}
+  animated={true}
+/>
+
+// Health and Level Indicators
+<HealthIndicator
+  variant="terminal"
+  health="excellent"
+  showLabel={true}
+  animated={true}
+/>
+
+<HealthIndicator
+  variant="matrix"
+  health="critical"
+  value="12%"
+/>
+
+<LevelIndicator
+  variant="terminal"
+  level={8}
+  maxLevel={10}
+  showValue={true}
+  animated={true}
+/>
+
+<LevelIndicator
+  variant="glow"
+  level={5}
+  maxLevel={10}
+  color="warning"
+/>
+
+// System Monitoring Dashboard Example
+const SystemDashboard = () => {
+  const [metrics, setMetrics] = useState({
+    cpu: 45, memory: 67, disk: 34, network: 78
+  })
+
+  return (
+    <Grid variant="terminal" columns={3} gap="large">
+      {/* Circular Gauges */}
+      <GridItem>
+        <Card variant="terminal">
+          <CardHeader title="CPU USAGE" />
+          <CardBody style={{ textAlign: 'center' }}>
+            <CircularGauge
+              variant="terminal"
+              value={metrics.cpu}
+              style="classic"
+              showPercentage
+              animated
+            />
+          </CardBody>
+        </Card>
+      </GridItem>
+
+      <GridItem>
+        <Card variant="matrix">
+          <CardHeader title="MEMORY" />
+          <CardBody style={{ textAlign: 'center' }}>
+            <CircularGauge
+              variant="matrix"
+              value={metrics.memory}
+              style="digital"
+              color="warning"
+              showPercentage
+              animated
+            />
+          </CardBody>
+        </Card>
+      </GridItem>
+
+      <GridItem>
+        <Card variant="glow">
+          <CardHeader title="NETWORK" />
+          <CardBody>
+            <ProgressBar
+              variant="glow"
+              value={metrics.network}
+              label="Throughput"
+              animated
+              striped
+            />
+          </CardBody>
+        </Card>
+      </GridItem>
+
+      {/* Status Row */}
+      <GridItem columnSpan={3}>
+        <Card variant="terminal">
+          <CardHeader title="SYSTEM STATUS" />
+          <CardBody>
+            <Grid variant="terminal" columns={4} gap="medium">
+              <GridItem style={{ textAlign: 'center' }}>
+                <StatusBadge 
+                  variant="terminal" 
+                  status={metrics.cpu < 80 ? 'online' : 'error'} 
+                  text="CPU"
+                />
+              </GridItem>
+              <GridItem style={{ textAlign: 'center' }}>
+                <BatteryIndicator
+                  variant="terminal"
+                  level={85}
+                  showPercentage
+                />
+              </GridItem>
+              <GridItem style={{ textAlign: 'center' }}>
+                <SignalStrength
+                  variant="terminal"
+                  strength={4}
+                  max={5}
+                />
+              </GridItem>
+              <GridItem style={{ textAlign: 'center' }}>
+                <HealthIndicator
+                  variant="terminal"
+                  health="excellent"
+                  showLabel
+                />
+              </GridItem>
+            </Grid>
+          </CardBody>
+        </Card>
+      </GridItem>
+    </Grid>
+  )
+}
+
+// Multi-Variant Gauge Showcase
+{(['terminal', 'matrix', 'retro', 'minimal', 'glow'] as const).map((variant) => (
+  <div key={variant}>
+    <H2 variant="double-line">{variant.toUpperCase()} GAUGES</H2>
+    
+    <Grid variant={variant} columns={3} gap="large">
+      <GridItem style={{ textAlign: 'center' }}>
+        <CircularGauge
+          variant={variant}
+          value={Math.random() * 100 | 0}
+          style="classic"
+          label="System"
+          animated
+        />
+      </GridItem>
+      
+      <GridItem>
+        <ProgressBar
+          variant={variant}
+          value={Math.random() * 100 | 0}
+          label="Progress"
+          animated
+          striped
+        />
+      </GridItem>
+      
+      <GridItem style={{ textAlign: 'center' }}>
+        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+          <StatusBadge variant={variant} status="online" />
+          <TrendIndicator variant={variant} trend="up" value="↗" />
+          <BatteryIndicator variant={variant} level={75} />
+        </div>
+      </GridItem>
+    </Grid>
+  </div>
+))}
 ```

@@ -1,5 +1,5 @@
 // Import font variables
-@import '../../styles/fonts.scss';
+@use '../../styles/fonts.scss';
 
 // Base typography styles using Hasklug Nerd Font
 .jadis-p, .jadis-span, .jadis-code, .jadis-pre, .jadis-blockquote, .jadis-strong, .jadis-em, .jadis-small, .jadis-mark {
