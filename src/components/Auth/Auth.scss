@@ -1,0 +1,771 @@
+// ===================================
+// AUTH COMPONENTS STYLES
+// ===================================
+
+@import '../../styles/fonts.scss';
+
+// Define font family variable if not already defined
+$jadis-font-family: 'Hasklug Nerd Font', 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'SF Mono', Monaco, Inconsolata, 'Roboto Mono', Consolas, 'Courier New', monospace !default;
+
+// ===================================
+// LOGIN FORM STYLES
+// ===================================
+
+.jadis-login-form {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  
+  // Override card padding to prevent cutoff
+  .jadis-card__body {
+    padding: 1.5rem !important;
+  }
+  
+  .jadis-card__actions {
+    padding: 1rem 1.5rem 1.5rem 1.5rem !important;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+    justify-content: center;
+  }
+
+  &__titles {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+
+  &__subtitle {
+    margin: 0;
+    opacity: 0.8;
+    font-size: 0.875rem;
+  }
+
+  &__error {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border-radius: 2px;
+    font-size: 0.875rem;
+    font-weight: 500;
+
+    // Terminal variant
+    &--terminal {
+      background: rgba(255, 0, 0, 0.1);
+      border: 1px solid #ff3333;
+      color: #ff6666;
+      
+      .jadis-ascii-icon {
+        color: #ff3333;
+      }
+    }
+
+    // Matrix variant
+    &--matrix {
+      background: rgba(255, 0, 100, 0.1);
+      border: 1px solid #ff0066;
+      color: #ff3399;
+      
+      .jadis-ascii-icon {
+        color: #ff0066;
+        text-shadow: 0 0 4px #ff0066;
+      }
+    }
+
+    // Retro variant
+    &--retro {
+      background: rgba(255, 100, 0, 0.1);
+      border: 1px solid #ff6600;
+      color: #ff9933;
+      
+      .jadis-ascii-icon {
+        color: #ff6600;
+      }
+    }
+
+    // Minimal variant
+    &--minimal {
+      background: rgba(200, 200, 200, 0.1);
+      border: 1px solid #999;
+      color: #666;
+      
+      .jadis-ascii-icon {
+        color: #999;
+      }
+    }
+
+    // Glow variant
+    &--glow {
+      background: rgba(200, 0, 255, 0.1);
+      border: 1px solid #c800ff;
+      color: #e066ff;
+      
+      .jadis-ascii-icon {
+        color: #c800ff;
+        text-shadow: 0 0 8px #c800ff;
+      }
+    }
+  }
+
+  &__fields {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 0;
+    
+    // Ensure form fields don't get cut off
+    .jadis-input,
+    .jadis-checkbox {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__submit {
+    width: 100%;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  &__register {
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  &__link {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    // Terminal variant
+    &--terminal {
+      color: #00ff00;
+      
+      &:hover:not(:disabled) {
+        color: #66ff66;
+        text-shadow: 0 0 4px #00ff00;
+      }
+    }
+
+    // Matrix variant
+    &--matrix {
+      color: #00ffff;
+      
+      &:hover:not(:disabled) {
+        color: #66ffff;
+        text-shadow: 0 0 4px #00ffff;
+      }
+    }
+
+    // Retro variant
+    &--retro {
+      color: #ffaa00;
+      
+      &:hover:not(:disabled) {
+        color: #ffcc66;
+      }
+    }
+
+    // Minimal variant
+    &--minimal {
+      color: #888;
+      
+      &:hover:not(:disabled) {
+        color: #aaa;
+      }
+    }
+
+    // Glow variant
+    &--glow {
+      color: #aa66ff;
+      
+      &:hover:not(:disabled) {
+        color: #cc99ff;
+        text-shadow: 0 0 4px #aa66ff;
+      }
+    }
+  }
+
+  &--loading {
+    .jadis-login-form__fields {
+      opacity: 0.6;
+      pointer-events: none;
+    }
+  }
+}
+
+// ===================================
+// REGISTER FORM STYLES
+// ===================================
+
+.jadis-register-form {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  
+  // Override card padding to prevent cutoff
+  .jadis-card__body {
+    padding: 1.5rem !important;
+  }
+  
+  .jadis-card__actions {
+    padding: 1rem 1.5rem 1.5rem 1.5rem !important;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+    justify-content: center;
+  }
+
+  &__titles {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+
+  &__subtitle {
+    margin: 0;
+    opacity: 0.8;
+    font-size: 0.875rem;
+  }
+
+  &__error {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border-radius: 2px;
+    font-size: 0.875rem;
+    font-weight: 500;
+
+    // Same error styles as login form
+    &--terminal {
+      background: rgba(255, 0, 0, 0.1);
+      border: 1px solid #ff3333;
+      color: #ff6666;
+      
+      .jadis-ascii-icon {
+        color: #ff3333;
+      }
+    }
+
+    &--matrix {
+      background: rgba(255, 0, 100, 0.1);
+      border: 1px solid #ff0066;
+      color: #ff3399;
+      
+      .jadis-ascii-icon {
+        color: #ff0066;
+        text-shadow: 0 0 4px #ff0066;
+      }
+    }
+
+    &--retro {
+      background: rgba(255, 100, 0, 0.1);
+      border: 1px solid #ff6600;
+      color: #ff9933;
+      
+      .jadis-ascii-icon {
+        color: #ff6600;
+      }
+    }
+
+    &--minimal {
+      background: rgba(200, 200, 200, 0.1);
+      border: 1px solid #999;
+      color: #666;
+      
+      .jadis-ascii-icon {
+        color: #999;
+      }
+    }
+
+    &--glow {
+      background: rgba(200, 0, 255, 0.1);
+      border: 1px solid #c800ff;
+      color: #e066ff;
+      
+      .jadis-ascii-icon {
+        color: #c800ff;
+        text-shadow: 0 0 8px #c800ff;
+      }
+    }
+  }
+
+  &__fields {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 0;
+    
+    // Ensure form fields don't get cut off
+    .jadis-input,
+    .jadis-checkbox {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__submit {
+    width: 100%;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  &__login {
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  &__link {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    // Same link styles as login form
+    &--terminal {
+      color: #00ff00;
+      
+      &:hover:not(:disabled) {
+        color: #66ff66;
+        text-shadow: 0 0 4px #00ff00;
+      }
+    }
+
+    &--matrix {
+      color: #00ffff;
+      
+      &:hover:not(:disabled) {
+        color: #66ffff;
+        text-shadow: 0 0 4px #00ffff;
+      }
+    }
+
+    &--retro {
+      color: #ffaa00;
+      
+      &:hover:not(:disabled) {
+        color: #ffcc66;
+      }
+    }
+
+    &--minimal {
+      color: #888;
+      
+      &:hover:not(:disabled) {
+        color: #aaa;
+      }
+    }
+
+    &--glow {
+      color: #aa66ff;
+      
+      &:hover:not(:disabled) {
+        color: #cc99ff;
+        text-shadow: 0 0 4px #aa66ff;
+      }
+    }
+  }
+
+  &--loading {
+    .jadis-register-form__fields {
+      opacity: 0.6;
+      pointer-events: none;
+    }
+  }
+}
+
+// ===================================
+// SESSION STATUS STYLES
+// ===================================
+
+.jadis-session-status {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 2px;
+  font-family: $jadis-font-family;
+
+  &__user {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+  }
+
+  &__avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  &__info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__username {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  &__role {
+    font-size: 0.75rem;
+    opacity: 0.8;
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+
+  &__email,
+  &__last-login {
+    margin: 0;
+    font-size: 0.75rem;
+    opacity: 0.7;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  // Compact mode
+  &--compact {
+    padding: 0.5rem 0.75rem;
+
+    .jadis-session-status__avatar {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    .jadis-session-status__actions {
+      gap: 0.25rem;
+    }
+  }
+
+  // Loading state
+  &--loading {
+    opacity: 0.7;
+    
+    .jadis-ascii-icon {
+      animation: jadis-spin 1s linear infinite;
+    }
+  }
+
+  // Guest state
+  &--guest {
+    opacity: 0.6;
+  }
+
+  // Terminal variant
+  &--terminal {
+    background: rgba(0, 255, 0, 0.05);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    color: #00ff00;
+
+    .jadis-session-status__avatar {
+      border-color: rgba(0, 255, 0, 0.3);
+    }
+  }
+
+  // Matrix variant
+  &--matrix {
+    background: rgba(0, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    color: #00ffff;
+
+    .jadis-session-status__avatar {
+      border-color: rgba(0, 255, 255, 0.3);
+    }
+
+    .jadis-ascii-icon {
+      text-shadow: 0 0 4px currentColor;
+    }
+  }
+
+  // Retro variant
+  &--retro {
+    background: rgba(255, 170, 0, 0.05);
+    border: 1px solid rgba(255, 170, 0, 0.2);
+    color: #ffaa00;
+
+    .jadis-session-status__avatar {
+      border-color: rgba(255, 170, 0, 0.3);
+    }
+  }
+
+  // Minimal variant
+  &--minimal {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ccc;
+
+    .jadis-session-status__avatar {
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+  }
+
+  // Glow variant
+  &--glow {
+    background: rgba(170, 102, 255, 0.05);
+    border: 1px solid rgba(170, 102, 255, 0.2);
+    color: #aa66ff;
+
+    .jadis-session-status__avatar {
+      border-color: rgba(170, 102, 255, 0.3);
+    }
+
+    .jadis-ascii-icon {
+      text-shadow: 0 0 8px currentColor;
+    }
+  }
+}
+
+// ===================================
+// AUTH GUARD STYLES
+// ===================================
+
+.jadis-auth-guard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 1.5rem;
+  min-height: 200px;
+
+  &__message {
+    margin: 1rem 0 0 0;
+    opacity: 0.8;
+  }
+
+  // Loading state
+  &--loading {
+    .jadis-ascii-icon {
+      animation: jadis-spin 1s linear infinite;
+    }
+  }
+
+  // Unauthorized state
+  &--unauthorized {
+    color: #ff6666;
+  }
+
+  // Forbidden state
+  &--forbidden {
+    color: #ffaa66;
+  }
+
+  // Terminal variant
+  &--terminal {
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-radius: 2px;
+  }
+
+  // Matrix variant
+  &--matrix {
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    border-radius: 2px;
+
+    .jadis-ascii-icon {
+      text-shadow: 0 0 8px currentColor;
+    }
+  }
+
+  // Retro variant
+  &--retro {
+    background: rgba(42, 24, 16, 0.9);
+    border: 1px solid rgba(255, 170, 0, 0.2);
+    border-radius: 2px;
+  }
+
+  // Minimal variant
+  &--minimal {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+  }
+
+  // Glow variant
+  &--glow {
+    background: rgba(10, 0, 21, 0.9);
+    border: 1px solid rgba(170, 102, 255, 0.2);
+    border-radius: 2px;
+
+    .jadis-ascii-icon {
+      text-shadow: 0 0 12px currentColor;
+    }
+  }
+}
+
+// ===================================
+// LOGOUT CONFIRM STYLES
+// ===================================
+
+.jadis-logout-confirm {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  
+  // Override card padding for proper spacing
+  .jadis-card__body {
+    padding: 1.5rem !important;
+  }
+  
+  .jadis-card__actions {
+    padding: 1rem 1.5rem 1.5rem 1.5rem !important;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+    justify-content: center;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 1rem;
+  }
+
+  &--loading {
+    .jadis-logout-confirm__actions {
+      opacity: 0.6;
+      pointer-events: none;
+    }
+  }
+}
+
+// ===================================
+// RESPONSIVE DESIGN
+// ===================================
+
+@media (max-width: 768px) {
+  .jadis-login-form,
+  .jadis-register-form,
+  .jadis-logout-confirm {
+    max-width: none;
+    margin: 0;
+  }
+
+  .jadis-session-status {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+
+    &__user {
+      justify-content: center;
+    }
+
+    &__actions {
+      justify-content: center;
+    }
+
+    &--compact {
+      flex-direction: row;
+      align-items: center;
+
+      .jadis-session-status__user {
+        justify-content: flex-start;
+      }
+
+      .jadis-session-status__actions {
+        justify-content: flex-end;
+      }
+    }
+  }
+
+  .jadis-logout-confirm__actions {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .jadis-session-status {
+    padding: 0.75rem;
+
+    &__details {
+      display: none;
+    }
+  }
+}
+
+// ===================================
+// ANIMATIONS
+// ===================================
+
+@keyframes jadis-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
