@@ -1,4 +1,5 @@
 @use '../../styles/fonts.scss';
+@use '../../styles/japanese-colors.scss' as jp;
 
 // ===================================
 // BASE BUTTON STYLES
@@ -345,6 +346,167 @@
     box-shadow: 
       0 0 20px rgba(0, 255, 0, 0.3),
       inset 0 0 20px rgba(0, 255, 0, 0.1);
+  }
+}
+
+// ===================================
+// JAPANESE THEME VARIANTS
+// ===================================
+
+// Spring (Haru) - Cherry blossom theme
+.jadis-button--haru {
+  border: 2px solid var(--jadis-jp-sakura-iro);
+  color: var(--jadis-jp-sakura-iro);
+  background: rgba(252, 201, 185, 0.05);
+
+  &:hover:not(:disabled) {
+    background: rgba(252, 201, 185, 0.15);
+    box-shadow: 0 0 15px rgba(252, 201, 185, 0.4);
+    transform: translateY(-2px);
+  }
+
+  &:active:not(:disabled) {
+    background: rgba(252, 201, 185, 0.25);
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  &.jadis-button--outline {
+    background: transparent;
+    &:hover:not(:disabled) {
+      background: var(--jadis-jp-sakura-iro);
+      color: var(--jadis-color-black);
+    }
+  }
+}
+
+// Summer (Natsu) - Deep indigo theme
+.jadis-button--natsu {
+  border: 2px solid var(--jadis-jp-kon-iro);
+  color: var(--jadis-jp-kon-iro);
+  background: rgba(49, 52, 155, 0.05);
+
+  &:hover:not(:disabled) {
+    background: rgba(49, 52, 155, 0.15);
+    box-shadow: 0 0 20px rgba(49, 52, 155, 0.4);
+    transform: translateY(-2px);
+  }
+
+  &:active:not(:disabled) {
+    background: rgba(49, 52, 155, 0.25);
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  &.jadis-button--outline {
+    background: transparent;
+    &:hover:not(:disabled) {
+      background: var(--jadis-jp-kon-iro);
+      color: var(--jadis-color-white);
+    }
+  }
+}
+
+// Autumn (Aki) - Maple red theme
+.jadis-button--aki {
+  border: 2px solid var(--jadis-jp-momiji-iro);
+  color: var(--jadis-jp-momiji-iro);
+  background: rgba(202, 82, 84, 0.05);
+
+  &:hover:not(:disabled) {
+    background: rgba(202, 82, 84, 0.15);
+    box-shadow: 0 0 15px rgba(202, 82, 84, 0.4);
+    transform: translateY(-2px);
+  }
+
+  &:active:not(:disabled) {
+    background: rgba(202, 82, 84, 0.25);
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  &.jadis-button--outline {
+    background: transparent;
+    &:hover:not(:disabled) {
+      background: var(--jadis-jp-momiji-iro);
+      color: var(--jadis-color-white);
+    }
+  }
+}
+
+// Winter (Fuyu) - Snow white theme
+.jadis-button--fuyu {
+  border: 2px solid var(--jadis-jp-yukishiro);
+  color: var(--jadis-jp-yukishiro);
+  background: rgba(255, 255, 252, 0.05);
+
+  &:hover:not(:disabled) {
+    background: rgba(255, 255, 252, 0.15);
+    box-shadow: 0 0 25px rgba(255, 255, 252, 0.3);
+    transform: translateY(-2px);
+  }
+
+  &:active:not(:disabled) {
+    background: rgba(255, 255, 252, 0.25);
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  &.jadis-button--outline {
+    background: transparent;
+    &:hover:not(:disabled) {
+      background: var(--jadis-jp-yukishiro);
+      color: var(--jadis-color-black);
+    }
+  }
+}
+
+// Traditional ink (Sumi) theme
+.jadis-button--sumi {
+  border: 3px double var(--jadis-jp-sumi-iro);
+  color: var(--jadis-jp-sumi-iro);
+  background: rgba(30, 30, 30, 0.1);
+  font-weight: bold;
+
+  &:hover:not(:disabled) {
+    background: rgba(30, 30, 30, 0.2);
+    box-shadow: 2px 2px 0 var(--jadis-jp-sumi-iro);
+    transform: translate(-1px, -1px);
+  }
+
+  &:active:not(:disabled) {
+    background: rgba(30, 30, 30, 0.3);
+    transform: translate(0, 0);
+    box-shadow: none;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  &.jadis-button--outline {
+    background: transparent;
+    &:hover:not(:disabled) {
+      background: var(--jadis-jp-sumi-iro);
+      color: var(--jadis-color-white);
+    }
   }
 }
 

@@ -48,8 +48,8 @@ const ProgressBarMeta: Meta<typeof ProgressBar> = {
   argTypes: {
     variant: {
       control: { type: 'select' },
-      options: ['terminal', 'matrix', 'retro', 'minimal', 'glow'],
-      description: 'Visual variant of the progress bar',
+      options: ['terminal', 'matrix', 'retro', 'minimal', 'glow', 'haru', 'natsu', 'aki', 'fuyu', 'sumi'],
+      description: 'Visual variant of the progress bar - includes Japanese seasonal themes',
     },
     value: {
       control: { type: 'range', min: 0, max: 100, step: 1 },
@@ -709,6 +709,269 @@ export const SystemMonitoringDashboard: StoryObj = {
         </Grid>
       </div>
     )
+  },
+}
+
+// ===================================
+// JAPANESE SEASONAL THEME SHOWCASE
+// ===================================
+
+export const JapaneseSeasonalGauges: StoryObj = {
+  render: () => {
+    const [values] = useState({
+      haru: 72,   // Spring
+      natsu: 85,  // Summer  
+      aki: 45,    // Autumn
+      fuyu: 28,   // Winter
+      sumi: 60    // Ink
+    })
+
+    return (
+      <div style={{ padding: '2rem' }}>
+        <H1 variant="terminal" style={{ marginBottom: '2rem', color: 'var(--jadis-jp-sumi-iro)' }}>
+          四季計器 (Shiki Keiki) - Seasonal Gauges
+        </H1>
+
+        <Grid columns={1} gap="large">
+          {/* Spring (Haru) - Cherry Blossom Theme */}
+          <GridItem>
+            <Card variant="minimal">
+              <CardHeader>
+                <H3 variant="minimal" style={{ color: 'var(--jadis-jp-sakura-iro)' }}>
+                  春 (Haru) - Spring Metrics
+                </H3>
+              </CardHeader>
+              <CardBody>
+                <Grid columns={2} gap="medium">
+                  <GridItem>
+                    <ProgressBar
+                      variant="haru"
+                      value={values.haru}
+                      label="桜開花 (Cherry Blossom Progress)"
+                      showPercentage
+                      animated
+                      color="primary"
+                    />
+                  </GridItem>
+                  <GridItem>
+                    <CircularGauge
+                      variant="haru"
+                      value={values.haru}
+                      label="春の暖かさ (Spring Warmth)"
+                      showPercentage
+                      style="dots"
+                    />
+                  </GridItem>
+                </Grid>
+              </CardBody>
+            </Card>
+          </GridItem>
+
+          {/* Summer (Natsu) - Deep Indigo Theme */}
+          <GridItem>
+            <Card variant="minimal">
+              <CardHeader>
+                <H3 variant="minimal" style={{ color: 'var(--jadis-jp-kon-iro)' }}>
+                  夏 (Natsu) - Summer Metrics
+                </H3>
+              </CardHeader>
+              <CardBody>
+                <Grid columns={2} gap="medium">
+                  <GridItem>
+                    <ProgressBar
+                      variant="natsu"
+                      value={values.natsu}
+                      label="夏の熱 (Summer Heat)"
+                      showPercentage
+                      striped
+                      color="warning"
+                    />
+                  </GridItem>
+                  <GridItem>
+                    <LinearGauge
+                      variant="natsu"
+                      value={values.natsu}
+                      orientation="horizontal"
+                      label="波の高さ (Wave Height)"
+                      showValue
+                      animated
+                    />
+                  </GridItem>
+                </Grid>
+              </CardBody>
+            </Card>
+          </GridItem>
+
+          {/* Autumn (Aki) - Maple Red Theme */}
+          <GridItem>
+            <Card variant="minimal">
+              <CardHeader>
+                <H3 variant="minimal" style={{ color: 'var(--jadis-jp-momiji-iro)' }}>
+                  秋 (Aki) - Autumn Metrics
+                </H3>
+              </CardHeader>
+              <CardBody>
+                <Grid columns={2} gap="medium">
+                  <GridItem>
+                    <ProgressBar
+                      variant="aki"
+                      value={values.aki}
+                      label="紅葉進行 (Autumn Leaves Progress)"
+                      showPercentage
+                      color="error"
+                    />
+                  </GridItem>
+                  <GridItem>
+                    <ASCIIMeter
+                      variant="aki"
+                      value={values.aki}
+                      style="blocks"
+                      label="収穫量 (Harvest Level)"
+                      showValue
+                    />
+                  </GridItem>
+                </Grid>
+              </CardBody>
+            </Card>
+          </GridItem>
+
+          {/* Winter (Fuyu) - Snow White Theme */}
+          <GridItem>
+            <Card variant="minimal">
+              <CardHeader>
+                <H3 variant="minimal" style={{ color: 'var(--jadis-jp-yukishiro)' }}>
+                  冬 (Fuyu) - Winter Metrics
+                </H3>
+              </CardHeader>
+              <CardBody>
+                <Grid columns={2} gap="medium">
+                  <GridItem>
+                    <ProgressBar
+                      variant="fuyu"
+                      value={values.fuyu}
+                      label="雪の深さ (Snow Depth)"
+                      showPercentage
+                      color="info"
+                    />
+                  </GridItem>
+                  <GridItem>
+                    <CircularGauge
+                      variant="fuyu"
+                      value={values.fuyu}
+                      label="氷結度 (Freezing Level)"
+                      showValue
+                      style="retro"
+                    />
+                  </GridItem>
+                </Grid>
+              </CardBody>
+            </Card>
+          </GridItem>
+
+          {/* Traditional Sumi Ink Theme */}
+          <GridItem>
+            <Card variant="minimal">
+              <CardHeader>
+                <H3 variant="minimal" style={{ color: 'var(--jadis-jp-sumi-iro)' }}>
+                  墨 (Sumi) - Ink Metrics
+                </H3>
+              </CardHeader>
+              <CardBody>
+                <Grid columns={3} gap="medium">
+                  <GridItem>
+                    <ProgressBar
+                      variant="sumi"
+                      value={values.sumi}
+                      label="筆圧 (Brush Pressure)"
+                      showValue
+                    />
+                  </GridItem>
+                  <GridItem>
+                    <ASCIIMeter
+                      variant="sumi"
+                      value={values.sumi}
+                      style="retro"
+                      label="墨濃度 (Ink Density)"
+                    />
+                  </GridItem>
+                  <GridItem>
+                    <LinearGauge
+                      variant="sumi"
+                      value={values.sumi}
+                      orientation="vertical"
+                      label="筆跡 (Stroke)"
+                      height={150}
+                    />
+                  </GridItem>
+                </Grid>
+              </CardBody>
+            </Card>
+          </GridItem>
+        </Grid>
+
+        {/* Status Indicators with Japanese Themes */}
+        <Card variant="minimal" style={{ marginTop: '2rem' }}>
+          <CardHeader>
+            <H2 variant="minimal" style={{ color: 'var(--jadis-jp-sumi-iro)' }}>
+              和風状態指示器 (Japanese Status Indicators)
+            </H2>
+          </CardHeader>
+          <CardBody>
+            <Grid columns={5} gap="medium">
+              <GridItem>
+                <div style={{ textAlign: 'center' }}>
+                  <StatusLight variant="haru" status="active" label="春" pulse />
+                  <P variant="minimal" size="small" style={{ marginTop: '0.5rem', color: 'var(--jadis-jp-sakura-iro)' }}>
+                    Haru Active
+                  </P>
+                </div>
+              </GridItem>
+              <GridItem>
+                <div style={{ textAlign: 'center' }}>
+                  <StatusBadge variant="natsu" status="online" text="夏" />
+                  <P variant="minimal" size="small" style={{ marginTop: '0.5rem', color: 'var(--jadis-jp-kon-iro)' }}>
+                    Natsu Online
+                  </P>
+                </div>
+              </GridItem>
+              <GridItem>
+                <div style={{ textAlign: 'center' }}>
+                  <TrendIndicator variant="aki" trend="down" value={-5} label="秋" />
+                  <P variant="minimal" size="small" style={{ marginTop: '0.5rem', color: 'var(--jadis-jp-momiji-iro)' }}>
+                    Aki Trend
+                  </P>
+                </div>
+              </GridItem>
+              <GridItem>
+                <div style={{ textAlign: 'center' }}>
+                  <HealthIndicator variant="fuyu" health={80} label="冬" />
+                  <P variant="minimal" size="small" style={{ marginTop: '0.5rem', color: 'var(--jadis-jp-yukishiro)' }}>
+                    Fuyu Health
+                  </P>
+                </div>
+              </GridItem>
+              <GridItem>
+                <div style={{ textAlign: 'center' }}>
+                  <BatteryIndicator variant="sumi" level={60} label="墨" animated />
+                  <P variant="minimal" size="small" style={{ marginTop: '0.5rem', color: 'var(--jadis-jp-sumi-iro)' }}>
+                    Sumi Battery
+                  </P>
+                </div>
+              </GridItem>
+            </Grid>
+          </CardBody>
+        </Card>
+      </div>
+    )
+  },
+  parameters: {
+    backgrounds: { default: 'dark' },
+    layout: 'fullscreen',
+    docs: {
+      description: {
+        story: 'Showcase of gauge components with Japanese seasonal themes inspired by traditional colors and aesthetics.',
+      },
+    },
   },
 }
 

@@ -115,7 +115,10 @@ jadis/
 │   ├── styles/            # Global styling system
 │   │   ├── fonts.scss     # Hasklug Nerd Font + CSS variables
 │   │   ├── themes.scss    # Multi-theme system (5 themes)
-│   │   └── effects.scss   # Special effects animations
+│   │   ├── effects.scss   # Special effects animations
+│   │   ├── japanese-colors.scss # Traditional Japanese color system (200+ colors)
+│   │   ├── japanese-colors.d.ts # TypeScript interfaces for Japanese colors
+│   │   └── index.ts       # Style exports and Japanese color utilities
 │   ├── stories/           # Example Storybook components
 │   │   ├── Button.tsx     # Example button component
 │   │   ├── Header.tsx     # Example header component
@@ -177,6 +180,17 @@ Comprehensive Storybook setup includes:
 - **ASCII Art Styling**: 90's BBS and TUI-inspired visual design
 - **Terminal Aesthetics**: Hasklug Nerd Font, retro colors, text shadows
 - **Theme System**: 5 distinct ASCII-art aesthetic themes with CSS custom properties
+- **Japanese Seasonal Themes**: Traditional Japanese color integration with 5 seasonal variants:
+  - **Haru (春)**: Spring/Cherry Blossom theme with soft pink tones
+  - **Natsu (夏)**: Summer/Deep Indigo theme representing summer nights
+  - **Aki (秋)**: Autumn/Maple Red theme capturing autumn foliage
+  - **Fuyu (冬)**: Winter/Snow White theme for winter purity
+  - **Sumi (墨)**: Traditional black ink theme for calligraphy aesthetics
+- **Japanese Color System**: 200+ traditional Japanese colors as CSS custom properties
+  - Organized by color families (Red/Violet, Red, Yellow/Red, Yellow, etc.)
+  - Preserved cultural naming (kanji, romanization, English translation)
+  - Semantic mappings for terminal-friendly usage
+  - Full TypeScript support with interfaces and types
 - **Special Effects**: Glitch-art, CRT monitor simulation, scanlines, enhanced glow
 - **Radix UI** as the foundational UI primitive library
 - **SCSS styling** with component-specific stylesheets and global theme variables
@@ -248,7 +262,7 @@ Comprehensive Storybook setup includes:
 
 #### **Button Components**
 - **Button**: Comprehensive button with multiple options
-  - Variants: `terminal`, `matrix`, `retro`, `minimal`, `glow`
+  - Variants: `terminal`, `matrix`, `retro`, `minimal`, `glow`, `haru`, `natsu`, `aki`, `fuyu`, `sumi`
   - Colors: `primary`, `secondary`, `success`, `warning`, `error`, `info`
   - Sizes: `small`, `medium`, `large`, `full-width`
   - Features: Ripple effects, loading states, glow animations, outline styles
@@ -476,7 +490,7 @@ Comprehensive Storybook setup includes:
 
 #### **Gauges and Indicators System**
 - **ProgressBar**: Enhanced horizontal progress bars with ASCII styling and animation support
-  - Multiple Variants: All 5 Jadis variants with authentic terminal aesthetics and color theming
+  - Multiple Variants: All 10 Jadis variants (including Japanese seasonal themes) with authentic terminal aesthetics and color theming
   - Value Display: Configurable percentage and absolute value display with text overlays
   - Visual Effects: Striped patterns, pulse animations, and customizable color schemes
   - Size Options: Small, medium, large scaling with proper thickness adjustment
@@ -540,6 +554,7 @@ Comprehensive Storybook setup includes:
 
 #### **Image Area and ASCII Art System**
 - **ImageArea**: Advanced image display component with CSS compositing and retro digital effects
+  - Variants: `terminal`, `matrix`, `retro`, `minimal`, `glow`, `haru`, `natsu`, `aki`, `fuyu`, `sumi`
   - CSS Compositing: Multiple image layers with blend modes (multiply, screen, overlay, darken, lighten, color-dodge, etc.)
   - Layer System: Image layer transformations including offset, scale, rotate, opacity, and custom filters
   - Retro Digital Effects: Pixelation and posterization effects for authentic 8-bit/16-bit aesthetics
@@ -547,12 +562,14 @@ Comprehensive Storybook setup includes:
   - Loading States: Placeholder and error fallback handling with ASCII-styled loading indicators
   - Responsive Design: Flexible aspect ratios, multiple size presets, and mobile optimization
 - **ASCIIArt**: Specialized component for terminal-style text art and decorative elements
+  - Variants: All 10 variants including Japanese seasonal themes for culturally-themed ASCII art
   - Typewriter Effect: Character-by-character animation revealing for authentic terminal feel
   - ASCII Art Library: Curated collection of terminal, matrix, and retro ASCII artwork
   - Interactive Animations: Floating, glowing, and pulsing effects for ASCII art display
   - Bordered Display: Optional ASCII-styled borders using box-drawing characters
   - Caption System: Titled ASCII art with variant-consistent caption styling
 - **Gallery**: Grid-based image gallery with compositing and effects support
+  - Variants: Full Japanese theme support for seasonal gallery presentations
   - Composite Galleries: Each gallery image supports full layer compositing system
   - Responsive Grids: Configurable columns with automatic mobile adaptation
   - Click Handling: Interactive image selection with callback support

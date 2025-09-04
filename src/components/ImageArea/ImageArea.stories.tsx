@@ -20,8 +20,8 @@ const meta: Meta<typeof ImageArea> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['terminal', 'matrix', 'retro', 'minimal', 'glow'],
-      description: 'Visual style variant'
+      options: ['terminal', 'matrix', 'retro', 'minimal', 'glow', 'haru', 'natsu', 'aki', 'fuyu', 'sumi'],
+      description: 'Visual style variant - includes Japanese seasonal themes'
     },
     size: {
       control: 'select', 
@@ -975,5 +975,150 @@ export const RetroGamingInterface: Story = {
         story: 'Retro gaming interface showcasing image compositing and ASCII art with typewriter effects',
       },
     },
+  }
+}
+
+// ===================================
+// JAPANESE SEASONAL THEME STORIES
+// ===================================
+
+export const JapaneseSeasons: Story = {
+  render: () => (
+    <div style={{ padding: '2rem' }}>
+      <h2 style={{ 
+        textAlign: 'center', 
+        marginBottom: '2rem',
+        color: 'var(--jadis-jp-sumi-iro)',
+        fontSize: '1.5rem',
+        fontWeight: 'bold'
+      }}>
+        四季 (Shiki) - The Four Seasons
+      </h2>
+      
+      <div style={{ 
+        display: 'grid', 
+        gridTemplateColumns: 'repeat(2, 1fr)', 
+        gap: '2rem',
+        marginBottom: '3rem' 
+      }}>
+        <div style={{ textAlign: 'center' }}>
+          <h3 style={{ color: 'var(--jadis-jp-sakura-iro)', marginBottom: '1rem' }}>
+            春 (Haru) - Spring
+          </h3>
+          <ImageArea
+            variant="haru"
+            src="https://picsum.photos/300/300?random=100"
+            alt="Cherry blossoms"
+            size="medium"
+            aspectRatio="1 / 1"
+            bordered
+          />
+          <p style={{ 
+            color: 'var(--jadis-jp-sakura-iro)', 
+            fontSize: '0.8rem', 
+            marginTop: '0.5rem',
+            opacity: 0.8
+          }}>
+            Cherry blossom theme
+          </p>
+        </div>
+
+        <div style={{ textAlign: 'center' }}>
+          <h3 style={{ color: 'var(--jadis-jp-kon-iro)', marginBottom: '1rem' }}>
+            夏 (Natsu) - Summer
+          </h3>
+          <ImageArea
+            variant="natsu"
+            src="https://picsum.photos/300/300?random=101"
+            alt="Summer night"
+            size="medium"
+            aspectRatio="1 / 1"
+            bordered
+          />
+          <p style={{ 
+            color: 'var(--jadis-jp-kon-iro)', 
+            fontSize: '0.8rem', 
+            marginTop: '0.5rem',
+            opacity: 0.8
+          }}>
+            Deep indigo theme
+          </p>
+        </div>
+
+        <div style={{ textAlign: 'center' }}>
+          <h3 style={{ color: 'var(--jadis-jp-momiji-iro)', marginBottom: '1rem' }}>
+            秋 (Aki) - Autumn
+          </h3>
+          <ImageArea
+            variant="aki"
+            src="https://picsum.photos/300/300?random=102"
+            alt="Autumn leaves"
+            size="medium"
+            aspectRatio="1 / 1"
+            bordered
+          />
+          <p style={{ 
+            color: 'var(--jadis-jp-momiji-iro)', 
+            fontSize: '0.8rem', 
+            marginTop: '0.5rem',
+            opacity: 0.8
+          }}>
+            Maple red theme
+          </p>
+        </div>
+
+        <div style={{ textAlign: 'center' }}>
+          <h3 style={{ color: 'var(--jadis-jp-yukishiro)', marginBottom: '1rem' }}>
+            冬 (Fuyu) - Winter
+          </h3>
+          <ImageArea
+            variant="fuyu"
+            src="https://picsum.photos/300/300?random=103"
+            alt="Snow landscape"
+            size="medium"
+            aspectRatio="1 / 1"
+            bordered
+          />
+          <p style={{ 
+            color: 'var(--jadis-jp-yukishiro)', 
+            fontSize: '0.8rem', 
+            marginTop: '0.5rem',
+            opacity: 0.8
+          }}>
+            Snow white theme
+          </p>
+        </div>
+      </div>
+
+      <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+        <h3 style={{ color: 'var(--jadis-jp-sumi-iro)', marginBottom: '1rem' }}>
+          墨 (Sumi) - Traditional Ink
+        </h3>
+        <ImageArea
+          variant="sumi"
+          src="https://picsum.photos/400/300?random=104"
+          alt="Traditional landscape"
+          size="large"
+          aspectRatio="4 / 3"
+          bordered
+        />
+        <p style={{ 
+          color: 'var(--jadis-jp-sumi-iro)', 
+          fontSize: '0.8rem', 
+          marginTop: '0.5rem',
+          opacity: 0.8
+        }}>
+          Calligraphy ink theme for monochrome aesthetics
+        </p>
+      </div>
+    </div>
+  ),
+  parameters: {
+    layout: 'fullscreen',
+    docs: {
+      description: {
+        story: 'Showcase of Japanese seasonal themes inspired by traditional color theory and cultural aesthetics.'
+      }
+    }
   }
 }

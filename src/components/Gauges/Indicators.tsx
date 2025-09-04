@@ -3,7 +3,7 @@ import { ASCIIIcon } from '../Icons/Icons'
 import './Gauges.scss'
 
 // Common Types (reuse from Gauges)
-export type IndicatorVariant = 'terminal' | 'matrix' | 'retro' | 'minimal' | 'glow'
+export type IndicatorVariant = 'terminal' | 'matrix' | 'retro' | 'minimal' | 'glow' | 'haru' | 'natsu' | 'aki' | 'fuyu' | 'sumi'
 export type IndicatorColor = 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info'
 export type IndicatorSize = 'small' | 'medium' | 'large'
 

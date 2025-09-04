@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './ImageArea.scss'
 
 // Common Types
-export type ImageVariant = 'terminal' | 'matrix' | 'retro' | 'minimal' | 'glow'
+export type ImageVariant = 'terminal' | 'matrix' | 'retro' | 'minimal' | 'glow' | 'haru' | 'natsu' | 'aki' | 'fuyu' | 'sumi'
 export type ImageSize = 'small' | 'medium' | 'large' | 'fill'
 export type ImageFit = 'cover' | 'contain' | 'fill' | 'scale-down' | 'none'
 export type BlendMode = 'normal' | 'multiply' | 'screen' | 'overlay' | 'darken' | 'lighten' | 'color-dodge' | 'color-burn' | 'hard-light' | 'soft-light' | 'difference' | 'exclusion' | 'hue' | 'saturation' | 'color' | 'luminosity'
