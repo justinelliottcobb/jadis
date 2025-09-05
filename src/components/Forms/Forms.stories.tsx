@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
-import { Input, TextArea, Radio, RadioGroup, Checkbox, Select, Form } from './Forms'
+import { Input, TextArea, Radio, RadioGroup, Checkbox, Select, Combobox, Form } from './Forms'
 import { ThemeProvider } from '../ThemeProvider'
 import { H1, H2 } from '../Headers'
 import { P } from '../Typography'
@@ -549,4 +549,372 @@ export const ValidationStates: StoryObj = {
       </div>
     </ThemeProvider>
   ),
+}
+
+// ===================================
+// COMBOBOX STORIES
+// ===================================
+
+const languageOptions = [
+  { value: 'js', label: 'JavaScript', description: 'Dynamic programming language' },
+  { value: 'ts', label: 'TypeScript', description: 'JavaScript with static types' },
+  { value: 'py', label: 'Python', description: 'High-level programming language' },
+  { value: 'rs', label: 'Rust', description: 'Systems programming language' },
+  { value: 'go', label: 'Go', description: 'Fast and simple language' },
+  { value: 'cpp', label: 'C++', description: 'Low-level programming language' },
+  { value: 'java', label: 'Java', description: 'Object-oriented language' },
+  { value: 'cs', label: 'C#', description: 'Microsoft .NET language' },
+]
+
+const frameworkOptions = [
+  { value: 'react', label: 'React', description: 'UI component library' },
+  { value: 'vue', label: 'Vue.js', description: 'Progressive framework' },
+  { value: 'angular', label: 'Angular', description: 'Full-featured framework' },
+  { value: 'svelte', label: 'Svelte', description: 'Compile-time framework' },
+  { value: 'next', label: 'Next.js', description: 'React with SSR' },
+  { value: 'nuxt', label: 'Nuxt.js', description: 'Vue with SSR' },
+]
+
+export const Combobox_Default: StoryObj<typeof Combobox> = {
+  render: () => {
+    const [value, setValue] = useState('')
+    
+    return (
+      <ThemeProvider theme="terminal">
+        <div style={{ padding: '2rem', maxWidth: '400px' }}>
+          <H2>Default Combobox</H2>
+          <Combobox
+            variant="terminal"
+            label="Select Programming Language"
+            options={languageOptions}
+            value={value}
+            onChange={(val, option) => {
+              setValue(val)
+              console.log('Selected:', val, option)
+            }}
+            placeholder="Search languages..."
+          />
+          <P style={{ marginTop: '1rem', color: '#00ff00' }}>
+            Selected: {value || 'None'}
+          </P>
+        </div>
+      </ThemeProvider>
+    )
+  },
+}
+
+export const Combobox_AllVariants: StoryObj<typeof Combobox> = {
+  render: () => {
+    const variants = ['terminal', 'matrix', 'retro', 'minimal', 'glow'] as const
+    const [values, setValues] = useState<Record<string, string>>({})
+    
+    return (
+      <ThemeProvider theme="terminal">
+        <div style={{ padding: '2rem' }}>
+          <H1>Combobox Variants</H1>
+          <div style={{ display: 'grid', gap: '2rem', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
+            {variants.map((variant) => (
+              <div key={variant}>
+                <H2 style={{ textTransform: 'uppercase', marginBottom: '1rem' }}>{variant}</H2>
+                <Combobox
+                  variant={variant}
+                  label={`${variant} Framework`}
+                  options={frameworkOptions}
+                  value={values[variant] || ''}
+                  onChange={(val) => setValues(prev => ({ ...prev, [variant]: val }))}
+                  placeholder="Search frameworks..."
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </ThemeProvider>
+    )
+  },
+}
+
+export const Combobox_CustomFiltering: StoryObj<typeof Combobox> = {
+  render: () => {
+    const [value, setValue] = useState('')
+    
+    // Custom filter that prioritizes exact matches
+    const customFilter = (query: string, options: typeof languageOptions) => {
+      const lowerQuery = query.toLowerCase()
+      
+      // Exact matches first
+      const exactMatches = options.filter(opt => 
+        opt.label.toLowerCase() === lowerQuery || opt.value.toLowerCase() === lowerQuery
+      )
+      
+      // Then partial matches
+      const partialMatches = options.filter(opt => 
+        !exactMatches.includes(opt) && 
+        (opt.label.toLowerCase().includes(lowerQuery) || 
+         opt.description?.toLowerCase().includes(lowerQuery))
+      )
+      
+      return [...exactMatches, ...partialMatches]
+    }
+    
+    return (
+      <ThemeProvider theme="matrix">
+        <div style={{ padding: '2rem', maxWidth: '400px' }}>
+          <H2>Custom Filtering</H2>
+          <P style={{ marginBottom: '1rem' }}>
+            This combobox uses custom filtering logic that prioritizes exact matches.
+          </P>
+          <Combobox
+            variant="matrix"
+            label="Programming Language"
+            options={languageOptions}
+            value={value}
+            onChange={(val) => setValue(val)}
+            onFilter={customFilter}
+            placeholder="Try typing 'js' or 'python'..."
+          />
+          <P style={{ marginTop: '1rem', color: '#00ff41' }}>
+            Selected: {value || 'None'}
+          </P>
+        </div>
+      </ThemeProvider>
+    )
+  },
+}
+
+export const Combobox_AsyncLoading: StoryObj<typeof Combobox> = {
+  render: () => {
+    const [value, setValue] = useState('')
+    const [options, setOptions] = useState<typeof languageOptions>([])
+    const [loading, setLoading] = useState(false)
+    
+    const simulateAsyncSearch = (query: string) => {
+      if (!query.trim()) {
+        setOptions([])
+        return
+      }
+      
+      setLoading(true)
+      
+      // Simulate API delay
+      setTimeout(() => {
+        const filtered = languageOptions.filter(opt =>
+          opt.label.toLowerCase().includes(query.toLowerCase()) ||
+          opt.description?.toLowerCase().includes(query.toLowerCase())
+        )
+        setOptions(filtered)
+        setLoading(false)
+      }, 500)
+    }
+    
+    return (
+      <ThemeProvider theme="glow">
+        <div style={{ padding: '2rem', maxWidth: '400px' }}>
+          <H2>Async Loading</H2>
+          <P style={{ marginBottom: '1rem' }}>
+            This combobox simulates async data loading with a 500ms delay.
+          </P>
+          <Combobox
+            variant="glow"
+            label="Search Languages"
+            options={options}
+            value={value}
+            onChange={(val) => setValue(val)}
+            onFilter={(query) => {
+              simulateAsyncSearch(query)
+              return options // Return current options during filtering
+            }}
+            loading={loading}
+            loadingText="Searching..."
+            noOptionsText="No languages found"
+            placeholder="Start typing to search..."
+          />
+          <P style={{ marginTop: '1rem', color: '#00ffff' }}>
+            Selected: {value || 'None'}
+          </P>
+        </div>
+      </ThemeProvider>
+    )
+  },
+}
+
+export const Combobox_States: StoryObj<typeof Combobox> = {
+  render: () => {
+    const [errorValue, setErrorValue] = useState('')
+    const [loadingValue, setLoadingValue] = useState('')
+    const [customValue, setCustomValue] = useState('')
+    
+    return (
+      <ThemeProvider theme="retro">
+        <div style={{ padding: '2rem' }}>
+          <H1>Combobox States</H1>
+          
+          <div style={{ display: 'grid', gap: '2rem', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
+            {/* Error State */}
+            <div>
+              <H2>Error State</H2>
+              <Combobox
+                variant="retro"
+                label="Framework Selection"
+                options={frameworkOptions}
+                value={errorValue}
+                onChange={(val) => setErrorValue(val)}
+                error
+                errorMessage="Please select a valid framework"
+                placeholder="Select framework..."
+              />
+            </div>
+            
+            {/* Loading State */}
+            <div>
+              <H2>Loading State</H2>
+              <Combobox
+                variant="retro"
+                label="Fetching Data"
+                options={frameworkOptions}
+                value={loadingValue}
+                onChange={(val) => setLoadingValue(val)}
+                loading
+                loadingText="Loading frameworks..."
+                placeholder="Please wait..."
+              />
+            </div>
+            
+            {/* Custom Values Allowed */}
+            <div>
+              <H2>Custom Values</H2>
+              <Combobox
+                variant="retro"
+                label="Custom Language"
+                options={languageOptions}
+                value={customValue}
+                onChange={(val, option) => {
+                  setCustomValue(val)
+                  if (!option) {
+                    console.log('Custom value entered:', val)
+                  }
+                }}
+                allowCustomValue
+                clearable
+                placeholder="Type or select..."
+              />
+              <P style={{ marginTop: '0.5rem', fontSize: '0.85rem', opacity: 0.8 }}>
+                Try typing a custom language name
+              </P>
+            </div>
+            
+            {/* Non-clearable */}
+            <div>
+              <H2>Non-clearable</H2>
+              <Combobox
+                variant="retro"
+                label="Required Selection"
+                options={frameworkOptions}
+                value=""
+                onChange={() => {}}
+                clearable={false}
+                placeholder="Must select option..."
+              />
+            </div>
+          </div>
+        </div>
+      </ThemeProvider>
+    )
+  },
+}
+
+export const Combobox_Interactive: StoryObj<typeof Combobox> = {
+  render: () => {
+    const [selectedLanguage, setSelectedLanguage] = useState('')
+    const [selectedFramework, setSelectedFramework] = useState('')
+    const [customOptions, setCustomOptions] = useState(frameworkOptions)
+    
+    const addCustomFramework = () => {
+      const name = prompt('Enter framework name:')
+      if (name) {
+        const newOption = {
+          value: name.toLowerCase().replace(/\s+/g, '-'),
+          label: name,
+          description: 'Custom framework'
+        }
+        setCustomOptions(prev => [...prev, newOption])
+      }
+    }
+    
+    return (
+      <ThemeProvider theme="minimal">
+        <div style={{ padding: '2rem', maxWidth: '600px' }}>
+          <H1>Interactive Combobox Demo</H1>
+          
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+            <div>
+              <Combobox
+                variant="minimal"
+                label="Primary Language"
+                options={languageOptions}
+                value={selectedLanguage}
+                onChange={(val, option) => {
+                  setSelectedLanguage(val)
+                  console.log('Language selected:', val, option)
+                }}
+                placeholder="Choose your main programming language..."
+              />
+            </div>
+            
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
+                <label style={{ color: '#61dafb', fontSize: '0.9rem', fontWeight: 'bold' }}>
+                  Favorite Framework
+                </label>
+                <button
+                  onClick={addCustomFramework}
+                  style={{
+                    background: '#61dafb',
+                    color: '#000',
+                    border: 'none',
+                    padding: '0.25rem 0.5rem',
+                    fontSize: '0.75rem',
+                    cursor: 'pointer',
+                    borderRadius: '2px'
+                  }}
+                >
+                  Add Custom
+                </button>
+              </div>
+              <Combobox
+                variant="minimal"
+                options={customOptions}
+                value={selectedFramework}
+                onChange={(val) => setSelectedFramework(val)}
+                placeholder="Select or search frameworks..."
+                maxHeight="150px"
+              />
+            </div>
+            
+            {(selectedLanguage || selectedFramework) && (
+              <div style={{
+                padding: '1rem',
+                border: '2px solid #61dafb',
+                borderRadius: '4px',
+                backgroundColor: 'rgba(97, 218, 251, 0.05)'
+              }}>
+                <H2 style={{ marginBottom: '1rem' }}>Your Selection</H2>
+                <P>
+                  <strong>Language:</strong> {selectedLanguage || 'None selected'}
+                </P>
+                <P>
+                  <strong>Framework:</strong> {selectedFramework || 'None selected'}
+                </P>
+                {selectedLanguage && selectedFramework && (
+                  <P style={{ color: '#61dafb', marginTop: '1rem' }}>
+                    Great choice! {languageOptions.find(l => l.value === selectedLanguage)?.label} + {' '}
+                    {customOptions.find(f => f.value === selectedFramework)?.label} is a powerful combination.
+                  </P>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+      </ThemeProvider>
+    )
+  },
 }
