@@ -1,0 +1,1029 @@
+// ===================================
+// JAPANESE TRADITIONAL COLORS
+// ===================================
+
+/**
+ * Traditional Japanese Color System for Jadis
+ * Based on classical pigments and dyes - "what might have been" 
+ * if these colors were available in the ASCII/terminal era
+ * 
+ * Each color includes:
+ * - Original Japanese name (kanji/hiragana)
+ * - Romanization (romaji)
+ * - English translation
+ * - Hex and RGB values
+ * 
+ * Organized by traditional color families
+ */
+
+// ===================================
+// RED/VIOLET SERIES
+// ===================================
+
+:root {
+  // 一斤染 (Ikkonzome) - One kin dye
+  --jadis-jp-ikkonzome: #F08F90;
+  --jadis-jp-ikkonzome-rgb: 240, 143, 144;
+  
+  // 桃色 (Momo-iro) - Peach-colored
+  --jadis-jp-momo-iro: #F47983;
+  --jadis-jp-momo-iro-rgb: 244, 121, 131;
+  
+  // 紅梅色 (Kōbai-iro) - Red plum colored
+  --jadis-jp-kobai-iro: #DB5A6B;
+  --jadis-jp-kobai-iro-rgb: 219, 90, 107;
+  
+  // 中紅 (Nakabeni) - Medium crimson dye
+  --jadis-jp-nakabeni: #C93756;
+  --jadis-jp-nakabeni-rgb: 201, 55, 86;
+  
+  // 桜色 (Sakura-iro) - Cherry blossom color
+  --jadis-jp-sakura-iro: #FCC9B9;
+  --jadis-jp-sakura-iro-rgb: 252, 201, 185;
+  
+  // 退紅 (Arazome) - Washed-out crimson dye
+  --jadis-jp-arazome: #FFB3A7;
+  --jadis-jp-arazome-rgb: 255, 179, 167;
+  
+  // 薄紅 (Usubeni) - Pale crimson dye
+  --jadis-jp-usubeni: #F2666C;
+  --jadis-jp-usubeni-rgb: 242, 102, 108;
+}
+
+// ===================================
+// RED SERIES
+// ===================================
+
+:root {
+  // 鴇羽色 (Tokiha-iro) - Ibis wing color
+  --jadis-jp-tokiha-iro: #F58F84;
+  --jadis-jp-tokiha-iro-rgb: 245, 143, 132;
+  
+  // 桜鼠 (Sakuranezumi) - Cherry blossom mouse grey
+  --jadis-jp-sakuranezumi: #AC8181;
+  --jadis-jp-sakuranezumi-rgb: 172, 129, 118;
+  
+  // 長春色 (Chōshun-iro) - Long spring color
+  --jadis-jp-choshun-iro: #B95754;
+  --jadis-jp-choshun-iro-rgb: 185, 87, 84;
+  
+  // 唐紅/韓紅 (Karakurenai) - Foreign crimson
+  --jadis-jp-karakurenai: #C91F37;
+  --jadis-jp-karakurenai-rgb: 201, 31, 55;
+  
+  // 臙脂色 (Enji-iro) - Cochineal red/rouge
+  --jadis-jp-enji-iro: #9D2933;
+  --jadis-jp-enji-iro-rgb: 157, 41, 51;
+  
+  // 深緋 (Kokiake) - Deep scarlet
+  --jadis-jp-kokiake: #7B3B3A;
+  --jadis-jp-kokiake-rgb: 123, 59, 58;
+  
+  // 甚三紅 (Jinzamomi) - Thrice-dyed crimson
+  --jadis-jp-jinzamomi: #F7665A;
+  --jadis-jp-jinzamomi-rgb: 247, 102, 90;
+  
+  // 水がき (Mizugaki) - Water persimmon
+  --jadis-jp-mizugaki: #B56C60;
+  --jadis-jp-mizugaki-rgb: 181, 108, 96;
+  
+  // 梅鼠 (Umenezumi) - Plum-blossom mouse grey
+  --jadis-jp-umenezumi: #97645A;
+  --jadis-jp-umenezumi-rgb: 151, 100, 90;
+  
+  // 蘇芳香 (Su'ōkō) - Sappanwood incense
+  --jadis-jp-suoko: #A24F46;
+  --jadis-jp-suoko-rgb: 162, 79, 70;
+  
+  // 赤紅 (Akabeni) - Pure crimson dye
+  --jadis-jp-akabeni: #C3272B;
+  --jadis-jp-akabeni-rgb: 195, 39, 43;
+  
+  // 真朱 (Shinshu) - True red
+  --jadis-jp-shinshu: #8F1D21;
+  --jadis-jp-shinshu-rgb: 143, 29, 33;
+  
+  // 小豆色 (Azuki-iro) - Azuki bean color
+  --jadis-jp-azuki-iro: #672422;
+  --jadis-jp-azuki-iro-rgb: 103, 36, 34;
+  
+  // 銀朱 (Ginshu) - Greyed red
+  --jadis-jp-ginshu: #BC2D29;
+  --jadis-jp-ginshu-rgb: 188, 45, 41;
+  
+  // 海老茶 (Ebicha) - Maroon (shrimp brown)
+  --jadis-jp-ebicha: #5E2824;
+  --jadis-jp-ebicha-rgb: 94, 40, 36;
+  
+  // 栗梅 (Kiriume) - Red-brown (chestnut-plum)
+  --jadis-jp-kiriume: #8B352D;
+  --jadis-jp-kiriume-rgb: 139, 53, 45;
+  
+  // 曙色 (Akebono-iro) - Dawn-color
+  --jadis-jp-akebono-iro: #FA7B62;
+  --jadis-jp-akebono-iro-rgb: 250, 123, 98;
+  
+  // 珊瑚色 (Sango-iro) - Coral color
+  --jadis-jp-sango-iro: #F8674F;
+  --jadis-jp-sango-iro-rgb: 248, 103, 79;
+  
+  // 猩々緋 (Shōjōhi) - Red-orange (orangutan-colored)
+  --jadis-jp-shojohi: #DC3023;
+  --jadis-jp-shojohi-rgb: 220, 48, 35;
+  
+  // 芝翫茶 (Shikancha) - Wilted brown
+  --jadis-jp-shikancha: #AB4C3D;
+  --jadis-jp-shikancha-rgb: 171, 76, 61;
+  
+  // 柿渋色 (Kakishibu-iro) - Persimmon-juice color
+  --jadis-jp-kakishibu-iro: #934337;
+  --jadis-jp-kakishibu-iro-rgb: 147, 67, 55;
+  
+  // 紅樺 (Benikaba) - Red birch
+  --jadis-jp-benikaba: #9D2B22;
+  --jadis-jp-benikaba-rgb: 157, 43, 34;
+  
+  // 紅鳶 (Benitobi) - Red kite
+  --jadis-jp-benitobi: #913228;
+  --jadis-jp-benitobi-rgb: 145, 50, 40;
+  
+  // 紅檜皮 (Benihibata) - Cypress bark red
+  --jadis-jp-benihibata: #6F3028;
+  --jadis-jp-benihibata-rgb: 111, 48, 40;
+  
+  // 黒鳶 (Kurotobi) - Black kite
+  --jadis-jp-kurotobi: #351E1C;
+  --jadis-jp-kurotobi-rgb: 53, 30, 28;
+  
+  // 紅緋 (Benihi) - Blood red
+  --jadis-jp-benihi: #F35336;
+  --jadis-jp-benihi-rgb: 243, 83, 54;
+  
+  // 照柿 (Terigaki) - Glazed persimmon
+  --jadis-jp-terigaki: #D34E36;
+  --jadis-jp-terigaki-rgb: 211, 78, 54;
+  
+  // 緋 (Ake) - Scarlet (blood)
+  --jadis-jp-ake: #CF3A24;
+  --jadis-jp-ake-rgb: 207, 58, 36;
+  
+  // 江戸茶 (Edocha) - Red-brown (Edo brown)
+  --jadis-jp-edocha: #A13D2D;
+  --jadis-jp-edocha-rgb: 161, 61, 45;
+  
+  // 紅柄色 (Bengara-iro) - Dyestalk red
+  --jadis-jp-bengara-iro: #913225;
+  --jadis-jp-bengara-iro-rgb: 145, 50, 37;
+  
+  // 檜皮色 (Hihada-iro) - Cypress bark color
+  --jadis-jp-hihada-iro: #752E23;
+  --jadis-jp-hihada-iro-rgb: 117, 46, 35;
+  
+  // 宍色 (Shishi-iro) - Meat-color
+  --jadis-jp-shishi-iro: #F9906F;
+  --jadis-jp-shishi-iro-rgb: 249, 144, 111;
+  
+  // 洗朱 (Araishu) - Rinsed-out red
+  --jadis-jp-araishu: #FF7952;
+  --jadis-jp-araishu-rgb: 255, 121, 82;
+  
+  // 赤香色 (Akakō-iro) - Red incense-colored
+  --jadis-jp-akako-iro: #F07F5E;
+  --jadis-jp-akako-iro-rgb: 240, 127, 94;
+  
+  // ときがら茶 (Tokigaracha) - Brewed mustard-brown
+  --jadis-jp-tokigaracha: #E68364;
+  --jadis-jp-tokigaracha-rgb: 230, 131, 100;
+  
+  // 黄丹 (Ōtan) - Ochre
+  --jadis-jp-otan: #FF4E20;
+  --jadis-jp-otan-rgb: 255, 78, 32;
+  
+  // 蘇比 (Sohi) - Overdyed/refreshed red-brown
+  --jadis-jp-sohi: #E35C38;
+  --jadis-jp-sohi-rgb: 227, 92, 56;
+  
+  // 遠州茶 (Enshūcha) - Muddy brown
+  --jadis-jp-enshucha: #CB6649;
+  --jadis-jp-enshucha-rgb: 203, 102, 73;
+  
+  // 唐茶 (Karacha) - Spicy red-brown
+  --jadis-jp-karacha: #B35C44;
+  --jadis-jp-karacha-rgb: 179, 92, 68;
+  
+  // 樺茶 (Kabacha) - Birch brown
+  --jadis-jp-kabacha: #B14A30;
+  --jadis-jp-kabacha-rgb: 177, 74, 48;
+  
+  // 宗傳唐茶 (Sōdenkaracha) - Faded spicy red-brown
+  --jadis-jp-sodenkaracha: #9B533F;
+  --jadis-jp-sodenkaracha-rgb: 155, 83, 63;
+  
+  // 雀茶 (Suzumecha) - Sparrow-brown
+  --jadis-jp-suzumecha: #8C4736;
+  --jadis-jp-suzumecha-rgb: 140, 71, 54;
+  
+  // 栗皮茶 (Kurikawacha) - Chestnut-leather brown
+  --jadis-jp-kurikawacha: #60281E;
+  --jadis-jp-kurikawacha-rgb: 96, 40, 30;
+  
+  // 百塩茶 (Momoshiocha) - Boiled red bean brown
+  --jadis-jp-momoshiocha: #542D24;
+  --jadis-jp-momoshiocha-rgb: 84, 45, 36;
+  
+  // 鳶色 (Tobi-iro) - Ibis-color
+  --jadis-jp-tobi-iro: #4C221B;
+  --jadis-jp-tobi-iro-rgb: 76, 34, 27;
+  
+  // 朱色 (Shu-iro) - Cinnabar-color
+  --jadis-jp-shu-iro: #FF3500;
+  --jadis-jp-shu-iro-rgb: 255, 53, 0;
+}
+
+// ===================================
+// YELLOW/RED SERIES
+// ===================================
+
+:root {
+  // 胡桃染 (Kurumizome) - Walnut-dyed
+  --jadis-jp-kurumizome: #9F7462;
+  --jadis-jp-kurumizome-rgb: 159, 116, 98;
+  
+  // 蒲色 (Kaba-iro) - Cattail color
+  --jadis-jp-kaba-iro: #B64925;
+  --jadis-jp-kaba-iro-rgb: 182, 73, 37;
+  
+  // 黄櫨染 (Kōrozen) - Sumac-dyed
+  --jadis-jp-korozen: #592B1F;
+  --jadis-jp-korozen-rgb: 89, 43, 31;
+  
+  // 焦茶 (Kogecha) - Scorched brown
+  --jadis-jp-kogecha: #351F19;
+  --jadis-jp-kogecha-rgb: 53, 31, 25;
+  
+  // 深支子 (Kokikuchinashi) - Rich gardenia
+  --jadis-jp-kokikuchinashi: #F57F4F;
+  --jadis-jp-kokikuchinashi-rgb: 245, 127, 79;
+  
+  // 洗柿 (Araigaki) - Washed-out persimmon
+  --jadis-jp-araigaki: #EC8254;
+  --jadis-jp-araigaki-rgb: 236, 130, 84;
+  
+  // 代赭色 (Taisha-iro) - Red ochre color
+  --jadis-jp-taisha-iro: #9F5233;
+  --jadis-jp-taisha-iro-rgb: 159, 82, 51;
+  
+  // 赤白橡 (Akashirotsurubami) - Sawtooth oak
+  --jadis-jp-akashirotsurubami: #EC956C;
+  --jadis-jp-akashirotsurubami-rgb: 236, 149, 108;
+  
+  // 礪茶 (Tonocha) - Polished brown
+  --jadis-jp-tonocha: #985538;
+  --jadis-jp-tonocha-rgb: 152, 85, 56;
+  
+  // 煎茶色 (Sencha-iro) - Green tea-colored
+  --jadis-jp-sencha-iro: #824B35;
+  --jadis-jp-sencha-iro-rgb: 130, 75, 53;
+  
+  // 洒落柿 (Sharegaki) - Stylish persimmon
+  --jadis-jp-sharegaki: #FFA26B;
+  --jadis-jp-sharegaki-rgb: 255, 162, 107;
+  
+  // 薄柿 (Usugaki) - Pale persimmon
+  --jadis-jp-usugaki: #FCA474;
+  --jadis-jp-usugaki-rgb: 252, 164, 116;
+  
+  // 萱草色 (Kanzō-iro) - Daylily-colored
+  --jadis-jp-kanzo-iro: #FF8936;
+  --jadis-jp-kanzo-iro-rgb: 255, 137, 54;
+  
+  // 梅染 (Umezome) - Plum-dyed
+  --jadis-jp-umezome: #FA9258;
+  --jadis-jp-umezome-rgb: 250, 146, 88;
+  
+  // 紅鬱金 (Beni'ukon) - Red-bronze
+  --jadis-jp-beni-ukon: #FB8136;
+  --jadis-jp-beni-ukon-rgb: 251, 129, 54;
+  
+  // 丁子茶 (Chōjicha) - Clove-brown
+  --jadis-jp-chojicha: #8F583C;
+  --jadis-jp-chojicha-rgb: 143, 88, 60;
+  
+  // 憲法染 (Kenpōzome) - Legal dye
+  --jadis-jp-kenpozome: #2E211B;
+  --jadis-jp-kenpozome-rgb: 46, 33, 27;
+  
+  // 枇杷茶 (Biwacha) - Loquat tree-brown
+  --jadis-jp-biwacha: #AB6134;
+  --jadis-jp-biwacha-rgb: 171, 97, 52;
+  
+  // 琥珀色 (Kohaku-iro) - Amber color
+  --jadis-jp-kohaku-iro: #CA6924;
+  --jadis-jp-kohaku-iro-rgb: 202, 105, 36;
+  
+  // 淡香 (Usukō) - Pale incense
+  --jadis-jp-usuko: #FFA565;
+  --jadis-jp-usuko-rgb: 255, 165, 101;
+  
+  // 朽葉色 (Kuchiba-iro) - Decaying leaves color
+  --jadis-jp-kuchiba-iro: #D57835;
+  --jadis-jp-kuchiba-iro-rgb: 213, 120, 53;
+  
+  // 金茶 (Kincha) - Golden brown
+  --jadis-jp-kincha: #C66B27;
+  --jadis-jp-kincha-rgb: 198, 107, 39;
+  
+  // 丁子染 (Chōjizome) - Clove-dyed
+  --jadis-jp-chojizome: #A96232;
+  --jadis-jp-chojizome-rgb: 169, 98, 50;
+  
+  // 狐色 (Kitsune-iro) - Fox-color
+  --jadis-jp-kitsune-iro: #985629;
+  --jadis-jp-kitsune-iro-rgb: 152, 86, 41;
+  
+  // 柴染 (Fushizome) - Brushwood-dyed
+  --jadis-jp-fushizome: #8C5939;
+  --jadis-jp-fushizome-rgb: 140, 89, 57;
+  
+  // 伽羅色 (Kyara-iro) - Aloewood-color
+  --jadis-jp-kyara-iro: #6A432D;
+  --jadis-jp-kyara-iro-rgb: 106, 67, 45;
+  
+  // 煤竹色 (Susutake-iro) - Weathered bamboo
+  --jadis-jp-susutake-iro: #593A27;
+  --jadis-jp-susutake-iro-rgb: 89, 58, 39;
+  
+  // 白茶 (Shiracha) - White tea-colored
+  --jadis-jp-shiracha: #C48E69;
+  --jadis-jp-shiracha-rgb: 196, 142, 105;
+  
+  // 黄土色 (Ōdo-iro) - Ochre
+  --jadis-jp-odo-iro: #BE7F51;
+  --jadis-jp-odo-iro-rgb: 190, 127, 81;
+  
+  // 銀煤竹 (Kinsusutake) - Golden-grey bamboo
+  --jadis-jp-kinsusutake: #7D4E2D;
+  --jadis-jp-kinsusutake-rgb: 125, 78, 45;
+  
+  // 黄唐茶 (Kigaracha) - Chinese yellow tea-colored
+  --jadis-jp-kigaracha: #B7702D;
+  --jadis-jp-kigaracha-rgb: 183, 112, 45;
+  
+  // 媚茶 (Kobicha) - Kobi tea
+  --jadis-jp-kobicha: #6B4423;
+  --jadis-jp-kobicha-rgb: 107, 68, 35;
+  
+  // 赤朽葉 (Akakuchiba) - Red fallen leaves
+  --jadis-jp-akakuchiba: #DB8449;
+  --jadis-jp-akakuchiba-rgb: 219, 132, 73;
+}
+
+// ===================================
+// YELLOW SERIES
+// ===================================
+
+:root {
+  // 浅黄 (Asagi) - Light yellow
+  --jadis-jp-asagi: #F7BB7D;
+  --jadis-jp-asagi-rgb: 247, 187, 125;
+  
+  // 山吹色 (Yamabuki-iro) - Golden yellow
+  --jadis-jp-yamabuki-iro: #FFA400;
+  --jadis-jp-yamabuki-iro-rgb: 255, 164, 0;
+  
+  // 玉子色 (Tamago-iro) - Egg-colored
+  --jadis-jp-tamago-iro: #FFA631;
+  --jadis-jp-tamago-iro-rgb: 255, 166, 49;
+  
+  // 櫨染 (Hajizome) - Sumac-dyed
+  --jadis-jp-hajizome: #E08A1E;
+  --jadis-jp-hajizome-rgb: 224, 138, 30;
+  
+  // 山吹茶 (Yamabukicha) - Gold-brown
+  --jadis-jp-yamabukicha: #CB7E1F;
+  --jadis-jp-yamabukicha-rgb: 203, 126, 31;
+  
+  // 桑染 (Kuwazome) - Mulberry-dyed
+  --jadis-jp-kuwazome: #C57F2E;
+  --jadis-jp-kuwazome-rgb: 197, 127, 46;
+  
+  // 生壁色 (Namakabe-iro) - Undried plaster color
+  --jadis-jp-namakabe-iro: #785E49;
+  --jadis-jp-namakabe-iro-rgb: 120, 94, 73;
+  
+  // 梔子 (Kuchinashi) - Cape jasmine/gardenia
+  --jadis-jp-kuchinashi: #FFB95A;
+  --jadis-jp-kuchinashi-rgb: 255, 185, 90;
+  
+  // 玉蜀黍色 (Tōmorokoshi-iro) - Corn-colored
+  --jadis-jp-tomorokoshi-iro: #FAA945;
+  --jadis-jp-tomorokoshi-iro-rgb: 250, 169, 69;
+  
+  // 白橡 (Shirotsurubami) - White oak
+  --jadis-jp-shirotsurubami: #CE9F6F;
+  --jadis-jp-shirotsurubami-rgb: 206, 159, 111;
+  
+  // 黄橡 (Kitsurubami) - Golden oak
+  --jadis-jp-kitsurubami: #BB8141;
+  --jadis-jp-kitsurubami-rgb: 187, 129, 65;
+  
+  // 藤黄 (Tō'ō) - Gamboge
+  --jadis-jp-too: #FFB61E;
+  --jadis-jp-too-rgb: 255, 182, 30;
+  
+  // 花葉色 (Hanaba-iro) - Floral leaf-colored
+  --jadis-jp-hanaba-iro: #FFB94E;
+  --jadis-jp-hanaba-iro-rgb: 255, 185, 78;
+  
+  // 鳥の子色 (Torinoko-iro) - Eggshell paper-colored
+  --jadis-jp-torinoko-iro: #E2BE9F;
+  --jadis-jp-torinoko-iro-rgb: 226, 190, 159;
+  
+  // 鬱金色 (Ukon-iro) - Turmeric-colored
+  --jadis-jp-ukon-iro: #E69B3A;
+  --jadis-jp-ukon-iro-rgb: 230, 155, 58;
+  
+  // 黄朽葉 (Kikuchiba) - Golden fallen leaves
+  --jadis-jp-kikuchiba: #E29C45;
+  --jadis-jp-kikuchiba-rgb: 226, 156, 69;
+  
+  // 利休白茶 (Rikyūshiracha) - Faded Sen no Rikyū's tea
+  --jadis-jp-rikyushiracha: #B0927A;
+  --jadis-jp-rikyushiracha-rgb: 176, 146, 122;
+  
+  // 利休茶 (Rikyūcha) - Sen no Rikyū's tea
+  --jadis-jp-rikyucha: #826B58;
+  --jadis-jp-rikyucha-rgb: 130, 107, 88;
+  
+  // 灰汁色 (Aku-iro) - Lye-colored
+  --jadis-jp-aku-iro: #7F6B5D;
+  --jadis-jp-aku-iro-rgb: 127, 107, 93;
+  
+  // 肥後煤竹 (Higosusutake) - Japanese iris and sooty bamboo
+  --jadis-jp-higosusutake: #7F5D3B;
+  --jadis-jp-higosusutake-rgb: 127, 93, 59;
+  
+  // 路考茶 (Rokōcha) - Contemplation in tea garden
+  --jadis-jp-rokocha: #665343;
+  --jadis-jp-rokocha-rgb: 102, 83, 67;
+  
+  // 海松茶 (Mirucha) - Simmered seaweed
+  --jadis-jp-mirucha: #4C3D30;
+  --jadis-jp-mirucha-rgb: 76, 61, 48;
+  
+  // 菜種油色 (Nataneyu-iro) - Rapeseed oil-colored
+  --jadis-jp-nataneyu-iro: #A17917;
+  --jadis-jp-nataneyu-iro-rgb: 161, 121, 23;
+  
+  // 黄海松茶 (Kimirucha) - Yellow sea pine-brown
+  --jadis-jp-kimirucha: #896C39;
+  --jadis-jp-kimirucha-rgb: 137, 108, 57;
+  
+  // 鶯茶 (Uguisucha) - Japanese bush warbler-brown
+  --jadis-jp-uguisucha: #5C4827;
+  --jadis-jp-uguisucha-rgb: 92, 72, 39;
+  
+  // 菜の花色 (Nanohanacha) - Rape-blossom brown
+  --jadis-jp-nanohanacha: #E3B130;
+  --jadis-jp-nanohanacha-rgb: 227, 177, 48;
+  
+  // 苅萱 (Kariyasu) - Japanese triandra grass
+  --jadis-jp-kariyasu: #E2B13C;
+  --jadis-jp-kariyasu-rgb: 226, 177, 60;
+  
+  // 黄蘗 (Kihada) - Amur cork tree
+  --jadis-jp-kihada: #F3C13A;
+  --jadis-jp-kihada-rgb: 243, 193, 58;
+  
+  // 蒸栗色 (Mushikuri-iro) - Steamed chestnut color
+  --jadis-jp-mushikuri-iro: #D3B17D;
+  --jadis-jp-mushikuri-iro-rgb: 211, 177, 125;
+  
+  // 青朽葉 (Aokuchiba) - Pale fallen leaves
+  --jadis-jp-aokuchiba: #AA8736;
+  --jadis-jp-aokuchiba-rgb: 170, 135, 54;
+  
+  // 鶸茶 (Hiwacha) - Finch-brown
+  --jadis-jp-hiwacha: #957B38;
+  --jadis-jp-hiwacha-rgb: 149, 123, 56;
+  
+  // 女郎花 (Ominaeshi) - Patrinia flowers
+  --jadis-jp-ominaeshi: #D9B611;
+  --jadis-jp-ominaeshi-rgb: 217, 182, 17;
+  
+  // 鶯色 (Uguisu-iro) - Japanese bush warbler-colored
+  --jadis-jp-uguisu-iro: #645530;
+  --jadis-jp-uguisu-iro-rgb: 100, 85, 48;
+}
+
+// ===================================
+// YELLOW/GREEN SERIES  
+// ===================================
+
+:root {
+  // 鶸色 (Hiwa-iro) - Greenfinch color
+  --jadis-jp-hiwa-iro: #BDA928;
+  --jadis-jp-hiwa-iro-rgb: 189, 169, 40;
+  
+  // 青白橡 (Aoshirotsurubami) - Pale oak
+  --jadis-jp-aoshirotsurubami: #BBA46D;
+  --jadis-jp-aoshirotsurubami-rgb: 187, 164, 109;
+  
+  // 柳茶 (Yanagicha) - Willow tea
+  --jadis-jp-yanagicha: #9C8A4D;
+  --jadis-jp-yanagicha-rgb: 156, 138, 77;
+  
+  // 璃寛茶 (Rikancha) - Rikan brown
+  --jadis-jp-rikancha: #534A32;
+  --jadis-jp-rikancha-rgb: 83, 74, 50;
+  
+  // 藍媚茶 (Aikobicha) - Indigo tea
+  --jadis-jp-aikobicha: #473F2D;
+  --jadis-jp-aikobicha-rgb: 71, 63, 45;
+  
+  // 苔色 (Koke-iro) - Moss color
+  --jadis-jp-koke-iro: #8B7D3A;
+  --jadis-jp-koke-iro-rgb: 139, 125, 58;
+  
+  // 海松色 (Miru-iro) - Codium fragile seaweed color
+  --jadis-jp-miru-iro: #524B2A;
+  --jadis-jp-miru-iro-rgb: 82, 75, 42;
+  
+  // 千歳茶 (Sensaicha) - Thousand year old brown
+  --jadis-jp-sensaicha: #3B3429;
+  --jadis-jp-sensaicha-rgb: 59, 52, 41;
+  
+  // 梅幸茶 (Baikōcha) - Baiko brown
+  --jadis-jp-baikocha: #857C55;
+  --jadis-jp-baikocha-rgb: 133, 124, 85;
+  
+  // 岩井茶 (Iwaicha) - Iwai brown
+  --jadis-jp-iwaicha: #5E5545;
+  --jadis-jp-iwaicha-rgb: 94, 85, 69;
+  
+  // 鶸萌黄 (Hiwamo'egi) - Siskin sprout yellow
+  --jadis-jp-hiwamoegi: #7A942E;
+  --jadis-jp-hiwamoegi-rgb: 122, 148, 46;
+  
+  // 柳煤竹 (Yanagisusutake) - Sooty willow bamboo
+  --jadis-jp-yanagisusutake: #4D4B3A;
+  --jadis-jp-yanagisusutake-rgb: 77, 75, 58;
+  
+  // 裏柳 (Urahayanagi) - Underside of willow leaves
+  --jadis-jp-urahayanagi: #BCB58C;
+  --jadis-jp-urahayanagi-rgb: 188, 181, 140;
+  
+  // 淡萌黄 (Usumo'egi) - Pale young green onion
+  --jadis-jp-usumoegi: #8DB255;
+  --jadis-jp-usumoegi-rgb: 141, 178, 85;
+  
+  // 柳染 (Yanagizome) - Willow-dyed
+  --jadis-jp-yanagizome: #8C9E5E;
+  --jadis-jp-yanagizome-rgb: 140, 158, 94;
+  
+  // 萌黄 (Mo'egi) - Fresh onion
+  --jadis-jp-moegi: #5B8930;
+  --jadis-jp-moegi-rgb: 91, 137, 48;
+  
+  // 青丹 (Aoni) - Blue-black clay
+  --jadis-jp-aoni: #52593B;
+  --jadis-jp-aoni-rgb: 82, 89, 59;
+  
+  // 松葉色 (Matsuba-iro) - Pine needle color
+  --jadis-jp-matsuba-iro: #454D32;
+  --jadis-jp-matsuba-iro-rgb: 69, 77, 50;
+}
+
+// ===================================
+// GREEN/BLUE-GREEN SERIES
+// ===================================
+
+:root {
+  // 薄青 (Usu'ao) - Pale blue
+  --jadis-jp-usuao: #8C9C76;
+  --jadis-jp-usuao-rgb: 140, 156, 118;
+  
+  // 若竹色 (Wakatake-iro) - Young bamboo color
+  --jadis-jp-wakatake-iro: #6B9362;
+  --jadis-jp-wakatake-iro-rgb: 107, 147, 98;
+  
+  // 柳鼠 (Yanaginezumi) - Willow grey
+  --jadis-jp-yanaginezumi: #817B69;
+  --jadis-jp-yanaginezumi-rgb: 129, 123, 105;
+  
+  // 老竹色 (Oitake-iro) - Old bamboo color
+  --jadis-jp-oitake-iro: #5E644F;
+  --jadis-jp-oitake-iro-rgb: 94, 100, 79;
+  
+  // 千歳緑 (Chitosemidori) - Thousand year old green
+  --jadis-jp-chitosemidori: #374231;
+  --jadis-jp-chitosemidori-rgb: 55, 66, 49;
+  
+  // 緑 (Midori) - Green
+  --jadis-jp-midori: #2A603B;
+  --jadis-jp-midori-rgb: 42, 96, 59;
+  
+  // 白緑 (Byakuroku) - Whitish green
+  --jadis-jp-byakuroku: #A5BA93;
+  --jadis-jp-byakuroku-rgb: 165, 186, 147;
+  
+  // 錆青磁 (Sabiseiji) - Rusty celadon
+  --jadis-jp-sabiseiji: #898A74;
+  --jadis-jp-sabiseiji-rgb: 137, 138, 116;
+  
+  // 緑青 (Rokushō) - Patina
+  --jadis-jp-rokusho: #407A52;
+  --jadis-jp-rokusho-rgb: 64, 122, 82;
+  
+  // 木賊色 (Tokusa-iro) - Horsetail color
+  --jadis-jp-tokusa-iro: #3D5D42;
+  --jadis-jp-tokusa-iro-rgb: 61, 93, 66;
+  
+  // 御納戸茶 (Onandocha) - Storeroom brown
+  --jadis-jp-onandocha: #3D4035;
+  --jadis-jp-onandocha-rgb: 61, 64, 53;
+  
+  // 青竹色 (Aotake-iro) - Green bamboo color
+  --jadis-jp-aotake-iro: #006442;
+  --jadis-jp-aotake-iro-rgb: 0, 100, 66;
+  
+  // 利休鼠 (Rikyūnezumi) - Greyish dark green
+  --jadis-jp-rikyunezumi: #656255;
+  --jadis-jp-rikyunezumi-rgb: 101, 98, 85;
+  
+  // びろうど (Birōdo) - Velvet
+  --jadis-jp-birodo: #224634;
+  --jadis-jp-birodo-rgb: 34, 70, 52;
+  
+  // 虫襖 (Mushi'ao) - Insect screen
+  --jadis-jp-mushiao: #2D4436;
+  --jadis-jp-mushiao-rgb: 45, 68, 54;
+  
+  // 藍海松茶 (Aimirucha) - Indigo Codium fragile seaweed brown
+  --jadis-jp-aimirucha: #2E372E;
+  --jadis-jp-aimirucha-rgb: 46, 55, 46;
+  
+  // 沈香茶 (Tonocha) - Aloeswood brown
+  --jadis-jp-tonocha-alt: #5A6457;
+  --jadis-jp-tonocha-alt-rgb: 90, 100, 87;
+  
+  // 水浅葱 (Mizu'asagi) - Pale green onion
+  --jadis-jp-mizuasagi: #749F8D;
+  --jadis-jp-mizuasagi-rgb: 116, 159, 141;
+  
+  // 青磁色 (Seiji-iro) - Celadon color
+  --jadis-jp-seiji-iro: #819C8B;
+  --jadis-jp-seiji-iro-rgb: 129, 156, 139;
+  
+  // 青碧 (Seiheki) - Blue-green
+  --jadis-jp-seiheki: #3A6960;
+  --jadis-jp-seiheki-rgb: 58, 105, 96;
+  
+  // 錆鉄御納戸 (Sabitetsuonando) - Rusty storeroom
+  --jadis-jp-sabitetsuonando: #3A403B;
+  --jadis-jp-sabitetsuonando-rgb: 58, 64, 59;
+  
+  // 鉄色 (Tetsu-iro) - Iron color
+  --jadis-jp-tetsu-iro: #2B3733;
+  --jadis-jp-tetsu-iro-rgb: 43, 55, 51;
+  
+  // 御召茶 (Omeshicha) - Silk crepe brown
+  --jadis-jp-omeshicha: #354E4B;
+  --jadis-jp-omeshicha-rgb: 53, 78, 75;
+  
+  // 高麗納戸 (Kōrainando) - Goryeo storeroom
+  --jadis-jp-korainando: #203838;
+  --jadis-jp-korainando-rgb: 32, 56, 56;
+}
+
+// ===================================
+// BLUE/BLUE-VIOLET SERIES
+// ===================================
+
+:root {
+  // 湊鼠 (Minatonezumi) - Harbor rat
+  --jadis-jp-minatonezumi: #757D75;
+  --jadis-jp-minatonezumi-rgb: 117, 125, 117;
+  
+  // 青鈍 (Aonibi) - Dull blue
+  --jadis-jp-aonibi: #4F4944;
+  --jadis-jp-aonibi-rgb: 79, 73, 68;
+  
+  // 鉄御納戸 (Tetsuonando) - Iron storage
+  --jadis-jp-tetsuonando: #2B3736;
+  --jadis-jp-tetsuonando-rgb: 43, 55, 54;
+  
+  // 水色 (Mizu-iro) - Aqua blue color
+  --jadis-jp-mizu-iro: #86ABA5;
+  --jadis-jp-mizu-iro-rgb: 134, 171, 165;
+  
+  // 錆浅葱 (Sabi'asagi) - Rusted light-blue
+  --jadis-jp-sabiasagi: #6A7F7A;
+  --jadis-jp-sabiasagi-rgb: 106, 127, 122;
+  
+  // 瓶覗 (Kamenozoki) - Inside of a bottle
+  --jadis-jp-kamenozoki: #C6C2B6;
+  --jadis-jp-kamenozoki-rgb: 198, 194, 182;
+  
+  // 浅葱色 (Asagi-iro) - Light blue color
+  --jadis-jp-asagi-iro: #48929B;
+  --jadis-jp-asagi-iro-rgb: 72, 146, 155;
+  
+  // 新橋色 (Shinbashi-iro) - "New Bridge" color
+  --jadis-jp-shinbashi-iro: #006C7F;
+  --jadis-jp-shinbashi-iro-rgb: 0, 108, 127;
+  
+  // 錆御納戸 (Sabi'onando) - Rusty storage
+  --jadis-jp-sabionando: #455859;
+  --jadis-jp-sabionando-rgb: 69, 88, 89;
+  
+  // 藍鼠 (Ainezumi) - Mousy indigo
+  --jadis-jp-ainezumi: #5C544E;
+  --jadis-jp-ainezumi-rgb: 92, 84, 78;
+  
+  // 藍色 (Ai-iro) - Indigo color
+  --jadis-jp-ai-iro: #264348;
+  --jadis-jp-ai-iro-rgb: 38, 67, 72;
+  
+  // 御納戸色 (Onando-iro) - Onando color
+  --jadis-jp-onando-iro: #364141;
+  --jadis-jp-onando-iro-rgb: 54, 65, 65;
+  
+  // 花浅葱 (Hana'asagi) - Light blue flower
+  --jadis-jp-hana-asagi: #1D697C;
+  --jadis-jp-hana-asagi-rgb: 29, 105, 124;
+  
+  // 千草色 (Chigusa-iro) - Thousand herb color
+  --jadis-jp-chigusa-iro: #317589;
+  --jadis-jp-chigusa-iro-rgb: 49, 117, 137;
+  
+  // 舛花色 (Masuhana-iro) - Opposite flower color
+  --jadis-jp-masuhana-iro: #4D646C;
+  --jadis-jp-masuhana-iro-rgb: 77, 100, 108;
+  
+  // 縹 (Hanada) - Light blue silk
+  --jadis-jp-hanada: #044F67;
+  --jadis-jp-hanada-rgb: 4, 79, 103;
+  
+  // 熨斗目花色 (Noshimehana-iro) - Iron head flower color
+  --jadis-jp-noshimehana-iro: #344D56;
+  --jadis-jp-noshimehana-iro-rgb: 52, 77, 86;
+  
+  // 御召御納戸 (Omeshi'onando) - Kimono storage
+  --jadis-jp-omeshi-onando: #3D4C51;
+  --jadis-jp-omeshi-onando-rgb: 61, 76, 81;
+  
+  // 空色 (Sora-iro) - Sky blue color
+  --jadis-jp-sora-iro: #4D8FAC;
+  --jadis-jp-sora-iro-rgb: 77, 143, 172;
+  
+  // 黒橡 (Kurotsurubami) - Black chestnut oak
+  --jadis-jp-kurotsurubami: #252321;
+  --jadis-jp-kurotsurubami-rgb: 37, 35, 33;
+  
+  // 群青色 (Gunjō-iro) - Ultramarine color
+  --jadis-jp-gunjo-iro: #5D8CAE;
+  --jadis-jp-gunjo-iro-rgb: 93, 140, 174;
+  
+  // 紺 (Kon) - Dark blue
+  --jadis-jp-kon: #192236;
+  --jadis-jp-kon-rgb: 25, 34, 54;
+  
+  // 褐色 (Kachi-iro) - Coarse wool color
+  --jadis-jp-kachi-iro: #181B26;
+  --jadis-jp-kachi-iro-rgb: 24, 27, 38;
+  
+  // 瑠璃色 (Ruri-iro) - Lapis lazuli color
+  --jadis-jp-ruri-iro: #1F4788;
+  --jadis-jp-ruri-iro-rgb: 31, 71, 136;
+  
+  // 紺青色 (Konjō-iro) - Prussian blue color
+  --jadis-jp-konjo-iro: #003171;
+  --jadis-jp-konjo-iro-rgb: 0, 49, 113;
+  
+  // 瑠璃紺 (Rurikon) - Dark blue lapis lazuli
+  --jadis-jp-rurikon: #1B294B;
+  --jadis-jp-rurikon-rgb: 27, 41, 75;
+  
+  // 紅碧 (Benimidori) - Stained red
+  --jadis-jp-benimidori: #78779B;
+  --jadis-jp-benimidori-rgb: 120, 119, 155;
+  
+  // 紺桔梗 (Konkikyō) - Navy blue bellflower
+  --jadis-jp-konkikyo: #191F45;
+  --jadis-jp-konkikyo-rgb: 25, 31, 69;
+  
+  // 藤鼠 (Fujinezumi) - Mousy wisteria
+  --jadis-jp-fujinezumi: #766980;
+  --jadis-jp-fujinezumi-rgb: 118, 105, 128;
+  
+  // 紅掛花色 (Benikakehana-iro) - Safflower color
+  --jadis-jp-benikakehana-iro: #5A4F74;
+  --jadis-jp-benikakehana-iro-rgb: 90, 79, 116;
+  
+  // 藤色 (Fuji-iro) - Wisteria color
+  --jadis-jp-fuji-iro: #89729E;
+  --jadis-jp-fuji-iro-rgb: 137, 114, 158;
+  
+  // 二藍 (Futa'ai) - Dark indigo
+  --jadis-jp-futaai: #614E6E;
+  --jadis-jp-futaai-rgb: 97, 78, 110;
+}
+
+// ===================================
+// VIOLET SERIES
+// ===================================
+
+:root {
+  // 藤紫 (Fujimurasaki) - Wisteria purple
+  --jadis-jp-fujimurasaki: #875F9A;
+  --jadis-jp-fujimurasaki-rgb: 135, 95, 154;
+  
+  // 桔梗色 (Kikyō-iro) - Bellflower color
+  --jadis-jp-kikyo-iro: #5D3F6A;
+  --jadis-jp-kikyo-iro-rgb: 93, 63, 106;
+  
+  // 紫苑色 (Shi'on-iro) - Tatarian aster color
+  --jadis-jp-shion-iro: #976E9A;
+  --jadis-jp-shion-iro-rgb: 151, 110, 154;
+  
+  // 滅紫 (Messhi) - Disappearing purple
+  --jadis-jp-messhi: #3F313A;
+  --jadis-jp-messhi-rgb: 63, 49, 58;
+  
+  // 紫紺 (Shikon) - Blue-violet
+  --jadis-jp-shikon: #2B2028;
+  --jadis-jp-shikon-rgb: 43, 32, 40;
+  
+  // 深紫 (Kokimurasaki) - Deep purple
+  --jadis-jp-kokimurasaki: #3A243B;
+  --jadis-jp-kokimurasaki-rgb: 58, 36, 59;
+  
+  // 薄色 (Usu-iro) - Thin color
+  --jadis-jp-usu-iro: #A87CA0;
+  --jadis-jp-usu-iro-rgb: 168, 124, 160;
+  
+  // 半色 (Hashita-iro) - Half color
+  --jadis-jp-hashita-iro: #8D608C;
+  --jadis-jp-hashita-iro-rgb: 141, 96, 140;
+  
+  // 菫色 (Sumire-iro) - Violet color
+  --jadis-jp-sumire-iro: #5B3256;
+  --jadis-jp-sumire-iro-rgb: 91, 50, 86;
+  
+  // 紫 (Murasaki) - Purple
+  --jadis-jp-murasaki: #4F284B;
+  --jadis-jp-murasaki-rgb: 79, 40, 75;
+  
+  // 黒紅 (Kurobeni) - Dark red
+  --jadis-jp-kurobeni: #23191E;
+  --jadis-jp-kurobeni-rgb: 35, 25, 30;
+  
+  // 菖蒲色 (Ayame-iro) - Iris color
+  --jadis-jp-ayame-iro: #763568;
+  --jadis-jp-ayame-iro-rgb: 118, 53, 104;
+  
+  // 紅藤 (Benifuji) - Red wisteria
+  --jadis-jp-benifuji: #BB7796;
+  --jadis-jp-benifuji-rgb: 187, 119, 150;
+  
+  // 杜若 (Kakitsubata) - Rabbit-ear iris
+  --jadis-jp-kakitsubata: #491E3C;
+  --jadis-jp-kakitsubata-rgb: 73, 30, 60;
+  
+  // 鳩羽鼠 (Hatobanezumi) - Dove feather grey
+  --jadis-jp-hatobanezumi: #755D5B;
+  --jadis-jp-hatobanezumi-rgb: 117, 93, 91;
+  
+  // 葡萄鼠 (Budōnezumi) - Grape mouse
+  --jadis-jp-budonezumi: #63424B;
+  --jadis-jp-budonezumi-rgb: 99, 66, 75;
+  
+  // 蒲萄 (Ebizome) - Vine grape
+  --jadis-jp-ebizome: #6D2B50;
+  --jadis-jp-ebizome-rgb: 109, 43, 80;
+  
+  // 藤煤竹 (Fujisusutake) - Wisteria and burnt-bamboo
+  --jadis-jp-fujisusutake: #4D3B3C;
+  --jadis-jp-fujisusutake-rgb: 77, 59, 60;
+  
+  // 牡丹 (Bōtan) - Tree peony
+  --jadis-jp-botan: #A4345D;
+  --jadis-jp-botan-rgb: 164, 52, 93;
+  
+  // 梅紫 (Umemurasaki) - Plum purple
+  --jadis-jp-umemurasaki: #8F4155;
+  --jadis-jp-umemurasaki-rgb: 143, 65, 85;
+  
+  // 似せ紫 (Nisemurasaki) - Fake purple
+  --jadis-jp-nisemurasaki: #43242A;
+  --jadis-jp-nisemurasaki-rgb: 67, 36, 42;
+  
+  // 紫鳶 (Murasakitobi) - Purple kite
+  --jadis-jp-murasakitobi: #512C31;
+  --jadis-jp-murasakitobi-rgb: 81, 44, 49;
+  
+  // 蘇芳 (Su'ō) - Sappanwood
+  --jadis-jp-suo: #7E2639;
+  --jadis-jp-suo-rgb: 126, 38, 57;
+  
+  // 桑染 (Kuwazome) - Mulberry dye
+  --jadis-jp-kuwazome-alt: #59292C;
+  --jadis-jp-kuwazome-alt-rgb: 89, 41, 44;
+  
+  // 紅消鼠 (Benikeshinezumi) - Vanishing red mouse
+  --jadis-jp-benikeshinezumi: #44312E;
+  --jadis-jp-benikeshinezumi-rgb: 68, 49, 46;
+}
+
+// ===================================
+// ACHROMATIC SERIES
+// ===================================
+
+:root {
+  // 白練 (Shironeri) - Unbleached silk
+  --jadis-jp-shironeri: #FFDDCA;
+  --jadis-jp-shironeri-rgb: 255, 221, 202;
+  
+  // 白鼠 (Shironezumi) - White mouse
+  --jadis-jp-shironezumi: #B9A193;
+  --jadis-jp-shironezumi-rgb: 185, 161, 147;
+  
+  // 銀鼠 (Ginnezumi) - Silver-grey
+  --jadis-jp-ginnezumi: #97867C;
+  --jadis-jp-ginnezumi-rgb: 151, 134, 124;
+  
+  // 素鼠 (Sunezumi) - Plain mouse
+  --jadis-jp-sunezumi: #6E5F57;
+  --jadis-jp-sunezumi-rgb: 110, 95, 87;
+  
+  // 丼鼠 (Dobunezumi) - Brown rat grey
+  --jadis-jp-dobunezumi: #4B3C39;
+  --jadis-jp-dobunezumi-rgb: 75, 60, 57;
+  
+  // 藍墨茶 (Aisumicha) - Indigo ink brown
+  --jadis-jp-aisumicha: #393432;
+  --jadis-jp-aisumicha-rgb: 57, 52, 50;
+  
+  // 檳榔子染 (Binrōjizome) - Betel nut-dyed
+  --jadis-jp-binrojizome: #352925;
+  --jadis-jp-binrojizome-rgb: 53, 41, 37;
+  
+  // 墨色 (Sumi-iro) - Ink color
+  --jadis-jp-sumi-iro: #27221F;
+  --jadis-jp-sumi-iro-rgb: 39, 34, 31;
+  
+  // 黒色 (Kokushoku) - Black
+  --jadis-jp-kokushoku: #171412;
+  --jadis-jp-kokushoku-rgb: 23, 20, 18;
+  
+  // 藍白 (Aijiro) - Indigo white
+  --jadis-jp-aijiro: #EBF6F7;
+  --jadis-jp-aijiro-rgb: 235, 246, 247;
+}
+
+// ===================================
+// SEMANTIC COLOR MAPPINGS
+// ===================================
+
+:root {
+  // Primary colors for different contexts
+  --jadis-jp-primary-red: var(--jadis-jp-akabeni);      // 赤紅 - Pure crimson
+  --jadis-jp-primary-blue: var(--jadis-jp-ai-iro);     // 藍色 - Indigo
+  --jadis-jp-primary-green: var(--jadis-jp-midori);    // 緑 - Green
+  --jadis-jp-primary-yellow: var(--jadis-jp-yamabuki-iro); // 山吹色 - Golden yellow
+  --jadis-jp-primary-purple: var(--jadis-jp-murasaki); // 紫 - Purple
+  
+  // Nature-inspired semantic colors
+  --jadis-jp-cherry-blossom: var(--jadis-jp-sakura-iro);  // 桜色
+  --jadis-jp-autumn-leaf: var(--jadis-jp-kuchiba-iro);    // 朽葉色
+  --jadis-jp-bamboo: var(--jadis-jp-wakatake-iro);        // 若竹色
+  --jadis-jp-sky: var(--jadis-jp-sora-iro);               // 空色
+  --jadis-jp-earth: var(--jadis-jp-odo-iro);              // 黄土色
+  
+  // Terminal-friendly high-contrast selections
+  --jadis-jp-terminal-fg: var(--jadis-jp-aijiro);         // 藍白 - Light
+  --jadis-jp-terminal-bg: var(--jadis-jp-kokushoku);      // 黒色 - Deep black
+  --jadis-jp-terminal-accent: var(--jadis-jp-yamabuki-iro); // 山吹色 - Golden
+  --jadis-jp-terminal-error: var(--jadis-jp-akabeni);     // 赤紅 - Crimson
+  --jadis-jp-terminal-success: var(--jadis-jp-wakatake-iro); // 若竹色 - Bamboo
+  --jadis-jp-terminal-warning: var(--jadis-jp-kohaku-iro); // 琥珀色 - Amber
+}
+
+// ===================================
+// UTILITY FUNCTIONS
+// ===================================
+
+// Generate RGB values for any Japanese color
+@function jadis-jp-color($color-name) {
+  @return var(--jadis-jp-#{$color-name});
+}
+
+@function jadis-jp-rgb($color-name) {
+  @return var(--jadis-jp-#{$color-name}-rgb);
+}
+
+// Alpha variants for layering
+@mixin jadis-jp-alpha($color-name, $alpha: 0.5) {
+  color: rgba(#{jadis-jp-rgb($color-name)}, #{$alpha});
+}

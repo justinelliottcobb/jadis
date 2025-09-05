@@ -3,6 +3,7 @@
 // ===================================
 
 @use '../../styles/fonts.scss';
+@use '../../styles/japanese-colors.scss' as jp;
 
 // Font family variable with fallback
 $jadis-font-family: 'Hasklug Nerd Font', 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'SF Mono', Monaco, Inconsolata, 'Roboto Mono', Consolas, 'Courier New', monospace !default;
@@ -78,6 +79,61 @@ $jadis-font-family: 'Hasklug Nerd Font', 'JetBrains Mono', 'Fira Code', 'Source 
     @else if $color == 'error' { --gauge-fill: #ff3366; }
     @else if $color == 'info' { --gauge-fill: #66ccff; }
     @else { --gauge-fill: #aa66ff; }
+  } @else if $variant == 'haru' {
+    --gauge-bg: rgba(252, 201, 185, 0.05);
+    --gauge-border: var(--jadis-jp-sakura-iro);
+    --gauge-text: var(--jadis-jp-sakura-iro);
+    --gauge-track: rgba(252, 201, 185, 0.15);
+    
+    @if $color == 'success' { --gauge-fill: var(--jadis-jp-wakakusa-iro); }
+    @else if $color == 'warning' { --gauge-fill: var(--jadis-jp-yamabuki-iro); }
+    @else if $color == 'error' { --gauge-fill: var(--jadis-jp-karakurenai); }
+    @else if $color == 'info' { --gauge-fill: var(--jadis-jp-fujimurasaki); }
+    @else { --gauge-fill: var(--jadis-jp-sakura-iro); }
+  } @else if $variant == 'natsu' {
+    --gauge-bg: rgba(49, 52, 155, 0.05);
+    --gauge-border: var(--jadis-jp-kon-iro);
+    --gauge-text: var(--jadis-jp-kon-iro);
+    --gauge-track: rgba(49, 52, 155, 0.15);
+    
+    @if $color == 'success' { --gauge-fill: var(--jadis-jp-ao); }
+    @else if $color == 'warning' { --gauge-fill: var(--jadis-jp-kikuchiba-iro); }
+    @else if $color == 'error' { --gauge-fill: var(--jadis-jp-aka); }
+    @else if $color == 'info' { --gauge-fill: var(--jadis-jp-asagi-iro); }
+    @else { --gauge-fill: var(--jadis-jp-kon-iro); }
+  } @else if $variant == 'aki' {
+    --gauge-bg: rgba(202, 82, 84, 0.05);
+    --gauge-border: var(--jadis-jp-momiji-iro);
+    --gauge-text: var(--jadis-jp-momiji-iro);
+    --gauge-track: rgba(202, 82, 84, 0.15);
+    
+    @if $color == 'success' { --gauge-fill: var(--jadis-jp-moegi-iro); }
+    @else if $color == 'warning' { --gauge-fill: var(--jadis-jp-kihada-iro); }
+    @else if $color == 'error' { --gauge-fill: var(--jadis-jp-benihi); }
+    @else if $color == 'info' { --gauge-fill: var(--jadis-jp-kaki-iro); }
+    @else { --gauge-fill: var(--jadis-jp-momiji-iro); }
+  } @else if $variant == 'fuyu' {
+    --gauge-bg: rgba(255, 255, 252, 0.03);
+    --gauge-border: var(--jadis-jp-yukishiro);
+    --gauge-text: var(--jadis-jp-yukishiro);
+    --gauge-track: rgba(255, 255, 252, 0.1);
+    
+    @if $color == 'success' { --gauge-fill: var(--jadis-jp-aijiro); }
+    @else if $color == 'warning' { --gauge-fill: var(--jadis-jp-kohaku-iro); }
+    @else if $color == 'error' { --gauge-fill: var(--jadis-jp-ginshu); }
+    @else if $color == 'info' { --gauge-fill: var(--jadis-jp-byakuroku); }
+    @else { --gauge-fill: var(--jadis-jp-yukishiro); }
+  } @else if $variant == 'sumi' {
+    --gauge-bg: rgba(30, 30, 30, 0.8);
+    --gauge-border: var(--jadis-jp-sumi-iro);
+    --gauge-text: var(--jadis-jp-sumi-iro);
+    --gauge-track: rgba(30, 30, 30, 0.3);
+    
+    @if $color == 'success' { --gauge-fill: var(--jadis-jp-tetsuonando); }
+    @else if $color == 'warning' { --gauge-fill: var(--jadis-jp-kenpou-iro); }
+    @else if $color == 'error' { --gauge-fill: var(--jadis-jp-shironeri); }
+    @else if $color == 'info' { --gauge-fill: var(--jadis-jp-nibi-iro); }
+    @else { --gauge-fill: var(--jadis-jp-sumi-iro); }
   } @else {
     --gauge-bg: rgba(255, 255, 255, 0.05);
     --gauge-border: rgba(255, 255, 255, 0.1);
@@ -151,6 +207,11 @@ $jadis-font-family: 'Hasklug Nerd Font', 'JetBrains Mono', 'Fira Code', 'Source 
   &--retro { @include gauge-colors('retro'); }
   &--minimal { @include gauge-colors('minimal'); }
   &--glow { @include gauge-colors('glow'); }
+  &--haru { @include gauge-colors('haru'); }
+  &--natsu { @include gauge-colors('natsu'); }
+  &--aki { @include gauge-colors('aki'); }
+  &--fuyu { @include gauge-colors('fuyu'); }
+  &--sumi { @include gauge-colors('sumi'); }
   
   // Animation states
   &--animated {
@@ -305,6 +366,11 @@ $jadis-font-family: 'Hasklug Nerd Font', 'JetBrains Mono', 'Fira Code', 'Source 
   &--retro { @include gauge-colors('retro'); }
   &--minimal { @include gauge-colors('minimal'); }
   &--glow { @include gauge-colors('glow'); }
+  &--haru { @include gauge-colors('haru'); }
+  &--natsu { @include gauge-colors('natsu'); }
+  &--aki { @include gauge-colors('aki'); }
+  &--fuyu { @include gauge-colors('fuyu'); }
+  &--sumi { @include gauge-colors('sumi'); }
   
   // Style variants
   &--classic {
@@ -513,6 +579,11 @@ $jadis-font-family: 'Hasklug Nerd Font', 'JetBrains Mono', 'Fira Code', 'Source 
   &--retro { @include gauge-colors('retro'); }
   &--minimal { @include gauge-colors('minimal'); }
   &--glow { @include gauge-colors('glow'); }
+  &--haru { @include gauge-colors('haru'); }
+  &--natsu { @include gauge-colors('natsu'); }
+  &--aki { @include gauge-colors('aki'); }
+  &--fuyu { @include gauge-colors('fuyu'); }
+  &--sumi { @include gauge-colors('sumi'); }
   
   // Animation
   &--animated {
@@ -576,6 +647,11 @@ $jadis-font-family: 'Hasklug Nerd Font', 'JetBrains Mono', 'Fira Code', 'Source 
   &--retro { @include gauge-colors('retro'); }
   &--minimal { @include gauge-colors('minimal'); }
   &--glow { @include gauge-colors('glow'); }
+  &--haru { @include gauge-colors('haru'); }
+  &--natsu { @include gauge-colors('natsu'); }
+  &--aki { @include gauge-colors('aki'); }
+  &--fuyu { @include gauge-colors('fuyu'); }
+  &--sumi { @include gauge-colors('sumi'); }
   
   // Style variants
   &--classic {
@@ -683,6 +759,11 @@ $jadis-font-family: 'Hasklug Nerd Font', 'JetBrains Mono', 'Fira Code', 'Source 
   &--retro { @include gauge-colors('retro'); }
   &--minimal { @include gauge-colors('minimal'); }
   &--glow { @include gauge-colors('glow'); }
+  &--haru { @include gauge-colors('haru'); }
+  &--natsu { @include gauge-colors('natsu'); }
+  &--aki { @include gauge-colors('aki'); }
+  &--fuyu { @include gauge-colors('fuyu'); }
+  &--sumi { @include gauge-colors('sumi'); }
   
   // Animation states
   &--animated {
@@ -743,6 +824,11 @@ $jadis-font-family: 'Hasklug Nerd Font', 'JetBrains Mono', 'Fira Code', 'Source 
   &--retro { @include gauge-colors('retro'); }
   &--minimal { @include gauge-colors('minimal'); }
   &--glow { @include gauge-colors('glow'); }
+  &--haru { @include gauge-colors('haru'); }
+  &--natsu { @include gauge-colors('natsu'); }
+  &--aki { @include gauge-colors('aki'); }
+  &--fuyu { @include gauge-colors('fuyu'); }
+  &--sumi { @include gauge-colors('sumi'); }
   
   // Animation
   &--pulse {
@@ -785,6 +871,11 @@ $jadis-font-family: 'Hasklug Nerd Font', 'JetBrains Mono', 'Fira Code', 'Source 
   &--retro { @include gauge-colors('retro'); }
   &--minimal { @include gauge-colors('minimal'); }
   &--glow { @include gauge-colors('glow'); }
+  &--haru { @include gauge-colors('haru'); }
+  &--natsu { @include gauge-colors('natsu'); }
+  &--aki { @include gauge-colors('aki'); }
+  &--fuyu { @include gauge-colors('fuyu'); }
+  &--sumi { @include gauge-colors('sumi'); }
   
   // Speed variants
   &--slow {
@@ -886,6 +977,11 @@ $jadis-font-family: 'Hasklug Nerd Font', 'JetBrains Mono', 'Fira Code', 'Source 
   &--retro { @include gauge-colors('retro'); }
   &--minimal { @include gauge-colors('minimal'); }
   &--glow { @include gauge-colors('glow'); }
+  &--haru { @include gauge-colors('haru'); }
+  &--natsu { @include gauge-colors('natsu'); }
+  &--aki { @include gauge-colors('aki'); }
+  &--fuyu { @include gauge-colors('fuyu'); }
+  &--sumi { @include gauge-colors('sumi'); }
   
   // Animation
   &--animated {
@@ -934,6 +1030,11 @@ $jadis-font-family: 'Hasklug Nerd Font', 'JetBrains Mono', 'Fira Code', 'Source 
   &--retro { @include gauge-colors('retro'); }
   &--minimal { @include gauge-colors('minimal'); }
   &--glow { @include gauge-colors('glow'); }
+  &--haru { @include gauge-colors('haru'); }
+  &--natsu { @include gauge-colors('natsu'); }
+  &--aki { @include gauge-colors('aki'); }
+  &--fuyu { @include gauge-colors('fuyu'); }
+  &--sumi { @include gauge-colors('sumi'); }
   
   // Charging animation
   &--charging {
@@ -1028,6 +1129,11 @@ $jadis-font-family: 'Hasklug Nerd Font', 'JetBrains Mono', 'Fira Code', 'Source 
   &--retro { @include gauge-colors('retro'); }
   &--minimal { @include gauge-colors('minimal'); }
   &--glow { @include gauge-colors('glow'); }
+  &--haru { @include gauge-colors('haru'); }
+  &--natsu { @include gauge-colors('natsu'); }
+  &--aki { @include gauge-colors('aki'); }
+  &--fuyu { @include gauge-colors('fuyu'); }
+  &--sumi { @include gauge-colors('sumi'); }
   
   // Animation
   &--animated {
@@ -1090,6 +1196,11 @@ $jadis-font-family: 'Hasklug Nerd Font', 'JetBrains Mono', 'Fira Code', 'Source 
   &--retro { @include gauge-colors('retro'); }
   &--minimal { @include gauge-colors('minimal'); }
   &--glow { @include gauge-colors('glow'); }
+  &--haru { @include gauge-colors('haru'); }
+  &--natsu { @include gauge-colors('natsu'); }
+  &--aki { @include gauge-colors('aki'); }
+  &--fuyu { @include gauge-colors('fuyu'); }
+  &--sumi { @include gauge-colors('sumi'); }
   
   // Animation
   &--animated {
@@ -1150,6 +1261,11 @@ $jadis-font-family: 'Hasklug Nerd Font', 'JetBrains Mono', 'Fira Code', 'Source 
   &--retro { @include gauge-colors('retro'); }
   &--minimal { @include gauge-colors('minimal'); }
   &--glow { @include gauge-colors('glow'); }
+  &--haru { @include gauge-colors('haru'); }
+  &--natsu { @include gauge-colors('natsu'); }
+  &--aki { @include gauge-colors('aki'); }
+  &--fuyu { @include gauge-colors('fuyu'); }
+  &--sumi { @include gauge-colors('sumi'); }
   
   // Animation
   &--animated {

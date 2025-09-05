@@ -2,7 +2,7 @@ import React from 'react'
 import './Gauges.scss'
 
 // Common Types
-export type GaugeVariant = 'terminal' | 'matrix' | 'retro' | 'minimal' | 'glow'
+export type GaugeVariant = 'terminal' | 'matrix' | 'retro' | 'minimal' | 'glow' | 'haru' | 'natsu' | 'aki' | 'fuyu' | 'sumi'
 export type GaugeColor = 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info'
 export type GaugeSize = 'small' | 'medium' | 'large'
 

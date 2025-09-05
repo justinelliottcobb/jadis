@@ -2,7 +2,7 @@ import React from 'react'
 import './Buttons.scss'
 
 // Common Types
-export type ButtonVariant = 'terminal' | 'matrix' | 'retro' | 'minimal' | 'glow'
+export type ButtonVariant = 'terminal' | 'matrix' | 'retro' | 'minimal' | 'glow' | 'haru' | 'natsu' | 'aki' | 'fuyu' | 'sumi'
 export type ButtonSize = 'small' | 'medium' | 'large' | 'full'
 export type ButtonColor = 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info'
 
