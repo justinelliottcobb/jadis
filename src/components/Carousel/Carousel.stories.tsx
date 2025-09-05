@@ -413,19 +413,26 @@ const imageItems = [
     src: 'https://via.placeholder.com/800x400/001100/00ff00?text=TERMINAL',
     alt: 'Terminal theme image',
     caption: 'Terminal Interface',
-    description: 'Classic green phosphor display',
+    description: 'Classic green phosphor display with scanlines',
   },
   {
     src: 'https://via.placeholder.com/800x400/001100/00ff41?text=MATRIX',
     alt: 'Matrix theme image',
     caption: 'Matrix Code',
-    description: 'Digital rain effect',
+    description: 'Digital rain effect with glitch overlay',
+    layers: [
+      {
+        src: 'https://via.placeholder.com/800x400/000000/00ff41?text=OVERLAY',
+        opacity: 0.3,
+        blendMode: 'screen' as const
+      }
+    ]
   },
   {
     src: 'https://via.placeholder.com/800x400/8b4513/ffa500?text=RETRO',
     alt: 'Retro theme image',
     caption: 'Retro Computing',
-    description: 'Vintage amber monitor',
+    description: 'Vintage amber monitor with CRT effect',
     link: {
       href: '#',
       text: 'View Gallery'
@@ -433,11 +440,51 @@ const imageItems = [
   },
 ]
 
+// Advanced ImageArea effects demo images
+const advancedImageItems = [
+  {
+    id: 'terminal-phosphor',
+    src: 'https://via.placeholder.com/800x400/001100/00ff00?text=PHOSPHOR+SCREEN',
+    alt: 'Terminal with phosphor effect',
+    caption: 'Phosphor Display',
+    description: 'Green phosphor glow with scanlines',
+  },
+  {
+    id: 'matrix-glitch',
+    src: 'https://via.placeholder.com/800x400/001100/00ff41?text=GLITCH+MATRIX',
+    alt: 'Matrix with glitch effect',
+    caption: 'Glitch Matrix',
+    description: 'Digital distortion effects',
+    layers: [
+      {
+        src: 'https://via.placeholder.com/400x200/ff0000/ffffff?text=ERROR',
+        opacity: 0.2,
+        blendMode: 'multiply' as const,
+        offset: { x: 50, y: 50 }
+      }
+    ]
+  },
+  {
+    id: 'retro-crt',
+    src: 'https://via.placeholder.com/800x400/8b4513/ffa500?text=CRT+MONITOR',
+    alt: 'Retro CRT display',
+    caption: 'CRT Monitor',
+    description: 'Vintage cathode ray tube display',
+  },
+  {
+    id: 'pixelated-art',
+    src: 'https://via.placeholder.com/800x400/4a4a4a/61dafb?text=PIXEL+ART',
+    alt: 'Pixelated artwork',
+    caption: '8-Bit Graphics',
+    description: 'Pixel art with posterization',
+  }
+]
+
 export const ImageCarouselDemo: Story = {
   render: () => (
     <div style={{ padding: '2rem', backgroundColor: '#000' }}>
       <h2 style={{ color: '#00ff00', fontFamily: 'monospace', marginBottom: '2rem' }}>
-        IMAGE CAROUSEL
+        IMAGE CAROUSEL WITH IMAGEAREA INTEGRATION
       </h2>
       <ImageCarousel
         variant="terminal"
@@ -452,9 +499,162 @@ export const ImageCarouselDemo: Story = {
         autoPlayInterval={4000}
         pauseOnHover
         bordered
+        imageBordered
+        imageScanlines
       />
     </div>
   ),
+}
+
+export const AdvancedImageEffects: Story = {
+  render: () => (
+    <div style={{ padding: '2rem', backgroundColor: '#000' }}>
+      <h2 style={{ color: '#00ffff', fontFamily: 'monospace', marginBottom: '2rem' }}>
+        ADVANCED IMAGE EFFECTS CAROUSEL
+      </h2>
+      <div style={{ display: 'grid', gap: '3rem' }}>
+        {/* Phosphor Effect */}
+        <div>
+          <h3 style={{ color: '#00ff00', fontFamily: 'monospace', marginBottom: '1rem' }}>
+            PHOSPHOR + SCANLINES
+          </h3>
+          <ImageCarousel
+            variant="terminal"
+            images={[advancedImageItems[0]]}
+            height="300px"
+            showControls={false}
+            showIndicators={false}
+            bordered
+            imagePhosphor
+            imageScanlines
+            imageBordered
+          />
+        </div>
+
+        {/* Glitch Effect with Layers */}
+        <div>
+          <h3 style={{ color: '#00ff41', fontFamily: 'monospace', marginBottom: '1rem' }}>
+            GLITCH + LAYERS + MATRIX
+          </h3>
+          <ImageCarousel
+            variant="matrix"
+            images={[advancedImageItems[1]]}
+            height="300px"
+            showControls={false}
+            showIndicators={false}
+            bordered
+            imageGlitch
+            imageBordered
+          />
+        </div>
+
+        {/* CRT Effect */}
+        <div>
+          <h3 style={{ color: '#ffa500', fontFamily: 'monospace', marginBottom: '1rem' }}>
+            CRT MONITOR SIMULATION
+          </h3>
+          <ImageCarousel
+            variant="retro"
+            images={[advancedImageItems[2]]}
+            height="300px"
+            showControls={false}
+            showIndicators={false}
+            bordered
+            imageCrt
+            imageBordered
+          />
+        </div>
+
+        {/* Pixel Art Effect */}
+        <div>
+          <h3 style={{ color: '#61dafb', fontFamily: 'monospace', marginBottom: '1rem' }}>
+            PIXELATED + POSTERIZED
+          </h3>
+          <ImageCarousel
+            variant="minimal"
+            images={[advancedImageItems[3]]}
+            height="300px"
+            showControls={false}
+            showIndicators={false}
+            bordered
+            imagePixelated
+            imagePosterized
+            imageBordered
+          />
+        </div>
+      </div>
+    </div>
+  ),
+}
+
+export const ImageCarouselCompositing: Story = {
+  render: () => {
+    const compositingImages = [
+      {
+        src: 'https://via.placeholder.com/800x400/001100/00ff00?text=BASE+IMAGE',
+        alt: 'Base terminal image',
+        caption: 'Multi-Layer Compositing',
+        description: 'Base image with multiple overlay layers',
+        layers: [
+          {
+            src: 'https://via.placeholder.com/400x200/ff0000/ffffff?text=LAYER+1',
+            opacity: 0.3,
+            blendMode: 'screen' as const,
+            offset: { x: 100, y: 50 }
+          },
+          {
+            src: 'https://via.placeholder.com/300x150/0000ff/ffffff?text=LAYER+2',
+            opacity: 0.5,
+            blendMode: 'multiply' as const,
+            offset: { x: 200, y: 100 },
+            scale: 0.8
+          }
+        ]
+      },
+      {
+        src: 'https://via.placeholder.com/800x400/001100/00ff41?text=MATRIX+BASE',
+        alt: 'Matrix themed image',
+        caption: 'Digital Distortion',
+        description: 'Layered digital effects with rotation',
+        layers: [
+          {
+            src: 'https://via.placeholder.com/200x200/00ff41/000000?text=ROTATE',
+            opacity: 0.4,
+            blendMode: 'overlay' as const,
+            offset: { x: 300, y: 150 },
+            rotate: 45,
+            scale: 1.2
+          }
+        ]
+      }
+    ]
+    
+    return (
+      <div style={{ padding: '2rem', backgroundColor: '#000' }}>
+        <h2 style={{ color: '#00ffff', fontFamily: 'monospace', marginBottom: '1rem' }}>
+          IMAGE COMPOSITING CAROUSEL
+        </h2>
+        <p style={{ color: '#666', marginBottom: '2rem', fontFamily: 'monospace' }}>
+          Demonstrates ImageArea's advanced layering and compositing effects
+        </p>
+        <ImageCarousel
+          variant="glow"
+          images={compositingImages}
+          height="500px"
+          showControls
+          showIndicators
+          indicatorType="ascii"
+          transition="fade"
+          autoPlay
+          autoPlayInterval={6000}
+          pauseOnHover
+          bordered
+          imageBordered
+          imageAnimated
+        />
+      </div>
+    )
+  },
 }
 
 // Testimonial Carousel Stories

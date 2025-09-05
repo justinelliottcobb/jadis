@@ -1,10 +1,24 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import './Carousel.scss'
+import { ImageArea } from '../ImageArea'
 
 // Common Types
 export type CarouselVariant = 'terminal' | 'matrix' | 'retro' | 'minimal' | 'glow' | 'haru' | 'natsu' | 'aki' | 'fuyu' | 'sumi'
 export type CarouselTransition = 'slide' | 'fade' | 'glitch' | 'matrix' | 'typewriter'
 export type CarouselIndicator = 'dots' | 'dashes' | 'numbers' | 'ascii' | 'progress'
+
+// Local type definition to avoid import issues
+interface ImageLayer {
+  src: string
+  alt?: string
+  blend?: string
+  opacity?: number
+  rotation?: number
+  scale?: number
+  x?: number
+  y?: number
+  filter?: string
+}
 
 // ===================================
 // CAROUSEL ITEM INTERFACE
@@ -401,30 +415,63 @@ export interface ImageCarouselProps extends Omit<CarouselProps, 'items'> {
       text: string
       target?: '_blank' | '_self'
     }
+    layers?: ImageLayer[]
+    fallback?: string
+    placeholder?: string
   }>
   objectFit?: 'cover' | 'contain' | 'fill' | 'scale-down' | 'none'
-  lazyLoad?: boolean
+  loading?: 'lazy' | 'eager'
+  imageVariant?: CarouselVariant
+  imageSize?: 'small' | 'medium' | 'large' | 'fill'
+  imageBordered?: boolean
+  imageScanlines?: boolean
+  imageGlitch?: boolean
+  imageCrt?: boolean
+  imagePhosphor?: boolean
+  imagePixelated?: boolean
+  imagePosterized?: boolean
+  imageAnimated?: boolean
 }
 
 export const ImageCarousel: React.FC<ImageCarouselProps> = ({
   images,
   objectFit = 'cover',
-  lazyLoad = true,
+  loading = 'lazy',
+  imageVariant,
+  imageSize = 'fill',
+  imageBordered = false,
+  imageScanlines = false,
+  imageGlitch = false,
+  imageCrt = false,
+  imagePhosphor = false,
+  imagePixelated = false,
+  imagePosterized = false,
+  imageAnimated = false,
+  variant = 'terminal',
   ...props
 }) => {
   const items: CarouselItem[] = images.map((img, index) => ({
     id: img.id || `image-${index}`,
     content: (
-      <img
+      <ImageArea
+        variant={imageVariant || variant}
+        size={imageSize}
         src={img.src}
         alt={img.alt}
-        loading={lazyLoad ? 'lazy' : 'eager'}
-        style={{ 
-          width: '100%', 
-          height: '100%', 
-          objectFit,
-          display: 'block'
-        }}
+        layers={img.layers}
+        objectFit={objectFit}
+        loading={loading}
+        placeholder={img.placeholder}
+        fallback={img.fallback}
+        bordered={imageBordered}
+        scanlines={imageScanlines}
+        glitch={imageGlitch}
+        crt={imageCrt}
+        phosphor={imagePhosphor}
+        pixelated={imagePixelated}
+        posterized={imagePosterized}
+        animated={imageAnimated}
+        style={{ width: '100%', height: '100%' }}
       />
     ),
     caption: img.caption,
@@ -432,7 +479,7 @@ export const ImageCarousel: React.FC<ImageCarouselProps> = ({
     link: img.link
   }))
 
-  return <Carousel {...props} items={items} />
+  return <Carousel {...props} items={items} variant={variant} />
 }
 
 // ===================================
