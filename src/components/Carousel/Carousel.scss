@@ -1,0 +1,607 @@
+@use '../../styles/japanese-colors.scss' as jp;
+
+// ===================================
+// CAROUSEL MIXINS
+// ===================================
+
+@mixin carousel-colors($variant) {
+  @if $variant == 'terminal' {
+    --carousel-bg: rgba(0, 17, 0, 0.8);
+    --carousel-border: #00ff00;
+    --carousel-text: #00ff00;
+    --carousel-control-bg: rgba(0, 255, 0, 0.1);
+    --carousel-control-hover: rgba(0, 255, 0, 0.2);
+    --carousel-indicator: rgba(0, 255, 0, 0.5);
+    --carousel-indicator-active: #00ff00;
+  } @else if $variant == 'matrix' {
+    --carousel-bg: rgba(0, 17, 0, 0.9);
+    --carousel-border: #00ff41;
+    --carousel-text: #00ff41;
+    --carousel-control-bg: rgba(0, 255, 65, 0.1);
+    --carousel-control-hover: rgba(0, 255, 65, 0.2);
+    --carousel-indicator: rgba(0, 255, 65, 0.5);
+    --carousel-indicator-active: #00ff41;
+  } @else if $variant == 'retro' {
+    --carousel-bg: rgba(139, 69, 19, 0.3);
+    --carousel-border: #ffa500;
+    --carousel-text: #ffa500;
+    --carousel-control-bg: rgba(255, 165, 0, 0.1);
+    --carousel-control-hover: rgba(255, 165, 0, 0.2);
+    --carousel-indicator: rgba(255, 165, 0, 0.5);
+    --carousel-indicator-active: #ffa500;
+  } @else if $variant == 'minimal' {
+    --carousel-bg: rgba(40, 44, 52, 0.8);
+    --carousel-border: #61dafb;
+    --carousel-text: #61dafb;
+    --carousel-control-bg: rgba(97, 218, 251, 0.1);
+    --carousel-control-hover: rgba(97, 218, 251, 0.2);
+    --carousel-indicator: rgba(97, 218, 251, 0.5);
+    --carousel-indicator-active: #61dafb;
+  } @else if $variant == 'glow' {
+    --carousel-bg: rgba(0, 0, 0, 0.9);
+    --carousel-border: #00ffff;
+    --carousel-text: #00ffff;
+    --carousel-control-bg: rgba(0, 255, 255, 0.1);
+    --carousel-control-hover: rgba(0, 255, 255, 0.2);
+    --carousel-indicator: rgba(0, 255, 255, 0.5);
+    --carousel-indicator-active: #00ffff;
+  } @else if $variant == 'haru' {
+    --carousel-bg: rgba(252, 201, 185, 0.05);
+    --carousel-border: var(--jadis-jp-sakura-iro);
+    --carousel-text: var(--jadis-jp-sakura-iro);
+    --carousel-control-bg: rgba(252, 201, 185, 0.1);
+    --carousel-control-hover: rgba(252, 201, 185, 0.2);
+    --carousel-indicator: rgba(252, 201, 185, 0.5);
+    --carousel-indicator-active: var(--jadis-jp-sakura-iro);
+  } @else if $variant == 'natsu' {
+    --carousel-bg: rgba(49, 52, 155, 0.05);
+    --carousel-border: var(--jadis-jp-kon-iro);
+    --carousel-text: var(--jadis-jp-kon-iro);
+    --carousel-control-bg: rgba(49, 52, 155, 0.1);
+    --carousel-control-hover: rgba(49, 52, 155, 0.2);
+    --carousel-indicator: rgba(49, 52, 155, 0.5);
+    --carousel-indicator-active: var(--jadis-jp-kon-iro);
+  } @else if $variant == 'aki' {
+    --carousel-bg: rgba(202, 82, 84, 0.05);
+    --carousel-border: var(--jadis-jp-momiji-iro);
+    --carousel-text: var(--jadis-jp-momiji-iro);
+    --carousel-control-bg: rgba(202, 82, 84, 0.1);
+    --carousel-control-hover: rgba(202, 82, 84, 0.2);
+    --carousel-indicator: rgba(202, 82, 84, 0.5);
+    --carousel-indicator-active: var(--jadis-jp-momiji-iro);
+  } @else if $variant == 'fuyu' {
+    --carousel-bg: rgba(255, 255, 252, 0.03);
+    --carousel-border: var(--jadis-jp-yukishiro);
+    --carousel-text: var(--jadis-jp-yukishiro);
+    --carousel-control-bg: rgba(255, 255, 252, 0.05);
+    --carousel-control-hover: rgba(255, 255, 252, 0.1);
+    --carousel-indicator: rgba(255, 255, 252, 0.5);
+    --carousel-indicator-active: var(--jadis-jp-yukishiro);
+  } @else if $variant == 'sumi' {
+    --carousel-bg: rgba(16, 16, 16, 0.9);
+    --carousel-border: var(--jadis-jp-sumi-iro);
+    --carousel-text: var(--jadis-jp-sumi-iro);
+    --carousel-control-bg: rgba(16, 16, 16, 0.5);
+    --carousel-control-hover: rgba(16, 16, 16, 0.7);
+    --carousel-indicator: rgba(16, 16, 16, 0.5);
+    --carousel-indicator-active: var(--jadis-jp-sumi-iro);
+  }
+}
+
+// ===================================
+// MAIN CAROUSEL COMPONENT
+// ===================================
+
+.jadis-carousel {
+  font-family: var(--jadis-font-primary);
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--carousel-bg);
+  color: var(--carousel-text);
+
+  &:focus {
+    outline: 2px solid var(--carousel-border);
+    outline-offset: 2px;
+  }
+
+  &--bordered {
+    border: 2px solid var(--carousel-border);
+  }
+
+  &--animated {
+    animation: carousel-pulse 4s ease-in-out infinite;
+  }
+
+  // Theme variants
+  &--terminal {
+    @include carousel-colors('terminal');
+  }
+
+  &--matrix {
+    @include carousel-colors('matrix');
+  }
+
+  &--retro {
+    @include carousel-colors('retro');
+  }
+
+  &--minimal {
+    @include carousel-colors('minimal');
+  }
+
+  &--glow {
+    @include carousel-colors('glow');
+  }
+
+  &--haru {
+    @include carousel-colors('haru');
+  }
+
+  &--natsu {
+    @include carousel-colors('natsu');
+  }
+
+  &--aki {
+    @include carousel-colors('aki');
+  }
+
+  &--fuyu {
+    @include carousel-colors('fuyu');
+  }
+
+  &--sumi {
+    @include carousel-colors('sumi');
+  }
+}
+
+// ===================================
+// CAROUSEL CONTAINER
+// ===================================
+
+.jadis-carousel__container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.jadis-carousel__content {
+  display: flex;
+  height: 100%;
+  width: 100%;
+
+  // Slide transition
+  .jadis-carousel--slide & {
+    transition: transform 0.5s ease-in-out;
+  }
+
+  // Fade transition
+  .jadis-carousel--fade & {
+    position: relative;
+  }
+}
+
+// ===================================
+// CAROUSEL ITEMS
+// ===================================
+
+.jadis-carousel__item {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  // Fade transition positioning
+  .jadis-carousel--fade & {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  &--hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &--active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.jadis-carousel__item-content {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.jadis-carousel__item-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+  color: var(--carousel-text);
+  z-index: 2;
+}
+
+.jadis-carousel__caption {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin: 0 0 0.5rem;
+  color: var(--carousel-text);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.jadis-carousel__description {
+  font-size: 0.9rem;
+  margin: 0 0 0.5rem;
+  opacity: 0.9;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.jadis-carousel__link {
+  display: inline-block;
+  color: var(--carousel-indicator-active);
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.2s ease;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+
+  &:hover {
+    color: var(--carousel-text);
+    text-decoration: underline;
+    transform: translateX(3px);
+  }
+}
+
+// ===================================
+// CAROUSEL CONTROLS
+// ===================================
+
+.jadis-carousel__control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--carousel-control-bg);
+  border: 2px solid var(--carousel-border);
+  color: var(--carousel-text);
+  font-size: 1.5rem;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 3;
+  font-family: var(--jadis-font-primary);
+
+  &:hover:not(:disabled) {
+    background: var(--carousel-control-hover);
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  &--prev {
+    left: 1rem;
+  }
+
+  &--next {
+    right: 1rem;
+  }
+
+  // Variant-specific control effects
+  .jadis-carousel--terminal & {
+    &:hover:not(:disabled) {
+      box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+      text-shadow: 0 0 5px var(--carousel-text);
+    }
+  }
+
+  .jadis-carousel--matrix & {
+    &:hover:not(:disabled) {
+      box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+      text-shadow: 0 0 5px var(--carousel-text);
+    }
+  }
+
+  .jadis-carousel--glow & {
+    &:hover:not(:disabled) {
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+      text-shadow: 0 0 8px var(--carousel-text);
+    }
+  }
+
+  .jadis-carousel--retro & {
+    &:hover:not(:disabled) {
+      box-shadow: 3px 3px 0 var(--carousel-border);
+      transform: translateY(-50%) translate(-1px, -1px);
+    }
+  }
+}
+
+// ===================================
+// CAROUSEL INDICATORS
+// ===================================
+
+.jadis-carousel__indicators {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 3;
+  padding: 0.5rem;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+}
+
+.jadis-carousel__indicator {
+  background: var(--carousel-indicator);
+  border: 1px solid var(--carousel-border);
+  color: var(--carousel-text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--jadis-font-primary);
+  padding: 0.25rem 0.5rem;
+
+  &:hover {
+    background: var(--carousel-control-hover);
+    transform: scale(1.2);
+  }
+
+  &--active {
+    background: var(--carousel-indicator-active);
+    color: #000;
+    transform: scale(1.2);
+  }
+
+  // Indicator types
+  &--dots {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    padding: 0;
+  }
+
+  &--dashes {
+    width: 2rem;
+    height: 0.25rem;
+    padding: 0;
+  }
+
+  &--numbers {
+    font-size: 0.8rem;
+    min-width: 1.5rem;
+    text-align: center;
+  }
+
+  &--ascii {
+    font-size: 1rem;
+    background: none;
+    border: none;
+    padding: 0;
+  }
+}
+
+.jadis-carousel__progress {
+  width: 200px;
+  height: 4px;
+  background: var(--carousel-indicator);
+  border: 1px solid var(--carousel-border);
+  overflow: hidden;
+}
+
+.jadis-carousel__progress-bar {
+  height: 100%;
+  background: var(--carousel-indicator-active);
+  transition: width 0.5s ease-in-out;
+}
+
+// ===================================
+// CAROUSEL STATUS (SCREEN READERS)
+// ===================================
+
+.jadis-carousel__status {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+// ===================================
+// TESTIMONIAL CAROUSEL STYLES
+// ===================================
+
+.jadis-carousel__testimonial {
+  padding: 2rem;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.jadis-carousel__quote {
+  font-size: 1.5rem;
+  font-style: italic;
+  margin: 0 0 1.5rem;
+  color: var(--carousel-text);
+  line-height: 1.6;
+  position: relative;
+
+  &::before,
+  &::after {
+    font-size: 2rem;
+    opacity: 0.5;
+    position: absolute;
+  }
+
+  &::before {
+    content: '"';
+    left: -1rem;
+    top: -0.5rem;
+  }
+
+  &::after {
+    content: '"';
+    right: -1rem;
+    bottom: -0.5rem;
+  }
+}
+
+.jadis-carousel__author {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.jadis-carousel__avatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 2px solid var(--carousel-border);
+}
+
+.jadis-carousel__author-info {
+  text-align: left;
+}
+
+.jadis-carousel__author-name {
+  display: block;
+  font-weight: bold;
+  font-style: normal;
+  color: var(--carousel-text);
+}
+
+.jadis-carousel__author-title {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  margin-top: 0.25rem;
+}
+
+// ===================================
+// TRANSITION EFFECTS
+// ===================================
+
+// Glitch transition
+.jadis-carousel--glitch {
+  &.jadis-carousel--transitioning {
+    .jadis-carousel__item-content {
+      animation: carousel-glitch 0.3s steps(10);
+    }
+  }
+}
+
+// Matrix transition
+.jadis-carousel--matrix {
+  &.jadis-carousel--transitioning {
+    .jadis-carousel__item-content {
+      animation: carousel-matrix 0.5s ease-in-out;
+    }
+  }
+}
+
+// Typewriter transition
+.jadis-carousel--typewriter {
+  .jadis-carousel__item {
+    opacity: 0;
+    
+    &--active {
+      animation: carousel-typewriter 0.5s steps(20) forwards;
+    }
+  }
+}
+
+// ===================================
+// ANIMATIONS
+// ===================================
+
+@keyframes carousel-pulse {
+  0%, 100% {
+    border-color: var(--carousel-border);
+  }
+  50% {
+    border-color: var(--carousel-indicator-active);
+  }
+}
+
+@keyframes carousel-glitch {
+  0%, 100% {
+    transform: translateX(0);
+    filter: none;
+  }
+  20% {
+    transform: translateX(-2px);
+    filter: hue-rotate(90deg);
+  }
+  40% {
+    transform: translateX(2px);
+    filter: hue-rotate(180deg);
+  }
+  60% {
+    transform: translateX(-1px);
+    filter: hue-rotate(270deg);
+  }
+  80% {
+    transform: translateX(1px);
+    filter: hue-rotate(360deg);
+  }
+}
+
+@keyframes carousel-matrix {
+  0% {
+    opacity: 1;
+    transform: scale(1) rotateX(0);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.95) rotateX(5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotateX(0);
+  }
+}
+
+@keyframes carousel-typewriter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ===================================
+// OVERLAY EFFECTS
+// ===================================
+
+.jadis-carousel__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 4;
+}

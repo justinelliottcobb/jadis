@@ -1,0 +1,510 @@
+@use '../../styles/japanese-colors.scss' as jp;
+
+// ===================================
+// DROP AREA MIXINS
+// ===================================
+
+@mixin drop-area-colors($variant) {
+  @if $variant == 'terminal' {
+    --drop-area-bg: rgba(0, 17, 0, 0.5);
+    --drop-area-border: #00ff00;
+    --drop-area-text: #00ff00;
+    --drop-area-icon: #00ff00;
+    --drop-area-drag-over: rgba(0, 255, 0, 0.1);
+    --drop-area-error: #ff3333;
+    --drop-area-loading: #ffff00;
+  } @else if $variant == 'matrix' {
+    --drop-area-bg: rgba(0, 17, 0, 0.6);
+    --drop-area-border: #00ff41;
+    --drop-area-text: #00ff41;
+    --drop-area-icon: #00ff41;
+    --drop-area-drag-over: rgba(0, 255, 65, 0.1);
+    --drop-area-error: #ff4444;
+    --drop-area-loading: #ffff41;
+  } @else if $variant == 'retro' {
+    --drop-area-bg: rgba(139, 69, 19, 0.3);
+    --drop-area-border: #ffa500;
+    --drop-area-text: #ffa500;
+    --drop-area-icon: #ffa500;
+    --drop-area-drag-over: rgba(255, 165, 0, 0.1);
+    --drop-area-error: #ff6b6b;
+    --drop-area-loading: #ffeb3b;
+  } @else if $variant == 'minimal' {
+    --drop-area-bg: rgba(40, 44, 52, 0.4);
+    --drop-area-border: #61dafb;
+    --drop-area-text: #61dafb;
+    --drop-area-icon: #61dafb;
+    --drop-area-drag-over: rgba(97, 218, 251, 0.1);
+    --drop-area-error: #e06c75;
+    --drop-area-loading: #e5c07b;
+  } @else if $variant == 'glow' {
+    --drop-area-bg: rgba(0, 0, 0, 0.7);
+    --drop-area-border: #00ffff;
+    --drop-area-text: #00ffff;
+    --drop-area-icon: #00ffff;
+    --drop-area-drag-over: rgba(0, 255, 255, 0.1);
+    --drop-area-error: #ff073a;
+    --drop-area-loading: #39ff14;
+  } @else if $variant == 'haru' {
+    --drop-area-bg: rgba(252, 201, 185, 0.05);
+    --drop-area-border: var(--jadis-jp-sakura-iro);
+    --drop-area-text: var(--jadis-jp-sakura-iro);
+    --drop-area-icon: var(--jadis-jp-sakura-iro);
+    --drop-area-drag-over: rgba(252, 201, 185, 0.1);
+    --drop-area-error: var(--jadis-jp-karakurenai);
+    --drop-area-loading: var(--jadis-jp-yamabuki-iro);
+  } @else if $variant == 'natsu' {
+    --drop-area-bg: rgba(49, 52, 155, 0.05);
+    --drop-area-border: var(--jadis-jp-kon-iro);
+    --drop-area-text: var(--jadis-jp-kon-iro);
+    --drop-area-icon: var(--jadis-jp-kon-iro);
+    --drop-area-drag-over: rgba(49, 52, 155, 0.1);
+    --drop-area-error: var(--jadis-jp-karakurenai);
+    --drop-area-loading: var(--jadis-jp-yamabuki-iro);
+  } @else if $variant == 'aki' {
+    --drop-area-bg: rgba(202, 82, 84, 0.05);
+    --drop-area-border: var(--jadis-jp-momiji-iro);
+    --drop-area-text: var(--jadis-jp-momiji-iro);
+    --drop-area-icon: var(--jadis-jp-momiji-iro);
+    --drop-area-drag-over: rgba(202, 82, 84, 0.1);
+    --drop-area-error: var(--jadis-jp-karakurenai);
+    --drop-area-loading: var(--jadis-jp-yamabuki-iro);
+  } @else if $variant == 'fuyu' {
+    --drop-area-bg: rgba(255, 255, 252, 0.03);
+    --drop-area-border: var(--jadis-jp-yukishiro);
+    --drop-area-text: var(--jadis-jp-yukishiro);
+    --drop-area-icon: var(--jadis-jp-yukishiro);
+    --drop-area-drag-over: rgba(255, 255, 252, 0.05);
+    --drop-area-error: var(--jadis-jp-karakurenai);
+    --drop-area-loading: var(--jadis-jp-yamabuki-iro);
+  } @else if $variant == 'sumi' {
+    --drop-area-bg: rgba(16, 16, 16, 0.8);
+    --drop-area-border: var(--jadis-jp-sumi-iro);
+    --drop-area-text: var(--jadis-jp-sumi-iro);
+    --drop-area-icon: var(--jadis-jp-sumi-iro);
+    --drop-area-drag-over: rgba(16, 16, 16, 0.9);
+    --drop-area-error: var(--jadis-jp-karakurenai);
+    --drop-area-loading: var(--jadis-jp-yamabuki-iro);
+  }
+}
+
+// ===================================
+// DROP AREA COMPONENT
+// ===================================
+
+.jadis-drop-area {
+  font-family: var(--jadis-font-primary);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  background-color: var(--drop-area-bg);
+  border: 2px solid var(--drop-area-border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+
+  &:hover {
+    border-color: var(--drop-area-text);
+    background-color: var(--drop-area-drag-over);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--drop-area-text);
+    box-shadow: 0 0 0 2px rgba(var(--drop-area-border), 0.3);
+  }
+
+  // Size variants
+  &--small {
+    min-height: 120px;
+    padding: 1rem;
+  }
+
+  &--medium {
+    min-height: 200px;
+    padding: 2rem;
+  }
+
+  &--large {
+    min-height: 300px;
+    padding: 3rem;
+  }
+
+  // Style variants
+  &--bordered {
+    border-style: solid;
+  }
+
+  &--dashed {
+    border-style: dashed;
+  }
+
+  // State modifiers
+  &--drag-over {
+    background-color: var(--drop-area-drag-over) !important;
+    border-color: var(--drop-area-text);
+    transform: scale(1.02);
+  }
+
+  &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    
+    &:hover {
+      background-color: var(--drop-area-bg);
+      border-color: var(--drop-area-border);
+      transform: none;
+    }
+  }
+
+  &--loading {
+    cursor: wait;
+  }
+
+  &--error {
+    border-color: var(--drop-area-error);
+    
+    .jadis-drop-area__content {
+      color: var(--drop-area-error);
+    }
+  }
+
+  &--animated {
+    animation: drop-area-pulse 2s infinite;
+  }
+
+  // Theme variants
+  &--terminal {
+    @include drop-area-colors('terminal');
+  }
+
+  &--matrix {
+    @include drop-area-colors('matrix');
+  }
+
+  &--retro {
+    @include drop-area-colors('retro');
+  }
+
+  &--minimal {
+    @include drop-area-colors('minimal');
+  }
+
+  &--glow {
+    @include drop-area-colors('glow');
+  }
+
+  &--haru {
+    @include drop-area-colors('haru');
+  }
+
+  &--natsu {
+    @include drop-area-colors('natsu');
+  }
+
+  &--aki {
+    @include drop-area-colors('aki');
+  }
+
+  &--fuyu {
+    @include drop-area-colors('fuyu');
+  }
+
+  &--sumi {
+    @include drop-area-colors('sumi');
+  }
+}
+
+// ===================================
+// CONTENT AREAS
+// ===================================
+
+.jadis-drop-area__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--drop-area-text);
+  width: 100%;
+  height: 100%;
+}
+
+.jadis-drop-area__placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.jadis-drop-area__icon {
+  font-size: 3rem;
+  color: var(--drop-area-icon);
+  transition: all 0.3s ease;
+}
+
+.jadis-drop-area__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.jadis-drop-area__primary-text {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--drop-area-text);
+}
+
+.jadis-drop-area__secondary-text {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  color: var(--drop-area-text);
+}
+
+// ===================================
+// STATE COMPONENTS
+// ===================================
+
+.jadis-drop-area__loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: var(--drop-area-loading);
+}
+
+.jadis-drop-area__loading-icon {
+  font-size: 2rem;
+  animation: loading-spin 1s linear infinite;
+}
+
+.jadis-drop-area__loading-text {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.jadis-drop-area__error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: var(--drop-area-error);
+}
+
+.jadis-drop-area__error-icon {
+  font-size: 2rem;
+  animation: error-shake 0.5s ease-in-out;
+}
+
+.jadis-drop-area__error-text {
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+// ===================================
+// FILE PREVIEW
+// ===================================
+
+.jadis-drop-area__preview {
+  margin-top: 1rem;
+  padding: 1rem;
+  width: 100%;
+  border-top: 1px solid var(--drop-area-border);
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.jadis-drop-area__preview-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--drop-area-text);
+  margin-bottom: 0.5rem;
+}
+
+.jadis-drop-area__file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.jadis-drop-area__file-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.25rem 0;
+  font-size: 0.8rem;
+  color: var(--drop-area-text);
+  opacity: 0.8;
+}
+
+.jadis-drop-area__file-name {
+  flex: 1;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.jadis-drop-area__file-size {
+  font-family: monospace;
+  margin-left: 1rem;
+}
+
+// ===================================
+// OVERLAY EFFECTS
+// ===================================
+
+.jadis-drop-area__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+// ===================================
+// ANIMATIONS
+// ===================================
+
+@keyframes drop-area-pulse {
+  0%, 100% {
+    border-color: var(--drop-area-border);
+  }
+  50% {
+    border-color: var(--drop-area-text);
+  }
+}
+
+@keyframes loading-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes error-shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+// ===================================
+// THEME SPECIFIC STYLES
+// ===================================
+
+.jadis-drop-area--terminal {
+  &:hover .jadis-drop-area__icon {
+    text-shadow: 0 0 10px var(--drop-area-icon);
+  }
+
+  &.jadis-drop-area--drag-over {
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+  }
+}
+
+.jadis-drop-area--matrix {
+  &:hover .jadis-drop-area__icon {
+    text-shadow: 0 0 10px var(--drop-area-icon);
+  }
+
+  &.jadis-drop-area--drag-over {
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+  }
+}
+
+.jadis-drop-area--glow {
+  &:hover .jadis-drop-area__icon {
+    text-shadow: 0 0 15px var(--drop-area-icon);
+  }
+
+  &.jadis-drop-area--drag-over {
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
+  }
+}
+
+.jadis-drop-area--retro {
+  &:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0 var(--drop-area-border);
+  }
+
+  &.jadis-drop-area--drag-over {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 var(--drop-area-text);
+  }
+}
+
+.jadis-drop-area--minimal {
+  border-radius: 12px;
+  
+  &:hover {
+    box-shadow: 0 4px 12px rgba(97, 218, 251, 0.2);
+  }
+}
+
+// Japanese theme specific effects
+.jadis-drop-area--haru {
+  &:hover .jadis-drop-area__icon {
+    text-shadow: 0 0 8px rgba(252, 201, 185, 0.6);
+  }
+
+  &.jadis-drop-area--drag-over {
+    box-shadow: 0 0 15px rgba(252, 201, 185, 0.3);
+  }
+}
+
+.jadis-drop-area--natsu {
+  &:hover .jadis-drop-area__icon {
+    text-shadow: 0 0 8px rgba(49, 52, 155, 0.6);
+  }
+
+  &.jadis-drop-area--drag-over {
+    box-shadow: 0 0 15px rgba(49, 52, 155, 0.3);
+  }
+}
+
+.jadis-drop-area--aki {
+  &:hover .jadis-drop-area__icon {
+    text-shadow: 0 0 8px rgba(202, 82, 84, 0.6);
+  }
+
+  &.jadis-drop-area--drag-over {
+    box-shadow: 0 0 15px rgba(202, 82, 84, 0.3);
+  }
+}
+
+.jadis-drop-area--fuyu {
+  &:hover .jadis-drop-area__icon {
+    text-shadow: 0 0 8px rgba(255, 255, 252, 0.4);
+  }
+
+  &.jadis-drop-area--drag-over {
+    box-shadow: 0 0 15px rgba(255, 255, 252, 0.2);
+  }
+}
+
+.jadis-drop-area--sumi {
+  &:hover .jadis-drop-area__icon {
+    text-shadow: 0 0 8px rgba(16, 16, 16, 0.8);
+  }
+
+  &.jadis-drop-area--drag-over {
+    box-shadow: 0 0 15px rgba(16, 16, 16, 0.4);
+  }
+}

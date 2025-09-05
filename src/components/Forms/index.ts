@@ -5,6 +5,7 @@ export {
   RadioGroup,
   Checkbox,
   Select,
+  Combobox,
   Form,
   type InputProps,
   type TextAreaProps,
@@ -12,6 +13,8 @@ export {
   type RadioGroupProps,
   type CheckboxProps,
   type SelectProps,
+  type ComboboxProps,
+  type ComboboxOption,
   type FormProps,
   type FormVariant,
   type FormColor
