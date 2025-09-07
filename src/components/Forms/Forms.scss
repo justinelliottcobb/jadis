@@ -827,3 +827,336 @@
     box-shadow: 0 0 5px rgba(255, 51, 51, 0.5);
   }
 }
+
+// ===================================
+// COMBOBOX COMPONENT
+// ===================================
+
+.jadis-combobox {
+  position: relative;
+  width: 100%;
+  font-family: var(--jadis-font-primary);
+
+  &__input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  &__input {
+    width: 100%;
+    padding: var(--jadis-space-sm) 3rem var(--jadis-space-sm) var(--jadis-space-sm);
+    border: 2px solid var(--jadis-color-gray);
+    background: var(--jadis-bg-primary);
+    color: var(--jadis-text-primary);
+    font-family: var(--jadis-font-primary);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+    &:focus {
+      border-color: var(--jadis-color-green);
+      box-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
+    }
+
+    &::placeholder {
+      color: var(--jadis-color-gray);
+      opacity: 0.7;
+    }
+  }
+
+  &__loading {
+    position: absolute;
+    right: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--jadis-color-yellow);
+    font-size: 1rem;
+    animation: combobox-loading-spin 1s linear infinite;
+    pointer-events: none;
+  }
+
+  &__clear {
+    position: absolute;
+    right: 2.5rem;
+    background: none;
+    border: none;
+    color: var(--jadis-color-red);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 2px;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: rgba(255, 51, 51, 0.1);
+    }
+
+    &:focus {
+      outline: 2px solid var(--jadis-color-red);
+      outline-offset: 1px;
+    }
+  }
+
+  &__arrow {
+    position: absolute;
+    right: 0.75rem;
+    color: var(--jadis-color-gray);
+    font-size: 0.8rem;
+    pointer-events: none;
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+
+  &--open &__arrow {
+    transform: rotate(180deg);
+    color: var(--jadis-text-primary);
+  }
+
+  &__listbox {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--jadis-bg-primary);
+    border: 2px solid var(--jadis-color-green);
+    border-top: none;
+    max-height: 200px;
+    overflow-y: auto;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+
+    // Custom scrollbar for terminal aesthetic
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--jadis-color-green);
+      border-radius: 2px;
+    }
+  }
+
+  &__option {
+    padding: var(--jadis-space-sm);
+    cursor: pointer;
+    color: var(--jadis-text-primary);
+    border-bottom: 1px solid rgba(var(--jadis-color-gray-rgb, 128, 128, 128), 0.2);
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &--highlighted {
+      background-color: rgba(0, 255, 0, 0.1);
+      color: var(--jadis-color-green);
+    }
+
+    &--selected {
+      background-color: rgba(0, 255, 0, 0.05);
+      color: var(--jadis-color-green);
+      
+      &::after {
+        content: ' ✓';
+        float: right;
+        color: var(--jadis-color-green);
+      }
+    }
+
+    &--disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      background-color: transparent !important;
+      color: var(--jadis-color-gray) !important;
+    }
+
+    &--loading,
+    &--empty {
+      text-align: center;
+      color: var(--jadis-color-gray);
+      font-style: italic;
+      cursor: default;
+      
+      &:hover {
+        background-color: transparent;
+      }
+    }
+
+    &--loading::before {
+      content: '◐ ';
+      animation: combobox-loading-spin 1s linear infinite;
+    }
+  }
+
+  &__option-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  &__option-label {
+    font-weight: 500;
+  }
+
+  &__option-description {
+    font-size: 0.85rem;
+    opacity: 0.7;
+    color: var(--jadis-color-gray);
+  }
+
+  // Variant-specific styles
+  &--terminal {
+    .jadis-combobox__input {
+      border-color: var(--jadis-color-green);
+      background: rgba(0, 17, 0, 0.8);
+      
+      &:focus {
+        box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+        text-shadow: 0 0 2px var(--jadis-color-green);
+      }
+    }
+
+    .jadis-combobox__listbox {
+      border-color: var(--jadis-color-green);
+      background: rgba(0, 17, 0, 0.95);
+    }
+
+    .jadis-combobox__option--highlighted {
+      background-color: rgba(0, 255, 0, 0.15);
+      text-shadow: 0 0 2px var(--jadis-color-green);
+    }
+  }
+
+  &--matrix {
+    .jadis-combobox__input {
+      border-color: var(--jadis-color-matrix);
+      background: rgba(0, 17, 0, 0.9);
+      
+      &:focus {
+        border-color: var(--jadis-color-matrix);
+        box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+        text-shadow: 0 0 2px var(--jadis-color-matrix);
+      }
+    }
+
+    .jadis-combobox__listbox {
+      border-color: var(--jadis-color-matrix);
+      background: rgba(0, 17, 0, 0.95);
+    }
+
+    .jadis-combobox__option--highlighted {
+      background-color: rgba(0, 255, 65, 0.15);
+      color: var(--jadis-color-matrix);
+      text-shadow: 0 0 2px var(--jadis-color-matrix);
+    }
+  }
+
+  &--retro {
+    .jadis-combobox__input {
+      border-color: var(--jadis-color-orange);
+      background: rgba(139, 69, 19, 0.2);
+      
+      &:focus {
+        border-color: var(--jadis-color-orange);
+        box-shadow: 0 0 8px rgba(255, 165, 0, 0.4);
+      }
+    }
+
+    .jadis-combobox__listbox {
+      border-color: var(--jadis-color-orange);
+      background: rgba(139, 69, 19, 0.9);
+    }
+
+    .jadis-combobox__option--highlighted {
+      background-color: rgba(255, 165, 0, 0.2);
+      color: var(--jadis-color-orange);
+    }
+  }
+
+  &--minimal {
+    .jadis-combobox__input {
+      border-color: var(--jadis-color-blue);
+      background: rgba(40, 44, 52, 0.8);
+      
+      &:focus {
+        border-color: var(--jadis-color-blue);
+        box-shadow: 0 0 8px rgba(97, 218, 251, 0.3);
+      }
+    }
+
+    .jadis-combobox__listbox {
+      border-color: var(--jadis-color-blue);
+      background: rgba(40, 44, 52, 0.95);
+    }
+
+    .jadis-combobox__option--highlighted {
+      background-color: rgba(97, 218, 251, 0.15);
+      color: var(--jadis-color-blue);
+    }
+  }
+
+  &--glow {
+    .jadis-combobox__input {
+      border-color: var(--jadis-color-cyan);
+      background: rgba(0, 0, 0, 0.8);
+      
+      &:focus {
+        border-color: var(--jadis-color-cyan);
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+        text-shadow: 0 0 3px var(--jadis-color-cyan);
+      }
+    }
+
+    .jadis-combobox__listbox {
+      border-color: var(--jadis-color-cyan);
+      background: rgba(0, 0, 0, 0.95);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+    }
+
+    .jadis-combobox__option--highlighted {
+      background-color: rgba(0, 255, 255, 0.15);
+      color: var(--jadis-color-cyan);
+      text-shadow: 0 0 3px var(--jadis-color-cyan);
+    }
+  }
+
+  // Error state
+  &--error {
+    .jadis-combobox__input {
+      border-color: var(--jadis-color-red) !important;
+      
+      &:focus {
+        box-shadow: 0 0 8px rgba(255, 51, 51, 0.4) !important;
+      }
+    }
+
+    .jadis-combobox__listbox {
+      border-color: var(--jadis-color-red);
+    }
+  }
+
+  // Loading state
+  &--loading {
+    .jadis-combobox__input {
+      cursor: wait;
+    }
+  }
+}
+
+// Animations
+@keyframes combobox-loading-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
