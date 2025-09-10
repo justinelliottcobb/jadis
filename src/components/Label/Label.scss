@@ -1,0 +1,641 @@
+// ===================================
+// LABEL COMPONENT STYLES
+// ===================================
+
+.jadis-label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-family: var(--jadis-font-mono);
+  font-weight: 600;
+  line-height: 1.2;
+  vertical-align: baseline;
+  overflow: hidden;
+
+  // Container for content
+  &__container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: var(--jadis-space-xs);
+    width: 100%;
+  }
+
+  // Content wrapper
+  &__content {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    flex: 1;
+  }
+
+  // Icon styling
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 0.9em;
+  }
+
+  // Badge styling
+  &__badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.2em;
+    height: 1.2em;
+    font-size: 0.7em;
+    font-weight: 700;
+    background: var(--jadis-accent-primary);
+    color: var(--jadis-bg-primary);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  // Effects overlay
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  // ===================================
+  // SIZE VARIATIONS
+  // ===================================
+
+  &--xs {
+    font-size: 0.65rem;
+    
+    .jadis-label__container {
+      gap: 2px;
+    }
+  }
+
+  &--sm {
+    font-size: 0.75rem;
+    
+    .jadis-label__container {
+      gap: 4px;
+    }
+  }
+
+  &--md {
+    font-size: 0.875rem;
+    
+    .jadis-label__container {
+      gap: var(--jadis-space-xs);
+    }
+  }
+
+  &--lg {
+    font-size: 1rem;
+    
+    .jadis-label__container {
+      gap: var(--jadis-space-sm);
+    }
+  }
+
+  &--xl {
+    font-size: 1.125rem;
+    
+    .jadis-label__container {
+      gap: var(--jadis-space-sm);
+    }
+  }
+
+  // ===================================
+  // STYLE VARIATIONS
+  // ===================================
+
+  &--solid {
+    background: var(--jadis-bg-secondary);
+    color: var(--jadis-text-primary);
+  }
+
+  &--outline {
+    background: transparent;
+    color: var(--jadis-text-primary);
+    border: 1px solid var(--jadis-border-primary);
+  }
+
+  &--ghost {
+    background: transparent;
+    color: var(--jadis-text-secondary);
+  }
+
+  &--filled {
+    background: var(--jadis-accent-primary);
+    color: var(--jadis-bg-primary);
+  }
+
+  // ===================================
+  // ALIGNMENT
+  // ===================================
+
+  &--left {
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  &--center {
+    justify-content: center;
+    text-align: center;
+  }
+
+  &--right {
+    justify-content: flex-end;
+    text-align: right;
+  }
+
+  // ===================================
+  // FONT FAMILIES
+  // ===================================
+
+  &--font-mono {
+    font-family: var(--jadis-font-mono);
+  }
+
+  &--font-ascii {
+    font-family: 'Courier New', monospace;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
+
+  &--font-pixel {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.7em;
+    text-rendering: pixelated;
+  }
+
+  // ===================================
+  // PADDING VARIATIONS
+  // ===================================
+
+  &--padding-none {
+    padding: 0;
+  }
+
+  &--padding-xs {
+    padding: 2px 4px;
+  }
+
+  &--padding-sm {
+    padding: 4px 8px;
+  }
+
+  &--padding-md {
+    padding: 6px 12px;
+  }
+
+  &--padding-lg {
+    padding: 8px 16px;
+  }
+
+  // ===================================
+  // MODIFIERS
+  // ===================================
+
+  &--bordered {
+    border: 1px solid var(--jadis-border-primary);
+    box-shadow: inset 0 0 0 1px var(--jadis-border-secondary);
+  }
+
+  &--uppercase {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  &--fixed-width {
+    font-family: 'Courier New', monospace;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  &--with-icon {
+    .jadis-label__content {
+      margin-left: var(--jadis-space-xs);
+    }
+  }
+
+  &--with-badge {
+    .jadis-label__content {
+      margin-right: var(--jadis-space-xs);
+    }
+  }
+
+  // ===================================
+  // STATUS VARIATIONS
+  // ===================================
+
+  &--status-success {
+    &.jadis-label--solid {
+      background: rgba(34, 197, 94, 0.2);
+      color: #22c55e;
+      border-color: #22c55e;
+    }
+    
+    &.jadis-label--filled {
+      background: #22c55e;
+      color: #000;
+    }
+    
+    .jadis-label__icon {
+      color: #22c55e;
+    }
+  }
+
+  &--status-warning {
+    &.jadis-label--solid {
+      background: rgba(245, 158, 11, 0.2);
+      color: #f59e0b;
+      border-color: #f59e0b;
+    }
+    
+    &.jadis-label--filled {
+      background: #f59e0b;
+      color: #000;
+    }
+    
+    .jadis-label__icon {
+      color: #f59e0b;
+    }
+  }
+
+  &--status-error {
+    &.jadis-label--solid {
+      background: rgba(239, 68, 68, 0.2);
+      color: #ef4444;
+      border-color: #ef4444;
+    }
+    
+    &.jadis-label--filled {
+      background: #ef4444;
+      color: #fff;
+    }
+    
+    .jadis-label__icon {
+      color: #ef4444;
+    }
+  }
+
+  &--status-info {
+    &.jadis-label--solid {
+      background: rgba(59, 130, 246, 0.2);
+      color: #3b82f6;
+      border-color: #3b82f6;
+    }
+    
+    &.jadis-label--filled {
+      background: #3b82f6;
+      color: #fff;
+    }
+    
+    .jadis-label__icon {
+      color: #3b82f6;
+    }
+  }
+
+  // ===================================
+  // ANIMATIONS & EFFECTS
+  // ===================================
+
+  &--animated {
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &--pulse {
+    animation: jadis-label-pulse 2s ease-in-out infinite;
+  }
+
+  &--typewriter {
+    .jadis-label__typewriter {
+      overflow: hidden;
+      border-right: 2px solid;
+      white-space: nowrap;
+      margin: 0 auto;
+      animation: 
+        jadis-label-typing var(--animation-duration, 2s) steps(40, end) var(--animation-delay, 0s) var(--animation-iteration, 1),
+        jadis-label-blink-caret 0.75s step-end infinite;
+    }
+  }
+
+  &--fade-in {
+    animation: jadis-label-fade-in var(--animation-duration, 1s) ease-in var(--animation-delay, 0s) var(--animation-iteration, 1);
+  }
+
+  &--slide-in {
+    animation: jadis-label-slide-in var(--animation-duration, 0.8s) ease-out var(--animation-delay, 0s) var(--animation-iteration, 1);
+  }
+
+  &--bounce {
+    animation: jadis-label-bounce var(--animation-duration, 1s) ease-out var(--animation-delay, 0s) var(--animation-iteration, 1);
+  }
+
+  &--matrix {
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(0, 255, 65, 0.1) 50%, transparent 100%);
+      animation: jadis-label-matrix-sweep 3s linear infinite;
+    }
+  }
+
+  &--wave {
+    .jadis-label__content {
+      display: inline-block;
+      animation: jadis-label-wave var(--animation-duration, 2s) ease-in-out infinite;
+    }
+  }
+
+  // ===================================
+  // THEME VARIANTS
+  // ===================================
+
+  // Terminal variant
+  &--terminal {
+    background: #0a0a0a;
+    color: #00ff41;
+    
+    &.jadis-label--outline {
+      border-color: #00ff41;
+    }
+    
+    .jadis-label__badge {
+      background: #ff0040;
+      color: #000;
+    }
+  }
+
+  // Matrix variant
+  &--matrix {
+    background: #000000;
+    color: #00ff41;
+    
+    .jadis-label__overlay {
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(0, 255, 65, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(0, 255, 65, 0.03) 0%, transparent 50%);
+    }
+  }
+
+  // Retro variant
+  &--retro {
+    background: #2a0845;
+    color: #ff6b9d;
+    
+    .jadis-label__overlay {
+      background: linear-gradient(45deg, 
+        rgba(255, 107, 157, 0.05) 0%, 
+        rgba(199, 0, 255, 0.05) 100%);
+    }
+  }
+
+  // Minimal variant
+  &--minimal {
+    background: #f8f9fa;
+    color: #495057;
+    
+    &.jadis-label--outline {
+      border-color: #dee2e6;
+    }
+  }
+
+  // Glow variant
+  &--glow {
+    background: #0f051d;
+    color: #a78bfa;
+    box-shadow: 0 0 10px rgba(167, 139, 250, 0.3);
+    
+    .jadis-label__overlay {
+      background: 
+        radial-gradient(circle at 25% 25%, rgba(167, 139, 250, 0.1) 0%, transparent 50%);
+    }
+  }
+
+  // Haru (Spring) variant
+  &--haru {
+    background: linear-gradient(135deg, #fef7f0 0%, #fdf2f8 100%);
+    color: #7c2d92;
+    
+    .jadis-label__overlay {
+      background: 
+        radial-gradient(circle at 30% 20%, rgba(251, 207, 232, 0.3) 0%, transparent 50%);
+    }
+  }
+
+  // Natsu (Summer) variant
+  &--natsu {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    color: #0c4a6e;
+    
+    .jadis-label__overlay {
+      background: 
+        radial-gradient(circle at 40% 30%, rgba(56, 189, 248, 0.2) 0%, transparent 50%);
+    }
+  }
+
+  // Aki (Autumn) variant
+  &--aki {
+    background: linear-gradient(135deg, #fefbf3 0%, #fef3e2 100%);
+    color: #9a3412;
+    
+    .jadis-label__overlay {
+      background: 
+        radial-gradient(circle at 25% 40%, rgba(251, 146, 60, 0.2) 0%, transparent 50%);
+    }
+  }
+
+  // Fuyu (Winter) variant
+  &--fuyu {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    color: #1e293b;
+    
+    .jadis-label__overlay {
+      background: 
+        radial-gradient(circle at 35% 35%, rgba(148, 163, 184, 0.2) 0%, transparent 50%);
+    }
+  }
+
+  // Sumi (Ink) variant
+  &--sumi {
+    background: linear-gradient(135deg, #1c1c1c 0%, #2d2d2d 100%);
+    color: #e5e5e5;
+    
+    .jadis-label__overlay {
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+    }
+  }
+}
+
+// ===================================
+// SPECIALIZED COMPONENTS
+// ===================================
+
+// Badge Label
+.jadis-badge-label {
+  &__label {
+    opacity: 0.7;
+  }
+  
+  &__separator {
+    opacity: 0.5;
+    margin: 0 0.2em;
+  }
+  
+  &__value {
+    font-weight: 700;
+    
+    &--success { color: #22c55e; }
+    &--warning { color: #f59e0b; }
+    &--error { color: #ef4444; }
+    &--info { color: #3b82f6; }
+  }
+}
+
+// ASCII Label Art
+.jadis-ascii-label {
+  &__art {
+    font-family: 'Courier New', monospace;
+    line-height: 1;
+    white-space: pre;
+    text-align: center;
+  }
+}
+
+// ===================================
+// KEYFRAME ANIMATIONS
+// ===================================
+
+@keyframes jadis-label-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes jadis-label-typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes jadis-label-blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: currentColor; }
+}
+
+@keyframes jadis-label-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes jadis-label-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes jadis-label-bounce {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.1) translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes jadis-label-matrix-sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes jadis-label-wave {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-2px);
+  }
+  75% {
+    transform: translateY(2px);
+  }
+}
+
+// ===================================
+// RESPONSIVE DESIGN
+// ===================================
+
+@media (max-width: 768px) {
+  .jadis-label {
+    &--xl {
+      font-size: 1rem;
+    }
+    
+    &--lg {
+      font-size: 0.9rem;
+    }
+    
+    &__container {
+      gap: var(--jadis-space-xs);
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .jadis-label {
+    &--xl {
+      font-size: 0.9rem;
+    }
+    
+    &--lg {
+      font-size: 0.85rem;
+    }
+    
+    &--md {
+      font-size: 0.8rem;
+    }
+  }
+}
