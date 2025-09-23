@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Carousel, ImageCarousel, TestimonialCarousel, CarouselItem } from './Carousel'
 
 const meta: Meta<typeof Carousel> = {

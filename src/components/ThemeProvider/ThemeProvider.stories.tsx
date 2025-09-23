@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { ThemeProvider, useTheme, type JadisTheme } from './ThemeProvider'
 import { H1, H2 } from '../Headers'
 import { P, Code, Strong } from '../Typography'

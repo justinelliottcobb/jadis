@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { 
   Card, 
   CardHeader, 
@@ -72,7 +72,6 @@ type Story = StoryObj<typeof Card>
 // ===================================
 
 export const Terminal: Story = {
-  name: 'Card - Terminal',
   args: {
     variant: 'terminal',
     children: (
@@ -95,7 +94,6 @@ export const Terminal: Story = {
 }
 
 export const Matrix: Story = {
-  name: 'Card - Matrix',
   args: {
     variant: 'matrix',
     children: (
@@ -113,7 +111,6 @@ export const Matrix: Story = {
 }
 
 export const Retro: Story = {
-  name: 'Card - Retro',
   args: {
     variant: 'retro',
     children: (
@@ -130,7 +127,6 @@ export const Retro: Story = {
 }
 
 export const Interactive: Story = {
-  name: 'Card - Interactive',
   args: {
     variant: 'terminal',
     interactive: true,
@@ -152,7 +148,6 @@ export const Interactive: Story = {
 // ===================================
 
 export const TerminalWindow: StoryObj<typeof TerminalCard> = {
-  name: 'Terminal Card',
   render: (args) => <TerminalCard {...args} />,
   args: {
     title: 'jadis@system',
@@ -177,7 +172,6 @@ export const TerminalWindow: StoryObj<typeof TerminalCard> = {
 }
 
 export const StatusCards: StoryObj = {
-  name: 'Status Cards',
   render: () => (
     <div style={{ display: 'grid', gap: '1rem', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))' }}>
       <StatusCard
@@ -209,7 +203,6 @@ export const StatusCards: StoryObj = {
 }
 
 export const DataCards: StoryObj = {
-  name: 'Data Cards',
   render: () => (
     <div style={{ display: 'grid', gap: '1rem', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}>
       <DataCard
@@ -249,7 +242,6 @@ export const DataCards: StoryObj = {
 // ===================================
 
 export const CardSizes: StoryObj = {
-  name: 'Card Sizes',
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
       <Card variant="terminal" size="small">
@@ -287,7 +279,6 @@ export const CardSizes: StoryObj = {
 // ===================================
 
 export const AllVariants: StoryObj = {
-  name: 'All Card Variants',
   render: () => (
     <ThemeProvider defaultTheme="terminal">
       <div style={{ padding: '2rem' }}>
@@ -344,7 +335,6 @@ export const AllVariants: StoryObj = {
 // ===================================
 
 export const ComplexCard: StoryObj = {
-  name: 'Complex Card Example',
   render: () => (
     <ThemeProvider defaultTheme="terminal">
       <Card variant="terminal" size="large" interactive>

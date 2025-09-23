@@ -328,7 +328,7 @@ export interface FileUploadZoneProps extends Omit<DropAreaProps, 'showPreview'> 
   headers?: Record<string, string>
   onUploadStart?: (files: File[]) => void
   onUploadProgress?: (progress: number, file: File) => void
-  onUploadComplete?: (response: any, file: File) => void
+  onUploadComplete?: (response: unknown, file: File) => void
   onUploadError?: (error: Error, file: File) => void
 }
 

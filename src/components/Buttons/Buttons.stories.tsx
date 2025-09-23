@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { 
   Button, 
   IconButton,
@@ -82,7 +82,6 @@ type Story = StoryObj<typeof Button>
 // ===================================
 
 export const Terminal: Story = {
-  name: 'Button - Terminal',
   args: {
     variant: 'terminal',
     children: 'EXECUTE',
@@ -90,7 +89,6 @@ export const Terminal: Story = {
 }
 
 export const Matrix: Story = {
-  name: 'Button - Matrix',
   args: {
     variant: 'matrix',
     children: 'ENTER MATRIX',
@@ -98,7 +96,6 @@ export const Matrix: Story = {
 }
 
 export const Retro: Story = {
-  name: 'Button - Retro',
   args: {
     variant: 'retro',
     children: 'PLAY GAME',
@@ -106,7 +103,6 @@ export const Retro: Story = {
 }
 
 export const Minimal: Story = {
-  name: 'Button - Minimal',
   args: {
     variant: 'minimal',
     children: 'CONTINUE',
@@ -114,7 +110,6 @@ export const Minimal: Story = {
 }
 
 export const Glow: Story = {
-  name: 'Button - Glow',
   args: {
     variant: 'glow',
     children: 'ACTIVATE',
@@ -127,7 +122,6 @@ export const Glow: Story = {
 // ===================================
 
 export const ButtonSizes: StoryObj = {
-  name: 'Button Sizes',
   render: () => (
     <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
       <Button variant="terminal" size="small">SMALL</Button>
@@ -142,7 +136,6 @@ export const ButtonSizes: StoryObj = {
 // ===================================
 
 export const ButtonColors: StoryObj = {
-  name: 'Button Colors',
   render: () => (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
       <Button variant="terminal" color="primary">PRIMARY</Button>
@@ -160,7 +153,6 @@ export const ButtonColors: StoryObj = {
 // ===================================
 
 export const ButtonStates: StoryObj = {
-  name: 'Button States',
   render: () => (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
       <Button variant="terminal">NORMAL</Button>
@@ -177,7 +169,6 @@ export const ButtonStates: StoryObj = {
 // ===================================
 
 export const ButtonsWithIcons: StoryObj = {
-  name: 'Buttons with Icons',
   render: () => (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
       <Button variant="terminal" icon="▶">PLAY</Button>
@@ -193,7 +184,6 @@ export const ButtonsWithIcons: StoryObj = {
 // ===================================
 
 export const IconButtons: StoryObj = {
-  name: 'Icon Buttons',
   render: () => (
     <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
       <IconButton variant="terminal" icon="✕" label="Close" size="small" />
@@ -209,7 +199,6 @@ export const IconButtons: StoryObj = {
 // ===================================
 
 export const ButtonGroups: StoryObj = {
-  name: 'Button Groups',
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
       <div>
@@ -247,7 +236,6 @@ export const ButtonGroups: StoryObj = {
 // ===================================
 
 export const ToggleButtons: StoryObj = {
-  name: 'Toggle Buttons',
   render: () => {
     const [pressed1, setPressed1] = React.useState(false)
     const [pressed2, setPressed2] = React.useState(true)
@@ -290,7 +278,6 @@ export const ToggleButtons: StoryObj = {
 // ===================================
 
 export const LinkButtons: StoryObj = {
-  name: 'Link Buttons',
   render: () => (
     <div style={{ display: 'flex', gap: '1rem' }}>
       <LinkButton 
@@ -326,7 +313,6 @@ export const LinkButtons: StoryObj = {
 // ===================================
 
 export const FloatingActionButtons: StoryObj = {
-  name: 'Floating Action Buttons',
   render: () => (
     <div style={{ position: 'relative', height: '400px', border: '1px solid #333' }}>
       <P variant="terminal" style={{ padding: '1rem' }}>
@@ -367,7 +353,6 @@ export const FloatingActionButtons: StoryObj = {
 // ===================================
 
 export const AllVariants: StoryObj = {
-  name: 'All Button Variants',
   render: () => (
     <ThemeProvider defaultTheme="terminal">
       <div style={{ padding: '2rem' }}>
@@ -412,7 +397,6 @@ export const AllVariants: StoryObj = {
 // ===================================
 
 export const InteractiveDemo: StoryObj = {
-  name: 'Interactive Button Demo',
   render: () => {
     const [clickCount, setClickCount] = React.useState(0)
     const [loading, setLoading] = React.useState(false)

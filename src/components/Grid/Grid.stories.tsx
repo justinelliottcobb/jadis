@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Grid, GridItem, ResponsiveGrid } from './Grid'
 import { Card, CardHeader, CardBody } from '../Cards/Cards'
 import { P } from '../Typography/Typography'

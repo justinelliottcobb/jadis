@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { useState } from 'react'
 import { PageLayout, AppHeader, AppFooter, Sidebar, Breadcrumbs, StatusBar, HeroBanner, PageBanner, FeatureSection } from './Layout'
 import { Navbar, NavbarBrand, NavbarItem, NavbarNav, NavbarDropdown } from '../Navbar/Navbar'
