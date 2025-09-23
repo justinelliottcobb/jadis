@@ -323,26 +323,18 @@ export const ErrorPage: React.FC<ErrorPageProps> = ({
 // SPECIALIZED ERROR COMPONENTS
 // ===================================
 
-export interface NotFoundProps extends Omit<ErrorPageProps, 'errorCode'> {}
-
-export const NotFound: React.FC<NotFoundProps> = (props) => (
+export const NotFound: React.FC<Omit<ErrorPageProps, 'errorCode'>> = (props) => (
   <ErrorPage {...props} errorCode="404" />
 )
 
-export interface ForbiddenProps extends Omit<ErrorPageProps, 'errorCode'> {}
-
-export const Forbidden: React.FC<ForbiddenProps> = (props) => (
+export const Forbidden: React.FC<Omit<ErrorPageProps, 'errorCode'>> = (props) => (
   <ErrorPage {...props} errorCode="403" />
 )
 
-export interface ServerErrorProps extends Omit<ErrorPageProps, 'errorCode'> {}
-
-export const ServerError: React.FC<ServerErrorProps> = (props) => (
+export const ServerError: React.FC<Omit<ErrorPageProps, 'errorCode'>> = (props) => (
   <ErrorPage {...props} errorCode="500" />
 )
 
-export interface UnauthorizedProps extends Omit<ErrorPageProps, 'errorCode'> {}
-
-export const Unauthorized: React.FC<UnauthorizedProps> = (props) => (
+export const Unauthorized: React.FC<Omit<ErrorPageProps, 'errorCode'>> = (props) => (
   <ErrorPage {...props} errorCode="401" />
 )

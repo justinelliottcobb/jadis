@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { 
   Button, 
   IconButton,
@@ -127,7 +127,6 @@ export const Glow: Story = {
 // ===================================
 
 export const ButtonSizes: StoryObj = {
-  name: 'Button Sizes',
   render: () => (
     <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
       <Button variant="terminal" size="small">SMALL</Button>
@@ -142,7 +141,6 @@ export const ButtonSizes: StoryObj = {
 // ===================================
 
 export const ButtonColors: StoryObj = {
-  name: 'Button Colors',
   render: () => (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
       <Button variant="terminal" color="primary">PRIMARY</Button>
@@ -160,7 +158,6 @@ export const ButtonColors: StoryObj = {
 // ===================================
 
 export const ButtonStates: StoryObj = {
-  name: 'Button States',
   render: () => (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
       <Button variant="terminal">NORMAL</Button>
@@ -193,7 +190,6 @@ export const ButtonsWithIcons: StoryObj = {
 // ===================================
 
 export const IconButtons: StoryObj = {
-  name: 'Icon Buttons',
   render: () => (
     <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
       <IconButton variant="terminal" icon="✕" label="Close" size="small" />
@@ -209,7 +205,6 @@ export const IconButtons: StoryObj = {
 // ===================================
 
 export const ButtonGroups: StoryObj = {
-  name: 'Button Groups',
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
       <div>
@@ -247,7 +242,6 @@ export const ButtonGroups: StoryObj = {
 // ===================================
 
 export const ToggleButtons: StoryObj = {
-  name: 'Toggle Buttons',
   render: () => {
     const [pressed1, setPressed1] = React.useState(false)
     const [pressed2, setPressed2] = React.useState(true)

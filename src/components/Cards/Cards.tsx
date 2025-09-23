@@ -87,11 +87,7 @@ export const CardHeader: React.FC<CardHeaderProps> = ({
 // CARD BODY/CONTENT COMPONENT
 // ===================================
 
-export interface CardBodyProps extends React.HTMLAttributes<HTMLDivElement> {
-  // Empty interface for potential future extension
-}
-
-export const CardBody: React.FC<CardBodyProps> = ({
+export const CardBody: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   className = '',
   children,
   ...props

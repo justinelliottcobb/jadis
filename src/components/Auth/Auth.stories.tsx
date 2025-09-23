@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { useState } from 'react'
 import { LoginForm, RegisterForm, SessionStatus, AuthGuard, LogoutConfirm, SessionUser } from './Auth'
 import { H1, H2 } from '../Headers/Headers'
@@ -159,7 +159,7 @@ export const InteractiveLogin: LoginStory = {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState<string>()
 
-    const handleSubmit = (data: any) => {
+    const handleSubmit = (data: Record<string, unknown>) => {
       setLoading(true)
       setError(undefined)
       
@@ -285,7 +285,7 @@ export const InteractiveRegister: StoryObj<typeof RegisterForm> = {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState<string>()
 
-    const handleSubmit = (data: any) => {
+    const handleSubmit = (data: Record<string, unknown>) => {
       setLoading(true)
       setError(undefined)
       
@@ -618,7 +618,7 @@ export const AuthFlow: StoryObj<typeof LoginForm> = {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState<string>()
 
-    const handleLogin = (data: any) => {
+    const handleLogin = (data: Record<string, unknown>) => {
       setLoading(true)
       setError(undefined)
       
@@ -639,7 +639,7 @@ export const AuthFlow: StoryObj<typeof LoginForm> = {
       }, 1500)
     }
 
-    const handleRegister = (data: any) => {
+    const handleRegister = (data: Record<string, unknown>) => {
       setLoading(true)
       setError(undefined)
       

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { P, Span, Code, Pre, Blockquote, Strong, Em, Small, Mark } from './Typography'
 
 const meta: Meta<typeof P> = {

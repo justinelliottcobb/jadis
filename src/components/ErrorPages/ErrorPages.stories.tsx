@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { ErrorPage, NotFound, Forbidden, ServerError, Unauthorized } from './ErrorPages'
 import { useState } from 'react'
 

@@ -107,11 +107,7 @@ export const TableHead: React.FC<TableHeadProps> = ({
 // TABLE BODY COMPONENT
 // ===================================
 
-export interface TableBodyProps extends React.HTMLAttributes<HTMLTableSectionElement> {
-  // Empty interface for potential future extension
-}
-
-export const TableBody: React.FC<TableBodyProps> = ({
+export const TableBody: React.FC<React.HTMLAttributes<HTMLTableSectionElement>> = ({
   className = '',
   children,
   ...props
@@ -127,11 +123,7 @@ export const TableBody: React.FC<TableBodyProps> = ({
 // TABLE FOOTER COMPONENT
 // ===================================
 
-export interface TableFooterProps extends React.HTMLAttributes<HTMLTableSectionElement> {
-  // Empty interface for potential future extension
-}
-
-export const TableFooter: React.FC<TableFooterProps> = ({
+export const TableFooter: React.FC<React.HTMLAttributes<HTMLTableSectionElement>> = ({
   className = '',
   children,
   ...props
@@ -282,7 +274,7 @@ export const TableCell: React.FC<TableCellProps> = ({
 // DATA TABLE COMPONENT
 // ===================================
 
-export interface Column<T = any> {
+export interface Column<T = Record<string, unknown>> {
   key: string
   header: React.ReactNode
   accessor?: string | ((row: T) => React.ReactNode)
@@ -292,7 +284,7 @@ export interface Column<T = any> {
   numeric?: boolean
 }
 
-export interface DataTableProps<T = any> extends Omit<TableProps, 'children'> {
+export interface DataTableProps<T = Record<string, unknown>> extends Omit<TableProps, 'children'> {
   data: T[]
   columns: Column<T>[]
   keyField?: string
@@ -303,7 +295,7 @@ export interface DataTableProps<T = any> extends Omit<TableProps, 'children'> {
   emptyMessage?: React.ReactNode
 }
 
-export function DataTable<T extends Record<string, any>>({
+export function DataTable<T extends Record<string, unknown>>({
   data,
   columns,
   keyField = 'id',
