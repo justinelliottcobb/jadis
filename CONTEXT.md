@@ -628,8 +628,50 @@ Comprehensive Storybook setup includes:
 - **Clean repository** status
 - **Conventional commits** recommended for consistency
 
-## Development Notes
-- Project is in early development phase (version 0.1.0)
+## NPM Publishing & Release Infrastructure
+
+### Package Information
+- **Package Name**: `jadis-ui` (published on NPM)
+- **Current Version**: 0.1.1-1 (prerelease)
+- **NPM Registry**: https://www.npmjs.com/package/jadis-ui
+- **Installation**: `npm install jadis-ui`
+
+### Automated Release Pipeline
+- **CI/CD**: Complete GitHub Actions workflow for testing and releases
+- **Automated Testing**: ESLint, TypeScript compilation, and build verification
+- **Release Types**: patch, minor, major, prerelease via manual workflow dispatch
+- **NPM Publishing**: Automatic publishing to NPM registry with proper tagging
+- **GitHub Releases**: Automated GitHub release creation with build artifacts
+
+### Release Configuration Files
+- **.github/workflows/ci.yml**: Comprehensive CI testing on Node 18, 20, 22 across Ubuntu, Windows, macOS
+- **.github/workflows/release.yml**: Release automation with version bumping and NPM publishing
+- **.npmignore**: Excludes development files from published package
+- **package.json**: Configured with proper NPM fields, exports, and release scripts
+- **vite.config.ts**: Enhanced with vite-plugin-dts for TypeScript declaration generation
+
+### Release Scripts
+```bash
+npm run release:patch      # Bug fixes (0.1.0 → 0.1.1)
+npm run release:minor      # New features (0.1.0 → 0.2.0)
+npm run release:major      # Breaking changes (0.1.0 → 1.0.0)
+npm run release:prerelease # Beta versions (0.1.0 → 0.1.1-0)
+```
+
+### Build Artifacts
+- **dist/index.js**: Compiled JavaScript library (ES modules)
+- **dist/index.css**: Bundled CSS styles with all themes
+- **dist/index.d.ts**: TypeScript declaration files
+- **Package Size**: ~954KB compressed, ~1.9MB unpacked
+
+### Code Quality Pipeline
+- **Strict ESLint Configuration**: Separate rules for core library vs Storybook files
+- **TypeScript Strict Mode**: Full type safety with declaration generation
+- **Cross-Platform Testing**: Windows, macOS, Ubuntu compatibility verified
+- **Storybook Integration**: @storybook/react-vite framework with proper imports
+
+### Development Notes
+- Project successfully published as first NPM package (milestone achievement!)
 - **Design Focus**: 90's BBS ASCII art and terminal user interface aesthetics
 - **Component Philosophy**: Nostalgic computing experience with modern React patterns
 - Radix UI provides accessible, unstyled components as foundation
