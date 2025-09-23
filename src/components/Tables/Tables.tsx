@@ -385,6 +385,7 @@ export function DataTable<T extends Record<string, any>>({
             <TableHeaderCell width="60px" align="center">
               <Checkbox
                 variant={variant}
+                label=""
                 checked={selectedRows?.size === data.length && data.length > 0}
                 indeterminate={selectedRows && selectedRows.size > 0 && selectedRows.size < data.length}
                 onChange={(e) => {
@@ -437,6 +438,7 @@ export function DataTable<T extends Record<string, any>>({
                   <TableCell width="60px" align="center">
                     <Checkbox
                       variant={variant}
+                      label=""
                       checked={isSelected}
                       onChange={() => handleRowSelection(row)}
                       onClick={(e) => e.stopPropagation()}

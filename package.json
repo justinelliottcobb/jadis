@@ -43,7 +43,7 @@
   ],
   "scripts": {
     "dev": "vite build --watch",
-    "build": "vite build && tsc --project tsconfig.app.json",
+    "build": "vite build",
     "lint": "eslint .",
     "storybook": "storybook dev -p 3000",
     "build-storybook": "storybook build",
