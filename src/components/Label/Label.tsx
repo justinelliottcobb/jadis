@@ -269,7 +269,7 @@ export const StatusLabel: React.FC<StatusLabelProps> = ({
     <Label
       {...props}
       text={config.text}
-      status={config.color as any}
+      status={config.color as LabelStatus}
       icon={showIndicator ? config.icon : undefined}
       pulse={pulse}
       animated={status === 'loading'}

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { useState } from 'react'
 import { LoginForm, RegisterForm, SessionStatus, AuthGuard, LogoutConfirm, SessionUser } from './Auth'
 import { H1, H2 } from '../Headers/Headers'

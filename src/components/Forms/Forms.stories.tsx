@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { useState } from 'react'
 import { Input, TextArea, Radio, RadioGroup, Checkbox, Select, Combobox, Form } from './Forms'
 import { ThemeProvider } from '../ThemeProvider'

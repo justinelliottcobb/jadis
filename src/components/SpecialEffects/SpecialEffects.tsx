@@ -158,7 +158,7 @@ export const useSpecialEffects = () => {
   ) => {
     setEffects(prev => ({
       ...prev,
-      [type]: [...(prev[type] || []), effect as any]
+      [type]: [...(prev[type] || []), effect as Effect]
     }))
   }
   
