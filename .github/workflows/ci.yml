@@ -69,12 +69,10 @@ jobs:
 
       - name: Verify build output
         run: |
-          ls -la dist/
-          test -f dist/index.js
-          test -f dist/index.css
-          # Check that TypeScript declarations exist (even if minimal)
-          test -f dist/index.d.ts
-          # Verify file sizes are reasonable
-          test -s dist/index.js  # JS file should not be empty
-          test -s dist/index.css # CSS file should not be empty
-          echo "✅ Build verification completed successfully"
+          node -e "console.log('📁 Build output contents:'); const fs = require('fs'); const files = fs.readdirSync('./dist'); files.forEach(f => { const stats = fs.statSync('./dist/' + f); console.log('  ' + f + ' (' + stats.size + ' bytes)'); });"
+          node -e "const fs = require('fs'); if (!fs.existsSync('./dist/index.js')) process.exit(1); console.log('✅ index.js exists');"
+          node -e "const fs = require('fs'); if (!fs.existsSync('./dist/index.css')) process.exit(1); console.log('✅ index.css exists');"
+          node -e "const fs = require('fs'); if (!fs.existsSync('./dist/index.d.ts')) process.exit(1); console.log('✅ index.d.ts exists');"
+          node -e "const fs = require('fs'); if (fs.statSync('./dist/index.js').size === 0) process.exit(1); console.log('✅ index.js is not empty');"
+          node -e "const fs = require('fs'); if (fs.statSync('./dist/index.css').size === 0) process.exit(1); console.log('✅ index.css is not empty');"
+          node -e "console.log('✅ Build verification completed successfully');"
