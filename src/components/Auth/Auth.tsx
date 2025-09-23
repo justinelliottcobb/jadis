@@ -3,7 +3,7 @@ import { ASCIIIcon } from '../Icons/Icons'
 import { Button } from '../Buttons/Buttons'
 import { Input, Checkbox } from '../Forms/Forms'
 import { Card, CardHeader, CardBody, CardActions } from '../Cards/Cards'
-import { H1, H2, H3 } from '../Headers/Headers'
+import { H2, H3 } from '../Headers/Headers'
 import { P, Code, Strong } from '../Typography/Typography'
 import './Auth.scss'
 

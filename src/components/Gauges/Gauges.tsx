@@ -140,15 +140,6 @@ export const CircularGauge: React.FC<CircularGaugeProps> = ({
     const totalSegments = 16 // 16 positions around the circle
     const filledSegments = Math.round((percentage / 100) * totalSegments)
     
-    // ASCII characters for different positions around circle (clockwise from top)
-    const segments = ['▲', '◥', '▶', '◢', '▼', '◣', '◀', '◤']
-    const positions = [
-      '   ▲   ',
-      '  ◥ ◤  ', 
-      ' ▶   ◀ ',
-      '◢     ◣',
-      '   ▼   '
-    ]
     
     // Create filled circle representation
     const lines = [

@@ -315,7 +315,7 @@ export interface BreadcrumbItem {
   active?: boolean
 }
 
-export interface BreadcrumbsProps extends React.HTMLAttributes<HTMLNavElement> {
+export interface BreadcrumbsProps extends React.HTMLAttributes<HTMLElement> {
   variant?: LayoutVariant
   items: BreadcrumbItem[]
   separator?: string
