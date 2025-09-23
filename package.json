@@ -1,6 +1,6 @@
 {
   "name": "jadis-ui",
-  "version": "0.1.1-0",
+  "version": "0.1.1-1",
   "description": "A modern React component library with 90's BBS ASCII art and terminal user interface aesthetics",
   "keywords": [
     "react",
