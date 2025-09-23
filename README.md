@@ -1,26 +1,27 @@
 # Jadis
 
-[![npm version](https://img.shields.io/npm/v/jadis.svg)](https://www.npmjs.com/package/jadis)
+A modern React component library with 90's BBS ASCII art and terminal user interface aesthetics. Jadis brings nostalgic computing vibes to modern web applications with a comprehensive set of React components styled with retro ASCII art, terminal colors, and authentic monospace typography.
+
+[![npm version](https://badge.fury.io/js/jadis.svg)](https://badge.fury.io/js/jadis)
+[![CI](https://github.com/justinelliottcobb/jadis/workflows/CI/badge.svg)](https://github.com/justinelliottcobb/jadis/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 [![Storybook](https://img.shields.io/badge/Storybook-Ready-ff69b4.svg)](https://storybook.js.org/)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/28fe6ada-ebd8-432a-9530-15f6de2f7ede/deploy-status)](https://app.netlify.com/projects/jadis/deploys)
-
-> A modern React component library with 90's BBS ASCII art and terminal user interface aesthetics
 
 Jadis brings the nostalgic charm of vintage computing to modern web applications. Inspired by 90's BBS systems, terminal interfaces, and retro computing aesthetics, this component library provides a comprehensive set of React components styled with authentic ASCII art, terminal colors, and TUI design patterns.
 
 ## ✨ Features
 
-- 🖥️ **Terminal Aesthetics** - Authentic 90's BBS and TUI styling
-- 🎨 **5 Visual Variants** - terminal, matrix, retro, minimal, glow
-- 📱 **Fully Responsive** - Works beautifully on all screen sizes
-- ♿ **Accessible** - Built with accessibility in mind using Radix UI primitives
-- 🔧 **TypeScript Ready** - Complete TypeScript support with full type definitions
-- 🎭 **Theme System** - Dynamic theme switching with CSS custom properties
-- ⚡ **Modern Stack** - Built with React 19, TypeScript 5.8, and Vite 7
-- 📚 **Storybook Integration** - Comprehensive component documentation and testing
-- 🎪 **Special Effects** - Glitch effects, CRT simulation, scanlines, and more
+- 🖥️ **Terminal Aesthetics**: Authentic 90's BBS and terminal user interface styling
+- 🎨 **Multiple Themes**: 5 distinct variants (terminal, matrix, retro, minimal, glow) + Japanese seasonal themes
+- 🎭 **Special Effects**: Glitch effects, CRT monitor simulation, scanlines, and ASCII animations
+- ⚡ **Modern React**: Built with React 19, TypeScript, and modern development practices
+- 📚 **Comprehensive**: 15+ component families with 100+ individual components
+- 🎯 **Accessible**: Built on Radix UI primitives for excellent accessibility
+- 📖 **Storybook**: Interactive component documentation and examples
+- 🌸 **Japanese Colors**: 200+ traditional Japanese colors integrated as CSS custom properties
+- 🔧 **TypeScript**: Complete type safety with full TypeScript definitions
+- 📱 **Responsive**: Mobile-first responsive design for all screen sizes
 
 ## 🚀 Quick Start
 
@@ -32,6 +33,14 @@ npm install jadis
 yarn add jadis
 # or
 pnpm add jadis
+```
+
+### Peer Dependencies
+
+Jadis requires React 18+ as a peer dependency:
+
+```bash
+npm install react react-dom
 ```
 
 ### Basic Usage
@@ -117,6 +126,93 @@ Clean, understated design with subtle transparency and simple lines.
 ### Glow
 Cyberpunk-inspired styling with pulsing animations and intense glow effects.
 
+## 📚 Component Examples
+
+### Typography & Headers
+```tsx
+import { H1, H2, P, Code, Strong } from 'jadis'
+
+<H1 variant="box" align="center">MAIN SYSTEM</H1>
+<H2 variant="double-line">Configuration Menu</H2>
+<P variant="terminal" color="green" glow="sm">
+  Welcome to the <Strong variant="glow">JADIS</Strong> terminal system.
+</P>
+<Code variant="matrix" color="green">npm install jadis</Code>
+```
+
+### Forms & Inputs
+```tsx
+import { Input, TextArea, Button, Checkbox, Select, Form } from 'jadis'
+
+<Form variant="terminal">
+  <Input variant="terminal" label="Username" placeholder="Enter username..." />
+  <TextArea variant="matrix" label="Message" rows={4} />
+  <Checkbox variant="terminal" label="Remember me" />
+  <Select variant="retro" label="Choose option">
+    <option value="1">Option 1</option>
+  </Select>
+  <Button variant="terminal" type="submit">SUBMIT</Button>
+</Form>
+```
+
+### Layout & Cards
+```tsx
+import { Grid, GridItem, Card, CardHeader, CardBody } from 'jadis'
+
+<Grid variant="terminal" columns={3} gap="large">
+  <GridItem columnSpan={2}>
+    <Card variant="terminal" interactive>
+      <CardHeader title="System Status" subtitle="All systems operational" />
+      <CardBody>
+        <P variant="terminal">Connection established.</P>
+      </CardBody>
+    </Card>
+  </GridItem>
+</Grid>
+```
+
+### Special Effects
+```tsx
+import { SpecialEffects, GlitchText, CRTScreen } from 'jadis'
+
+<GlitchText effect="glitch-rgb">
+  <H1>SYSTEM ERROR</H1>
+</GlitchText>
+
+<SpecialEffects
+  glitch={['glitch-rgb']}
+  scanlines={['scanlines']}
+  glow={['glow-pulse']}
+>
+  <P>Enhanced retro effects</P>
+</SpecialEffects>
+```
+
+## 🎨 Themes & Variants
+
+### Core Variants
+- **terminal**: Classic green-on-black terminal styling
+- **matrix**: Digital rain and neon green effects
+- **retro**: 80's gaming aesthetic with bold colors
+- **minimal**: Clean, simplified ASCII styling
+- **glow**: Enhanced effects with pulsing animations
+
+### Japanese Seasonal Themes
+- **haru** (春): Spring/Cherry Blossom theme
+- **natsu** (夏): Summer/Deep Indigo theme
+- **aki** (秋): Autumn/Maple Red theme
+- **fuyu** (冬): Winter/Snow White theme
+- **sumi** (墨): Traditional ink theme
+
+```tsx
+import { Button, Card, ThemeProvider } from 'jadis'
+
+<ThemeProvider defaultTheme="matrix">
+  <Button variant="terminal">Terminal Style</Button>
+  <Card variant="haru">Spring Theme</Card>
+</ThemeProvider>
+```
+
 ## 📚 Documentation
 
 ### Storybook
@@ -130,8 +226,17 @@ npm run storybook
 npm run build-storybook
 ```
 
-### API Reference
-Each component comes with comprehensive TypeScript definitions and JSDoc comments. Import any component to see full IntelliSense support.
+### TypeScript Support
+Jadis provides comprehensive TypeScript definitions:
+
+```tsx
+import type { JadisVariant, ButtonProps, CardProps } from 'jadis'
+
+interface MyComponentProps {
+  variant: JadisVariant
+  title: string
+}
+```
 
 ## 🛠️ Development
 
@@ -162,6 +267,21 @@ npm run build
 - `npm run storybook` - Start Storybook dev server
 - `npm run build-storybook` - Build static Storybook
 
+### Publishing (Maintainers)
+```bash
+# Patch release (0.1.0 -> 0.1.1)
+npm run release:patch
+
+# Minor release (0.1.0 -> 0.2.0)
+npm run release:minor
+
+# Major release (0.1.0 -> 1.0.0)
+npm run release:major
+
+# Prerelease (0.1.0 -> 0.1.1-0)
+npm run release:prerelease
+```
+
 ## 🎯 Browser Support
 
 Jadis supports all modern browsers:
@@ -183,19 +303,28 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 
 ## 📄 License
 
-MIT © [Your Name](https://github.com/your-username)
+MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
-- Inspired by classic BBS systems and terminal interfaces
-- Built with [Radix UI](https://radix-ui.com) primitives
-- Typography powered by [Hasklug Nerd Font](https://www.nerdfonts.com)
-- Developed with [Storybook](https://storybook.js.org)
+- Inspired by 90's BBS culture and terminal aesthetics
+- Built on [Radix UI](https://www.radix-ui.com/) primitives
+- Typography powered by [Hasklug Nerd Font](https://www.nerdfonts.com/)
+- Japanese color system based on traditional color names
 
-## 💫 Show Your Support
+## 📞 Support
 
-Give us a ⭐ if this project helped you!
+- 🐛 [Report bugs](https://github.com/justinelliottcobb/jadis/issues)
+- 💡 [Request features](https://github.com/justinelliottcobb/jadis/issues)
+- 📖 [View documentation](https://jadis-storybook.vercel.app/)
+- 💬 [Discussions](https://github.com/justinelliottcobb/jadis/discussions)
 
 ---
 
-**Built with ❤️ for the terminal aesthetic community**
+<div align="center">
+
+**[🚀 Get Started](#-quick-start) • [📖 Documentation](https://jadis-storybook.vercel.app/) • [🐛 Issues](https://github.com/justinelliottcobb/jadis/issues)**
+
+Made with ❤️ for the retro computing community
+
+</div>
