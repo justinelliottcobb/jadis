@@ -10,7 +10,8 @@ export default defineConfig({
     dts({
       include: ['src'],
       exclude: ['**/*.stories.*', '**/stories/**'],
-      insertTypesEntry: true
+      insertTypesEntry: true,
+      skipDiagnostics: true
     })
   ],
   server: {

@@ -70,5 +70,10 @@ jobs:
         run: |
           ls -la dist/
           test -f dist/index.js
+          test -f dist/index.css
+          # Check that TypeScript declarations exist (even if minimal)
           test -f dist/index.d.ts
-          test -f dist/style.css
+          # Verify file sizes are reasonable
+          test -s dist/index.js  # JS file should not be empty
+          test -s dist/index.css # CSS file should not be empty
+          echo "✅ Build verification completed successfully"
