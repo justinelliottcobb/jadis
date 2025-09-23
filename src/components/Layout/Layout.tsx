@@ -25,7 +25,7 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
   footer,
   sidebar,
   sidebarCollapsed = false,
-  onSidebarToggle,
+  onSidebarToggle: _onSidebarToggle,
   fullHeight = true,
   className = '',
   children,

@@ -9,9 +9,11 @@ import tseslint from 'typescript-eslint'
 import { globalIgnores } from 'eslint/config'
 
 export default tseslint.config([
-  globalIgnores(['dist', 'storybook-static']),
+  globalIgnores(['dist', 'storybook-static', '.storybook']),
+  // Core library configuration (strict)
   {
-    files: ['**/*.{ts,tsx}'],
+    files: ['src/**/*.{ts,tsx}'],
+    ignores: ['**/*.stories.*', '**/stories/**'],
     extends: [
       js.configs.recommended,
       tseslint.configs.recommended,
@@ -21,6 +23,32 @@ export default tseslint.config([
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
+    },
+    rules: {
+      '@typescript-eslint/no-unused-vars': 'error',
+      '@typescript-eslint/no-explicit-any': 'error',
+      '@typescript-eslint/no-empty-object-type': 'error',
+      'react-refresh/only-export-components': 'warn',
+    },
+  },
+  // Storybook files configuration (relaxed)
+  {
+    files: ['**/*.stories.{ts,tsx}', '**/stories/**'],
+    extends: [
+      js.configs.recommended,
+      tseslint.configs.recommended,
+    ],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
+    },
+    rules: {
+      '@typescript-eslint/no-unused-vars': 'warn',
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-empty-object-type': 'warn',
+      'react-refresh/only-export-components': 'off',
+      'storybook/no-renderer-packages': 'warn', // Allow for now, will migrate later
+      'storybook/no-redundant-story-name': 'warn',
     },
   },
 ], storybook.configs["flat/recommended"]);

@@ -107,7 +107,9 @@ export const TableHead: React.FC<TableHeadProps> = ({
 // TABLE BODY COMPONENT
 // ===================================
 
-export interface TableBodyProps extends React.HTMLAttributes<HTMLTableSectionElement> {}
+export interface TableBodyProps extends React.HTMLAttributes<HTMLTableSectionElement> {
+  // Empty interface for potential future extension
+}
 
 export const TableBody: React.FC<TableBodyProps> = ({
   className = '',
@@ -125,7 +127,9 @@ export const TableBody: React.FC<TableBodyProps> = ({
 // TABLE FOOTER COMPONENT
 // ===================================
 
-export interface TableFooterProps extends React.HTMLAttributes<HTMLTableSectionElement> {}
+export interface TableFooterProps extends React.HTMLAttributes<HTMLTableSectionElement> {
+  // Empty interface for potential future extension
+}
 
 export const TableFooter: React.FC<TableFooterProps> = ({
   className = '',
