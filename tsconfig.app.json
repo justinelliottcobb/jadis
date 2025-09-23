@@ -26,5 +26,5 @@
     "noUncheckedSideEffectImports": true
   },
   "include": ["src"],
-  "exclude": ["src/**/*.stories.ts", "src/**/*.stories.tsx", "src/stories"]
+  "exclude": ["src/**/*.stories.ts", "src/**/*.stories.tsx", "src/stories", "**/*.stories.*", "storybook-static"]
 }

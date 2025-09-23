@@ -179,7 +179,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
   errorMessage
 }) => {
   return (
-    <div className="jadis-form-group" role="radiogroup" aria-required={required}>
+    <div className={`jadis-form-group ${error ? 'jadis-form-group--error' : ''}`} role="radiogroup" aria-required={required}>
       {label && (
         <div className={`jadis-label jadis-label--${variant} ${required ? 'jadis-label--required' : ''}`}>
           {label}
@@ -563,13 +563,13 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({
     onKeyDown?.(e)
   }
 
-  const selectedOption = options.find(opt => opt.value === value)
   const showClearButton = clearable && inputValue && !loading
 
   const comboboxClasses = [
     'jadis-combobox',
     `jadis-combobox--${variant}`,
     isOpen && 'jadis-combobox--open',
+    isFocused && 'jadis-combobox--focused',
     error && 'jadis-combobox--error',
     loading && 'jadis-combobox--loading',
     className

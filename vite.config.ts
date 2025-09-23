@@ -1,10 +1,19 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
+import dts from 'vite-plugin-dts'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    dts({
+      include: ['src'],
+      exclude: ['**/*.stories.*', '**/stories/**'],
+      insertTypesEntry: true,
+      skipDiagnostics: true
+    })
+  ],
   server: {
     allowedHosts: ['norma-wall.arblenems.com', 'localhost', '127.0.0.1'],
     host: true

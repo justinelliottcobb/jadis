@@ -101,7 +101,7 @@ export const CircularGauge: React.FC<CircularGaugeProps> = ({
   value,
   max = 100,
   min = 0,
-  color = 'primary',
+  color: _color = 'primary',
   size = 'medium',
   showValue = false,
   showPercentage = true,
@@ -140,15 +140,6 @@ export const CircularGauge: React.FC<CircularGaugeProps> = ({
     const totalSegments = 16 // 16 positions around the circle
     const filledSegments = Math.round((percentage / 100) * totalSegments)
     
-    // ASCII characters for different positions around circle (clockwise from top)
-    const segments = ['▲', '◥', '▶', '◢', '▼', '◣', '◀', '◤']
-    const positions = [
-      '   ▲   ',
-      '  ◥ ◤  ', 
-      ' ▶   ◀ ',
-      '◢     ◣',
-      '   ▼   '
-    ]
     
     // Create filled circle representation
     const lines = [
@@ -420,7 +411,7 @@ export const ASCIIMeter: React.FC<ASCIIMeterProps> = ({
   value,
   max = 100,
   min = 0,
-  color = 'primary',
+  color: _color = 'primary',
   size = 'medium',
   showValue = true,
   label,

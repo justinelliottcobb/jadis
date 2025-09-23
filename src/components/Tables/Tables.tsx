@@ -107,7 +107,9 @@ export const TableHead: React.FC<TableHeadProps> = ({
 // TABLE BODY COMPONENT
 // ===================================
 
-export interface TableBodyProps extends React.HTMLAttributes<HTMLTableSectionElement> {}
+export interface TableBodyProps extends React.HTMLAttributes<HTMLTableSectionElement> {
+  // Empty interface for potential future extension
+}
 
 export const TableBody: React.FC<TableBodyProps> = ({
   className = '',
@@ -125,7 +127,9 @@ export const TableBody: React.FC<TableBodyProps> = ({
 // TABLE FOOTER COMPONENT
 // ===================================
 
-export interface TableFooterProps extends React.HTMLAttributes<HTMLTableSectionElement> {}
+export interface TableFooterProps extends React.HTMLAttributes<HTMLTableSectionElement> {
+  // Empty interface for potential future extension
+}
 
 export const TableFooter: React.FC<TableFooterProps> = ({
   className = '',
@@ -385,6 +389,7 @@ export function DataTable<T extends Record<string, any>>({
             <TableHeaderCell width="60px" align="center">
               <Checkbox
                 variant={variant}
+                label=""
                 checked={selectedRows?.size === data.length && data.length > 0}
                 indeterminate={selectedRows && selectedRows.size > 0 && selectedRows.size < data.length}
                 onChange={(e) => {
@@ -437,6 +442,7 @@ export function DataTable<T extends Record<string, any>>({
                   <TableCell width="60px" align="center">
                     <Checkbox
                       variant={variant}
+                      label=""
                       checked={isSelected}
                       onChange={() => handleRowSelection(row)}
                       onClick={(e) => e.stopPropagation()}

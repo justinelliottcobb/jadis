@@ -1,0 +1,57 @@
+# Source files
+src/
+.storybook/
+storybook-static/
+
+# Development files
+*.log
+*.tgz
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Testing
+coverage/
+.nyc_output
+
+# Build tools
+.eslintcache
+tsconfig.tsbuildinfo
+
+# Documentation and examples
+docs/
+examples/
+
+# Git files
+.git/
+.gitignore
+
+# NPM files
+.npmrc
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Temporary files
+temp/
+tmp/
+
+# Config files
+vite.config.ts
+tsconfig.json
+tsconfig.app.json
+tsconfig.node.json
+eslint.config.js
+
+# Other
+*.md
+!README.md

@@ -5,7 +5,7 @@ import './effects.scss'
 import './japanese-colors.scss'
 
 // Export Japanese color system types
-export * from './japanese-colors.d.ts'
+export type * from './japanese-colors.d.ts'
 
 // Export color utility constants
 export const JAPANESE_SEASONAL_THEMES = [

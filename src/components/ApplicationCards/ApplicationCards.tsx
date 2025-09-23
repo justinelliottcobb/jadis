@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardHeader, CardBody, CardFooter, CardActions } from '../Cards/Cards'
+import { Card, CardHeader, CardBody, CardActions } from '../Cards/Cards'
 import { Button } from '../Buttons/Buttons'
 import { ASCIIIcon, ASCIIIcons } from '../Icons/Icons'
 import { P, Code, Strong } from '../Typography/Typography'
@@ -56,15 +56,6 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({
   className = '',
   ...props
 }) => {
-  const getStatusColor = () => {
-    switch (status) {
-      case 'running': return 'success'
-      case 'error': return 'error'
-      case 'loading': return 'warning'
-      case 'maintenance': return 'info'
-      default: return 'secondary'
-    }
-  }
 
   const getStatusIcon = () => {
     switch (status) {

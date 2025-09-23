@@ -174,11 +174,7 @@ export {
   type StatusBarProps,
   type HeroBannerProps,
   type PageBannerProps,
-  type FeatureSectionProps,
-  type FeatureItem,
-  type BannerAction,
-  type BannerType,
-  type BackgroundPattern
+  type FeatureSectionProps
 } from './components/Layout'
 export {
   LoginForm,

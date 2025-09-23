@@ -20,9 +20,5 @@ export type {
   StatusBarProps,
   HeroBannerProps,
   PageBannerProps,
-  FeatureSectionProps,
-  FeatureItem,
-  BannerAction,
-  BannerType,
-  BackgroundPattern
+  FeatureSectionProps
 } from './Layout'

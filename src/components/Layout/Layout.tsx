@@ -25,7 +25,7 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
   footer,
   sidebar,
   sidebarCollapsed = false,
-  onSidebarToggle,
+  onSidebarToggle: _onSidebarToggle,
   fullHeight = true,
   className = '',
   children,
@@ -315,7 +315,7 @@ export interface BreadcrumbItem {
   active?: boolean
 }
 
-export interface BreadcrumbsProps extends React.HTMLAttributes<HTMLNavElement> {
+export interface BreadcrumbsProps extends React.HTMLAttributes<HTMLElement> {
   variant?: LayoutVariant
   items: BreadcrumbItem[]
   separator?: string
