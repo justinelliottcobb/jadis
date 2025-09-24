@@ -236,5 +236,15 @@ export {
   type ImageFit,
   type BlendMode
 } from './components/ImageArea'
+export {
+  CodeBlock,
+  InlineCode,
+  SyntaxHighlight,
+  type CodeBlockProps,
+  type InlineCodeProps,
+  type SyntaxHighlightProps,
+  type CodeBlockVariant,
+  type CodeBlockSize
+} from './components/CodeBlock'
 
 import './styles'
