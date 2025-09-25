@@ -1,5 +1,28 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
+import Prism from 'prismjs'
 import './CodeBlock.scss'
+
+// Import Prism languages
+import 'prismjs/components/prism-javascript'
+import 'prismjs/components/prism-typescript'
+import 'prismjs/components/prism-jsx'
+import 'prismjs/components/prism-tsx'
+import 'prismjs/components/prism-css'
+import 'prismjs/components/prism-scss'
+import 'prismjs/components/prism-bash'
+import 'prismjs/components/prism-json'
+import 'prismjs/components/prism-markdown'
+import 'prismjs/components/prism-python'
+import 'prismjs/components/prism-java'
+import 'prismjs/components/prism-c'
+import 'prismjs/components/prism-cpp'
+import 'prismjs/components/prism-csharp'
+import 'prismjs/components/prism-go'
+import 'prismjs/components/prism-rust'
+import 'prismjs/components/prism-sql'
+import 'prismjs/components/prism-yaml'
+import 'prismjs/components/prism-docker'
+import 'prismjs/components/prism-git'
 
 export type CodeBlockVariant = 'terminal' | 'matrix' | 'retro' | 'minimal' | 'glow' | 'haru' | 'natsu' | 'aki' | 'fuyu' | 'sumi'
 export type CodeBlockSize = 'small' | 'medium' | 'large'
@@ -16,6 +39,7 @@ export interface CodeBlockProps extends React.HTMLAttributes<HTMLPreElement> {
   bordered?: boolean
   compact?: boolean
   wrap?: boolean
+  highlight?: boolean
   onCopy?: (code: string) => void
 }
 
@@ -31,11 +55,13 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
   bordered = true,
   compact = false,
   wrap = false,
+  highlight = true,
   onCopy,
   className,
   ...props
 }) => {
-  const codeRef = React.useRef<HTMLElement>(null)
+  const codeRef = useRef<HTMLElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   const classes = [
     'jadis-code-block',
@@ -69,6 +95,19 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
       typeof child === 'string' ? child : ''
     )?.join('') || ''
 
+  // Use Prism to highlight code (only for non-numbered blocks since numbered blocks handle highlighting manually)
+  useEffect(() => {
+    if (highlight && language && !numbered && containerRef.current) {
+      // Apply Prism highlighting to all code elements in the container
+      const codeElements = containerRef.current.querySelectorAll('code')
+      codeElements.forEach(el => {
+        // Add language class for Prism
+        el.className = `language-${language}`
+        Prism.highlightElement(el)
+      })
+    }
+  }, [highlight, language, numbered, codeContent])
+
   const lines = codeContent.split('\n')
 
   const renderLineNumbers = () => {
@@ -80,15 +119,39 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
   }
 
   const renderCodeLines = () => {
-    return lines.map((line, index) => (
-      <span key={index} className="jadis-code-block__code-line">
-        {line || '\u00A0'}
-      </span>
-    ))
+    // For numbered display with highlighting
+    if (numbered && highlight && language) {
+      const grammar = Prism.languages[language]
+      if (grammar) {
+        // Highlight the entire code block, then split into lines preserving HTML
+        const highlightedCode = Prism.highlight(codeContent, grammar, language)
+        const htmlLines = highlightedCode.split('\n')
+
+        return htmlLines.map((line, index) => (
+          <span
+            key={index}
+            className="jadis-code-block__code-line"
+            dangerouslySetInnerHTML={{ __html: line || '\u00A0' }}
+          />
+        ))
+      }
+    }
+
+    // For numbered display without highlighting
+    if (numbered) {
+      return lines.map((line, index) => (
+        <span key={index} className="jadis-code-block__code-line">
+          {line || '\u00A0'}
+        </span>
+      ))
+    }
+
+    // For non-numbered display
+    return null
   }
 
   return (
-    <div className={classes}>
+    <div className={classes} ref={containerRef}>
       {title && (
         <div className="jadis-code-block__header">
           <div className="jadis-code-block__title">
@@ -115,8 +178,20 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
             {renderLineNumbers()}
           </div>
         )}
-        <code ref={codeRef} className="jadis-code-block__code" data-language={language}>
-          {numbered ? renderCodeLines() : children}
+        <code
+          ref={codeRef}
+          className={`jadis-code-block__code ${highlight && language ? `language-${language}` : ''}`}
+          data-language={language}
+        >
+          {numbered ? renderCodeLines() : (
+            highlight && language ? (
+              <span dangerouslySetInnerHTML={{
+                __html: Prism.languages[language]
+                  ? Prism.highlight(codeContent, Prism.languages[language], language)
+                  : codeContent
+              }} />
+            ) : children
+          )}
         </code>
         {copyable && !title && (
           <button

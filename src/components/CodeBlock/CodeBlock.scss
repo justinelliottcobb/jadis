@@ -107,13 +107,6 @@
     white-space: pre;
   }
 
-  // Line wrapping
-  &--wrap {
-    .jadis-code-block__code {
-      white-space: pre-wrap;
-      word-break: break-word;
-    }
-  }
 
   // Line numbers
   &--numbered {
@@ -156,9 +149,10 @@
   }
 
   &__code-line {
-    display: block;
+    display: block !important;
     min-height: 1.4em;
     line-height: 1.4;
+    white-space: pre !important;
   }
 
   // Copy button
@@ -210,6 +204,19 @@
     box-shadow:
       0 0 30px rgba(var(--jadis-color-green-rgb), 0.5),
       inset 0 0 40px rgba(var(--jadis-color-green-rgb), 0.2);
+  }
+
+  // Line wrapping - must come after base &__code styles to override white-space: pre
+  &--wrap {
+    .jadis-code-block__code {
+      white-space: pre-wrap !important;
+      word-break: break-word;
+    }
+
+    .jadis-code-block__code-line {
+      white-space: pre-wrap !important;
+      word-break: break-word;
+    }
   }
 }
 
@@ -337,86 +344,532 @@
   }
 }
 
-// Apply variants
-@include code-variant('terminal', var(--jadis-color-green-rgb));
-@include code-variant('matrix', var(--jadis-color-cyan-rgb));
-@include code-variant('retro', var(--jadis-color-orange-rgb));
-@include code-variant('minimal', var(--jadis-color-gray-rgb));
-@include code-variant('glow', var(--jadis-color-purple-rgb));
+// Terminal variant - Classic green terminal
+.jadis-code-block--terminal {
+  background: #001a00;
+  color: var(--jadis-color-green);
+  border-color: var(--jadis-color-green);
 
-// Japanese theme variants
-@include code-variant('haru', var(--jadis-color-pink-rgb));
-@include code-variant('natsu', var(--jadis-color-blue-rgb));
-@include code-variant('aki', var(--jadis-color-red-rgb));
-@include code-variant('fuyu', var(--jadis-color-white-rgb));
-@include code-variant('sumi', var(--jadis-color-gray-rgb));
+  .jadis-code-block__header {
+    background: rgba(0, 255, 65, 0.15);
+    border-bottom-color: var(--jadis-color-green);
+  }
 
-// Syntax highlighting themes
-.jadis-syntax-highlight {
-  &--dark {
-    // Keywords
-    .keyword {
+  .jadis-code-block__line-numbers {
+    background: rgba(0, 255, 65, 0.08);
+    border-right-color: var(--jadis-color-green);
+    color: rgba(0, 255, 65, 0.7);
+  }
+}
+
+// Matrix variant - Cyan digital rain
+.jadis-code-block--matrix {
+  background: #000a0a;
+  color: var(--jadis-color-cyan);
+  border-color: var(--jadis-color-cyan);
+  animation: matrix-flicker 4s infinite;
+
+  .jadis-code-block__header {
+    background: rgba(0, 255, 255, 0.15);
+    border-bottom-color: var(--jadis-color-cyan);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+
+  .jadis-code-block__line-numbers {
+    background: rgba(0, 255, 255, 0.08);
+    border-right-color: var(--jadis-color-cyan);
+    color: rgba(0, 255, 255, 0.7);
+    font-family: 'Courier New', monospace;
+  }
+
+  .jadis-code-block__code {
+    text-shadow: 0 0 5px currentColor;
+  }
+}
+
+// Retro variant - Amber/orange with scanlines
+.jadis-code-block--retro {
+  background: #1a0a00;
+  color: var(--jadis-color-orange);
+  border-color: var(--jadis-color-orange);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 136, 0, 0.03) 2px,
+      rgba(255, 136, 0, 0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .jadis-code-block__header {
+    background: rgba(255, 136, 0, 0.15);
+    border-bottom-color: var(--jadis-color-orange);
+    font-weight: 700;
+    text-shadow: 0 0 10px currentColor;
+  }
+
+  .jadis-code-block__line-numbers {
+    background: rgba(255, 136, 0, 0.08);
+    border-right-color: var(--jadis-color-orange);
+    color: rgba(255, 136, 0, 0.8);
+    position: relative;
+    z-index: 2;
+  }
+
+  .jadis-code-block__code {
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 0 3px currentColor;
+  }
+}
+
+// Minimal variant - Clean grayscale
+.jadis-code-block--minimal {
+  background: #0a0a0a;
+  color: #cccccc;
+  border-color: #444444;
+  border-radius: 8px;
+
+  .jadis-code-block__header {
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom-color: #444444;
+    color: #aaaaaa;
+    font-weight: 400;
+    text-transform: none;
+  }
+
+  .jadis-code-block__line-numbers {
+    background: rgba(255, 255, 255, 0.02);
+    border-right-color: #333333;
+    color: #666666;
+  }
+
+  .jadis-code-block__copy {
+    border-color: #666666;
+    color: #999999;
+
+    &:hover {
+      background: #666666;
+      color: #ffffff;
+    }
+  }
+}
+
+// Glow variant - Purple with intense glow
+.jadis-code-block--glow {
+  background: #0a000a;
+  color: var(--jadis-color-purple);
+  border-color: var(--jadis-color-purple);
+  box-shadow:
+    0 0 20px rgba(153, 0, 255, 0.3),
+    inset 0 0 20px rgba(153, 0, 255, 0.1);
+
+  .jadis-code-block__header {
+    background: rgba(153, 0, 255, 0.2);
+    border-bottom-color: var(--jadis-color-purple);
+    text-shadow: 0 0 10px currentColor;
+  }
+
+  .jadis-code-block__line-numbers {
+    background: rgba(153, 0, 255, 0.1);
+    border-right-color: var(--jadis-color-purple);
+    color: rgba(153, 0, 255, 0.8);
+    text-shadow: 0 0 5px currentColor;
+  }
+
+  .jadis-code-block__code {
+    text-shadow: 0 0 8px currentColor;
+  }
+}
+
+@keyframes matrix-flicker {
+  0%, 100% { opacity: 1; }
+  95% { opacity: 1; }
+  96% { opacity: 0.8; }
+  97% { opacity: 1; }
+  98% { opacity: 0.9; }
+  99% { opacity: 1; }
+}
+
+// Japanese Seasonal Theme Variants
+
+// Haru (Spring/桜) - Cherry Blossom Pink
+.jadis-code-block--haru {
+  background: linear-gradient(135deg, #2a0f1a 0%, #1a0a10 100%);
+  color: #ffb3d9;
+  border-color: #ff69b4;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '桜';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 3rem;
+    opacity: 0.05;
+    color: #ff69b4;
+    font-family: serif;
+    pointer-events: none;
+  }
+
+  .jadis-code-block__header {
+    background: linear-gradient(90deg, rgba(255, 105, 180, 0.2) 0%, rgba(255, 182, 193, 0.15) 100%);
+    border-bottom-color: #ff69b4;
+    color: #ffb3d9;
+    font-style: italic;
+  }
+
+  .jadis-code-block__line-numbers {
+    background: rgba(255, 105, 180, 0.08);
+    border-right: 1px dashed #ff69b4;
+    color: rgba(255, 182, 193, 0.8);
+  }
+
+  .jadis-code-block__code {
+    text-shadow: 0 0 2px rgba(255, 105, 180, 0.4);
+  }
+
+  // Syntax colors for Haru
+  .keyword { color: #ff69b4; font-weight: 600; }
+  .string { color: #ffc0cb; }
+  .comment { color: rgba(255, 182, 193, 0.6); font-style: italic; }
+  .number { color: #ffb3d9; }
+  .function { color: #ff1493; }
+  .operator { color: #ffb3d9; }
+}
+
+// Natsu (Summer/夏) - Ocean Blue
+.jadis-code-block--natsu {
+  background: linear-gradient(180deg, #001a33 0%, #003366 100%);
+  color: #00bfff;
+  border-color: #0099cc;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #00bfff, #0099cc, #00ffff, #0099cc, #00bfff);
+    background-size: 200% 100%;
+    animation: wave 3s linear infinite;
+  }
+
+  &::before {
+    content: '夏';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 3rem;
+    opacity: 0.08;
+    color: #00bfff;
+    font-family: serif;
+    pointer-events: none;
+  }
+
+  .jadis-code-block__header {
+    background: linear-gradient(90deg, rgba(0, 191, 255, 0.2) 0%, rgba(0, 153, 204, 0.15) 100%);
+    border-bottom-color: #0099cc;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .jadis-code-block__line-numbers {
+    background: rgba(0, 191, 255, 0.05);
+    border-right-color: rgba(0, 191, 255, 0.3);
+    color: rgba(0, 191, 255, 0.7);
+  }
+
+  .jadis-code-block__code {
+    text-shadow: 0 0 5px rgba(0, 191, 255, 0.3);
+  }
+
+  // Syntax colors for Natsu
+  .keyword { color: #00ffff; font-weight: 600; }
+  .string { color: #87ceeb; }
+  .comment { color: rgba(135, 206, 235, 0.7); }
+  .number { color: #00bfff; }
+  .function { color: #1e90ff; }
+  .operator { color: #87ceeb; }
+}
+
+// Aki (Autumn/秋) - Maple Red
+.jadis-code-block--aki {
+  background: linear-gradient(135deg, #330f00 0%, #1a0500 50%, #330800 100%);
+  color: #ff6b35;
+  border-color: #d2691e;
+  position: relative;
+
+  &::before {
+    content: '秋';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 3rem;
+    opacity: 0.08;
+    color: #ff6b35;
+    font-family: serif;
+    pointer-events: none;
+  }
+
+  &::after {
+    content: '🍁';
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 2rem;
+    opacity: 0.1;
+    animation: fall 10s infinite linear;
+  }
+
+  .jadis-code-block__header {
+    background: linear-gradient(90deg, rgba(255, 107, 53, 0.2) 0%, rgba(210, 105, 30, 0.15) 100%);
+    border-bottom: 2px solid #d2691e;
+    color: #ff8c00;
+    font-weight: 600;
+  }
+
+  .jadis-code-block__line-numbers {
+    background: linear-gradient(180deg, rgba(255, 107, 53, 0.1) 0%, rgba(210, 105, 30, 0.05) 100%);
+    border-right: 1px solid rgba(255, 140, 0, 0.4);
+    color: rgba(255, 140, 0, 0.8);
+  }
+
+  .jadis-code-block__code {
+    text-shadow: 0 0 4px rgba(255, 107, 53, 0.4);
+  }
+
+  // Syntax colors for Aki
+  .keyword { color: #ff8c00; font-weight: 600; }
+  .string { color: #ffa500; }
+  .comment { color: rgba(255, 165, 0, 0.6); font-style: italic; }
+  .number { color: #ff6b35; }
+  .function { color: #d2691e; }
+  .operator { color: #ffa500; }
+}
+
+// Fuyu (Winter/冬) - Snow White
+.jadis-code-block--fuyu {
+  background: linear-gradient(180deg, #0a0a0f 0%, #1a1a2e 100%);
+  color: #e0f7fa;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.05);
+  position: relative;
+
+  &::before {
+    content: '❄';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    font-size: 2rem;
+    opacity: 0.1;
+    animation: snow-fall 8s infinite linear;
+    pointer-events: none;
+  }
+
+  &::after {
+    content: '冬';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 3rem;
+    opacity: 0.05;
+    color: #ffffff;
+    font-family: serif;
+    pointer-events: none;
+  }
+
+  .jadis-code-block__header {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.15) 0%, rgba(224, 247, 250, 0.1) 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+
+  .jadis-code-block__line-numbers {
+    background: rgba(255, 255, 255, 0.03);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .jadis-code-block__code {
+    color: #e0f7fa;
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.3);
+  }
+
+  // Syntax colors for Fuyu
+  .keyword { color: #ffffff; font-weight: 600; }
+  .string { color: #b3e5fc; }
+  .comment { color: rgba(176, 190, 197, 0.7); font-style: italic; }
+  .number { color: #e0f7fa; }
+  .function { color: #81d4fa; }
+  .operator { color: #b3e5fc; }
+}
+
+// Sumi (Ink/墨) - Calligraphy Black
+.jadis-code-block--sumi {
+  background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 50%, #1a1a1a 100%);
+  color: #d4d4d4;
+  border: 2px solid #4a4a4a;
+  border-radius: 0;
+  position: relative;
+
+  &::before {
+    content: '墨';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 3rem;
+    opacity: 0.08;
+    color: #888888;
+    font-family: serif;
+    font-weight: bold;
+    pointer-events: none;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #888888, transparent);
+  }
+
+  .jadis-code-block__header {
+    background: linear-gradient(90deg, rgba(136, 136, 136, 0.15) 0%, rgba(68, 68, 68, 0.1) 100%);
+    border-bottom: 2px solid #4a4a4a;
+    color: #b8b8b8;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .jadis-code-block__line-numbers {
+    background: rgba(0, 0, 0, 0.3);
+    border-right: 2px solid #4a4a4a;
+    color: #6a6a6a;
+    font-weight: bold;
+  }
+
+  .jadis-code-block__code {
+    font-weight: 500;
+  }
+
+  // Syntax colors for Sumi
+  .keyword { color: #e8e8e8; font-weight: 700; }
+  .string { color: #a8a8a8; }
+  .comment { color: #5a5a5a; font-style: italic; }
+  .number { color: #c8c8c8; }
+  .function { color: #d8d8d8; font-weight: 600; }
+  .operator { color: #888888; }
+}
+
+// Animations
+@keyframes wave {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+@keyframes fall {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes snow-fall {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(20px) rotate(360deg); }
+}
+
+// Prism.js token mapping to our theme colors
+.jadis-code-block {
+  // Default Prism token styles
+  .token {
+    &.comment,
+    &.prolog,
+    &.doctype,
+    &.cdata {
+      color: rgba(var(--jadis-color-green-rgb), 0.6);
+      font-style: italic;
+    }
+
+    &.punctuation {
+      color: var(--jadis-color-white);
+    }
+
+    &.property,
+    &.tag,
+    &.boolean,
+    &.number,
+    &.constant,
+    &.symbol,
+    &.deleted {
+      color: var(--jadis-color-orange);
+    }
+
+    &.selector,
+    &.attr-name,
+    &.string,
+    &.char,
+    &.builtin,
+    &.inserted {
+      color: var(--jadis-color-yellow);
+    }
+
+    &.operator,
+    &.entity,
+    &.url,
+    &.language-css .token.string,
+    &.style .token.string {
+      color: var(--jadis-color-cyan);
+    }
+
+    &.atrule,
+    &.attr-value,
+    &.keyword {
       color: var(--jadis-color-purple);
       font-weight: 600;
     }
 
-    // Strings
-    .string {
-      color: var(--jadis-color-yellow);
-    }
-
-    // Comments
-    .comment {
-      color: var(--jadis-color-gray);
-      font-style: italic;
-    }
-
-    // Numbers
-    .number {
-      color: var(--jadis-color-orange);
-    }
-
-    // Functions
-    .function {
+    &.function,
+    &.class-name {
       color: var(--jadis-color-cyan);
     }
 
-    // Variables
-    .variable {
+    &.regex,
+    &.important,
+    &.variable {
       color: var(--jadis-color-green);
     }
 
-    // Operators
-    .operator {
-      color: var(--jadis-color-white);
+    &.important,
+    &.bold {
+      font-weight: bold;
     }
 
-    // Built-ins
-    .builtin {
-      color: var(--jadis-color-blue);
+    &.italic {
+      font-style: italic;
     }
-  }
 
-  &--matrix {
-    .keyword { color: var(--jadis-color-cyan); }
-    .string { color: var(--jadis-color-green); }
-    .comment { color: rgba(var(--jadis-color-green-rgb), 0.6); }
-    .number { color: var(--jadis-color-white); }
-    .function { color: var(--jadis-color-cyan); }
-    .variable { color: var(--jadis-color-green); }
-    .operator { color: var(--jadis-color-white); }
-    .builtin { color: var(--jadis-color-cyan); }
-  }
-
-  &--amber {
-    .keyword { color: var(--jadis-color-orange); }
-    .string { color: var(--jadis-color-yellow); }
-    .comment { color: rgba(var(--jadis-color-orange-rgb), 0.6); }
-    .number { color: var(--jadis-color-yellow); }
-    .function { color: var(--jadis-color-orange); }
-    .variable { color: var(--jadis-color-yellow); }
-    .operator { color: var(--jadis-color-white); }
-    .builtin { color: var(--jadis-color-orange); }
+    &.entity {
+      cursor: help;
+    }
   }
 }
 

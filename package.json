@@ -59,6 +59,8 @@
     "@tiptap/pm": "^3.3.0",
     "@tiptap/react": "^3.3.0",
     "@tiptap/starter-kit": "^3.3.0",
+    "@types/prismjs": "^1.26.5",
+    "prismjs": "^1.30.0",
     "radix-ui": "^1.4.2"
   },
   "peerDependencies": {

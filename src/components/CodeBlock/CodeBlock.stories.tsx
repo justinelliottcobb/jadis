@@ -1,5 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import { CodeBlock, InlineCode, SyntaxHighlight } from './CodeBlock'
+/* eslint-disable no-useless-escape */
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import { CodeBlock, InlineCode } from './CodeBlock'
 
 const meta: Meta<typeof CodeBlock> = {
   title: 'Components/CodeBlock',
@@ -273,7 +274,8 @@ export const Default: Story = {
     language: 'javascript',
     bordered: true,
     numbered: false,
-    copyable: false
+    copyable: false,
+    highlight: true
   }
 }
 
@@ -285,7 +287,8 @@ export const WithTitle: Story = {
     title: 'Fibonacci Calculator',
     bordered: true,
     numbered: true,
-    copyable: true
+    copyable: true,
+    highlight: true
   }
 }
 
@@ -299,7 +302,8 @@ export const LargeWithNumbers: Story = {
     bordered: true,
     numbered: true,
     copyable: true,
-    glow: 'md'
+    glow: 'md',
+    highlight: true
   }
 }
 
@@ -311,7 +315,8 @@ export const CompactMode: Story = {
     size: 'small',
     compact: true,
     bordered: true,
-    copyable: true
+    copyable: true,
+    highlight: true
   }
 }
 
@@ -324,7 +329,8 @@ export const HTMLExample: Story = {
     bordered: true,
     numbered: true,
     copyable: true,
-    glow: 'sm'
+    glow: 'sm',
+    highlight: true
   }
 }
 
@@ -337,7 +343,8 @@ export const CSSExample: Story = {
     bordered: true,
     numbered: true,
     copyable: true,
-    glow: 'lg'
+    glow: 'lg',
+    highlight: true
   }
 }
 
@@ -349,7 +356,9 @@ export const BashScript: Story = {
     title: 'deployment.sh',
     bordered: true,
     numbered: true,
-    copyable: true
+    copyable: true,
+    wrap: true,
+    highlight: true
   }
 }
 
@@ -375,6 +384,7 @@ export const VariantShowcase: Story = {
             numbered
             copyable
             glow="sm"
+            highlight
           >
             {`// ${variant.toUpperCase()} variant example
 const ${variant}Theme = {
@@ -423,6 +433,7 @@ export const JapaneseThemes: Story = {
             numbered
             copyable
             glow="md"
+            highlight
           >
             {`// ${season} Japanese seasonal theme
 const ${variant}Config = {
@@ -444,63 +455,145 @@ applyTheme(${variant}Config);`}
 export const SyntaxHighlighting: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-      <SyntaxHighlight
-        variant="terminal"
-        language="javascript"
-        title="Dark Theme Syntax"
-        theme="dark"
-        bordered
-        numbered
-        copyable
-        glow="sm"
-      >
-        {`// Syntax highlighting example
-class <span class="keyword">Terminal</span> {
-  <span class="keyword">constructor</span>(<span class="variable">config</span>) {
-    <span class="keyword">this</span>.<span class="variable">prompt</span> = <span class="string">'$>'</span>;
-    <span class="keyword">this</span>.<span class="variable">history</span> = [];
-    <span class="comment">// Initialize terminal</span>
+      <div>
+        <h3 style={{
+          color: 'var(--jadis-color-white)',
+          fontSize: '1.2rem',
+          marginBottom: '0.5rem',
+          textTransform: 'uppercase',
+          letterSpacing: '0.1em'
+        }}>
+          AUTOMATIC SYNTAX HIGHLIGHTING
+        </h3>
+        <CodeBlock
+          variant="terminal"
+          language="javascript"
+          title="JavaScript with Syntax Highlighting"
+          bordered
+          numbered
+          copyable
+          glow="sm"
+          highlight
+        >
+          {`// Real syntax highlighting with automatic detection
+class TerminalEmulator {
+  constructor(config = {}) {
+    this.prompt = config.prompt || '$>';
+    this.history = [];
+    this.commands = new Map();
+    this.isActive = true;
   }
 
-  <span class="function">execute</span>(<span class="variable">command</span>) {
-    <span class="keyword">const</span> <span class="variable">result</span> = <span class="keyword">this</span>.<span class="function">parse</span>(<span class="variable">command</span>);
-    <span class="keyword">return</span> <span class="variable">result</span> || <span class="string">'Command not found'</span>;
+  async execute(command) {
+    const trimmed = command.trim();
+    if (!trimmed) return '';
+
+    try {
+      const result = await this.processCommand(trimmed);
+      this.history.push({ command: trimmed, result, timestamp: Date.now() });
+      return result;
+    } catch (error) {
+      console.error('Command execution failed:', error.message);
+      return 'Error: Command execution failed';
+    }
+  }
+
+  processCommand(cmd) {
+    const [command, ...args] = cmd.split(' ');
+    const handler = this.commands.get(command);
+
+    return handler ? handler(args) : 'Command not found';
   }
 }`}
-      </SyntaxHighlight>
+        </CodeBlock>
+      </div>
 
-      <SyntaxHighlight
-        variant="matrix"
-        language="javascript"
-        title="Matrix Theme Syntax"
-        theme="matrix"
-        bordered
-        numbered
-        copyable
-        glow="md"
-      >
-        {`<span class="comment">// Matrix digital rain simulation</span>
-<span class="keyword">function</span> <span class="function">createMatrix</span>() {
-  <span class="keyword">const</span> <span class="variable">canvas</span> = <span class="builtin">document</span>.<span class="function">createElement</span>(<span class="string">'canvas'</span>);
-  <span class="keyword">const</span> <span class="variable">ctx</span> = <span class="variable">canvas</span>.<span class="function">getContext</span>(<span class="string">'2d'</span>);
+      <div>
+        <h3 style={{
+          color: 'var(--jadis-color-white)',
+          fontSize: '1.2rem',
+          marginBottom: '0.5rem',
+          textTransform: 'uppercase',
+          letterSpacing: '0.1em'
+        }}>
+          MULTIPLE LANGUAGE SUPPORT
+        </h3>
 
-  <span class="keyword">const</span> <span class="variable">chars</span> = <span class="string">'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン'</span>;
-  <span class="keyword">const</span> <span class="variable">drops</span> = <span class="keyword">new</span> <span class="builtin">Array</span>(<span class="number">100</span>).<span class="function">fill</span>(<span class="number">0</span>);
+        <div style={{ display: 'grid', gap: '1.5rem', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))' }}>
+          <CodeBlock
+            variant="matrix"
+            language="css"
+            title="CSS Styling"
+            bordered
+            numbered
+            copyable
+            highlight
+          >
+            {`.terminal-theme {
+  background: linear-gradient(135deg, #001a00 0%, #003300 100%);
+  color: #00ff41;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 0 10px currentColor;
+  border: 2px solid #00ff41;
+  border-radius: 8px;
+  padding: 20px;
 
-  <span class="function">setInterval</span>(() => {
-    <span class="variable">ctx</span>.<span class="variable">fillStyle</span> = <span class="string">'rgba(0, 0, 0, 0.05)'</span>;
-    <span class="variable">ctx</span>.<span class="function">fillRect</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="variable">canvas</span>.<span class="variable">width</span>, <span class="variable">canvas</span>.<span class="variable">height</span>);
+  animation: terminal-glow 2s ease-in-out infinite alternate;
+}
 
-    <span class="comment">// Digital rain effect</span>
-    <span class="variable">drops</span>.<span class="function">forEach</span>((<span class="variable">y</span>, <span class="variable">i</span>) => {
-      <span class="keyword">const</span> <span class="variable">char</span> = <span class="variable">chars</span>[<span class="builtin">Math</span>.<span class="function">floor</span>(<span class="builtin">Math</span>.<span class="function">random</span>() <span class="operator">*</span> <span class="variable">chars</span>.<span class="variable">length</span>)];
-      <span class="variable">ctx</span>.<span class="variable">fillStyle</span> = <span class="string">'#00ff41'</span>;
-      <span class="variable">ctx</span>.<span class="function">fillText</span>(<span class="variable">char</span>, <span class="variable">i</span> <span class="operator">*</span> <span class="number">20</span>, <span class="variable">y</span>);
-      <span class="variable">drops</span>[<span class="variable">i</span>] = <span class="variable">y</span> <span class="operator">></span> <span class="variable">canvas</span>.<span class="variable">height</span> <span class="operator">?</span> <span class="number">0</span> <span class="operator">:</span> <span class="variable">y</span> <span class="operator">+</span> <span class="number">20</span>;
-    });
-  }, <span class="number">50</span>);
+@keyframes terminal-glow {
+  from {
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+  }
+  to {
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.6);
+  }
 }`}
-      </SyntaxHighlight>
+          </CodeBlock>
+
+          <CodeBlock
+            variant="retro"
+            language="bash"
+            title="Shell Script"
+            bordered
+            numbered
+            copyable
+            highlight
+          >
+            {`#!/bin/bash
+# System monitoring script
+set -euo pipefail
+
+LOG_FILE="/var/log/system-monitor.log"
+THRESHOLD=80
+
+check_disk_usage() {
+    local usage=\$(df / | tail -1 | awk '{print \$5}' | sed 's/%//')
+
+    if [ "\$usage" -gt "\$THRESHOLD" ]; then
+        echo "WARNING: Disk usage is \${usage}%" >> "\$LOG_FILE"
+        return 1
+    fi
+
+    echo "INFO: Disk usage is \${usage}%" >> "\$LOG_FILE"
+    return 0
+}
+
+main() {
+    echo "Starting system check at \$(date)" >> "\$LOG_FILE"
+
+    if check_disk_usage; then
+        echo "All systems normal"
+    else
+        echo "System requires attention!"
+        exit 1
+    fi
+}
+
+main "\$@"`}
+          </CodeBlock>
+        </div>
+      </div>
     </div>
   )
 }
@@ -602,8 +695,53 @@ export const Interactive: Story = {
     numbered: true,
     copyable: true,
     glow: 'lg',
+    highlight: true,
     onCopy: (code: string) => {
       alert(`Copied ${code.length} characters to clipboard!`)
     }
   }
+}
+
+export const LineWrapping: Story = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', color: 'var(--jadis-color-white)' }}>
+      <div>
+        <h3 style={{ marginBottom: '1rem', color: 'var(--jadis-color-green)' }}>Without Wrapping (Default)</h3>
+        <CodeBlock
+          variant="terminal"
+          language="javascript"
+          title="Long lines overflow"
+          bordered
+          numbered
+          copyable
+          highlight
+        >
+{`// This is a very long line of code that would normally extend beyond the container width and require horizontal scrolling
+const veryLongVariableName = someReallyLongFunctionName(withALotOfParameters, andEvenMoreParameters, thatMakeTheLineVeryLong);
+
+// Another example of a long line
+console.log('This is a very long string that demonstrates what happens when code lines are longer than the available container width and need to be handled properly');`}
+        </CodeBlock>
+      </div>
+      <div>
+        <h3 style={{ marginBottom: '1rem', color: 'var(--jadis-color-cyan)' }}>With Wrapping Enabled</h3>
+        <CodeBlock
+          variant="matrix"
+          language="javascript"
+          title="Long lines wrap within numbered lines"
+          bordered
+          numbered
+          copyable
+          wrap
+          highlight
+        >
+{`// This is a very long line of code that would normally extend beyond the container width and require horizontal scrolling
+const veryLongVariableName = someReallyLongFunctionName(withALotOfParameters, andEvenMoreParameters, thatMakeTheLineVeryLong);
+
+// Another example of a long line
+console.log('This is a very long string that demonstrates what happens when code lines are longer than the available container width and need to be handled properly');`}
+        </CodeBlock>
+      </div>
+    </div>
+  )
 }
