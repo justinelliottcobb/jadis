@@ -1,0 +1,929 @@
+@import '../../styles/themes.scss';
+
+// Code Block Component Styles
+.jadis-code-block {
+  position: relative;
+  font-family: var(--jadis-font-mono);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  background: var(--jadis-color-black);
+  color: var(--jadis-color-green);
+  border-radius: 0.25rem;
+  overflow: hidden;
+  margin: 1rem 0;
+
+  &--bordered {
+    border: 1px solid var(--jadis-color-green);
+    box-shadow:
+      inset 0 0 0 1px rgba(var(--jadis-color-green-rgb), 0.3),
+      0 0 10px rgba(var(--jadis-color-green-rgb), 0.2);
+  }
+
+  &--compact {
+    margin: 0.5rem 0;
+    font-size: 0.75rem;
+  }
+
+  // Size variants
+  &--small {
+    font-size: 0.75rem;
+
+    .jadis-code-block__pre {
+      padding: 0.5rem;
+    }
+  }
+
+  &--medium {
+    font-size: 0.875rem;
+
+    .jadis-code-block__pre {
+      padding: 1rem;
+    }
+  }
+
+  &--large {
+    font-size: 1rem;
+
+    .jadis-code-block__pre {
+      padding: 1.5rem;
+    }
+  }
+
+  // Header with title
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background: rgba(var(--jadis-color-green-rgb), 0.1);
+    border-bottom: 1px solid var(--jadis-color-green);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__language {
+    color: var(--jadis-color-cyan);
+    font-weight: normal;
+  }
+
+  // Pre element
+  &__pre {
+    position: relative;
+    margin: 0;
+    padding: 1rem;
+    overflow-x: auto;
+    background: transparent;
+
+    &::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgba(var(--jadis-color-green-rgb), 0.1);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--jadis-color-green);
+      border-radius: 4px;
+    }
+  }
+
+  // Code element
+  &__code {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+    background: transparent;
+    display: block;
+    white-space: pre;
+  }
+
+
+  // Line numbers
+  &--numbered {
+    .jadis-code-block__pre {
+      display: flex;
+      padding-left: 0;
+    }
+  }
+
+  &__line-numbers {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0.5rem 1rem 1rem;
+    background: rgba(var(--jadis-color-green-rgb), 0.05);
+    border-right: 1px solid rgba(var(--jadis-color-green-rgb), 0.3);
+    color: rgba(var(--jadis-color-green-rgb), 0.6);
+    font-family: inherit;
+    font-size: inherit;
+    line-height: 1.4;
+    user-select: none;
+    min-width: 3.5rem;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  &__line-number {
+    display: block;
+    height: 1.4em;
+    line-height: 1.4;
+    font-size: inherit;
+  }
+
+  &--numbered .jadis-code-block__code {
+    padding: 1rem 1rem 1rem 0.75rem;
+    flex: 1;
+    line-height: 1.4;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__code-line {
+    display: block !important;
+    min-height: 1.4em;
+    line-height: 1.4;
+    white-space: pre !important;
+  }
+
+  // Copy button
+  &__copy {
+    background: transparent;
+    border: 1px solid var(--jadis-color-green);
+    color: var(--jadis-color-green);
+    padding: 0.25rem 0.5rem;
+    font-family: var(--jadis-font-mono);
+    font-size: 0.75rem;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: var(--jadis-color-green);
+      color: var(--jadis-color-black);
+      box-shadow: 0 0 10px rgba(var(--jadis-color-green-rgb), 0.5);
+    }
+
+    &--floating {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      z-index: 10;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+  }
+
+  &:hover &__copy--floating {
+    opacity: 1;
+  }
+
+  // Glow effects
+  &--glow-sm {
+    box-shadow:
+      0 0 10px rgba(var(--jadis-color-green-rgb), 0.3),
+      inset 0 0 20px rgba(var(--jadis-color-green-rgb), 0.1);
+  }
+
+  &--glow-md {
+    box-shadow:
+      0 0 20px rgba(var(--jadis-color-green-rgb), 0.4),
+      inset 0 0 30px rgba(var(--jadis-color-green-rgb), 0.15);
+  }
+
+  &--glow-lg {
+    box-shadow:
+      0 0 30px rgba(var(--jadis-color-green-rgb), 0.5),
+      inset 0 0 40px rgba(var(--jadis-color-green-rgb), 0.2);
+  }
+
+  // Line wrapping - must come after base &__code styles to override white-space: pre
+  &--wrap {
+    .jadis-code-block__code {
+      white-space: pre-wrap !important;
+      word-break: break-word;
+    }
+
+    .jadis-code-block__code-line {
+      white-space: pre-wrap !important;
+      word-break: break-word;
+    }
+  }
+}
+
+// Inline Code Styles
+.jadis-inline-code {
+  font-family: var(--jadis-font-mono);
+  font-size: 0.875em;
+  padding: 0.125rem 0.25rem;
+  background: rgba(var(--jadis-color-green-rgb), 0.1);
+  border: 1px solid rgba(var(--jadis-color-green-rgb), 0.3);
+  border-radius: 0.25rem;
+  color: var(--jadis-color-green);
+  position: relative;
+
+  &--small {
+    font-size: 0.75em;
+    padding: 0.0625rem 0.1875rem;
+  }
+
+  &--large {
+    font-size: 1em;
+    padding: 0.1875rem 0.375rem;
+  }
+
+  &__copy {
+    background: transparent;
+    border: none;
+    color: var(--jadis-color-cyan);
+    padding: 0;
+    margin-left: 0.25rem;
+    font-family: var(--jadis-font-mono);
+    font-size: 0.75em;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  // Glow effects for inline code
+  &--glow-sm {
+    box-shadow: 0 0 5px rgba(var(--jadis-color-green-rgb), 0.3);
+  }
+
+  &--glow-md {
+    box-shadow: 0 0 10px rgba(var(--jadis-color-green-rgb), 0.4);
+  }
+
+  &--glow-lg {
+    box-shadow: 0 0 15px rgba(var(--jadis-color-green-rgb), 0.5);
+  }
+}
+
+// Variant Styles
+@mixin code-variant($color, $color-rgb) {
+  .jadis-code-block--#{$color} {
+    color: var(--jadis-color-#{$color});
+
+    &.jadis-code-block--bordered {
+      border-color: var(--jadis-color-#{$color});
+      box-shadow:
+        inset 0 0 0 1px rgba(var(--jadis-color-#{$color}-rgb), 0.3),
+        0 0 10px rgba(var(--jadis-color-#{$color}-rgb), 0.2);
+    }
+
+    .jadis-code-block__header {
+      background: rgba(var(--jadis-color-#{$color}-rgb), 0.1);
+      border-bottom-color: var(--jadis-color-#{$color});
+    }
+
+    .jadis-code-block__line-numbers {
+      background: rgba(var(--jadis-color-#{$color}-rgb), 0.05);
+      border-right-color: rgba(var(--jadis-color-#{$color}-rgb), 0.3);
+      color: rgba(var(--jadis-color-#{$color}-rgb), 0.6);
+    }
+
+    .jadis-code-block__copy {
+      border-color: var(--jadis-color-#{$color});
+      color: var(--jadis-color-#{$color});
+
+      &:hover {
+        background: var(--jadis-color-#{$color});
+        color: var(--jadis-color-black);
+        box-shadow: 0 0 10px rgba(var(--jadis-color-#{$color}-rgb), 0.5);
+      }
+    }
+
+    &.jadis-code-block--glow-sm {
+      box-shadow:
+        0 0 10px rgba(var(--jadis-color-#{$color}-rgb), 0.3),
+        inset 0 0 20px rgba(var(--jadis-color-#{$color}-rgb), 0.1);
+    }
+
+    &.jadis-code-block--glow-md {
+      box-shadow:
+        0 0 20px rgba(var(--jadis-color-#{$color}-rgb), 0.4),
+        inset 0 0 30px rgba(var(--jadis-color-#{$color}-rgb), 0.15);
+    }
+
+    &.jadis-code-block--glow-lg {
+      box-shadow:
+        0 0 30px rgba(var(--jadis-color-#{$color}-rgb), 0.5),
+        inset 0 0 40px rgba(var(--jadis-color-#{$color}-rgb), 0.2);
+    }
+  }
+
+  .jadis-inline-code--#{$color} {
+    color: var(--jadis-color-#{$color});
+    background: rgba(var(--jadis-color-#{$color}-rgb), 0.1);
+    border-color: rgba(var(--jadis-color-#{$color}-rgb), 0.3);
+
+    &.jadis-inline-code--glow-sm {
+      box-shadow: 0 0 5px rgba(var(--jadis-color-#{$color}-rgb), 0.3);
+    }
+
+    &.jadis-inline-code--glow-md {
+      box-shadow: 0 0 10px rgba(var(--jadis-color-#{$color}-rgb), 0.4);
+    }
+
+    &.jadis-inline-code--glow-lg {
+      box-shadow: 0 0 15px rgba(var(--jadis-color-#{$color}-rgb), 0.5);
+    }
+  }
+}
+
+// Terminal variant - Classic green terminal
+.jadis-code-block--terminal {
+  background: #001a00;
+  color: var(--jadis-color-green);
+  border-color: var(--jadis-color-green);
+
+  .jadis-code-block__header {
+    background: rgba(0, 255, 65, 0.15);
+    border-bottom-color: var(--jadis-color-green);
+  }
+
+  .jadis-code-block__line-numbers {
+    background: rgba(0, 255, 65, 0.08);
+    border-right-color: var(--jadis-color-green);
+    color: rgba(0, 255, 65, 0.7);
+  }
+}
+
+// Matrix variant - Cyan digital rain
+.jadis-code-block--matrix {
+  background: #000a0a;
+  color: var(--jadis-color-cyan);
+  border-color: var(--jadis-color-cyan);
+  animation: matrix-flicker 4s infinite;
+
+  .jadis-code-block__header {
+    background: rgba(0, 255, 255, 0.15);
+    border-bottom-color: var(--jadis-color-cyan);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+
+  .jadis-code-block__line-numbers {
+    background: rgba(0, 255, 255, 0.08);
+    border-right-color: var(--jadis-color-cyan);
+    color: rgba(0, 255, 255, 0.7);
+    font-family: 'Courier New', monospace;
+  }
+
+  .jadis-code-block__code {
+    text-shadow: 0 0 5px currentColor;
+  }
+}
+
+// Retro variant - Amber/orange with scanlines
+.jadis-code-block--retro {
+  background: #1a0a00;
+  color: var(--jadis-color-orange);
+  border-color: var(--jadis-color-orange);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 136, 0, 0.03) 2px,
+      rgba(255, 136, 0, 0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .jadis-code-block__header {
+    background: rgba(255, 136, 0, 0.15);
+    border-bottom-color: var(--jadis-color-orange);
+    font-weight: 700;
+    text-shadow: 0 0 10px currentColor;
+  }
+
+  .jadis-code-block__line-numbers {
+    background: rgba(255, 136, 0, 0.08);
+    border-right-color: var(--jadis-color-orange);
+    color: rgba(255, 136, 0, 0.8);
+    position: relative;
+    z-index: 2;
+  }
+
+  .jadis-code-block__code {
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 0 3px currentColor;
+  }
+}
+
+// Minimal variant - Clean grayscale
+.jadis-code-block--minimal {
+  background: #0a0a0a;
+  color: #cccccc;
+  border-color: #444444;
+  border-radius: 8px;
+
+  .jadis-code-block__header {
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom-color: #444444;
+    color: #aaaaaa;
+    font-weight: 400;
+    text-transform: none;
+  }
+
+  .jadis-code-block__line-numbers {
+    background: rgba(255, 255, 255, 0.02);
+    border-right-color: #333333;
+    color: #666666;
+  }
+
+  .jadis-code-block__copy {
+    border-color: #666666;
+    color: #999999;
+
+    &:hover {
+      background: #666666;
+      color: #ffffff;
+    }
+  }
+}
+
+// Glow variant - Purple with intense glow
+.jadis-code-block--glow {
+  background: #0a000a;
+  color: var(--jadis-color-purple);
+  border-color: var(--jadis-color-purple);
+  box-shadow:
+    0 0 20px rgba(153, 0, 255, 0.3),
+    inset 0 0 20px rgba(153, 0, 255, 0.1);
+
+  .jadis-code-block__header {
+    background: rgba(153, 0, 255, 0.2);
+    border-bottom-color: var(--jadis-color-purple);
+    text-shadow: 0 0 10px currentColor;
+  }
+
+  .jadis-code-block__line-numbers {
+    background: rgba(153, 0, 255, 0.1);
+    border-right-color: var(--jadis-color-purple);
+    color: rgba(153, 0, 255, 0.8);
+    text-shadow: 0 0 5px currentColor;
+  }
+
+  .jadis-code-block__code {
+    text-shadow: 0 0 8px currentColor;
+  }
+}
+
+@keyframes matrix-flicker {
+  0%, 100% { opacity: 1; }
+  95% { opacity: 1; }
+  96% { opacity: 0.8; }
+  97% { opacity: 1; }
+  98% { opacity: 0.9; }
+  99% { opacity: 1; }
+}
+
+// Japanese Seasonal Theme Variants
+
+// Haru (Spring/桜) - Cherry Blossom Pink
+.jadis-code-block--haru {
+  background: linear-gradient(135deg, #2a0f1a 0%, #1a0a10 100%);
+  color: #ffb3d9;
+  border-color: #ff69b4;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '桜';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 3rem;
+    opacity: 0.05;
+    color: #ff69b4;
+    font-family: serif;
+    pointer-events: none;
+  }
+
+  .jadis-code-block__header {
+    background: linear-gradient(90deg, rgba(255, 105, 180, 0.2) 0%, rgba(255, 182, 193, 0.15) 100%);
+    border-bottom-color: #ff69b4;
+    color: #ffb3d9;
+    font-style: italic;
+  }
+
+  .jadis-code-block__line-numbers {
+    background: rgba(255, 105, 180, 0.08);
+    border-right: 1px dashed #ff69b4;
+    color: rgba(255, 182, 193, 0.8);
+  }
+
+  .jadis-code-block__code {
+    text-shadow: 0 0 2px rgba(255, 105, 180, 0.4);
+  }
+
+  // Syntax colors for Haru
+  .keyword { color: #ff69b4; font-weight: 600; }
+  .string { color: #ffc0cb; }
+  .comment { color: rgba(255, 182, 193, 0.6); font-style: italic; }
+  .number { color: #ffb3d9; }
+  .function { color: #ff1493; }
+  .operator { color: #ffb3d9; }
+}
+
+// Natsu (Summer/夏) - Ocean Blue
+.jadis-code-block--natsu {
+  background: linear-gradient(180deg, #001a33 0%, #003366 100%);
+  color: #00bfff;
+  border-color: #0099cc;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #00bfff, #0099cc, #00ffff, #0099cc, #00bfff);
+    background-size: 200% 100%;
+    animation: wave 3s linear infinite;
+  }
+
+  &::before {
+    content: '夏';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 3rem;
+    opacity: 0.08;
+    color: #00bfff;
+    font-family: serif;
+    pointer-events: none;
+  }
+
+  .jadis-code-block__header {
+    background: linear-gradient(90deg, rgba(0, 191, 255, 0.2) 0%, rgba(0, 153, 204, 0.15) 100%);
+    border-bottom-color: #0099cc;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .jadis-code-block__line-numbers {
+    background: rgba(0, 191, 255, 0.05);
+    border-right-color: rgba(0, 191, 255, 0.3);
+    color: rgba(0, 191, 255, 0.7);
+  }
+
+  .jadis-code-block__code {
+    text-shadow: 0 0 5px rgba(0, 191, 255, 0.3);
+  }
+
+  // Syntax colors for Natsu
+  .keyword { color: #00ffff; font-weight: 600; }
+  .string { color: #87ceeb; }
+  .comment { color: rgba(135, 206, 235, 0.7); }
+  .number { color: #00bfff; }
+  .function { color: #1e90ff; }
+  .operator { color: #87ceeb; }
+}
+
+// Aki (Autumn/秋) - Maple Red
+.jadis-code-block--aki {
+  background: linear-gradient(135deg, #330f00 0%, #1a0500 50%, #330800 100%);
+  color: #ff6b35;
+  border-color: #d2691e;
+  position: relative;
+
+  &::before {
+    content: '秋';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 3rem;
+    opacity: 0.08;
+    color: #ff6b35;
+    font-family: serif;
+    pointer-events: none;
+  }
+
+  &::after {
+    content: '🍁';
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 2rem;
+    opacity: 0.1;
+    animation: fall 10s infinite linear;
+  }
+
+  .jadis-code-block__header {
+    background: linear-gradient(90deg, rgba(255, 107, 53, 0.2) 0%, rgba(210, 105, 30, 0.15) 100%);
+    border-bottom: 2px solid #d2691e;
+    color: #ff8c00;
+    font-weight: 600;
+  }
+
+  .jadis-code-block__line-numbers {
+    background: linear-gradient(180deg, rgba(255, 107, 53, 0.1) 0%, rgba(210, 105, 30, 0.05) 100%);
+    border-right: 1px solid rgba(255, 140, 0, 0.4);
+    color: rgba(255, 140, 0, 0.8);
+  }
+
+  .jadis-code-block__code {
+    text-shadow: 0 0 4px rgba(255, 107, 53, 0.4);
+  }
+
+  // Syntax colors for Aki
+  .keyword { color: #ff8c00; font-weight: 600; }
+  .string { color: #ffa500; }
+  .comment { color: rgba(255, 165, 0, 0.6); font-style: italic; }
+  .number { color: #ff6b35; }
+  .function { color: #d2691e; }
+  .operator { color: #ffa500; }
+}
+
+// Fuyu (Winter/冬) - Snow White
+.jadis-code-block--fuyu {
+  background: linear-gradient(180deg, #0a0a0f 0%, #1a1a2e 100%);
+  color: #e0f7fa;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.05);
+  position: relative;
+
+  &::before {
+    content: '❄';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    font-size: 2rem;
+    opacity: 0.1;
+    animation: snow-fall 8s infinite linear;
+    pointer-events: none;
+  }
+
+  &::after {
+    content: '冬';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 3rem;
+    opacity: 0.05;
+    color: #ffffff;
+    font-family: serif;
+    pointer-events: none;
+  }
+
+  .jadis-code-block__header {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.15) 0%, rgba(224, 247, 250, 0.1) 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+
+  .jadis-code-block__line-numbers {
+    background: rgba(255, 255, 255, 0.03);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .jadis-code-block__code {
+    color: #e0f7fa;
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.3);
+  }
+
+  // Syntax colors for Fuyu
+  .keyword { color: #ffffff; font-weight: 600; }
+  .string { color: #b3e5fc; }
+  .comment { color: rgba(176, 190, 197, 0.7); font-style: italic; }
+  .number { color: #e0f7fa; }
+  .function { color: #81d4fa; }
+  .operator { color: #b3e5fc; }
+}
+
+// Sumi (Ink/墨) - Calligraphy Black
+.jadis-code-block--sumi {
+  background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 50%, #1a1a1a 100%);
+  color: #d4d4d4;
+  border: 2px solid #4a4a4a;
+  border-radius: 0;
+  position: relative;
+
+  &::before {
+    content: '墨';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 3rem;
+    opacity: 0.08;
+    color: #888888;
+    font-family: serif;
+    font-weight: bold;
+    pointer-events: none;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #888888, transparent);
+  }
+
+  .jadis-code-block__header {
+    background: linear-gradient(90deg, rgba(136, 136, 136, 0.15) 0%, rgba(68, 68, 68, 0.1) 100%);
+    border-bottom: 2px solid #4a4a4a;
+    color: #b8b8b8;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .jadis-code-block__line-numbers {
+    background: rgba(0, 0, 0, 0.3);
+    border-right: 2px solid #4a4a4a;
+    color: #6a6a6a;
+    font-weight: bold;
+  }
+
+  .jadis-code-block__code {
+    font-weight: 500;
+  }
+
+  // Syntax colors for Sumi
+  .keyword { color: #e8e8e8; font-weight: 700; }
+  .string { color: #a8a8a8; }
+  .comment { color: #5a5a5a; font-style: italic; }
+  .number { color: #c8c8c8; }
+  .function { color: #d8d8d8; font-weight: 600; }
+  .operator { color: #888888; }
+}
+
+// Animations
+@keyframes wave {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+@keyframes fall {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes snow-fall {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(20px) rotate(360deg); }
+}
+
+// Prism.js token mapping to our theme colors
+.jadis-code-block {
+  // Default Prism token styles
+  .token {
+    &.comment,
+    &.prolog,
+    &.doctype,
+    &.cdata {
+      color: rgba(var(--jadis-color-green-rgb), 0.6);
+      font-style: italic;
+    }
+
+    &.punctuation {
+      color: var(--jadis-color-white);
+    }
+
+    &.property,
+    &.tag,
+    &.boolean,
+    &.number,
+    &.constant,
+    &.symbol,
+    &.deleted {
+      color: var(--jadis-color-orange);
+    }
+
+    &.selector,
+    &.attr-name,
+    &.string,
+    &.char,
+    &.builtin,
+    &.inserted {
+      color: var(--jadis-color-yellow);
+    }
+
+    &.operator,
+    &.entity,
+    &.url,
+    &.language-css .token.string,
+    &.style .token.string {
+      color: var(--jadis-color-cyan);
+    }
+
+    &.atrule,
+    &.attr-value,
+    &.keyword {
+      color: var(--jadis-color-purple);
+      font-weight: 600;
+    }
+
+    &.function,
+    &.class-name {
+      color: var(--jadis-color-cyan);
+    }
+
+    &.regex,
+    &.important,
+    &.variable {
+      color: var(--jadis-color-green);
+    }
+
+    &.important,
+    &.bold {
+      font-weight: bold;
+    }
+
+    &.italic {
+      font-style: italic;
+    }
+
+    &.entity {
+      cursor: help;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .jadis-code-block {
+    font-size: 0.75rem;
+    margin: 0.5rem 0;
+
+    &__header {
+      padding: 0.375rem 0.75rem;
+      font-size: 0.625rem;
+    }
+
+    &--small .jadis-code-block__pre,
+    &--medium .jadis-code-block__pre,
+    &--large .jadis-code-block__pre {
+      padding: 0.75rem;
+    }
+
+    &__line-numbers {
+      min-width: 2.5rem;
+      padding: 0.75rem 0.375rem 0.75rem 0.75rem;
+    }
+
+    &--numbered .jadis-code-block__code {
+      padding: 0.75rem 0.75rem 0.75rem 0.5rem;
+    }
+  }
+}
+
+// Dark theme support
+@media (prefers-color-scheme: dark) {
+  .jadis-code-block {
+    background: var(--jadis-color-black);
+  }
+}
+
+// Print styles
+@media print {
+  .jadis-code-block {
+    border: 1px solid #000;
+    box-shadow: none;
+    background: #fff !important;
+    color: #000 !important;
+
+    &__copy {
+      display: none;
+    }
+  }
+
+  .jadis-inline-code {
+    background: #f5f5f5 !important;
+    color: #000 !important;
+    border-color: #ccc !important;
+  }
+}
